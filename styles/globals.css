@@ -1,0 +1,133 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+}
+body {
+    font-family: "Ubuntu", sans-serif;
+    -webkit-text-size-adjust: none;
+    min-width: 320px;
+    overflow-x: hidden;
+    background-color: #f1f9fe;
+    color:#5756a2;
+  }
+
+/* colors  */
+.color{
+    color:#5756a2;
+}
+.background{
+    background-color: #5756a2;
+}
+
+/* Sign Up Master CSS */
+
+.signup-wrapper .signup_intro{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ margin-top: 200px;
+}
+
+.signup-wrapper .signup_intro h1 {
+    font-size: 40px !important;
+}
+.signup-wrapper .signup_intro p {
+    font-size: 24px !important;
+}
+
+ .btn-signup{
+    background-color: #5756a2 !important;
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #ffffff !important;
+    padding: 10px 40px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.btn-signup:hover{
+    background-color: #5756a2 !important;
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #ffffff;
+}
+
+.btn-later{
+    /* background-color: #5756a2 !important; */
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #5756a2 !important;
+    padding: 10px 40px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.btn-later:hover{
+    background-color: #5756a2 !important;
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #ffffff !important;
+    padding: 10px 40px;
+    font-size: 20px;
+    margin-top: 20px;
+
+}
+
+/* btn prev & btn next */
+.btn-next{
+    background-color: #5756a2 !important;
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #ffffff !important;
+    padding: 10px 40px;
+    font-size: 20px;
+    margin-top: 20px;
+    width: 160px;
+}
+.btn-next:hover{
+    background-color: #5756a2 !important;
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #ffffff;
+}
+.btn-prev{
+    /* background-color: #5756a2 !important; */
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #5756a2 !important;
+    padding: 10px 40px;
+    font-size: 20px;
+    margin-top: 20px;
+    width: 160px;
+}
+.btn-prev:hover{
+    background-color: #5756a2 !important;
+    border-color: #5756a2;
+    outline: #5756a2;
+    color: #ffffff !important;
+    padding: 10px 40px;
+    font-size: 20px;
+    margin-top: 20px;
+
+}
+/* btn prev & btn next */
+/* singup start css */
+.start-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 200px auto;
+}
+
+.start-later-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 200px auto;
+}
+
+.input-filed-height{
+    height: 50px;
+}
