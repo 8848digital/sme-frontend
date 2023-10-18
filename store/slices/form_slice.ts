@@ -10,6 +10,9 @@ interface FormState {
   firstName: string;
   lastName: string;
   phoneNumber: string;
+  cvFile: File | null; // Add the cvFile key
+  selectAvailability:string,
+  rates:any
 }
 
 const initialState: FormState = {
@@ -18,6 +21,9 @@ const initialState: FormState = {
   firstName: '',
   lastName: '',
   phoneNumber: '',
+  cvFile: null, // Initialize cvFile to null
+  selectAvailability:'',
+  rates:''
 };
 
 // Create a form slice with reducers
