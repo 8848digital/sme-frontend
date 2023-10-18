@@ -13,7 +13,7 @@ const EnterBio = () => {
     };
     return (
         <div className="container">
-            <div className="row" style={{marginTop:'160px'}}>
+            <div className="row" style={{marginTop:'150px'}}>
                 <div className="col-12">
                     <div className="text-center">
                         <h1>Enter Your Bio Here</h1>
@@ -22,7 +22,7 @@ const EnterBio = () => {
                     <div className='mt-5'>
                         <div className="mb-3">
                             {/* <label htmlFor="exampleFormControlTextarea1" className="form-label">E</label> */}
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows={3}></textarea>
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows={6}></textarea>
                         </div>
                     </div>
                 </div>

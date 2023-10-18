@@ -2,21 +2,20 @@
     position: relative;
 }
 .wizard_cont{
-    position: absolute;
-    top: 5rem;
+    position: absolute !important;
+    top: 1rem;
     right: 5rem;
 }
 
 .progress_bar_div{
-    position: absolute;
-    background-color: transparent;
-
+    position: absolute !important;
+    background-color: transparent !important;
     width: 100%;
 }
 
 .progress_bar{
-    position: absolute;
-    background-color: transparent;
+    position: absolute !important;
+    background-color: transparent !important;
     
 }
 .progress_bar span{

@@ -28,7 +28,7 @@ const SelectLanguageSkills: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="row" style={{ marginTop: '160px' }}>
+      <div className="row" style={{ marginTop: '150px' }}>
         <div className="col-12">
           <div className="text-center">
             <h1>Select Language Skills Here</h1>

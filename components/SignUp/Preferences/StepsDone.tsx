@@ -6,11 +6,11 @@ const StepsDone = () => {
     <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="text-center">
+            <div className="text-center" style={{ marginTop: '150px' }}>
               <h1>Done</h1>
               <h3>Our team will review your profile and get back to you soon !!!</h3>
             </div>
-            <div>
+            <div className='text-center'>
             <Link href='' className='btn btn-signup me-5'>Build your bio</Link>
             <Link href='/signup-later' className='btn btn-later'>Later?</Link>
             </div>

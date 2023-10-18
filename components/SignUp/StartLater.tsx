@@ -16,8 +16,8 @@ const StartLater = () => {
                                 <Link href='' className='btn btn-later'>Later</Link>
                             </div>
                             <div className='mt-4 d-flex align-items-center justify-content-center'>
-                                <input className="form-control w-100 me-2 input-filed-height" type="text" placeholder='Enter Email ...' />
-                                <button type='button' className='btn btn-secondary background'>Send</button>
+                                <input className="form-control w-100 me-2 " type="text" placeholder='Enter Email ...' />
+                                <button type='button' className='btn btn-secondary  background'>Send</button>
                             </div>
                            
                         </div>

@@ -6,7 +6,7 @@ const Step3of3SelectAvailability = () => {
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <div className="text-center">
+          <div className="text-center" style={{ marginTop: '150px' }}>
             <h1>Step 3 of 3</h1>
             <h3>Preferences</h3>
           </div>

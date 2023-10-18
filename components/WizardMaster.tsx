@@ -15,6 +15,18 @@ import MobileStepper from "@mui/material/MobileStepper";
 
 import styles from "@/styles/wizard.module.css";
 import { styled } from "@mui/material/styles";
+import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step2of3UploadCv";
+import Step2of3ExtractedDataFromCv from "./SignUp/ProfessionalInfo/Step2of3ExtractedDataFromCv";
+import Step3of3SelectAvailability from "./SignUp/Preferences/Step3of3SelectAvailability";
+import Step3of3EnterRates from "./SignUp/Preferences/Step3of3EnterRates";
+import StepsDone from "./SignUp/Preferences/StepsDone";
+import ThankYou from "./SignUp/ThankYou";
+import UploadPhoto from "./SignUp/BuildYourBio/UploadPhoto";
+import EnterBio from "./SignUp/BuildYourBio/EnterBio";
+import SelectTechnicalSkills from "./SignUp/BuildYourBio/SelectTechnicalSkills";
+import SelectLanguageSkills from "./SignUp/BuildYourBio/SelectLanguageSkills";
+import SelectCertifications from "./SignUp/BuildYourBio/SelectCertifications";
+import ProfileCompleted from "./SignUp/BuildYourBio/ProfileCompleted";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -30,7 +42,7 @@ const WizardMaster = () => {
   });
 
   const handleNext = () => {
-    if (currentStep < 3) {
+    if (currentStep < 15) {
       dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data
       setCurrentStep(currentStep + 1);
     }
@@ -69,7 +81,7 @@ const WizardMaster = () => {
                 <Stepper activeStep={currentStep - 1} orientation="vertical">
                   {data.map((e: number) => {
                     return (
-                      <Step key={e} >
+                      <Step key={e}>
                         <StepLabel></StepLabel>
                       </Step>
                     );
@@ -90,12 +102,12 @@ const WizardMaster = () => {
             <div className="col-8 position-relative">
               <div className={styles.progress_bar_div}>
                 <div className="">
-                  <p className="mb-4">{currentStep} of 10 completed</p>
+                  <p className="mb-4">{currentStep} of 15 completed</p>
                 </div>
 
                 <MobileStepper
                   variant="progress"
-                  steps={11}
+                  steps={16}
                   backButton={<></>}
                   nextButton={<></>}
                   activeStep={currentStep}
@@ -124,11 +136,84 @@ const WizardMaster = () => {
                 onFormDataChange={handleFormDataChange}
               />
             )}
+            {currentStep === 4 && (
+              <Step2of3UploadCv
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 5 && (
+              <Step2of3ExtractedDataFromCv
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 6 && (
+              <Step3of3SelectAvailability
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 7 && (
+              <Step3of3EnterRates
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 8 && (
+              <StepsDone
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 9 && (
+              <ThankYou
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 10 && (
+              <UploadPhoto
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 11 && (
+              <EnterBio
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 12 && (
+              <SelectTechnicalSkills
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 13 && (
+              <SelectLanguageSkills
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+
+            {currentStep === 14 && (
+              <SelectCertifications
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
+            {currentStep === 15 && (
+              <ProfileCompleted
+              // formData={stepFormData}
+              // onFormDataChange={handleFormDataChange}
+              />
+            )}
           </div>
 
           <div className="row">
             <div className="col-12">
-              <div className="text-center" style={{ marginTop: "180px" }}>
+              <div className="text-center" style={{ marginTop: "50px" }}>
                 {currentStep > 1 && (
                   <button
                     className="btn btn-prev me-3"
@@ -137,7 +222,7 @@ const WizardMaster = () => {
                     Previous
                   </button>
                 )}
-                {currentStep < 3 ? (
+                {currentStep < 15 ? (
                   <button className="btn btn-next" onClick={handleNext}>
                     Next
                   </button>

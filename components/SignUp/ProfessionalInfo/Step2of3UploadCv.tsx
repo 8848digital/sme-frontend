@@ -15,11 +15,11 @@ const Step2of3UploadCv = () => {
         <div className="container">
             <div className="row">
                 <div className="col-12">
-                    <div className="text-center">
+                    <div className="text-center" style={{ marginTop: '150px' }}>
                         <h1>Step 2 of 3</h1>
                         <h3>Professional Information</h3>
                     </div>
-                    <div className='mt-5'>
+                    <div className='mt-5 text-center'>
                         <form>
                             <div className="mb-3 file-input-wrapper">
                                 <label htmlFor="cvUpload" className="file-input-button">
