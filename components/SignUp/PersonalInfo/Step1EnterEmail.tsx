@@ -21,7 +21,7 @@ const Step1EnterEmail = ({ formData, onFormDataChange }:any) => {
                             <div className='mt-4 d-flex align-items-center justify-content-center'>
                                 <input
                                     className="form-control w-75 me-2 input-filed-height"
-                                    type="text"
+                                    type="email"
                                     placeholder='Enter Email ...'
                                     value={formData.email} // Bind value to the Redux state
                                     onChange={handleEmailChange} // Handle change and update state

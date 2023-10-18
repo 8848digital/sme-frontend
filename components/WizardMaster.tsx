@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeFormDataAction } from "@/store/slices/formAction_slice";
 import MultiStep from "./StepsProgressIndicator";
 import Step1EnterEmail from "./SignUp/PersonalInfo/Step1EnterEmail";
@@ -29,6 +29,7 @@ import SelectLanguageSkills from "./SignUp/BuildYourBio/SelectLanguageSkills";
 import SelectCertifications from "./SignUp/BuildYourBio/SelectCertifications";
 import ProfileCompleted from "./SignUp/BuildYourBio/ProfileCompleted";
 import { useRouter } from "next/router";
+import { form_details_from_store, setFormData } from "@/store/slices/form_slice";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
@@ -41,11 +42,14 @@ const WizardMaster = () => {
     firstName: "",
     lastName: "",
     phoneNumber: "",
+    cvFile:"",
+    selectAvailability:"",
+    rates:""
   });
 
   const handleNext = () => {
     if (currentStep < 7) {
-      dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data
+      dispatch(setFormData(stepFormData) as any); // Dispatch action to store form data
       setCurrentStep(currentStep + 1);
     }
   };
@@ -57,7 +61,7 @@ const WizardMaster = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data
+    dispatch(setFormData(stepFormData) as any); // Dispatch action to store form data
     router.push("/steps-done");
     // You can submit the data to your API or perform other actions here
   };
@@ -68,7 +72,8 @@ const WizardMaster = () => {
       [field]: value,
     });
   };
-
+const formDataFromStore = useSelector(form_details_from_store);
+console.log('form Data',formDataFromStore)
   return (
     <div className="container-fluid">
       <div className="row">
@@ -141,8 +146,8 @@ const WizardMaster = () => {
             )}
             {currentStep === 4 && (
               <Step2of3UploadCv
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
+              formData={stepFormData}
+              onFormDataChange={handleFormDataChange}
               />
             )}
             {currentStep === 5 && (
@@ -153,65 +158,17 @@ const WizardMaster = () => {
             )}
             {currentStep === 6 && (
               <Step3of3SelectAvailability
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
+              formData={stepFormData}
+              onFormDataChange={handleFormDataChange}
               />
             )}
             {currentStep === 7 && (
               <Step3of3EnterRates
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
+              formData={stepFormData}
+              onFormDataChange={handleFormDataChange}
               />
             )}
-            {currentStep === 8 && (
-              <StepsDone
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 9 && (
-              <ThankYou
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 10 && (
-              <UploadPhoto
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 11 && (
-              <EnterBio
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 12 && (
-              <SelectTechnicalSkills
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 13 && (
-              <SelectLanguageSkills
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-
-            {currentStep === 14 && (
-              <SelectCertifications
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 15 && (
-              <ProfileCompleted
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
-              />
-            )}
+           
           </div>
 
           <div className="row">
