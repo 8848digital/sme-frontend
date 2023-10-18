@@ -131,3 +131,57 @@ body {
 .input-filed-height{
     height: 50px;
 }
+
+/* upload file */
+/* styles.css */
+
+/* Style the container */
+/* .container {
+    text-align: center;
+    margin-top: 150px;
+  } */
+  
+  /* Style the file input wrapper */
+  .file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  /* Style the file input button */
+  .file-input-button {
+    background-color: #5756a2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Style the file input */
+  #cvUpload {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
+  
+  /* Style the file name display */
+  .file-name {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+  }
+  
+  /* thankyou page css */
+  /* ThankYou.css */
+
+.card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    border-radius: 10px; /* Add rounded corners */
+  }
+  
+ 
+  

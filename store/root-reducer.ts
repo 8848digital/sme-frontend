@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
-
+import formslice from "./slices/form_slice";
 const appReducer = combineReducers({
-
+  form: formslice,
 });
 
 const rootReducer = (state: any, action: any) => {

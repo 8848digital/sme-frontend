@@ -12,7 +12,7 @@ const StartLater = () => {
                             <h1>Sign Up In Just 3 Easy Steps!</h1>
                             <h3>Complete your registration in less than 2 minutes and get started!</h3>
                             <div className="">
-                                <Link href='/signup-start' className='btn btn-signup me-5'>Start</Link>
+                                <Link href='/wizard-master' className='btn btn-signup me-5'>Start</Link>
                                 <Link href='' className='btn btn-later'>Later</Link>
                             </div>
                             <div className='mt-4 d-flex align-items-center justify-content-center'>
