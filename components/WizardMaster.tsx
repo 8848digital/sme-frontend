@@ -12,7 +12,8 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import MobileStepper from "@mui/material/MobileStepper";
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import styles from "@/styles/wizard.module.css";
 import { styled } from "@mui/material/styles";
 import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step2of3UploadCv";
@@ -213,24 +214,28 @@ const WizardMaster = () => {
 
           <div className="row">
             <div className="col-12">
-              <div className="text-center" style={{ marginTop: "50px" }}>
-                {currentStep > 1 && (
-                  <button
-                    className="btn btn-prev me-3"
-                    onClick={handlePrevious}
-                  >
-                    Previous
-                  </button>
-                )}
-                {currentStep < 15 ? (
-                  <button className="btn btn-next" onClick={handleNext}>
-                    Next
-                  </button>
-                ) : (
-                  <button className="btn btn-next" onClick={handleSubmit}>
-                    Submit
-                  </button>
-                )}
+              <div className=" d-flex justify-content-center" style={{ marginTop: "50px" }}>
+                <div className="d-flex">
+                  {currentStep > 1 && (
+                    <button
+                      className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
+                      onClick={handlePrevious}
+                    >
+                      <ArrowBackIcon />
+                      Previous
+                    </button>
+                  )}
+                  {currentStep < 15 ? (
+                    <button className="btn btn-next d-flex align-items-center justify-content-center" onClick={handleNext}>
+                      Next
+                      <ArrowForwardIcon />
+                    </button>
+                  ) : (
+                    <button className="btn btn-next" onClick={handleSubmit}>
+                      Submit
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
