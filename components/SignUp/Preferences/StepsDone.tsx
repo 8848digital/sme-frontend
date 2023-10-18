@@ -11,8 +11,8 @@ const StepsDone = () => {
               <h3>Our team will review your profile and get back to you soon !!!</h3>
             </div>
             <div className='text-center'>
-            <Link href='' className='btn btn-signup me-5'>Build your bio</Link>
-            <Link href='/signup-later' className='btn btn-later'>Later?</Link>
+            <Link href='/build-your-bio' className='btn btn-signup me-5'>Build your bio</Link>
+            <Link href='/thank-you' className='btn btn-later'>Later?</Link>
             </div>
           </div>
         </div>
