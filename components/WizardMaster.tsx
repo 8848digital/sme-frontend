@@ -13,7 +13,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import MobileStepper from "@mui/material/MobileStepper";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import styles from "@/styles/wizard.module.css";
 import { styled } from "@mui/material/styles";
 import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step2of3UploadCv";
@@ -34,7 +34,7 @@ const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const data = [1, 2, 3, 4, 5, 6, 7];
   const dispatch = useDispatch();
-const router = useRouter();
+  const router = useRouter();
   const [stepFormData, setStepFormData] = useState<any>({
     email: "",
     verificationCode: ["", "", "", ""], // Initialize an array for verification codes
@@ -58,7 +58,7 @@ const router = useRouter();
 
   const handleSubmit = () => {
     dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data
-    router.push('/steps-done')
+    router.push("/steps-done");
     // You can submit the data to your API or perform other actions here
   };
 
@@ -216,7 +216,10 @@ const router = useRouter();
 
           <div className="row">
             <div className="col-12">
-              <div className=" d-flex justify-content-center" style={{ marginTop: "50px" }}>
+              <div
+                className=" d-flex justify-content-center"
+                style={{ marginTop: "50px" }}
+              >
                 <div className="d-flex">
                   {currentStep > 1 && (
                     <button
@@ -228,7 +231,10 @@ const router = useRouter();
                     </button>
                   )}
                   {currentStep < 7 ? (
-                    <button className="btn btn-next d-flex align-items-center justify-content-center" onClick={handleNext}>
+                    <button
+                      className="btn btn-next d-flex align-items-center justify-content-center"
+                      onClick={handleNext}
+                    >
                       Next
                       <ArrowForwardIcon />
                     </button>
