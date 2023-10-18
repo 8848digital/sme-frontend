@@ -28,12 +28,13 @@ import SelectTechnicalSkills from "./SignUp/BuildYourBio/SelectTechnicalSkills";
 import SelectLanguageSkills from "./SignUp/BuildYourBio/SelectLanguageSkills";
 import SelectCertifications from "./SignUp/BuildYourBio/SelectCertifications";
 import ProfileCompleted from "./SignUp/BuildYourBio/ProfileCompleted";
+import { useRouter } from "next/router";
 
 const WizardMaster = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [currentStep, setCurrentStep] = useState<any>(1);
+  const data = [1, 2, 3, 4, 5, 6, 7];
   const dispatch = useDispatch();
-
+const router = useRouter();
   const [stepFormData, setStepFormData] = useState<any>({
     email: "",
     verificationCode: ["", "", "", ""], // Initialize an array for verification codes
@@ -43,7 +44,7 @@ const WizardMaster = () => {
   });
 
   const handleNext = () => {
-    if (currentStep < 15) {
+    if (currentStep < 7) {
       dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data
       setCurrentStep(currentStep + 1);
     }
@@ -57,6 +58,7 @@ const WizardMaster = () => {
 
   const handleSubmit = () => {
     dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data
+    router.push('/steps-done')
     // You can submit the data to your API or perform other actions here
   };
 
@@ -103,12 +105,12 @@ const WizardMaster = () => {
             <div className="col-8 position-relative">
               <div className={styles.progress_bar_div}>
                 <div className="">
-                  <p className="mb-4">{currentStep} of 15 completed</p>
+                  <p className="mb-4">{currentStep} of 7 completed</p>
                 </div>
 
                 <MobileStepper
                   variant="progress"
-                  steps={16}
+                  steps={8}
                   backButton={<></>}
                   nextButton={<></>}
                   activeStep={currentStep}
@@ -225,7 +227,7 @@ const WizardMaster = () => {
                       Previous
                     </button>
                   )}
-                  {currentStep < 15 ? (
+                  {currentStep < 7 ? (
                     <button className="btn btn-next d-flex align-items-center justify-content-center" onClick={handleNext}>
                       Next
                       <ArrowForwardIcon />
