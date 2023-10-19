@@ -78,14 +78,16 @@ const WizardMaster = () => {
   const formDataFromStore = useSelector(form_details_from_store);
   console.log("form Data", formDataFromStore);
   return (
-    <div className="container-fluid">
+    <div className="container" >
+      <div className={styles.wizard_wrapper}>
+
       <div className="row">
-        <div className="col-md-4 p-0 d-none d-sm-block">
+        {/* <div className="col-md-4 p-0 d-none d-sm-block">
           <div style={{ width: "380px" }} className={styles.image_cont}>
             <img
               src={sideImg.src}
               alt="Your Image"
-              style={{ width: "100%", height: "800px" }}
+              style={{ width: "100%", height: "700px" }}
             />
             <div className={styles.wizard_cont}>
               <Box sx={{ width: "100%" }}>
@@ -101,19 +103,19 @@ const WizardMaster = () => {
               </Box>
             </div>
           </div>
-        </div>
-        <div className="col-md-8 col-lg-8 mt-5">
-          <div className="row ">
-            <div className="col-4">
-              <div>
-                <h2 className="fs-3">Step {currentStep}</h2>
+        </div> */}
+        <div className="col-md-12 col-lg-12 mt-5">
+          <div className="row " style={{maxWidth:'800px',margin:'0 auto'}}>
+            <div className="col-4 ">
+              <div className="">
+                <h2 className="fs-3 text-white">Step {currentStep}</h2>
                 <hr className={styles.step_hr} />
               </div>
             </div>
             <div className="col-8 position-relative">
               <div className={styles.progress_bar_div}>
-                <div className="">
-                  <p className="mb-4">{currentStep} of 7 completed</p>
+                <div className="" style={{marginLeft:'109px'}}>
+                  <p className="mb-4 text-white">{currentStep} of 7 completed</p>
                 </div>
 
                 <MobileStepper
@@ -177,7 +179,7 @@ const WizardMaster = () => {
             <div className="col-12">
               <div
                 className=" d-flex justify-content-center"
-                style={{ marginTop: "50px" }}
+                style={{ marginBottom: "50px" }}
               >
                 <div className="d-sm-flex d-static">
                   {currentStep > 1 && (
@@ -207,6 +209,7 @@ const WizardMaster = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

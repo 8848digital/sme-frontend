@@ -9,7 +9,7 @@ const SignUpMaster = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="signup_intro">
-                            <h1>Welcome To SME</h1>
+                            <h1 className='text-white'>Welcome To SME</h1>
                             {/* <p>You Can Sign Up Here</p> */}
                         {/* <div className="signup-btn">
                             <Link href='/signup-start' className='btn btn-signup'>Signup</Link>

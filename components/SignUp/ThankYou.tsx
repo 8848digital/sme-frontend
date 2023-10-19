@@ -8,14 +8,14 @@ const ThankYou = () => {
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <div className="thank_you_wrapper text-center" style={{ marginTop: '150px' }}>
-            <div className="mb-5 ">
+          <div className=" card thank_you_wrapper text-center" style={{ maxWidth: '800px', height: '300px' }}>
+            <div className="mb-5 pt-5">
               <img src={thankyouImg.src} alt="" width="120px" />
             </div>
             <div className="">
-              <h3>
+              <h2>
                 Thank you for your interest in working with strategic gears !!!
-              </h3>
+              </h2>
             </div>
             <div>
               <Link href="/" className="btn btn-signup ">

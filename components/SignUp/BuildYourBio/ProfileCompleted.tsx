@@ -1,8 +1,9 @@
 import React from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import styles from "@/styles/bio.module.css";
+import { useRouter } from "next/router";
 
 const ProfileCompleted: React.FC = () => {
-  // Sample user data
   const userData = {
     photoUrl: "/path-to-user-photo.jpg",
     bio: "I am a passionate developer interested in web technologies.",
@@ -14,20 +15,19 @@ const ProfileCompleted: React.FC = () => {
     ],
   };
 
-  // Share function (replace with your actual social media sharing logic)
   const shareProfile = () => {
-    // Implement your social media sharing logic here
-    // Example: Open a new window with a share link
     const shareUrl = "https://example.com/user-profile"; // Replace with the actual profile URL
     window.open(`https://twitter.com/intent/tweet?url=${shareUrl}`);
   };
 
+  const router = useRouter();
+
   return (
     <div className="container">
-      <div className="profile_wrapper border mt-3 rounded">
-        <div className="row ">
+      <div className={`card p-4 ${styles.profile_wrapper}`} style={{ maxWidth: '800px', maxHeight: '800px' }}>
+        <div className="row">
           <div className="text-center my-3">
-            <h1 className="">Thank You for complete your profile.</h1>
+            <h1>Thank You for completing your profile.</h1>
           </div>
 
           <div className="col-sm-4">
@@ -64,13 +64,10 @@ const ProfileCompleted: React.FC = () => {
                 ))}
               </ul>
             </div>
-
-            {/* <div>
-                            <h2>Share Profile</h2>
-                            <button onClick={shareProfile}>Share on Twitter</button>
-                          
-                        </div> */}
           </div>
+        </div>
+        <div className="text-center pt-3 pb-3">
+          <button type="button" className="btn btn-signup" onClick={() => router.push('/')}>Go To Home</button>
         </div>
       </div>
     </div>
