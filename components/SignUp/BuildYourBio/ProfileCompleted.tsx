@@ -24,17 +24,18 @@ const ProfileCompleted: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="profile_wrapper border mt-3 rounded" >
-        <div className="row">
+      <div className="profile_wrapper border mt-3 rounded">
+        <div className="row ">
           <div className="text-center my-3">
             <h1 className="">Thank You for complete your profile.</h1>
           </div>
-          <div className="col-3">
+
+          <div className="col-sm-4">
             <div className="text-center">
               <AccountCircleIcon sx={{ fontSize: "100px" }} />
             </div>
           </div>
-          <div className="col-9">
+          <div className="col-sm-8">
             <p>{userData.bio}</p>
 
             <div>

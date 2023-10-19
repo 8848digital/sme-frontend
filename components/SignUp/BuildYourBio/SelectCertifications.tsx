@@ -36,7 +36,7 @@ const SelectCertifications: React.FC = () => {
           <form>
             <div className="mb-3 row  mt-5 justify-content-center">
               {certifications.map((certification) => (
-                <div key={certification} className="form-check form-check-inline col-6">
+                <div key={certification} className="form-check form-check-inline col-12 col-sm-6">
                   <input
                     type="checkbox"
                     id={certification}

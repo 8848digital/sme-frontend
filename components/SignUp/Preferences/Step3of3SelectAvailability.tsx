@@ -17,7 +17,7 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }:any) => {
             <h3>Preferences</h3>
           </div>
           <form>
-            <div className="mb-3 d-flex justify-content-center mt-5">
+            <div className="mb-3 d-flex flex-column justify-content-center align-items-center mt-5">
               <label htmlFor="availability" className="form-label mt-2 pe-2">
                 Select Availability
               </label>
