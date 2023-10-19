@@ -24,7 +24,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                 <div className="row">
                     <div className="col-12">
                         <div className='text-center'>
-                            <h1>Step 2 of 3</h1>
+                            <h1>Step 2 of 6</h1>
                             <h2>Personal Information</h2>
                             <p>{formData.email}</p>
                             <div>

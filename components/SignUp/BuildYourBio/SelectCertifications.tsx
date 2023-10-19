@@ -28,7 +28,7 @@ const SelectCertifications: React.FC = () => {
         <div className="row">
           <div className="col-12">
             <div className="text-center">
-              <h1>Select Coding Certifications Here</h1>
+              <h1>Coding Certifications</h1>
             </div>
             <form>
               <div className="mb-3 row mt-5 justify-content-center">
@@ -49,9 +49,9 @@ const SelectCertifications: React.FC = () => {
                 ))}
               </div>
             </form>
-            <div className="text-center">
+            {/* <div className="text-center">
               <p>Selected Certifications: {selectedCertifications.join(', ')}</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

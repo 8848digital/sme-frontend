@@ -28,7 +28,7 @@ const SelectTechnicalSkills: React.FC = () => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-5">
-              <h1>Select Technical Skills Here</h1>
+              <h1>Technical Skills</h1>
             </div>
             <form>
               <div className="mb-3 d-flex justify-content-center mt-5 flex-wrap">
@@ -49,9 +49,9 @@ const SelectTechnicalSkills: React.FC = () => {
                 ))}
               </div>
             </form>
-            <div className="text-center">
+            {/* <div className="text-center">
               <p>Selected Languages: {selectedLanguages.join(', ')}</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

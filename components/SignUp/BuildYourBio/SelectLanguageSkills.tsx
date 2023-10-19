@@ -28,7 +28,7 @@ const SelectLanguageSkills: React.FC = () => {
         <div className="row">
           <div className="col-12">
             <div className="text-center" style={{marginTop:'70px'}}>
-              <h1>Select Language Skills Here</h1>
+              <h1>Languages</h1>
             </div>
             <form>
               <div className="mb-3 d-flex justify-content-center mt-5 flex-wrap">
@@ -49,9 +49,9 @@ const SelectLanguageSkills: React.FC = () => {
                 ))}
               </div>
             </form>
-            <div className="text-center mt-5">
+            {/* <div className="text-center mt-5">
               <p>Selected Languages: {selectedLanguages.join(', ')}</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ const UploadPhoto = () => {
             <div className="bio_wrapper">
               <div className="text-center mt-4">
                 <h1>Start Building Your Bio</h1>
-                <h3>Upload Your Photo Here</h3>
+                <h2>Upload Your Photo Here</h2>
               </div>
               <div className="mt-5 text-center">
                 <form>

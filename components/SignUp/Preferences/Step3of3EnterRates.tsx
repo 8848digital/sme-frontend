@@ -13,7 +13,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center">
-              <h1>Step 3 of 3</h1>
+              <h1>Step 6 of 6</h1>
               <h2>Preferences</h2>
             </div>
             <form>
