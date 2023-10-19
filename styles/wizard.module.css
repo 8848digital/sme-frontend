@@ -27,17 +27,17 @@
 }
 .progress_bar span span{
     width: 100%;
-    background-color: rgb(100, 88, 202);
+    background-color: #00578A;
     border: none;
 }
 .step_hr{
     height: 5px;
     width: 5rem;
-    background-color: rgb(80, 66, 212);
+    background-color: #00578A;
     opacity: 1;
     border-radius: 5px;
     margin-block: 5px;
 }
 .wizard_cont .MuiStep-roo.MuiStep-vertica.css-8wcvy5-MuiStep-root{
-    fill: rgb(80, 66, 212) !important;
+    fill: #00578A !important;
 }

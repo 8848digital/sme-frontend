@@ -1,11 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import AccountSidebar from "../AccountSidebar";
-import { jobDetails } from "@/datasets/JobDetails";
-import JobNotification from "./JobNotification";
-import JobDescription from "./JobDescription";
-import JobApprove from "./JobApprove";
-const JobRequestMaster = () => {
+
+const ContractMaster = () => {
   return (
     <>
       <div className="container-fluid">
@@ -15,7 +11,7 @@ const JobRequestMaster = () => {
           </div>
           <div className="col-10">
             <div>
-              <JobNotification details={jobDetails} />
+                Master
             </div>
           </div>
         </div>
@@ -24,4 +20,4 @@ const JobRequestMaster = () => {
   );
 };
 
-export default JobRequestMaster;
+export default ContractMaster;

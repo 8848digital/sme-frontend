@@ -29,7 +29,10 @@ import SelectLanguageSkills from "./SignUp/BuildYourBio/SelectLanguageSkills";
 import SelectCertifications from "./SignUp/BuildYourBio/SelectCertifications";
 import ProfileCompleted from "./SignUp/BuildYourBio/ProfileCompleted";
 import { useRouter } from "next/router";
-import { form_details_from_store, setFormData } from "@/store/slices/form_slice";
+import {
+  form_details_from_store,
+  setFormData,
+} from "@/store/slices/form_slice";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
@@ -42,9 +45,9 @@ const WizardMaster = () => {
     firstName: "",
     lastName: "",
     phoneNumber: "",
-    cvFile:"",
-    selectAvailability:"",
-    rates:""
+    cvFile: "",
+    selectAvailability: "",
+    rates: "",
   });
 
   const handleNext = () => {
@@ -72,12 +75,12 @@ const WizardMaster = () => {
       [field]: value,
     });
   };
-const formDataFromStore = useSelector(form_details_from_store);
-console.log('form Data',formDataFromStore)
+  const formDataFromStore = useSelector(form_details_from_store);
+  console.log("form Data", formDataFromStore);
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-4 p-0">
+        <div className="col-md-4 p-0 ">
           <div style={{ width: "380px" }} className={styles.image_cont}>
             <img
               src={sideImg.src}
@@ -146,8 +149,8 @@ console.log('form Data',formDataFromStore)
             )}
             {currentStep === 4 && (
               <Step2of3UploadCv
-              formData={stepFormData}
-              onFormDataChange={handleFormDataChange}
+                formData={stepFormData}
+                onFormDataChange={handleFormDataChange}
               />
             )}
             {currentStep === 5 && (
@@ -158,17 +161,16 @@ console.log('form Data',formDataFromStore)
             )}
             {currentStep === 6 && (
               <Step3of3SelectAvailability
-              formData={stepFormData}
-              onFormDataChange={handleFormDataChange}
+                formData={stepFormData}
+                onFormDataChange={handleFormDataChange}
               />
             )}
             {currentStep === 7 && (
               <Step3of3EnterRates
-              formData={stepFormData}
-              onFormDataChange={handleFormDataChange}
+                formData={stepFormData}
+                onFormDataChange={handleFormDataChange}
               />
             )}
-           
           </div>
 
           <div className="row">

@@ -4,20 +4,20 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Ubuntu", sans-serif;
+  /* font-family: "Ubuntu", sans-serif; */
   -webkit-text-size-adjust: none;
   min-width: 320px;
   overflow-x: hidden;
   background-color: #f1f9fe;
-  color: #5756a2;
+  color: #00B2D4;
 }
 
 /* colors  */
 .color {
-  color: #5756a2;
+  color: #00B2D4;
 }
 .background {
-  background-color: #5756a2;
+  background-color: #00578A;
 }
 
 /* Sign Up Master CSS */
@@ -38,34 +38,34 @@ body {
 }
 
 .btn-signup {
-  background-color: #5756a2 !important;
-  border-color: #5756a2;
-  outline: #5756a2;
+  background-color: #00578A !important;
+  border-color: #00578A;
+  outline: #00578A;
   color: #ffffff !important;
   padding: 10px 40px;
   font-size: 20px;
   margin-top: 20px;
 }
 .btn-signup:hover {
-  background-color: #5756a2 !important;
-  border-color: #5756a2;
-  outline: #5756a2;
+  background-color: #00578A !important;
+  border-color: #00578A;
+  outline: #00578A;
   color: #ffffff;
 }
 
 .btn-later {
-  /* background-color: #5756a2 !important; */
-  border-color: #5756a2;
-  outline: #5756a2;
-  color: #5756a2 !important;
+  /* background-color: #00578A !important; */
+  border-color: #00578A;
+  outline: #00578A;
+  color: #00578A !important;
   padding: 10px 40px;
   font-size: 20px;
   margin-top: 20px;
 }
 .btn-later:hover {
-  background-color: #5756a2 !important;
-  border-color: #5756a2;
-  outline: #5756a2;
+  background-color: #00578A !important;
+  border-color: #00578A;
+  outline: #00578A;
   color: #ffffff !important;
   padding: 10px 40px;
   font-size: 20px;
@@ -74,9 +74,9 @@ body {
 
 /* btn prev & btn next */
 .btn-next {
-  background-color: #5756a2 !important;
-  border-color: #5756a2;
-  outline: #5756a2;
+  background-color: #00578A !important;
+  border-color: #00578A;
+  outline: #00578A;
   color: #ffffff !important;
   padding: 10px 40px;
   font-size: 20px;
@@ -84,25 +84,25 @@ body {
   width: 160px;
 }
 .btn-next:hover {
-  background-color: #5756a2 !important;
-  border-color: #5756a2;
-  outline: #5756a2;
+  background-color: #00578A !important;
+  border-color: #00578A;
+  outline: #00578A;
   color: #ffffff;
 }
 .btn-prev {
-  /* background-color: #5756a2 !important; */
-  border-color: #5756a2;
-  outline: #5756a2;
-  color: #5756a2 !important;
+  /* background-color: #00578A !important; */
+  border-color: #00578A;
+  outline: #00578A;
+  color: #00578A !important;
   padding: 10px 40px;
   font-size: 20px;
   margin-top: 20px;
   width: 160px;
 }
 .btn-prev:hover {
-  background-color: #5756a2 !important;
-  border-color: #5756a2;
-  outline: #5756a2;
+  background-color: #00578A !important;
+  border-color: #00578A;
+  outline: #00578A;
   color: #ffffff !important;
   padding: 10px 40px;
   font-size: 20px;
@@ -148,7 +148,7 @@ body {
 
 /* Style the file input button */
 .file-input-button {
-  background-color: #5756a2;
+  background-color: #00578A;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -202,18 +202,21 @@ body {
 }
 .sidebar_wrapper ul li a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .sidebar_wrapper {
   height: 100vh;
-  background-color: #e9e9e9;
+  background-color: #00578A;
 }
 .sidebar_wrapper ul li:hover {
-  background-color: #5756a2;
+  background-color: #ffffff;
+}
+.sidebar_wrapper ul li:hover a{
+  color: black;
 }
 .sidebar_wrapper ul li.active {
-  background-color: #5756a2;
+  background-color: #ffffff;
 }
 .sidebar_wrapper ul li.active a{
-    color: white;
+    color: black;
 }

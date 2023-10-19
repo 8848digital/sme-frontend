@@ -24,7 +24,7 @@ const AccountSidebar = () => {
             className={index === 3 ? "active" : ""}
             onClick={() => setIndex(3)}
           >
-            <Link href=""> Contract</Link>
+            <Link href="/contract"> Contract</Link>
           </li>
           <li
             className={index === 4 ? "active" : ""}
