@@ -4,6 +4,7 @@ import { persistor, store } from "../store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Layout from "../components/Layout";
 import "@/styles/globals.css";
+// import "@/styles/bootstrap.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Inter } from "next/font/google";
