@@ -78,7 +78,7 @@ const BuildYourBioMaster = () => {
               
                 <div className="col-12">
                     <div className=" d-flex justify-content-center" style={{ marginTop: "50px" }}>
-                        <div className="d-flex">
+                        <div className="d-sm-flex d-static">
                             {currentStep > 1 && (
                                 <button
                                     className="btn btn-prev me-3 d-flex align-items-center justify-content-center"

@@ -10,9 +10,9 @@ const StepsDone = () => {
               <h1>Done</h1>
               <h3>Our team will review your profile and get back to you soon !!!</h3>
             </div>
-            <div className='text-center'>
-            <Link href='/build-your-bio' className='btn btn-signup me-5'>Build your bio</Link>
-            <Link href='/thank-you' className='btn btn-later'>Later?</Link>
+            <div className='text-center mt-5'>
+            <Link href='/build-your-bio' className='btn btn-signup mx-2'>Build your bio</Link>
+            <Link href='/thank-you' className='btn btn-later mx-2'>Later?</Link>
             </div>
           </div>
         </div>

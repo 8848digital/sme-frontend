@@ -34,7 +34,7 @@ const SelectTechnicalSkills: React.FC = () => {
             <h1>Select Technical Skills Here</h1>
           </div>
           <form>
-            <div className="mb-3 d-flex justify-content-center mt-5">
+            <div className="mb-3 d-flex justify-content-center mt-5 flex-wrap">
               {codingLanguages.map((language) => (
                 <div key={language} className="form-check form-check-inline">
                   <input

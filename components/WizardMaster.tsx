@@ -80,7 +80,7 @@ const WizardMaster = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-4 p-0 ">
+        <div className="col-md-4 p-0 d-none d-sm-block">
           <div style={{ width: "380px" }} className={styles.image_cont}>
             <img
               src={sideImg.src}
@@ -179,7 +179,7 @@ const WizardMaster = () => {
                 className=" d-flex justify-content-center"
                 style={{ marginTop: "50px" }}
               >
-                <div className="d-flex">
+                <div className="d-sm-flex d-static">
                   {currentStep > 1 && (
                     <button
                       className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
