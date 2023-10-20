@@ -30,7 +30,7 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-5">
-              <h1>Step 4 of 6</h1>
+              <h1>Step 4 of 7</h1>
               <h2>Professional Information</h2>
             </div>
             <div className='mt-5 text-center'>

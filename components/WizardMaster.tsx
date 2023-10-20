@@ -36,7 +36,7 @@ import {
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
-  const data = [1, 2, 3, 4, 5, 6];
+  const data = [1, 2, 3, 4, 5, 6, 7];
   const dispatch = useDispatch();
   const router = useRouter();
   const [stepFormData, setStepFormData] = useState<any>({
@@ -51,7 +51,7 @@ const WizardMaster = () => {
   });
 
   const handleNext = () => {
-    if (currentStep < 6) {
+    if (currentStep < 7) {
       dispatch(setFormData(stepFormData) as any); // Dispatch action to store form data
       setCurrentStep(currentStep + 1);
     }
@@ -115,12 +115,12 @@ const WizardMaster = () => {
             <div className="col-8 position-relative">
               <div className={styles.progress_bar_div}>
                 <div className="" style={{marginLeft:'109px'}}>
-                  <p className="mb-4 text-white">{currentStep} of 6 completed</p>
+                  <p className="mb-4 text-white">{currentStep} of 7 completed</p>
                 </div>
 
                 <MobileStepper
                   variant="progress"
-                  steps={7}
+                  steps={8}
                   backButton={<></>}
                   nextButton={<></>}
                   activeStep={currentStep}
@@ -155,19 +155,19 @@ const WizardMaster = () => {
                 onFormDataChange={handleFormDataChange}
               />
             )}
-            {/* {currentStep === 5 && (
+            {currentStep === 5 && (
               <Step2of3ExtractedDataFromCv
               // formData={stepFormData}
               // onFormDataChange={handleFormDataChange}
               />
-            )} */}
-            {currentStep === 5 && (
+            )}
+            {currentStep === 6 && (
               <Step3of3SelectAvailability
                 formData={stepFormData}
                 onFormDataChange={handleFormDataChange}
               />
             )}
-            {currentStep === 6 && (
+            {currentStep === 7 && (
               <Step3of3EnterRates
                 formData={stepFormData}
                 onFormDataChange={handleFormDataChange}
@@ -191,7 +191,7 @@ const WizardMaster = () => {
                       Previous
                     </button>
                   )}
-                  {currentStep < 6 ? (
+                  {currentStep < 7 ? (
                     <button
                       className="btn btn-next d-flex align-items-center justify-content-center"
                       onClick={handleNext}

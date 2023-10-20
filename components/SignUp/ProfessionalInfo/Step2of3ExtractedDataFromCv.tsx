@@ -8,7 +8,7 @@ const Step2of3ExtractedDataFromCv = () => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-5">
-              <h1>Step 2 of 3</h1>
+              <h1>Step 5 of 7</h1>
               <h2>Professional Information</h2>
               <p>This data will be extracted from CV</p>
             </div>

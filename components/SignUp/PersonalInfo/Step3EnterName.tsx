@@ -29,7 +29,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                 <div className="row">
                     <div className="col-12">
                         <div className='text-center'>
-                            <h1>Step 3 of 6</h1>
+                            <h1>Step 3 of 7</h1>
                             <h2>Personal Information</h2>
                             <div className=' d-flex align-items-center justify-content-center flex-column'>
                                 <input
@@ -46,6 +46,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                                     value={formData.lastName}
                                     onChange={handleLastNameChange}
                                 />
+                              
                                 <input
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
@@ -53,6 +54,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                                     value={formData.phoneNumber}
                                     onChange={handlePhoneNumberChange}
                                 />
+                                {/* <Link href='' className='mt-3'>Verify Number</Link> */}
                             </div>
                         </div>
                     </div>

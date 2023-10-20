@@ -13,7 +13,7 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-3">
-              <h1>Step 5 of 6</h1>
+              <h1>Step 6 of 7</h1>
               <h2>Preferences</h2>
             </div>
             <form>
