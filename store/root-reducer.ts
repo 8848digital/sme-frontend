@@ -1,7 +1,9 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import formslice from "./slices/form_slice";
+import bioSlice from "./slices/build_bio_slice";
 const appReducer = combineReducers({
   form: formslice,
+  bio:bioSlice,
 });
 
 const rootReducer = (state: any, action: any) => {

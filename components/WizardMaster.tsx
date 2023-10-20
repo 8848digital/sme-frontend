@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { storeFormDataAction } from "@/store/slices/formAction_slice";
 import MultiStep from "./StepsProgressIndicator";
 import Step1EnterEmail from "./SignUp/PersonalInfo/Step1EnterEmail";
 import Step3EnterName from "./SignUp/PersonalInfo/Step3EnterName";
@@ -41,13 +40,15 @@ const WizardMaster = () => {
   const router = useRouter();
   const [stepFormData, setStepFormData] = useState<any>({
     email: "",
-    verificationCode: ["", "", "", ""], // Initialize an array for verification codes
+    verificationCode: '', // Initialize an array for verification codes
     firstName: "",
     lastName: "",
     phoneNumber: "",
     cvFile: "",
     selectAvailability: "",
     rates: "",
+    certification_level:[],
+    professionalexp:[]
   });
 
   const handleNext = () => {
@@ -69,14 +70,31 @@ const WizardMaster = () => {
     // You can submit the data to your API or perform other actions here
   };
 
-  const handleFormDataChange = (field: any, value: any) => {
-    setStepFormData({
-      ...stepFormData,
-      [field]: value,
-    });
+  const handleFormDataChange = (field: string, value: any) => {
+    if (field === 'certification_level') {
+      // If the field is 'certification_level', update it with the provided value
+      setStepFormData({
+        ...stepFormData,
+        certification_level: value.certifications,
+      });
+    } else if (field === 'professionalexp') {
+      // If the field is 'professionalexp', update it with the provided value
+      setStepFormData({
+        ...stepFormData,
+        professionalexp: value.professional_exp,
+      });
+    } else {
+      // For other fields, update the stepFormData object as usual
+      setStepFormData({
+        ...stepFormData,
+        [field]: value,
+      });
+    }
   };
+  
+  
   const formDataFromStore = useSelector(form_details_from_store);
-  console.log("form Data", formDataFromStore);
+  console.log("form Data values", formDataFromStore);
   return (
     <div className="container" >
       <div className={styles.wizard_wrapper}>
@@ -157,8 +175,8 @@ const WizardMaster = () => {
             )}
             {currentStep === 5 && (
               <Step2of3ExtractedDataFromCv
-              // formData={stepFormData}
-              // onFormDataChange={handleFormDataChange}
+              formData={stepFormData}
+              onFormDataChange={handleFormDataChange}
               />
             )}
             {currentStep === 6 && (

@@ -14,6 +14,40 @@ const BuildYourBioMaster = () => {
     const [currentStep, setCurrentStep] = useState<any>(1);
     const dispatch = useDispatch();
     const router = useRouter();
+    const [bioData , setBioData] = useState<any>({
+        image:  null,
+        user_bio:"",
+        technical_skills:"",
+        languages:"",
+        certification_in_bio:[]
+    })
+    const handleBioDataChange = (field: string, value: any) => {
+        if (field === 'certification_level') {
+          // If the field is 'certification_level', update it with the provided value
+          setBioData({
+            ...bioData,
+            certification_level: value.certifications,
+          });
+        } else if (field === 'professionalexp') {
+          // If the field is 'professionalexp', update it with the provided value
+          setBioData({
+            ...bioData,
+            professionalexp: value.professional_exp,
+          });
+        } else {
+          // For other fields, update the stepFormData object as usual
+          setBioData({
+            ...bioData,
+            [field]: value,
+          });
+        }
+      };
+      
+      
+    //   const formDataFromStore = useSelector(form_details_from_store);
+    //   console.log("form Data values", formDataFromStore);
+    
+
     const handleNext = () => {
         if (currentStep < 7) {
             //   dispatch(storeFormDataAction(stepFormData) as any); // Dispatch action to store form data

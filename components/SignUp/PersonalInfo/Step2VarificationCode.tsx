@@ -8,14 +8,12 @@ interface Step2Props {
 }
 
 const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
-    const [verificationCodes, setVerificationCodes] = useState(['', '', '', '']);
+    const [verificationCodes, setVerificationCodes] = useState<any>('');
 
-    const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newVerificationCode = e.target.value;
-        const updatedVerificationCodes = [...verificationCodes];
-        updatedVerificationCodes[index] = newVerificationCode;
-        setVerificationCodes(updatedVerificationCodes);
-        onFormDataChange('verificationCode', updatedVerificationCodes);
+        setVerificationCodes(newVerificationCode);
+        onFormDataChange('verificationCode', newVerificationCode);
     };
 
     return (
@@ -30,16 +28,16 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                             <div>
                                 <p>Enter Verification Code Below</p>
                                 <div className='d-flex align-items-center justify-content-center'>
-                                    {verificationCodes.map((code, index) => (
+                                   
                                         <input
-                                            key={index}
+                                           
                                             className="form-control me-2"
                                             type="text"
-                                            style={{ width: '50px' }}
-                                            value={code}
-                                            onChange={(e) => handleVerificationCodeChange(e, index)}
+                                            style={{ width: '150px' }}
+                                            value={verificationCodes}
+                                            onChange={(e) => handleVerificationCodeChange(e)}
                                         />
-                                    ))}
+                                   
                                 </div>
                             </div>
                             <p className='mt-2'>Not received? <Link href=''>Re-send</Link></p>

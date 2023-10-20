@@ -6,24 +6,28 @@ import { RootState } from '../root-reducer';
 // Define the initial state interface for the form data
 interface FormState {
   email: string;
-  verificationCode: string[];
+  verificationCode: any;
   firstName: string;
   lastName: string;
   phoneNumber: string;
   cvFile: File | null; // Add the cvFile key
   selectAvailability:string,
-  rates:any
+  rates:any,
+  certification_level:any
+  professionalexp:any
 }
 
 const initialState: FormState = {
   email: '',
-  verificationCode: [],
+  verificationCode: '',
   firstName: '',
   lastName: '',
   phoneNumber: '',
   cvFile: null, // Initialize cvFile to null
   selectAvailability:'',
-  rates:''
+  rates:'',
+  certification_level:[],
+  professionalexp:[],
 };
 
 // Create a form slice with reducers
