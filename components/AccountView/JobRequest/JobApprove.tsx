@@ -4,8 +4,8 @@ const JobApprove = ({ details, onclick }: any) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12 text-center">
-          <img src={details.pdf} alt="pdf" />
+        <div className="col-12 text-center overflow-hidden">
+          <img src={details.pdf} style={{width:"100%"}}  alt="pdf" />
         </div>
         <div className="col-12 text-center">
           <button

@@ -3,9 +3,9 @@ import React from "react";
 
 const Accountview = () => {
   return (
-    <div>
+    <>
       <AccountViewMaster />
-    </div>
+    </>
   );
 };
 

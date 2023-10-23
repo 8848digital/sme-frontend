@@ -8,18 +8,7 @@ import JobApprove from "./JobApprove";
 const JobRequestMaster = () => {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row ">
-          <div className="col-2 pl-0">
-            <AccountSidebar />
-          </div>
-          <div className="col-10">
-            <div>
-              <JobNotification details={jobDetails} />
-            </div>
-          </div>
-        </div>
-      </div>
+      <JobNotification details={jobDetails} />
     </>
   );
 };
