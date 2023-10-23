@@ -17,7 +17,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
               <h2>Preferences</h2>
             </div>
             <form>
-              <div className="mb-3 d-flex justify-content-center mt-5">
+              <div className="mb-3 d-flex justify-content-center flex-column align-items-center mt-5">
                 <label htmlFor="enter-rates" className="form-label mt-2 pe-2">
                   Enter hourly/weekly/monthly Rates
                 </label>

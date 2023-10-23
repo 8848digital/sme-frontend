@@ -24,7 +24,7 @@ const ProfileCompleted: React.FC = () => {
 
   return (
     <div className="container">
-      <div className={`card p-4 ${styles.profile_wrapper}`} style={{ maxWidth: '800px', maxHeight: '800px' }}>
+      <div className={`card p-4 ${styles.profile_wrapper}`} style={{ maxWidth: '800px'}}>
         <div className="row">
           <div className="text-center my-3">
             <h1>Thank You for completing your profile.</h1>
