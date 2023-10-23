@@ -6,7 +6,7 @@ const AccountMaster = () => {
   return (
     <div className="container">
       <div className={`card row ${styles.account_minwrapper} `}>
-        <div className={`my-3`}>
+        <div className={`mb-4`}>
           <h1 className={`${styles.header_text}`}>Account</h1>
         </div>
         <div className="row text-center">
