@@ -21,7 +21,7 @@ const AccountChangePassword = () => {
   return (
     <div className="container">
       <div className={`card row ${styles.account_minwrapper}`}>
-        <div className=" my-3">
+        <div className="mb-4">
           <h1 className={`${styles.header_text}`}>Change Password</h1>
         </div>
         <div className="row justify-content-center">
@@ -53,11 +53,11 @@ const AccountChangePassword = () => {
                 onChange={inputHandle}
               />
             </div>
-            <div className="my-3 d-flex justify-content-around">
-              <button onClick={submitHandle} className="btn btn-signup">
+            <div className="mt-4 d-flex justify-content-around">
+              <button onClick={submitHandle} className="btn btn-later">
                 Back
               </button>
-              <button onClick={submitHandle} className="btn btn-signup">
+              <button onClick={submitHandle} className="btn btn-later">
                 Change Password
               </button>
             </div>

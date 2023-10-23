@@ -44,84 +44,86 @@ export default function ContractNavbars() {
     <>
       <div className="container">
         <div className={`row card  ${styles.account_minwrapper}`}>
-          <div className=" my-3">
+          <div className="">
             <h1 className={`${styles.header_text}`}>Contract</h1>
           </div>
-          <Box sx={{ width: "100%" }}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-                className={`${styles.contract_tabs}`}
-              >
-                <Tab
-                  className={
-                    value !== 0 ? "btn btn-next mt-0 " : "btn btn-signup"
-                  }
-                  style={{ width: "fit-content" }}
-                  label="Active"
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  style={{ width: "fit-content" }}
-                  className={
-                    value !== 1 ? "btn btn-next mt-0" : "btn btn-signup"
-                  }
-                  label="History"
-                  {...a11yProps(1)}
-                />
-              </Tabs>
+          <div className="mt-5">
+            <Box sx={{ width: "100%" }}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="basic tabs example"
+                  className={`${styles.contract_tabs}`}
+                >
+                  <Tab
+                    className={
+                      value !== 0 ? "btn btn-later mt-0 " : "btn btn-signup"
+                    }
+                    style={{ width: "fit-content" }}
+                    label="Active"
+                    {...a11yProps(0)}
+                  />
+                  <Tab
+                    style={{ width: "fit-content" }}
+                    className={
+                      value !== 1 ? "btn btn-later mt-0" : "btn btn-signup"
+                    }
+                    label="History"
+                    {...a11yProps(1)}
+                  />
+                </Tabs>
+              </Box>
+              <CustomTabPanel value={value} index={0}>
+                <div className="col-12">
+                  <table className="table table-bordered">
+                    <thead className="p-2">
+                      <tr className="">
+                        <th>Project Name</th>
+                        <th className="text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <h2>SME-Frontend</h2>
+                        </td>
+                        <td className="text-center">
+                          <button className="btn btn-later px-2 mt-0 py-1 ">
+                            View Full
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CustomTabPanel>
+              <CustomTabPanel value={value} index={1}>
+                <div className="col-12">
+                  <table className="table table-bordered">
+                    <thead className="p-2">
+                      <tr className="">
+                        <th>History</th>
+                        <th className="text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <h2>SME-Frontend</h2>
+                        </td>
+                        <td className="text-center">
+                          <button className="btn btn-later px-2 mt-0 py-1 ">
+                            View Full
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CustomTabPanel>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-              <div className="col-12">
-                <table className="table table-bordered">
-                  <thead className="p-2">
-                    <tr className="">
-                      <th>Project Name</th>
-                      <th className="text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h2>SME-Frontend</h2>
-                      </td>
-                      <td className="text-center">
-                        <button className="btn btn-next px-2 mt-0 py-1 ">
-                          View Full
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-              <div className="col-12">
-                <table className="table table-bordered">
-                  <thead className="p-2">
-                    <tr className="">
-                      <th>History</th>
-                      <th className="text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h2>SME-Frontend</h2>
-                      </td>
-                      <td className="text-center">
-                        <button className="btn btn-next px-2 mt-0 py-1 ">
-                          View Full
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </CustomTabPanel>
-          </Box>
+          </div>
         </div>
       </div>
     </>

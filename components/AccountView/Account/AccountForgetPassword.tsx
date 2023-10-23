@@ -20,7 +20,7 @@ const AccountForgetPassword = () => {
     <div className="container">
       <div className={` card row ${styles.account_minwrapper} `}>
         <div className=" my-3">
-          <h1 className={`${styles.header_text}`}>Reset Password</h1>
+          <h1 className={`${styles.header_text}`}>Forget Password</h1>
         </div>
         <div className="row justify-content-center mt-3">
           <div className="col-8">

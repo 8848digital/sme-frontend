@@ -7,9 +7,9 @@ const JobApprove = ({ details, onclick }: any) => {
         <div className="col-12 text-center overflow-hidden">
           <img src={details.pdf} style={{width:"100%"}}  alt="pdf" />
         </div>
-        <div className="col-12 text-center">
+        <div className="col-12 my-3 text-center">
           <button
-            className="btn btn-next"
+            className="btn btn-later"
             onClick={() => onclick(details, "thank")}
           >
             Approve

@@ -6,12 +6,12 @@ const AccountMaster = () => {
   return (
     <div className="container">
       <div className={`card row ${styles.account_minwrapper} `}>
-        <div className={`my-3`}>
+        <div className={`mb-4`}>
           <h1 className={`${styles.header_text}`}>Account</h1>
         </div>
         <div className="row text-center">
           <div className="my-3 ">
-            <Link href="/account/reset-password" legacyBehavior>
+            <Link href="/account/change-password" legacyBehavior>
               <a className="btn btn-signup font-size-3">Reset Password</a>
             </Link>
           </div>
