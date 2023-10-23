@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, Box, TextField, Chip } from "@mui/material";
 import EnterBio from "@/components/SignUp/BuildYourBio/EnterBio";
+import CodingCertificationChildTable from "@/components/SignUp/BuildYourBio/CodingCertificationChildTable";
 
 interface User {
   photoUrl: string;
@@ -113,15 +114,6 @@ const AccountUpdateModal = ({ user, isOpen, onClose, onUpdateUser }: any) => {
           </div>
         </div>
         <div className="my-3">
-          {/* <TextField
-            label="Bio"
-            fullWidth
-            multiline
-            value={updatedUser.bio}
-            onChange={(e) =>
-              setUpdatedUser({ ...updatedUser, bio: e.target.value })
-            }
-          /> */}
           <div className="col-12">
             <div className="text-center">
               <h1>Enter Your Bio Here</h1>
@@ -139,18 +131,6 @@ const AccountUpdateModal = ({ user, isOpen, onClose, onUpdateUser }: any) => {
         </div>
 
         <div className="my-3">
-          {/* <TextField
-            label="Tech Skills"
-            fullWidth
-            value={updatedUser.techSkills.join(", ")}
-            onChange={(e) =>
-              setUpdatedUser({
-                ...updatedUser,
-                techSkills: e.target.value.split(", "),
-              })
-            }
-          /> */}
-
           <div className="col-12 border py-2">
             <div className="text-center">
               <h1>Technical Skills</h1>
@@ -174,25 +154,10 @@ const AccountUpdateModal = ({ user, isOpen, onClose, onUpdateUser }: any) => {
                 ))}
               </div>
             </form>
-            {/* <div className="text-center">
-              <p>Selected Languages: {selectedLanguages.join(', ')}</p>
-            </div> */}
           </div>
         </div>
 
         <div className="my-3">
-          {/* <TextField
-            label="Languages"
-            fullWidth
-            value={updatedUser.languages.join(", ")}
-            onChange={(e) =>
-              setUpdatedUser({
-                ...updatedUser,
-                languages: e.target.value.split(", "),
-              })
-            }
-          /> */}
-
           <div className="col-12 border py-2">
             <div className="text-center">
               <h1>Languages</h1>
@@ -222,52 +187,14 @@ const AccountUpdateModal = ({ user, isOpen, onClose, onUpdateUser }: any) => {
           </div>
         </div>
 
-        <div className="my-3">
-          {/* <TextField
-            label="Certifications"
-            fullWidth
-            value={updatedUser.certifications.join(", ")}
-            onChange={(e) =>
-              setUpdatedUser({
-                ...updatedUser,
-                certifications: e.target.value.split(", "),
-              })
-            }
-          /> */}
-
-          <div className="col-12 border py-2">
-            <div className="text-center">
+        <div className="col-12">
+            <div className="text-center mt-4 mb-3">
               <h1>Coding Certifications</h1>
             </div>
-            <form>
-              <div className="mb-3 row mt-3 justify-content-center">
-                {certifications.map((certification) => (
-                  <div
-                    key={certification}
-                    className="form-check form-check-inline col-12 col-sm-6"
-                  >
-                    <input
-                      type="checkbox"
-                      id={certification}
-                      value={certification}
-                      // checked={selectedCertifications.includes(certification)}
-                      // onChange={() => handleCheckboxChange(certification)}
-                      className="form-check-input"
-                    />
-                    <label htmlFor={certification} className="form-check-label">
-                      {certification}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </form>
-            {/* <div className="text-center">
-              <p>Selected Certifications: {selectedCertifications.join(', ')}</p>
-            </div> */}
+           <CodingCertificationChildTable/>
           </div>
-        </div>
-        <div className="d-flex justify-content-around">
-          <button className="btn btn-next mt-0" onClick={onClose}>
+        <div className="d-flex my-4 justify-content-around">
+          <button className="btn btn-later mt-0" onClick={onClose}>
             Cancel
           </button>
           <button className="btn btn-signup" onClick={handleSave}>

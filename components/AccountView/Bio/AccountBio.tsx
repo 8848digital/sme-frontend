@@ -22,16 +22,16 @@ const AccountBio: React.FC = () => {
     <div className="container">
       <div className={`profile_wrapper ${styles.account_wrapper} card `}>
         <div className="row">
-          <div className=" my-4">
+          <div className="mb-4">
             <h1 className={`${styles.header_text}`}>Bio</h1>
           </div>
 
-          <div className="col-sm-2">
+          <div className="col-sm-4">
             <div className="text-center mt-4">
               <AccountCircleIcon sx={{ fontSize: "100px" }} />
             </div>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-6 ">
             <p>{AccountProfile.bio}</p>
 
             <div>
@@ -60,12 +60,14 @@ const AccountBio: React.FC = () => {
                 ))}
               </ul>
             </div>
+            <div className="text-center">
+              <button onClick={handleOpenModal} className="btn btn-later">
+                Update
+              </button>
+            </div>
           </div>
-          <div className="col-sm-3 text-center pt-3 pb-3">
-            <button onClick={handleOpenModal} className="btn btn-next">
-              Update
-            </button>{" "}
-          </div>
+
+         
         </div>
 
         {/* <div className="row">

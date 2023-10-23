@@ -16,9 +16,9 @@ const JobNotification = ({ details }: any) => {
   return (
     <div className="container ">
       <div
-        className={`  row justify-content-md-center card  ${styles.account_minwrapper}`}
+        className={`  row justify-content-md-center card  ${styles.account_wrapper}`}
       >
-        <div className=" my-3">
+        <div className="mb-4">
           <h1 className={`${styles.header_text}`}>Job Request</h1>
         </div>
         {tabs === "table" && (
@@ -38,11 +38,11 @@ const JobNotification = ({ details }: any) => {
                         <>
                           <tr>
                             <td>
-                              <h2 className="ps-2">{e.project}</h2>
+                              <h2 className="text-center text-capitalize">{e.project}</h2>
                             </td>
                             <td className="text-center">
                               <button
-                                className="btn btn-next px-2 mt-0 py-1 "
+                                className="btn btn-later px-2 mt-0 py-1 "
                                 onClick={() =>
                                   openDescription(e, "description")
                                 }
