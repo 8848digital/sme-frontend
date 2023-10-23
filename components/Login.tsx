@@ -94,9 +94,9 @@ const LogIn = () => {
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-lg-12">
-                                            <h2 className="text-center">
+                                            <h1 className="text-center">
                                                 Login
-                                            </h2>
+                                            </h1>
                                         </div>
                                         <div className="col-lg-12" >
                                             <Form.Group controlId="formName" >
@@ -105,8 +105,8 @@ const LogIn = () => {
 
                                                     <div className="col-md-12">
                                                         <Form.Label className="login-label">
-                                                               Mobile No / Email ID
-                                                            </Form.Label>
+                                                            Mobile No / Email ID
+                                                        </Form.Label>
 
                                                         <Form.Control
                                                             onChange={handleChange}
@@ -115,7 +115,7 @@ const LogIn = () => {
                                                             name="email"
                                                             className="login_inputs input-filed-height"
                                                             onKeyDown={onKeydown}
-                                                            // placeholder='Enter Email'
+                                                        // placeholder='Enter Email'
                                                         />
                                                         <div className="row">
                                                             <div className="col-12">
@@ -134,8 +134,8 @@ const LogIn = () => {
                                                 <div className="row mt-4">
                                                     <div className="col-md-12">
                                                         <Form.Label className="login-label">
-                                                                Password / OTP
-                                                            </Form.Label>
+                                                            Password / OTP
+                                                        </Form.Label>
                                                         <Form.Control
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
@@ -143,7 +143,7 @@ const LogIn = () => {
                                                             name="password"
                                                             className="login_inputs input-filed-height"
                                                             onKeyDown={onKeydown}
-                                                            // placeholder='Enter Password'
+                                                        // placeholder='Enter Password'
 
                                                         />
                                                         <div className="row">
@@ -167,7 +167,7 @@ const LogIn = () => {
                                             </Form.Group>
 
                                             <div className={`${isAlertVisible === true ? 'login_btn' : ""} mt-4 mb-2 text-center`}>
-                                                <button type="submit" className="btn btn-next" style={{fontSize:'18px'}}>
+                                                <button type="submit" className="btn btn-next" style={{ fontSize: '18px' }}>
                                                     <LockOutlinedIcon />  Log in
                                                 </button><br />
 
@@ -194,35 +194,28 @@ const LogIn = () => {
                                             </div> */}
                                         </div>
 
-                                        <div className="col-lg-6 google_btn">
-                                            <div className="row">
-                                                {/* <div className="col-12 text-lg-start text-center">
-                              <div className="login-with-google mt-2">
-                                <Googlelogin />
-                             
-                              </div>
-                            </div> */}
+                                   
 
-                                                {/* <div className={`col-12 text-lg-start register_account`}>
-                              <div
-                                className="register ms-2"
-                                style={{ marginTop: "33px" }}
-                              >
-                                <span className="not_an_account">
-                                  Not an account?{" "}
-                                  <Link
-                                    className="text-underline"
-                                    href="/register"
-                                  >
-                                    <a className="text-underline blue ">
-                                      Register
-                                    </a>
-                                  </Link>
-                                </span>
-                              </div>
-                            </div> */}
-                                            </div>
-                                        </div>
+                                                <div className="col-12 text-center">
+                                                    <div
+                                                        className="register ms-2"
+                                                      
+                                                    >
+                                                        <span className="not_an_account">
+                                                            Forgot Password?{" "}
+                                                            <Link
+                                                                className="text-underline"
+                                                                href="/forgot-password"
+                                                                legacyBehavior
+                                                            >
+                                                                <a className="text-underline blue ">
+                                                                    Click Here
+                                                                </a>
+                                                            </Link>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                         
                                     </div>
                                 </div>
                             </div>

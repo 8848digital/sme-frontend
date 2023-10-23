@@ -12,7 +12,7 @@ const AccountMaster = () => {
         <div className="row text-center">
           <div className="my-3 ">
             <Link href="/account/change-password" legacyBehavior>
-              <a className="btn btn-signup font-size-3">Reset Password</a>
+              <a className="btn btn-signup font-size-3">Change Password</a>
             </Link>
           </div>
           <div className="my-3">

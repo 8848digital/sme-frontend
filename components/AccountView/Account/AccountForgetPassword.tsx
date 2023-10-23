@@ -20,9 +20,13 @@ const AccountForgetPassword = () => {
     <div className="container">
       <div className={` card row ${styles.account_minwrapper} `}>
         <div className=" my-3">
-          <h1 className={`${styles.header_text}`}>Forget Password</h1>
+          <h1 className={`${styles.header_text}`}>Forgot Password</h1>
+        
         </div>
         <div className="row justify-content-center mt-3">
+          <div className="col-12 text-center">
+          <p>Please Enter your email address associated with your account and we will email you instructions to reset your password.</p>
+          </div>
           <div className="col-8">
             <div className="my-3">
               <input
