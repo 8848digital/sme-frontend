@@ -3,6 +3,7 @@ import { useState } from "react";
 import JobDescription from "./JobDescription";
 import JobApprove from "./JobApprove";
 import JobThank from "./JobThank";
+import styles from "@/styles/account.module.css";
 
 const JobNotification = ({ details }: any) => {
   console.log(details);
@@ -14,15 +15,20 @@ const JobNotification = ({ details }: any) => {
   };
   return (
     <div className="container ">
-      <div className="row justify-content-md-center mt-5">
+      <div
+        className={`  row justify-content-md-center card  ${styles.account_minwrapper}`}
+      >
+        <div className=" my-3">
+          <h1 className={`${styles.header_text}`}>Job Request</h1>
+        </div>
         {tabs === "table" && (
           <>
-            <div className="col-8">
+            <div className="col-12">
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">
-                    <th>Project Name</th>
-                    <th>Action</th>
+                    <th className="text-center">Project Name</th>
+                    <th className="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -32,9 +38,9 @@ const JobNotification = ({ details }: any) => {
                         <>
                           <tr>
                             <td>
-                              <h2>{e.project}</h2>
+                              <h2 className="ps-2">{e.project}</h2>
                             </td>
-                            <td>
+                            <td className="text-center">
                               <button
                                 className="btn btn-next px-2 mt-0 py-1 "
                                 onClick={() =>
@@ -68,9 +74,9 @@ const JobNotification = ({ details }: any) => {
           </div>
         )}
         {tabs === "thank" && (
-          <div>
+          <>
             <JobThank />
-          </div>
+          </>
         )}
       </div>
     </div>
