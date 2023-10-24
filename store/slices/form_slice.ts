@@ -5,29 +5,29 @@ import { RootState } from '../root-reducer';
 
 // Define the initial state interface for the form data
 interface FormState {
-  email: string;
-  verificationCode: any;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  cvFile: File | null; // Add the cvFile key
-  selectAvailability:string,
-  rates:any,
-  certification_level:any
-  professionalexp:any
+  usr: string;
+  password: any;
+  first_name: string;
+  last_name: string;
+  phone_no: string;
+  upload_cv: File | null; // Add the cvFile key
+  preferences:string,
+  hourly_rates:any,
+  academic_background:any
+  professional_experience:any
 }
 
 const initialState: FormState = {
-  email: '',
-  verificationCode: '',
-  firstName: '',
-  lastName: '',
-  phoneNumber: '',
-  cvFile: null, // Initialize cvFile to null
-  selectAvailability:'',
-  rates:'',
-  certification_level:[],
-  professionalexp:[],
+  usr: '',
+  password: '',
+  first_name: '',
+  last_name: '',
+  phone_no: '',
+  upload_cv: null, // Initialize cvFile to null
+  preferences:'',
+  hourly_rates:'',
+  academic_background:[],
+  professional_experience:[],
 };
 
 // Create a form slice with reducers
@@ -38,6 +38,9 @@ const formSlice = createSlice({
     setFormData: (state, action: PayloadAction<Partial<FormState>>) => {
       return { ...state, ...action.payload };
     },
+    resetFormData: (state) => {
+      return { ...initialState }; // Reset the state to its initial values
+    },  
   },
 });
 
@@ -45,7 +48,7 @@ export const form_details_from_store = (state: RootState) =>
   state.form;
 // Export the action creator
 
-export const { setFormData } = formSlice.actions;
+export const { setFormData , resetFormData } = formSlice.actions;
 
 // Export the reducer
 export default formSlice.reducer;

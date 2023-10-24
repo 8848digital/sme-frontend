@@ -10,17 +10,17 @@ interface Step3Props {
 const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) => {
     const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         const firstName = e.target.value;
-        onFormDataChange('firstName', firstName);
+        onFormDataChange('first_name', firstName);
     };
 
     const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         const lastName = e.target.value;
-        onFormDataChange('lastName', lastName);
+        onFormDataChange('last_name', lastName);
     };
 
     const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
         const phoneNumber = e.target.value;
-        onFormDataChange('phoneNumber', phoneNumber);
+        onFormDataChange('phone_no', phoneNumber);
     };
 
     return (

@@ -123,7 +123,7 @@ const WebNavbar = () => {
                   //   Log out
                   // </a>
                   // </Link>
-                  <Link href="/login-page" legacyBehavior>
+                  <Link href="/login" legacyBehavior>
                     <a className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
                       Log in
                     </a>

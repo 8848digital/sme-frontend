@@ -4,7 +4,7 @@ import styles from "@/styles/wizard.module.css";
 const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
   const handleAvailabilityChange = (event: any) => {
     const availability = event.target.value;
-    onFormDataChange('selectAvailability', availability);
+    onFormDataChange('preferences', availability);
   };
 
   return (
@@ -29,8 +29,8 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
                   onChange={handleAvailabilityChange}
                 >
                   <option value="Select">Select</option>
-                  <option value="full-time">Full Time</option>
-                  <option value="part-time">Part Time</option>
+                  <option value="Full Time">Full Time</option>
+                  <option value="Part Time">Part Time</option>
                 </select>
               </div>
 

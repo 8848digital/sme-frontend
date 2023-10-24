@@ -1,0 +1,184 @@
+import React from "react";
+import { Formik, Form as FormikForm, Field, ErrorMessage } from "formik";
+import styles from "@/styles/auth.module.css";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import Link from "next/link";
+import { get_access_token } from "@/store/slices/auth_slice/login_slice";
+import ChangePasswordAPI from "@/services/api/auth_api/change_password_api";
+import { toast } from 'react-toastify';
+// import { RootState } from "../store/root_reducer";
+
+interface FormValues {
+  old_password: any;
+  new_password: any;
+  confirmPassword: any;
+}
+
+const ChangePassword = () => {
+  const dispatch = useDispatch<any>();
+  const token = useSelector(get_access_token);
+  const router = useRouter();
+  const initialValues: FormValues = {
+    old_password: "",
+    new_password: "",
+    confirmPassword: "",
+  };
+  const handlesubmit = async (values: any, action: any) => {
+    console.log('values', values)
+    if (values.new_password !== values.confirmPassword) {
+      // Display an error message or handle it as needed
+      console.error("New password and confirm password do not match");
+      toast.error('Enter the correct New/Confirm Password', {
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+      });
+    } else if (values.new_password === values.confirmPassword) {
+
+      const response = await ChangePasswordAPI(values.old_password, values.new_password, token.token);
+      if (response === 'success') {
+        toast.success('Password has changed successfully', {
+          autoClose: 3000,
+          className: 'custom-toast',// Close the notification after 3 seconds
+        });
+        action.resetForm();
+        router.push('/');
+      } else if (response === 'error') {
+        toast.error(`Check your password again! ${response.error}`, {
+          autoClose: 3000,
+          className: 'custom-toast',// Close the notification after 3 seconds
+        });
+      } else {
+        toast.error(`Check your password again! ${response.error}`, {
+          autoClose: 3000,
+          className: 'custom-toast',// Close the notification after 3 seconds
+        });
+      }
+
+
+
+    } else {
+      console.error("New password and confirm password do not match");
+      toast.error('Enter the correct New/Confirm Password', {
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+      })
+    }
+  };
+
+  return (
+    <>
+      <div className='container'>
+        <div className={` card ${styles.auth_common_wrapper}`}>
+          <div className="page_heading text-center">
+            <h1 className='text-uppercase'>Change Your Password</h1>
+          </div>
+          <Formik
+            initialValues={initialValues}
+            // validationSchema={Resetpassword_Validation}
+            onSubmit={(values, action) => handlesubmit(values, action)}
+          >
+            {({ handleChange }) => (
+              <FormikForm className="">
+                <div className=" text-center mt-4">
+                  <div className="container">
+                    <div className='row mb-2 form-group'>
+                      <div className="col-md-3 ">
+                        <div className=''>
+                          <label htmlFor="" className="">
+                            Old Password
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-9">
+                        {/* <div className="password_block "> */}
+                        <Field
+                          type="Password"
+                          className="form-control"
+                          name="old_password"
+                          onChange={handleChange}
+                          placeholder='Enter Old Password'
+                        />
+                        <br />
+                        <div className="error_message">
+                          <ErrorMessage name="old_password" />
+                        </div>
+                        {/* </div> */}
+                      </div>
+                    </div>
+                    <div className='row mb-2 form-group'>
+                      <div className="col-md-3 ">
+                        <div className=''>
+                          <label htmlFor="" className="">
+                            New Password:
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-9">
+                        <div className="password_block">
+                          <Field
+                            type="password"
+                            className="form-control"
+                            name="new_password"
+                            onChange={handleChange}
+                            placeholder='Enter New Password'
+                          />
+                          <br />
+                          <div className="error_message">
+                            <ErrorMessage name="new_password" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='row mb-2 form-group'>
+                      <div className="col-md-3 ">
+                        <div className=''>
+                          <label htmlFor="" className="">
+                            Confirm Password:
+                          </label>
+                        </div>
+                      </div>
+                      <div className="col-md-12 col-lg-9">
+                        <Field
+                          type="password"
+                          className="form-control"
+                          name="confirmPassword"
+                          onChange={handleChange}
+                          placeholder='Confirm New Password'
+                        />
+                        <br />
+                        <div className="error_message">
+                          <ErrorMessage name="confirmPassword" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`${styles.custom_btn}`}>
+                      <button
+                        type="button"
+                        className={`btn btn-primary ${styles.common_btn} me-md-5`}
+                        style={{ fontWeight: "600" }}
+                      >
+                        <Link href="/login" className="text-white">
+                          BACK
+                        </Link>
+                      </button>
+                      <button
+                        type="submit"
+                        className='btn btn-primary'
+                        style={{ fontWeight: "600" }}
+                      >
+                        Change Password
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </FormikForm>
+            )}
+          </Formik>
+        </div>
+      </div>
+    </>
+  );
+};
+export default ChangePassword;

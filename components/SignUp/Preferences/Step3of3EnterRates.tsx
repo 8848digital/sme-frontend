@@ -4,7 +4,8 @@ import styles from "@/styles/wizard.module.css";
 const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
   const handleRatesChange = (event: any) => {
     const rates = event.target.value;
-    onFormDataChange('rates', rates);
+    console.log('form rate',rates)
+    onFormDataChange('hourly_rates', rates);
   };
 
   return (
@@ -25,7 +26,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
                   className="form-control w-50 me-2 input-filed-height"
                   type="text"
                   placeholder='Enter Rates ...'
-                  value={formData.rates}
+                  value={formData.hourly_rates}
                   onChange={handleRatesChange}
                 />
               </div>

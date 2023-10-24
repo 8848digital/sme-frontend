@@ -1,7 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import formslice from "./slices/form_slice";
 import bioSlice from "./slices/build_bio_slice";
+import authSliceScreen from "@/store/slices/auth_slice/login_slice"
+
 const appReducer = combineReducers({
+  authSliceScreen:authSliceScreen,
   form: formslice,
   bio:bioSlice,
 });

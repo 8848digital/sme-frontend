@@ -7,7 +7,7 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
     const email = e.target.value;
 
     // Call the parent's (WizardMaster's) onFormDataChange to update the formData
-    onFormDataChange('email', email);
+    onFormDataChange('usr', email);
   };
 
   return (
@@ -24,7 +24,7 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
                     className="form-control w-75 me-2 input-filed-height"
                     type="email"
                     placeholder='Enter Email ...'
-                    value={formData.email}
+                    value={formData.usr}
                     onChange={handleEmailChange}
                   />
                 </div>

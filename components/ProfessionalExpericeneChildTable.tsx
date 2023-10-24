@@ -22,7 +22,7 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) =>
             }}
             onSubmit={(values) => {
               console.log('values', values);
-              onFormDataChange('professionalexp' , values)
+              onFormDataChange('professional_experience' , values.professional_exp)
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
@@ -46,7 +46,7 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) =>
                               <td>
                                 <Field
                                   type="text"
-                                  name={`title.${index}.title`}
+                                  name={`professional_exp.${index}.title`}
                                   placeholder="title"
                                   onBlur={handleBlur}
                                   onChange={handleChange}

@@ -8939,7 +8939,7 @@ background: none !important;
 .file {
   position: relative;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
 }
 

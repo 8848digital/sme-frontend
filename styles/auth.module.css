@@ -1,0 +1,32 @@
+
+.auth_common_wrapper{
+    margin: 150px auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.login_wrapper{
+    margin: 150px auto;
+    max-width: 500px;
+    padding: 20px;
+}
+/* media */
+
+@media (max-width: 767px) {
+    .auth_common_wrapper {
+        margin: 200px auto;
+    }
+    .login_wrapper{
+        margin: 200px auto;
+    }
+    .custom_btn{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .custom_btn .common_btn{
+       
+        margin: 20px 0 !important;
+        
+    }
+}

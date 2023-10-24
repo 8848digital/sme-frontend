@@ -1,6 +1,6 @@
 export const CONSTANTS =  {
-    API_BASE_URL : "https://staging-gopa.8848digitalerp.com",
-    API_MANDATE_PARAMS: "/api/method/gopa.sdk.api",
+    API_BASE_URL : "https://staging-strategicgears.frappe.cloud",
+    API_MANDATE_PARAMS: "/api/method/sme_sg.sdk.api",
     VERSION:"v1"
 }
 

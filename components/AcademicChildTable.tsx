@@ -15,7 +15,7 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
             initialValues={{
               certifications: [
                 {
-                  certificationLevel: '',
+                  certification_level: '',
                   year: '',
                   gpa: '',
                 },
@@ -23,7 +23,7 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
             }}
             onSubmit={(values) => {
               console.log('values', values);
-              onFormDataChange('certification_level' , values)
+              onFormDataChange('academic_background' , values.certifications)
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
@@ -47,7 +47,7 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
                               <td>
                                 <Field
                                   type="text"
-                                  name={`certifications.${index}.certificationLevel`}
+                                  name={`certifications.${index}.certification_level`}
                                   placeholder="Certification Level"
                                   onBlur={handleBlur}
                                   onChange={handleChange}

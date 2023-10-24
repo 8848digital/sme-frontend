@@ -13,7 +13,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
     const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const userPwd = e.target.value;
         setUserPassword(userPwd);
-        onFormDataChange('verificationCode', userPwd);
+        onFormDataChange('password', userPwd);
     };
 
     return (

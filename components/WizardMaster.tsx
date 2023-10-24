@@ -30,8 +30,10 @@ import ProfileCompleted from "./SignUp/BuildYourBio/ProfileCompleted";
 import { useRouter } from "next/router";
 import {
   form_details_from_store,
+  resetFormData,
   setFormData,
 } from "@/store/slices/form_slice";
+import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
@@ -39,16 +41,16 @@ const WizardMaster = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [stepFormData, setStepFormData] = useState<any>({
-    email: "",
-    verificationCode: '', // Initialize an array for verification codes
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    cvFile: "",
-    selectAvailability: "",
-    rates: "",
-    certification_level:[],
-    professionalexp:[]
+    usr: '',
+    password: '',
+    first_name: '',
+    last_name: '',
+    phone_no: '',
+    upload_cv: null, // Initialize cvFile to null
+    preferences:'',
+    hourly_rates:'',
+    academic_background:[],
+    professional_experience:[],
   });
 
   const handleNext = () => {
@@ -63,11 +65,32 @@ const WizardMaster = () => {
       setCurrentStep(currentStep - 1);
     }
   };
-
-  const handleSubmit = () => {
-    dispatch(setFormData(stepFormData) as any); // Dispatch action to store form data
-    router.push("/steps-done");
-    // You can submit the data to your API or perform other actions here
+  const formDataFromStore = useSelector(form_details_from_store);
+  console.log("form Data values", formDataFromStore);
+  const handleSubmit = async () => {
+    const updatedStepFormData = { ...stepFormData, ...formDataFromStore };
+    if (currentStep === 7) {
+      dispatch(setFormData(stepFormData) as any);
+      // router.push('/steps-done');
+      // You can submit the data to your API or perform other actions here
+      try {
+        const response = await SmeRegistrationApi(stepFormData);
+        console.log('form Data values in render file api res',response)
+        if (response) {
+          // Handle the success response, e.g., show a success message or redirect the user
+          console.log('API Response:', response);
+          router.push('/steps-done');
+          dispatch(resetFormData())
+        } else {
+          // Handle the failure or error case, e.g., show an error message to the user
+          console.error('API request failed');
+        }
+      } catch (error) {
+        // Handle any unexpected errors
+        console.error('API request error:', error);
+      }
+    }
+    // dispatch(setFormData(updatedStepFormData) as any); // Merge form data with data from the store
   };
 
   const handleFormDataChange = (field: string, value: any) => {
@@ -93,8 +116,7 @@ const WizardMaster = () => {
   };
   
   
-  const formDataFromStore = useSelector(form_details_from_store);
-  console.log("form Data values", formDataFromStore);
+ 
   return (
     <div className="container" >
       <div className={styles.wizard_wrapper}>

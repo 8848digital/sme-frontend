@@ -1,5 +1,7 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
-import styles from "@/styles/wizard.module.css";
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useFormik } from 'formik';
+import styles from '@/styles/wizard.module.css';
+import UploadFileApi from '@/services/api/auth_api/upload_file_api';
 
 interface Step2Props {
   formData: any;
@@ -7,22 +9,50 @@ interface Step2Props {
 }
 
 const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: Step2Props) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(formData.cvFile || null);
+  // useEffect(() => {
+  //   setSelectedFile(formData.upload_cv || null);
+  // }, [formData.upload_cv]);
 
-  useEffect(() => {
-    setSelectedFile(formData.cvFile || null);
-  }, [formData.cvFile]);
-
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: any) => {
     const file = event.target.files?.[0] || null;
     setSelectedFile(file);
-    onFormDataChange('cvFile', file);
+    onFormDataChange('upload_cv', file);
+    uploadFile(file);
   };
 
   const handleDeleteFile = () => {
     setSelectedFile(null);
-    onFormDataChange('cvFile', null);
+    onFormDataChange('upload_cv', null);
   };
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const uploadFile = async (file: File | null) => {
+    if (file) {
+      try {
+        const response = await UploadFileApi({ file });
+        console.log('Upload Response:', response.file_url);
+
+        // Use the upload response as needed (e.g., store it in your form data)
+        onFormDataChange('upload_cv', response.file_url);
+      } catch (error) {
+        console.error('Upload Error:', error);
+      }
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      upload_cv: null,
+    },
+    onSubmit: () => {
+      // Do nothing here, as we are handling file upload when the file is selected
+    },
+  });
+
+  const { handleSubmit, setFieldValue } = formik;
+
+const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <div className="container">
@@ -33,45 +63,42 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
               <h1>Step 4 of 7</h1>
               <h2>Professional Information</h2>
             </div>
-            <div className='mt-5 text-center'>
-              <form>
-                <div className="mb-3 file-input-wrapper">
-                  <label htmlFor="cvUpload" className="file-input-button">
-                    Upload CV
-                  </label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    id="cvUpload"
-                    name="cv"
-                    accept=".pdf, .doc, .docx"
-                    onChange={handleFileChange}
-                  />
-                  {selectedFile ? (
-                    <div className="file-attachment">
-                      <a
-                        href={URL.createObjectURL(selectedFile)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        download={selectedFile.name}
-                        className="file-attachment-link"
-                      >
-                        {selectedFile.name}
-                      </a>
-                      <button
-                        type="button"
-                        onClick={handleDeleteFile}
-                        className="btn btn-danger btn-sm"
-                      >
-                        Delete
-                      </button>
+            <div className="mt-5 text-center">
+              <form onSubmit={handleSubmit}>
+              
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      {selectedFile ? (
+                        <div className="selected-file">
+                          <span>{selectedFile.name}</span>
+                          <span className="delete-file" onClick={handleDeleteFile} style={{ cursor: 'pointer' }}>
+                            <i className="fas fa-times-circle cross-class text-red"></i>
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="file file--upload">
+                          <label htmlFor="input-file" className="upload-label label-color">
+                            <div className="upload-circle">
+                              <i className="fas fa-upload "></i>
+                            </div>
+                            Upload Logo
+                          </label>
+                          <input
+                            id="input-file"
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={(e) => {
+                              handleFileChange(e);
+                              const fileName = e.target.files?.[0]?.name;
+                              const filePath = `/files/${fileName}`;
+                              setFieldValue('logo', filePath); // Set the file path as value
+                            }}
+                          />
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div className="file-attachment-link">No file chosen</div>
-                  )}
-                </div>
-
-                {/* Add more form fields for professional information here */}
+                  </div>
+               
               </form>
             </div>
           </div>
