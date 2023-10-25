@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store/root-reducer";
-import TechnicalSkillAPI from "@/services/api/account_api/technical_skill_api";
+import TechnicalSkillAPI from "@/services/api/buildYourBio_api/technical_skill_api";
 
 
 // Define an initial state for your slice
@@ -20,7 +20,7 @@ export const fetchTechnicalSkill = createAsyncThunk(
     async () => {
         try {
             const response = await TechnicalSkillAPI();
-            console.log(response)
+            // console.log(response)
             return response;
         } catch (error) {
             throw error;

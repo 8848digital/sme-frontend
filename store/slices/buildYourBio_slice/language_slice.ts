@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store/root-reducer";
-import LanguageApi from "@/services/api/account_api/language_api";
+import LanguageApi from "@/services/api/buildYourBio_api/language_api";
 
 
 // Define an initial state for your slice
@@ -20,7 +20,7 @@ export const fetchLanguage = createAsyncThunk(
     async () => {
         try {
             const response = await LanguageApi();
-            console.log(response)
+            // console.log(response)
             return response;
         } catch (error) {
             throw error;
@@ -42,7 +42,7 @@ const LanguageSlice = createSlice({
             .addCase(fetchLanguage.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
-                console.log('language is in slice', action.payload);
+                // console.log('language is in slice', action.payload);
                 state.error = "";
             })
             .addCase(fetchLanguage.rejected, (state, action) => {

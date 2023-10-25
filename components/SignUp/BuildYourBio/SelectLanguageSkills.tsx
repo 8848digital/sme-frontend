@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "@/styles/bio.module.css";
-import useFetchOurLanguage from "@/hooks/account/language-hooks";
+import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 
-const SelectLanguageSkills: React.FC = () => {
+const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   const { language, ourLanguage } = useFetchOurLanguage();
-  
-  console.log("@language ", language, ourLanguage);
-  const handleCheckboxChange = (language: string) => {
-    if (selectedLanguages.includes(language)) {
+  // console.log(technical, ourSkill);
+  const handleCheckboxChange = (languages: string) => {
+    if (selectedLanguages.includes(languages)) {
       setSelectedLanguages(
-        selectedLanguages.filter((lang) => lang !== language)
+        selectedLanguages.filter((lang) => lang !== languages)
       );
     } else {
-      setSelectedLanguages([...selectedLanguages, language]);
+      setSelectedLanguages([...selectedLanguages, languages]);
     }
   };
+  // console.log(selectedLanguages);
+
+  useEffect(() => {
+    const subSectorArray: any = selectedLanguages.map((language: string) => ({
+      language,
+    }));
+    onFormDataChange("language", subSectorArray);
+  }, [selectedLanguages]);
 
   return (
     <div className="container">
