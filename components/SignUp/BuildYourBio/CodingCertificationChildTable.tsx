@@ -1,29 +1,28 @@
-import React from 'react';
-import { Formik, Field, FieldArray } from 'formik';
+import React from "react";
+import { Formik, Field, FieldArray } from "formik";
 // import { FaTimes } from 'react-icons/fa'; // Import cross icon
 
-const CodingCertificationChildTable = ({ formData, onFormDataChange }:any) => {
-
+const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
   return (
     <div className="container">
       <div className="row">
         <div className="col-12 text-start">
-      {/* <h2>Coding Certification</h2> */}
+          {/* <h2>Coding Certification</h2> */}
         </div>
         <div className="col-12">
           <Formik
             initialValues={{
-              certification_in_bio: [
+              certifications: [
                 {
-                  certification_name: '',
-                  issuing_organization: '',
-                  issue_date: '',
+                  certification_name: "",
+                  issuing_organization: "",
+                  date: "",
                 },
               ],
             }}
             onSubmit={(values) => {
-              console.log('values', values);
-              onFormDataChange('certification_in_bio' , values)
+              console.log("values", values.certifications);
+              onFormDataChange("certifications", values.certifications);
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
@@ -39,15 +38,15 @@ const CodingCertificationChildTable = ({ formData, onFormDataChange }:any) => {
                   </thead>
                   <tbody>
                     <FieldArray
-                      name="certification_in_bio"
+                      name="certifications"
                       render={(arrayHelpers) => (
                         <>
-                          {values.certification_in_bio.map((cert, index) => (
+                          {values.certifications.map((cert, index) => (
                             <tr key={index}>
                               <td>
                                 <Field
                                   type="text"
-                                  name={`certification_in_bio.${index}.certification_name`}
+                                  name={`certifications.${index}.certification_name`}
                                   placeholder="Certification Name"
                                   onBlur={handleBlur}
                                   onChange={handleChange}
@@ -56,7 +55,7 @@ const CodingCertificationChildTable = ({ formData, onFormDataChange }:any) => {
                               <td>
                                 <Field
                                   type="text"
-                                  name={`certification_in_bio.${index}.issuing_organization`}
+                                  name={`certifications.${index}.issuing_organization`}
                                   placeholder="Issuing organization"
                                   onBlur={handleBlur}
                                   onChange={handleChange}
@@ -64,8 +63,8 @@ const CodingCertificationChildTable = ({ formData, onFormDataChange }:any) => {
                               </td>
                               <td>
                                 <Field
-                                  type="text"
-                                  name={`certification_in_bio.${index}.issue_date`}
+                                  type="date"
+                                  name={`certifications.${index}.date`}
                                   placeholder="Issue Date"
                                   onBlur={handleBlur}
                                   onChange={handleChange}
@@ -90,9 +89,9 @@ const CodingCertificationChildTable = ({ formData, onFormDataChange }:any) => {
                                 className="btn btn-success"
                                 onClick={() =>
                                   arrayHelpers.push({
-                                    certificationLevel: '',
-                                    year: '',
-                                    gpa: '',
+                                    certification_name: "",
+                                    issuing_organization: "",
+                                    date: "",
                                   })
                                 }
                               >

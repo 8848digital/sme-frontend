@@ -1,7 +1,7 @@
 import {
     fetchLanguage,
     our_language,
-} from "@/store/slices/account_slice/language_slice";
+} from "@/store/slices/buildYourBio_slice/language_slice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

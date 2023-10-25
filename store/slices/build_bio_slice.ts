@@ -26,7 +26,7 @@ const bioSlice = createSlice({
   name: 'bio',
   initialState,
   reducers: {
-    setBioData: (state, action: PayloadAction<Partial<FormState>>) => {
+    setBuildBioData: (state, action: PayloadAction<Partial<FormState>>) => {
       return { ...state, ...action.payload };
     },
   },
@@ -36,7 +36,7 @@ export const form_details_from_store = (state: RootState) =>
   state.bio;
 // Export the action creator
 
-export const { setBioData } = bioSlice.actions;
+export const { setBuildBioData } = bioSlice.actions;
 
 // Export the reducer
 export default bioSlice.reducer;

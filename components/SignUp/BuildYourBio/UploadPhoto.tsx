@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styles from "@/styles/bio.module.css";
 
-const UploadPhoto = () => {
+const UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>("");
 
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    onFormDataChange("upload_photo", file);
   };
 
   const handleDeleteFile = () => {
@@ -15,7 +16,10 @@ const UploadPhoto = () => {
 
   return (
     <div className="container">
-      <div className={`card p-4 ${styles.common_bio_wrapper}`} style={{ maxWidth: '800px', height: '300px' }}>
+      <div
+        className={`card p-4 ${styles.common_bio_wrapper}`}
+        style={{ maxWidth: "800px", height: "300px" }}
+      >
         <div className="row">
           <div className="col-12">
             <div className="bio_wrapper">
