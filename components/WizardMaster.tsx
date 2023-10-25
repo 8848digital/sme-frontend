@@ -34,7 +34,7 @@ import {
   setFormData,
 } from "@/store/slices/form_slice";
 import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
-
+import { ToastContainer, toast } from "react-toastify";
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const data = [1, 2, 3, 4, 5, 6, 7];
@@ -53,9 +53,117 @@ const WizardMaster = () => {
     professional_experience:[],
   });
 
+  const validateStep1 = () => {
+    if (stepFormData.usr === '') {
+      toast.error("Please Enter Email Id");
+      return false;
+    }
+    // if (stepFormData.password === '') {
+    //   toast.error("Please Create Your password.");
+    //   return false;
+    // }
+    return true;
+  };
+  const validateStep2 = () => {
+     if (stepFormData.password === '') {
+      toast.error("Please Create Your password.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateStep3 = () => {
+    if (stepFormData.first_name === '') {
+      toast.error("Please enter your first name.");
+      return false;
+    }
+    if (stepFormData.last_name === '') {
+      toast.error("Please enter your last name.");
+      return false;
+    }
+  
+    if (stepFormData.phone_no === '') {
+      toast.error("Please enter your phone number.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateStep4 = () => {
+    if (stepFormData.upload_cv === null) {
+      toast.error("Please upload your CV.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateStep5 = () => {
+    if (stepFormData.academic_background.length === 0) {
+      toast.error("Please Enter the Academic Information.");
+      return false;
+    }else if (stepFormData.professional_experience.length === 0 ){
+      toast.error("Please Enter the Professional Experience.");
+      return false;
+    }else{
+      toast.error("Please Enter the Professional Information Correctly.");
+     
+    }
+    return true;
+  };
+
+  const validateStep6 = () => {
+    if (stepFormData.preferences === '') {
+      toast.error("Please Select Availibility.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateStep7 = () => {
+    if (stepFormData.hourly_rates === '') {
+      toast.error("Please Enter hourly/weekly/monthly Rates");
+      return false;
+    }
+    return true;
+  };
+
   const handleNext = () => {
+    // Check validation before proceeding to the next step
     if (currentStep < 7) {
-      dispatch(setFormData(stepFormData) as any); // Dispatch action to store form data
+      let isValid = true;
+
+      switch (currentStep) {
+        case 1:
+          isValid = validateStep1();
+          break;
+        case 2:
+          isValid = validateStep2();
+          break;
+        case 3:
+          isValid = validateStep3();
+          break;
+        case 4:
+          isValid = validateStep4();
+          break;
+        case 5:
+          isValid = validateStep5();
+          break;
+        case 6:
+          isValid = validateStep6();
+          break;
+        case 7:
+          isValid = validateStep7();
+          break;
+        default:
+          break;
+      }
+
+      if (!isValid) {
+        return;
+      }
+
+      // If all validations pass, proceed to the next step
+      dispatch(setFormData(stepFormData) as any);
       setCurrentStep(currentStep + 1);
     }
   };
@@ -66,31 +174,31 @@ const WizardMaster = () => {
     }
   };
   const formDataFromStore = useSelector(form_details_from_store);
+
   console.log("form Data values", formDataFromStore);
   const handleSubmit = async () => {
-    const updatedStepFormData = { ...stepFormData, ...formDataFromStore };
-    if (currentStep === 7) {
-      dispatch(setFormData(stepFormData) as any);
-      // router.push('/steps-done');
-      // You can submit the data to your API or perform other actions here
-      try {
-        const response = await SmeRegistrationApi(stepFormData);
-        console.log('form Data values in render file api res',response)
-        if (response) {
-          // Handle the success response, e.g., show a success message or redirect the user
-          console.log('API Response:', response);
-          router.push('/steps-done');
-          dispatch(resetFormData())
-        } else {
-          // Handle the failure or error case, e.g., show an error message to the user
-          console.error('API request failed');
+    if (validateStep7()) {
+      if (currentStep === 7) {
+        dispatch(setFormData(stepFormData) as any);
+        // You can submit the data to your API or perform other actions here
+        try {
+          const response = await SmeRegistrationApi(stepFormData);
+          console.log('form Data values in render file api res', response);
+          if (response) {
+            // Handle the success response, e.g., show a success message or redirect the user
+            console.log('API Response:', response);
+            router.push('/steps-done');
+            dispatch(resetFormData());
+          } else {
+            // Handle the failure or error case, e.g., show an error message to the user
+            console.error('API request failed');
+          }
+        } catch (error) {
+          // Handle any unexpected errors
+          console.error('API request error:', error);
         }
-      } catch (error) {
-        // Handle any unexpected errors
-        console.error('API request error:', error);
       }
     }
-    // dispatch(setFormData(updatedStepFormData) as any); // Merge form data with data from the store
   };
 
   const handleFormDataChange = (field: string, value: any) => {

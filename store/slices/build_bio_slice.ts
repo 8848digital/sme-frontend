@@ -5,19 +5,20 @@ import { RootState } from '../root-reducer';
 
 // Define the initial state interface for the form data
 interface FormState {
-  image: File | null; // Add the cvFile key
-  user_bio:string,
+  enter_your_bio:string,
+  upload_photo: File | null; // Add the cvFile key
   technical_skills:any,
-  languages:any
-  certification_in_bio:any
+  certifications:any
+  language:any
 }
 
 const initialState: FormState = {
-   image:  null,
-  user_bio:"",
-  technical_skills:"",
-  languages:"",
-  certification_in_bio:[]
+
+  enter_your_bio:"",
+  upload_photo:null,
+  technical_skills:[],
+  certifications:[],
+  language:[],
 };
 
 // Create a form slice with reducers
