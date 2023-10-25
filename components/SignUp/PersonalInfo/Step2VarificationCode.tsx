@@ -34,7 +34,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                                             className="form-control me-2 w-75"
                                             type="password"
                                             
-                                            value={userPassword}
+                                            value={formData.password}
                                             onChange={(e) => handleVerificationCodeChange(e)}
                                         />
                                    

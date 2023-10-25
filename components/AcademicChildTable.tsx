@@ -1,19 +1,37 @@
 import React from 'react';
-import { Formik, Field, FieldArray } from 'formik';
-// import { FaTimes } from 'react-icons/fa'; // Import cross icon
+import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
-const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
+const AcademicBackgroundSchema = Yup.object().shape({
+  certifications: Yup.array().of(
+    Yup.object().shape({
+      certification_level: Yup.string().required('Certification Level is required'),
+      year: Yup.string().required('Year is required'),
+      gpa: Yup.string().required('GPA is required'),
+    })
+  ),
+});
+
+const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
+  const notifySuccess = (message: string) => {
+    toast.success(message);
+  };
+
+  const notifyError = (message: string) => {
+    toast.error(message);
+  };
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-12 text-start">
-      <h2>Academic Background</h2>
+          <h2>Academic Background</h2>
         </div>
         <div className="col-12">
           <Formik
             initialValues={{
-              certifications: [
+              certifications: formData.academic_background || [ // Use formData if available, or initialize with an empty object
                 {
                   certification_level: '',
                   year: '',
@@ -21,9 +39,11 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
                 },
               ],
             }}
+            validationSchema={AcademicBackgroundSchema}
             onSubmit={(values) => {
               console.log('values', values);
-              onFormDataChange('academic_background' , values.certifications)
+              onFormDataChange('academic_background', values.certifications);
+              notifySuccess('Academic data added successfully');
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
@@ -42,7 +62,7 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
                       name="certifications"
                       render={(arrayHelpers) => (
                         <>
-                          {values.certifications.map((cert, index) => (
+                          {values.certifications.map((cert: any, index: any) => (
                             <tr key={index}>
                               <td>
                                 <Field
@@ -52,6 +72,9 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
                                   onBlur={handleBlur}
                                   onChange={handleChange}
                                 />
+                                <div className="error_message">
+                                  <ErrorMessage name={`certifications.${index}.certification_level`} />
+                                </div>
                               </td>
                               <td>
                                 <Field
@@ -61,6 +84,9 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
                                   onBlur={handleBlur}
                                   onChange={handleChange}
                                 />
+                                <div className="error_message">
+                                  <ErrorMessage name={`certifications.${index}.year`} />
+                                </div>
                               </td>
                               <td>
                                 <Field
@@ -70,14 +96,20 @@ const AcademicChildTable = ({ formData, onFormDataChange }:any) => {
                                   onBlur={handleBlur}
                                   onChange={handleChange}
                                 />
+                                <div className="error_message">
+                                  <ErrorMessage name={`certifications.${index}.gpa`} />
+                                </div>
                               </td>
                               <td>
                                 <button
                                   type="button"
                                   className="btn btn-danger"
-                                  onClick={() => arrayHelpers.remove(index)}
+                                  onClick={() => {
+                                    arrayHelpers.remove(index);
+                                    notifyError('Academic data deleted successfully');
+                                  }}
                                 >
-                                  {/* <FaTimes /> */} Delete
+                                  Delete
                                 </button>
                               </td>
                             </tr>

@@ -36,14 +36,14 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
                                     placeholder='Enter First Name ...'
-                                    value={formData.firstName}
+                                    value={formData.first_name}
                                     onChange={handleFirstNameChange}
                                 />
                                 <input
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
                                     placeholder='Enter Last Name ...'
-                                    value={formData.lastName}
+                                    value={formData.last_name}
                                     onChange={handleLastNameChange}
                                 />
                               
@@ -51,7 +51,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
                                     placeholder='Phone Number ...'
-                                    value={formData.phoneNumber}
+                                    value={formData.phone_no}
                                     onChange={handlePhoneNumberChange}
                                 />
                                 {/* <Link href='' className='mt-3'>Verify Number</Link> */}

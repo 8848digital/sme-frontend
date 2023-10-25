@@ -25,7 +25,7 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
                   id="availability"
                   name="availability"
                   className="form-select w-25"
-                  value={formData.selectAvailability}
+                  value={formData.preferences}
                   onChange={handleAvailabilityChange}
                 >
                   <option value="Select">Select</option>
