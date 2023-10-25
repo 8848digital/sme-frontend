@@ -52,6 +52,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const profileStore = (state: RootState) => state.profile;
+// export const profileStore = (state: RootState) => state.profile;
 // Export the reducer
 export default profileSlice.reducer;

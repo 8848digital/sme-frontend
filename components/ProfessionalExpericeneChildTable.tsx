@@ -1,8 +1,25 @@
 import React from 'react';
-import { Formik, Field, FieldArray } from 'formik';
+import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
 // import { FaTimes } from 'react-icons/fa'; // Import cross icon
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+const ProfessionalExperienceSchema = Yup.object().shape({
+  professional_exp: Yup.array().of(
+    Yup.object().shape({
+      title: Yup.string().required('Title is required'),
+      year: Yup.string().required('Year is required'),
+      company: Yup.string().required('Company is required'),
+    })
+  ),
+});
+const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) => {
+  const notifySuccess = (message: string) => {
+    toast.success(message);
+  };
 
-const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) => {
+  const notifyError = (message: string) => {
+    toast.error(message);
+  };
   return (
     <div className="container">
       <div className="row">
@@ -12,17 +29,22 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) =>
         <div className="col-12">
           <Formik
             initialValues={{
-              professional_exp: [
+              professional_exp:formData.professional_experience && formData.professional_experience.length > 0
+              ? formData.professional_experience
+              : [
                 {
                   title: '',
                   year: '',
                   company: '',
                 },
-              ],
+                ],
             }}
+            validationSchema={ProfessionalExperienceSchema}
             onSubmit={(values) => {
               console.log('values', values);
-              onFormDataChange('professional_experience' , values.professional_exp)
+
+              onFormDataChange('professional_experience', values.professional_exp)
+              notifySuccess('Professional Experience data added successfully');
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
@@ -41,16 +63,19 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) =>
                       name="professional_exp"
                       render={(arrayHelpers) => (
                         <>
-                          {values.professional_exp.map((PE, index) => (
+                          {values.professional_exp.map((PE:any, index:any) => (
                             <tr key={index}>
                               <td>
                                 <Field
                                   type="text"
                                   name={`professional_exp.${index}.title`}
-                                  placeholder="title"
+                                  placeholder="Title"
                                   onBlur={handleBlur}
                                   onChange={handleChange}
                                 />
+                                <div className="error_message">
+                                  <ErrorMessage name={`professional_exp.${index}.title`} />
+                                </div>
                               </td>
                               <td>
                                 <Field
@@ -60,6 +85,9 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) =>
                                   onBlur={handleBlur}
                                   onChange={handleChange}
                                 />
+                                <div className="error_message">
+                                  <ErrorMessage name={`professional_exp.${index}.year`} />
+                                </div>
                               </td>
                               <td>
                                 <Field
@@ -69,12 +97,18 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }:any) =>
                                   onBlur={handleBlur}
                                   onChange={handleChange}
                                 />
+                                 <div className="error_message">
+                                  <ErrorMessage  name={`professional_exp.${index}.company`} />
+                                </div>
                               </td>
                               <td>
                                 <button
                                   type="button"
                                   className="btn btn-danger"
-                                  onClick={() => arrayHelpers.remove(index)}
+                                  onClick={() => {
+                                    arrayHelpers.remove(index);
+                                    notifyError('Academic data deleted successfully');
+                                  }}
                                 >
                                   {/* <FaTimes /> */} Delete
                                 </button>

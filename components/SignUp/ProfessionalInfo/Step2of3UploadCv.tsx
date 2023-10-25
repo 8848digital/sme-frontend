@@ -9,15 +9,22 @@ interface Step2Props {
 }
 
 const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: Step2Props) => {
-  // useEffect(() => {
-  //   setSelectedFile(formData.upload_cv || null);
-  // }, [formData.upload_cv]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  useEffect(() => {
+    setSelectedFile(formData.upload_cv);
+  }, [formData.upload_cv]);
+
+  const [fileURL, setFileURL] = useState<any>(formData.upload_cv || null);
 
   const handleFileChange = (event: any) => {
     const file = event.target.files?.[0] || null;
     setSelectedFile(file);
     onFormDataChange('upload_cv', file);
-    uploadFile(file);
+
+    if (file) {
+      // Handle file upload and set file URL
+      uploadFile(file);
+    }
   };
 
   const handleDeleteFile = () => {
@@ -25,7 +32,6 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
     onFormDataChange('upload_cv', null);
   };
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const uploadFile = async (file: File | null) => {
     if (file) {
@@ -35,6 +41,7 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
 
         // Use the upload response as needed (e.g., store it in your form data)
         onFormDataChange('upload_cv', response.file_url);
+        setFileURL(response.file_url);
       } catch (error) {
         console.error('Upload Error:', error);
       }
@@ -70,7 +77,12 @@ const fileInputRef = useRef<HTMLInputElement | null>(null);
                     <div className="col-md-12">
                       {selectedFile ? (
                         <div className="selected-file">
-                          <span>{selectedFile.name}</span>
+                          <span>
+                          {/* Display the file URL as a link */}
+                          <a href={fileURL} target="_blank" rel="noopener noreferrer">
+                            {fileURL}
+                          </a>
+                        </span>
                           <span className="delete-file" onClick={handleDeleteFile} style={{ cursor: 'pointer' }}>
                             <i className="fas fa-times-circle cross-class text-red"></i>
                           </span>

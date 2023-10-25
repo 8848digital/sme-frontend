@@ -35,6 +35,8 @@ import {
 } from "@/store/slices/form_slice";
 import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
 import { ToastContainer, toast } from "react-toastify";
+import { setSignUpUserAccessToken } from "@/store/slices/auth_slice/signup_user_access_token_slice";
+
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const data = [1, 2, 3, 4, 5, 6, 7];
@@ -52,21 +54,28 @@ const WizardMaster = () => {
     academic_background:[],
     professional_experience:[],
   });
-
+  const validateEmail = (email:any) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+  
+  // Validation function for password
+  const validatePassword = (password:any) => {
+    const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
+    return passwordRegex.test(password);
+  };
+  
   const validateStep1 = () => {
-    if (stepFormData.usr === '') {
-      toast.error("Please Enter Email Id");
+    if (!validateEmail(stepFormData.usr)) {
+      toast.error("Please Enter a Valid Email Address");
       return false;
     }
-    // if (stepFormData.password === '') {
-    //   toast.error("Please Create Your password.");
-    //   return false;
-    // }
     return true;
   };
+
   const validateStep2 = () => {
-     if (stepFormData.password === '') {
-      toast.error("Please Create Your password.");
+    if (!validatePassword(stepFormData.password)) {
+      toast.error("Password must have at least 1 special character, 1 uppercase letter, 1 number, and be 8 characters long.");
       return false;
     }
     return true;
@@ -104,9 +113,6 @@ const WizardMaster = () => {
     }else if (stepFormData.professional_experience.length === 0 ){
       toast.error("Please Enter the Professional Experience.");
       return false;
-    }else{
-      toast.error("Please Enter the Professional Information Correctly.");
-     
     }
     return true;
   };
@@ -173,33 +179,9 @@ const WizardMaster = () => {
       setCurrentStep(currentStep - 1);
     }
   };
-  const formDataFromStore = useSelector(form_details_from_store);
 
+  const formDataFromStore = useSelector(form_details_from_store);
   console.log("form Data values", formDataFromStore);
-  const handleSubmit = async () => {
-    if (validateStep7()) {
-      if (currentStep === 7) {
-        dispatch(setFormData(stepFormData) as any);
-        // You can submit the data to your API or perform other actions here
-        try {
-          const response = await SmeRegistrationApi(stepFormData);
-          console.log('form Data values in render file api res', response);
-          if (response) {
-            // Handle the success response, e.g., show a success message or redirect the user
-            console.log('API Response:', response);
-            router.push('/steps-done');
-            dispatch(resetFormData());
-          } else {
-            // Handle the failure or error case, e.g., show an error message to the user
-            console.error('API request failed');
-          }
-        } catch (error) {
-          // Handle any unexpected errors
-          console.error('API request error:', error);
-        }
-      }
-    }
-  };
 
   const handleFormDataChange = (field: string, value: any) => {
     if (field === 'certification_level') {
@@ -222,9 +204,40 @@ const WizardMaster = () => {
       });
     }
   };
-  
-  
- 
+
+
+  const handleSubmit = async () => {
+    if (validateStep7()) {
+      if (currentStep === 7) {
+        dispatch(setFormData(stepFormData) as any);
+        // You can submit the data to your API or perform other actions here
+        try {
+          const response = await SmeRegistrationApi(stepFormData);
+          console.log('form Data values in render file api res', response);
+          dispatch(setSignUpUserAccessToken(response));
+          if (response.msg === 'success') {
+            // Handle the success response, e.g., show a success message or redirect the user
+            console.log('API Response:', response);
+            toast.success(`${response.data}`, {
+              autoClose: 5000, // Time in milliseconds (5 seconds)
+            });
+            router.push('/steps-done');
+            dispatch(resetFormData());
+          } else if (response.msg === 'error') {
+            // Handle the failure or error case, e.g., show an error message to the user
+            toast.error(`Enter Your Details Properly !! ${response.msg} !! ${response.error}`, {
+              autoClose: 5000, // Time in milliseconds (5 seconds)
+            });
+            console.error('API request failed');
+          }
+        } catch (error) {
+          // Handle any unexpected errors
+          console.error('API request error:', error);
+        }
+      }
+    }
+  };
+
   return (
     <div className="container" >
       <div className={styles.wizard_wrapper}>

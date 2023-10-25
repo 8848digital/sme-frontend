@@ -29,7 +29,7 @@ const LogIn = () => {
     let handlesubmit = async (values: any) => {
         console.log('login value check', values.email);
         try {
-            const response = await dispatch(getAccessToken({ usr: values.email, pwd: values.password }));
+            const response = await dispatch(getAccessToken({ usr: values.email, password: values.password }));
             console.log('login render file', response.payload);
             // On success
             if (response.payload.msg === 'success') {
