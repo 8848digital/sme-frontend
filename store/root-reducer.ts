@@ -5,12 +5,16 @@ import authSliceScreen from "@/store/slices/auth_slice/login_slice"
 import SignUpUserAccessToken from "@/store/slices/auth_slice/signup_user_access_token_slice"
 import profileSlice from "@/store/slices/profile_slice/profile_slice"
 
+import TechnicalSlice from "@/store/slices/account_slice/technical_skill_slice"
+import LanguageSlice from "@/store/slices/account_slice/language_slice"
 const appReducer = combineReducers({
-  authSliceScreen:authSliceScreen,
+  authSliceScreen: authSliceScreen,
   form: formslice,
   bio:bioSlice,
   SignUpUserAccessToken:SignUpUserAccessToken,
   profile:profileSlice,
+  technicalSkill: TechnicalSlice,
+  language: LanguageSlice,
 });
 
 const rootReducer = (state: any, action: any) => {
