@@ -38,7 +38,7 @@ const AccountBio = ({ profileData, loading }: any) => {
                 profileData && profileData?.photo_url === null || profileData && profileData?.photo_url === "" ? <>
                   <AccountCircleIcon sx={{ fontSize: "100px", color:'#00B2D4' }} />
                 </> : <>
-                  <img src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`} width='100px' />
+                  <img src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`} width='150px' />
                 </>
 
               }
