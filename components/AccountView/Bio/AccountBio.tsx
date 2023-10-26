@@ -33,34 +33,62 @@ console.log('profile through props' , profileData);
           <div className="col-sm-4">
             <div className="text-center mt-4">
               {/* <AccountCircleIcon sx={{ fontSize: "100px" }} /> */}
-              <img src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`} width='100px'/>
+              {
+                profileData && profileData?.photo_url === null || profileData && profileData?.photo_url === "" ? <>
+                  <AccountCircleIcon sx={{ fontSize: "100px" }} />
+                </>:<>
+                <img src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`} width='100px'/>
+                </>
+
+              }
             </div>
           </div>
           <div className="col-sm-6 ">
-            <p>{profileData && profileData?.bio}</p>
+            {
+              profileData && profileData?.bio === null || profileData && profileData?.bio === "" ? <>
+             <p>You Have not entered your bio yet.</p> 
+              </>:<>
+              
+              <p>{profileData && profileData?.bio}</p>
+              </>
+            }
             <div>
-              <h2>Technical Skills</h2>
+              {
+                profileData && profileData?.technical_skills.length > 0 ? <>
+                <h2>Technical Skills</h2>
               <ul>
                 { profileData && profileData?.technical_skills?.map((skills:any, index:any) => (
                   <li key={index}>{skills?.technical_skills}</li>
                 ))}
               </ul>
+                </>:<>
+                <h2>Technical Skills</h2>
+                <p> No Technical Skills details available yet.</p>
+                </>
+              }    
             </div>
 
             <div>
-              <h2>Languages</h2>
+              {
+                profileData && profileData.language.length > 0 ? <>
+                 <h2>Languages</h2>
               <ul>
                 {profileData && profileData.language.map((language:any, index:any) => (
                   <li key={index}>{language?.language}</li>
                 ))}
               </ul>
+                </>:<>
+                <h2>Languages</h2>
+                <p> No Language details available yet.</p>
+                </>
+              }
+             
             </div>
 
             <div>
-              <h2>Certifications</h2>
-              <div className="row">
-                
-              </div>
+              {
+                profileData && profileData?.certifications.length > 0 ? <>
+                    <h2>Certifications</h2>
               <ul>
                 {profileData && profileData?.certifications.map((certification:any, index:any) => (
                   <>
@@ -72,6 +100,12 @@ console.log('profile through props' , profileData);
                   </>
                 ))}
               </ul>
+                </>:<>
+                <h2>Languages</h2>
+                <p> No Certifications details available yet.</p>
+                </>
+              }
+          
             </div>
             <div className="text-center">
               {/* <button onClick={handleOpenModal} className="btn btn-later">
