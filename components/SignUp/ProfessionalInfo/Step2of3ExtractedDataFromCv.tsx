@@ -6,7 +6,7 @@ import ProfessionalExpericeneChildTable from '@/components/ProfessionalExpericen
 const Step2of3ExtractedDataFromCv = ({ formData, onFormDataChange }:any) => {
   return (
     <div className="container">
-      <div className={`card p-4 ${styles.common_wizard_wrapper}`} style={{ maxWidth: '800px'}}>
+      <div className={`card p-4 ${styles.common_wizard_wrapper}`}>
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-2">

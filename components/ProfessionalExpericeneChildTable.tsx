@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
-// import { FaTimes } from 'react-icons/fa'; // Import cross icon
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+
 const ProfessionalExperienceSchema = Yup.object().shape({
   professional_exp: Yup.array().of(
     Yup.object().shape({
@@ -12,7 +12,8 @@ const ProfessionalExperienceSchema = Yup.object().shape({
     })
   ),
 });
-const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) => {
+
+const ProfessionalExperienceChildTable = ({ formData, onFormDataChange }: any) => {
   const notifySuccess = (message: string) => {
     toast.success(message);
   };
@@ -20,6 +21,7 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
   const notifyError = (message: string) => {
     toast.error(message);
   };
+
   return (
     <div className="container">
       <div className="row">
@@ -29,26 +31,26 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
         <div className="col-12">
           <Formik
             initialValues={{
-              professional_exp:formData.professional_experience && formData.professional_experience.length > 0
-              ? formData.professional_experience
-              : [
-                {
-                  title: '',
-                  year: '',
-                  company: '',
-                },
-                ],
+              professional_exp: formData.professional_experience && formData.professional_experience.length > 0
+                ? formData.professional_experience
+                : [
+                    {
+                      title: '',
+                      year: '',
+                      company: '',
+                    },
+                  ],
             }}
             validationSchema={ProfessionalExperienceSchema}
             onSubmit={(values) => {
+              // Form submission logic
               console.log('values', values);
-
-              onFormDataChange('professional_experience', values.professional_exp)
               notifySuccess('Professional Experience data added successfully');
+              onFormDataChange('professional_experience', values.professional_exp);
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
-              <form onSubmit={handleSubmit}>
+              <form>
                 <table className="table table-bordered">
                   <thead>
                     <tr>
@@ -63,7 +65,7 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
                       name="professional_exp"
                       render={(arrayHelpers) => (
                         <>
-                          {values.professional_exp.map((PE:any, index:any) => (
+                          {values.professional_exp.map((PE: any, index: any) => (
                             <tr key={index}>
                               <td>
                                 <Field
@@ -71,7 +73,11 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
                                   name={`professional_exp.${index}.title`}
                                   placeholder="Title"
                                   onBlur={handleBlur}
-                                  onChange={handleChange}
+                                  onChange={(e:any) => {
+                                    // Update the form data in real-time
+                                    handleChange(e);
+                                    onFormDataChange('professional_experience', values.professional_exp);
+                                  }}
                                 />
                                 <div className="error_message">
                                   <ErrorMessage name={`professional_exp.${index}.title`} />
@@ -83,7 +89,11 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
                                   name={`professional_exp.${index}.year`}
                                   placeholder="Year"
                                   onBlur={handleBlur}
-                                  onChange={handleChange}
+                                  onChange={(e:any) => {
+                                    // Update the form data in real-time
+                                    handleChange(e);
+                                    onFormDataChange('professional_experience', values.professional_exp);
+                                  }}
                                 />
                                 <div className="error_message">
                                   <ErrorMessage name={`professional_exp.${index}.year`} />
@@ -93,12 +103,16 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
                                 <Field
                                   type="text"
                                   name={`professional_exp.${index}.company`}
-                                  placeholder="company"
+                                  placeholder="Company"
                                   onBlur={handleBlur}
-                                  onChange={handleChange}
+                                  onChange={(e:any) => {
+                                    // Update the form data in real-time
+                                    handleChange(e);
+                                    onFormDataChange('professional_experience', values.professional_exp);
+                                  }}
                                 />
-                                 <div className="error_message">
-                                  <ErrorMessage  name={`professional_exp.${index}.company`} />
+                                <div className="error_message">
+                                  <ErrorMessage name={`professional_exp.${index}.company`} />
                                 </div>
                               </td>
                               <td>
@@ -107,10 +121,12 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
                                   className="btn btn-danger"
                                   onClick={() => {
                                     arrayHelpers.remove(index);
-                                    notifyError('Academic data deleted successfully');
+                                    notifyError('Professional Experience data deleted successfully');
+                                    // Update the form data in real-time after deletion
+                                    onFormDataChange('professional_experience', values.professional_exp);
                                   }}
                                 >
-                                  {/* <FaTimes /> */} Delete
+                                  Delete
                                 </button>
                               </td>
                             </tr>
@@ -138,9 +154,6 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
                     />
                   </tbody>
                 </table>
-                <button type="submit" className="btn btn-primary">
-                  Save
-                </button>
               </form>
             )}
           </Formik>
@@ -150,4 +163,4 @@ const ProfessionalExpericeneChildTable = ({ formData, onFormDataChange }: any) =
   );
 };
 
-export default ProfessionalExpericeneChildTable;
+export default ProfessionalExperienceChildTable;

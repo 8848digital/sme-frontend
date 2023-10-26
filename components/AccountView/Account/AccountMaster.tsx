@@ -5,7 +5,7 @@ import Link from "next/link";
 const AccountMaster = () => {
   return (
     <div className="container">
-      <div className={`card row ${styles.account_minwrapper} `}>
+      <div className={`card row ${styles.account_wrapper } `}>
         <div className={`mb-4`}>
           <h1 className={`${styles.header_text}`}>Account</h1>
         </div>
@@ -21,8 +21,8 @@ const AccountMaster = () => {
             </Link>
           </div>
           <div className="my-3">
-            <Link href="/account/account-support" legacyBehavior>
-              <a className="btn btn-signup font-size-3">Contact Support</a>
+            <Link href="https://strategicgears.com/index.php/contact-us" legacyBehavior>
+              <a target="_blank" className="btn btn-signup font-size-3">Contact Support</a>
             </Link>
           </div>
         </div>

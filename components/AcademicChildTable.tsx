@@ -30,26 +30,26 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
         </div>
         <div className="col-12">
           <Formik
-         initialValues={{
-          certifications: formData.academic_background && formData.academic_background.length > 0
-            ? formData.academic_background
-            : [
-                {
-                  certification_level: '',
-                  year: '',
-                  gpa: '',
-                },
-              ],
-        }}
+            initialValues={{
+              certifications: formData.academic_background && formData.academic_background.length > 0
+                ? formData.academic_background
+                : [
+                    {
+                      certification_level: '',
+                      year: '',
+                      gpa: '',
+                    },
+                  ],
+            }}
             validationSchema={AcademicBackgroundSchema}
             onSubmit={(values) => {
+              // Form submission logic
               console.log('values', values);
-              onFormDataChange('academic_background', values.certifications);
               notifySuccess('Academic data added successfully');
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
-              <form onSubmit={handleSubmit}>
+              <form>
                 <table className="table table-bordered">
                   <thead>
                     <tr>
@@ -72,7 +72,11 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
                                   name={`certifications.${index}.certification_level`}
                                   placeholder="Certification Level"
                                   onBlur={handleBlur}
-                                  onChange={handleChange}
+                                  onChange={(e:any) => {
+                                    // Update the form data in real-time
+                                    handleChange(e);
+                                    onFormDataChange('academic_background', values.certifications);
+                                  }}
                                 />
                                 <div className="error_message">
                                   <ErrorMessage name={`certifications.${index}.certification_level`} />
@@ -84,7 +88,11 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
                                   name={`certifications.${index}.year`}
                                   placeholder="Year"
                                   onBlur={handleBlur}
-                                  onChange={handleChange}
+                                  onChange={(e:any) => {
+                                    // Update the form data in real-time
+                                    handleChange(e);
+                                    onFormDataChange('academic_background', values.certifications);
+                                  }}
                                 />
                                 <div className="error_message">
                                   <ErrorMessage name={`certifications.${index}.year`} />
@@ -96,7 +104,11 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
                                   name={`certifications.${index}.gpa`}
                                   placeholder="GPA"
                                   onBlur={handleBlur}
-                                  onChange={handleChange}
+                                  onChange={(e:any) => {
+                                    // Update the form data in real-time
+                                    handleChange(e);
+                                    onFormDataChange('academic_background', values.certifications);
+                                  }}
                                 />
                                 <div className="error_message">
                                   <ErrorMessage name={`certifications.${index}.gpa`} />
@@ -109,6 +121,8 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
                                   onClick={() => {
                                     arrayHelpers.remove(index);
                                     notifyError('Academic data deleted successfully');
+                                    // Update the form data in real-time after deletion
+                                    onFormDataChange('academic_background', values.certifications);
                                   }}
                                 >
                                   Delete
@@ -124,7 +138,7 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
                                 className="btn btn-success"
                                 onClick={() =>
                                   arrayHelpers.push({
-                                    certificationLevel: '',
+                                    certification_level: '',
                                     year: '',
                                     gpa: '',
                                   })
@@ -139,9 +153,6 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
                     />
                   </tbody>
                 </table>
-                <button type="submit" className="btn btn-primary">
-                  Save
-                </button>
               </form>
             )}
           </Formik>

@@ -44,7 +44,7 @@ export default function ContractNavbars() {
   return (
     <>
       <div className="container">
-        <div className={`row card  ${styles.account_minwrapper}`}>
+        <div className={`row card  ${styles.account_wrapper}`}>
           <div className="">
             <h1 className={`${styles.header_text}`}>Contract</h1>
           </div>

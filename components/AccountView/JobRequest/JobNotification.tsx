@@ -68,16 +68,7 @@ const JobNotification = ({ details }: any) => {
             />
           </div>
         )}
-        {tabs === "approve" && (
-          <div>
-            <JobApprove details={descriptionData} onclick={openDescription} />
-          </div>
-        )}
-        {tabs === "thank" && (
-          <>
-            <JobThank />
-          </>
-        )}
+       
       </div>
     </div>
   );

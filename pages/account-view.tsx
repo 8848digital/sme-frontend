@@ -1,3 +1,4 @@
+'use client'
 import AccountViewMaster from "@/components/AccountView/Bio/AccountViewMaster";
 import React from "react";
 
