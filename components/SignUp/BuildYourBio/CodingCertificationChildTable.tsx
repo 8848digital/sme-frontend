@@ -20,13 +20,13 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                 },
               ],
             }}
-            onSubmit={(values) => {
+            onSubmit={(values: any) => {
               console.log("values", values.certifications);
               onFormDataChange("certifications", values.certifications);
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
-              <form onSubmit={handleSubmit}>
+              <form onChange={handleSubmit}>
                 <table className="table table-bordered">
                   <thead>
                     <tr>
@@ -41,7 +41,7 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                       name="certifications"
                       render={(arrayHelpers) => (
                         <>
-                          {values.certifications.map((cert, index) => (
+                          {values.certifications.map((cert:any, index:number) => (
                             <tr key={index}>
                               <td>
                                 <Field
@@ -104,9 +104,6 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                     />
                   </tbody>
                 </table>
-                <button type="submit" className="btn btn-primary">
-                  Save
-                </button>
               </form>
             )}
           </Formik>
