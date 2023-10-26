@@ -1,12 +1,13 @@
-import AccountChangePassword from "@/components/AccountView/Account/AccountChangePassword";
+
+import ChangePassword from "@/components/Auth/ChangePassword";
 import React from "react";
 
-const ChangePassword = () => {
+const index = () => {
   return (
     <>
-      <AccountChangePassword />
+  <ChangePassword/>
     </>
   );
 };
 
-export default ChangePassword;
+export default index;

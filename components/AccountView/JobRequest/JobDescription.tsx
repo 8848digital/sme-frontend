@@ -1,7 +1,17 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 const JobDescription = ({ details, onclick }: any) => {
   console.log(onclick);
+  const router = useRouter();
+  const handleApproveClick = () => {
+    console.log('approve button clicked')
+    router.push('./job-approve-thankyou');
+  };
+  const handleReadContractClick = () => {
+    console.log('approve button clicked')
+    router.push('/');
+  };
   return (
     <div className="container">
       <div className="job-desc-wrapper border p-3 rounded">
@@ -42,13 +52,36 @@ const JobDescription = ({ details, onclick }: any) => {
           <hr />
         </div>
         <div className="col-12 text-center">
-          <button
-            className="btn btn-later "
-            style={{ width: "auto" }}
-            onClick={() => onclick(details, "approve")}
-          >
-            Read Full Contract
-          </button>
+          <div className="row">
+            <div className="col-4">
+              <button
+                className="btn btn-later "
+                style={{ width: "auto" }}
+                onClick={handleReadContractClick}
+              >
+                Read Full Contract
+              </button>
+            </div>
+            <div className="col-4">
+              <button
+                className="btn btn-later"
+                style={{ width: "auto" }}
+                onClick={handleApproveClick}
+              >
+                Approve
+              </button>
+            </div>
+            <div className="col-4">
+              <button
+                className="btn btn-later "
+                style={{ width: "auto" }}
+
+              >
+                Reject
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
