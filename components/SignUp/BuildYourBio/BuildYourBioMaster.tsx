@@ -142,12 +142,12 @@ const BuildYourBioMaster = () => {
 
   // PASSING DATA OT STORE OF PUT APIs
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
-  // console.log(signuptoken);
+  console.log(signuptoken);
   const loginToken: any = useSelector(get_access_token);
-  // console.log(loginToken);
+  console.log(loginToken);
   let accessToken: any;
-  if (loginToken?.data?.length > 0) {
-    accessToken = loginToken?.data;
+  if (loginToken?.token?.length > 0) {
+    accessToken = loginToken?.token;
   } else {
     accessToken = signuptoken?.data?.acess_token;
   }
@@ -167,10 +167,7 @@ const BuildYourBioMaster = () => {
     <>
       <div className="container-fluid">
         <div className={styles.bio_wrapper}>
-          <div
-            className="row "
-            style={{ maxWidth: "800px", margin: "0 auto", }}
-          >
+          <div className="row " style={{ maxWidth: "800px", margin: "0 auto" }}>
             <div className="col-4 ">
               <div className="">
                 <h2 className="fs-3 text-white">Step {currentStep}</h2>

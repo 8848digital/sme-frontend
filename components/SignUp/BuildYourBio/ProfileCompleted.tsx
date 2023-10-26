@@ -34,7 +34,7 @@ const ProfileCompleted: React.FC = () => {
       >
         <div className="row">
           <div className="text-center my-3">
-            <h1>Thank You for completing your profile.</h1>
+            <h1>Thank You for completing your bio.</h1>
           </div>
 
           <div className="col-sm-4">
