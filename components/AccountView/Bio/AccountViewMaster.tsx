@@ -8,6 +8,7 @@ const AccountViewMaster = () => {
   console.log('profile Data',profileData);
   return (
     <div>
+      
       <AccountBio profileData={profileData} loading={loading}/>
     </div>
   );

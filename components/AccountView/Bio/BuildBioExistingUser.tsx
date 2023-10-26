@@ -16,7 +16,7 @@ const BuildBioExistingUser = () => {
                                 </h1>
                                 <div className='mt-5'>
 
-                                <Link href='/build-your-bio' className='btn btn-signup mx-2'>Build Your Bio Here</Link>
+                                <Link href='/build-your-bio' target='_blank' className='btn btn-signup mx-2'>Build Your Bio Here</Link>
                                 </div>
                             </div>
                         </div>

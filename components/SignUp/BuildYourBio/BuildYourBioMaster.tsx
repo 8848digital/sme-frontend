@@ -19,7 +19,7 @@ import SelectCertifications from "./SelectCertifications";
 import SelectLanguageSkills from "./SelectLanguageSkills";
 import SelectTechnicalSkills from "./SelectTechnicalSkills";
 import UploadPhoto from "./UploadPhoto";
-
+import styles from "@/styles/bio.module.css";
 const BuildYourBioMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const dispatch = useDispatch();
@@ -166,10 +166,10 @@ const BuildYourBioMaster = () => {
   return (
     <>
       <div className="container-fluid">
-        <div className={wizardStyles.bio_wrapper}>
+        <div className={styles.bio_wrapper}>
           <div
             className="row "
-            style={{ maxWidth: "800px", margin: "0 auto", marginTop: "100px" }}
+            style={{ maxWidth: "800px", margin: "0 auto", }}
           >
             <div className="col-4 ">
               <div className="">
