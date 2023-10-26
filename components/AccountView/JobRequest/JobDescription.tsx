@@ -53,7 +53,7 @@ const JobDescription = ({ details, onclick }: any) => {
         </div>
         <div className="col-12 text-center">
           <div className="row">
-            <div className="col-4">
+            <div className="col-md-4">
               <button
                 className="btn btn-later "
                 style={{ width: "auto" }}
@@ -62,7 +62,7 @@ const JobDescription = ({ details, onclick }: any) => {
                 Read Full Contract
               </button>
             </div>
-            <div className="col-4">
+            <div className="col-md-4">
               <button
                 className="btn btn-later"
                 style={{ width: "auto" }}
@@ -71,7 +71,7 @@ const JobDescription = ({ details, onclick }: any) => {
                 Approve
               </button>
             </div>
-            <div className="col-4">
+            <div className="col-md-4">
               <button
                 className="btn btn-later "
                 style={{ width: "auto" }}
