@@ -85,22 +85,22 @@ const NavbarMobile = () => {
                                             <>
                                                 <ul className="navbar-nav main-menu align-items-center">
                                                     <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/jobs">
+                                                        <Link className="nav-link p-0" href="/account-view">
                                                             Bio
                                                         </Link>
                                                     </li>
                                                     <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/jobs">
+                                                        <Link className="nav-link p-0" href="/job-request">
                                                             Job request
                                                         </Link>
                                                     </li>
                                                     <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/jobs">
+                                                        <Link className="nav-link p-0" href="/contract">
                                                             Contract
                                                         </Link>
                                                     </li>
                                                     <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/jobs">
+                                                        <Link className="nav-link p-0" href="/account">
                                                             Account
                                                         </Link>
                                                     </li>
