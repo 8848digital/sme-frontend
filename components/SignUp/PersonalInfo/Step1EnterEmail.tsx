@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "@/styles/wizard.module.css";
-
+import React, { useState, useRef } from "react";
 const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
   // Handle the form field change
   const handleEmailChange = (e: any) => {
@@ -19,7 +19,8 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
               <div className='text-center mt-5'>
                 <h1>Step 1 of 7</h1>
                 <h2>Personal Information</h2>
-                <div className='mt-4 d-flex align-items-center justify-content-center'>
+                <div className='mt-4 d-flex flex-column align-items-center justify-content-center'>
+                  {/* <p className="mb-0">Mandatory field <span>*</span></p> */}
                   <input
                     className="form-control w-75 me-2 input-filed-height"
                     type="email"

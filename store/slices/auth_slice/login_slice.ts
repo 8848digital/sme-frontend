@@ -17,10 +17,10 @@ const initialState: AuthState = {
 
 export const getAccessToken: any = createAsyncThunk(
     'auth/getAccessToken',
-    async ({ usr, pwd }: { usr: any; pwd: any }) => {
+    async ({ usr, password }: { usr: any; password: any }) => {
         try {
-            console.log('login value check',usr , pwd)
-            const AccessTokenData = await getAccessTokenApi(usr, pwd);
+            console.log('login value check',usr , password)
+            const AccessTokenData = await getAccessTokenApi(usr, password);
             console.log(AccessTokenData, "login thunk AccessTokenData");
 
             return AccessTokenData;

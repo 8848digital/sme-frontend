@@ -15,6 +15,7 @@ interface FormState {
   hourly_rates:any,
   academic_background:any
   professional_experience:any
+  
 }
 
 const initialState: FormState = {

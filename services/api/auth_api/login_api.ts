@@ -2,7 +2,7 @@ import { CONSTANTS } from "@/services/config/api-config";
 import axios from "axios";
 
 
-const getAccessTokenApi = async (usr:any , pwd:any) => {
+const getAccessTokenApi = async (usr:any , password:any) => {
     let response:any;
     const config = {
         headers: {
@@ -13,7 +13,7 @@ const getAccessTokenApi = async (usr:any , pwd:any) => {
 
 
     await axios
-    .post(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}?version=v1&method=get_access_token&entity=access_token&usr=${usr}&pwd=${pwd}`,undefined,{
+    .post(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}?version=v1&method=get_access_token&entity=access_token&usr=${usr}&password=${password}`,undefined,{
       ...config,
       timeout: 5000,
     })

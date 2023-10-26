@@ -30,15 +30,17 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
         </div>
         <div className="col-12">
           <Formik
-            initialValues={{
-              certifications: formData.academic_background || [ // Use formData if available, or initialize with an empty object
+         initialValues={{
+          certifications: formData.academic_background && formData.academic_background.length > 0
+            ? formData.academic_background
+            : [
                 {
                   certification_level: '',
                   year: '',
                   gpa: '',
                 },
               ],
-            }}
+        }}
             validationSchema={AcademicBackgroundSchema}
             onSubmit={(values) => {
               console.log('values', values);
