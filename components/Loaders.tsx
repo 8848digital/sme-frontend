@@ -9,11 +9,11 @@ const Loaders = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "500px"
-            
+            height: "500px",
+            margin:"150px 0"
           }}
         >
-          <HashLoader color="#00578A" />
+          <HashLoader color="white" />
         </div>
         
     </>

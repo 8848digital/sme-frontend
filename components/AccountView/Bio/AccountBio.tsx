@@ -11,7 +11,7 @@ import Link from "next/link";
 import Loaders from "@/components/Loaders";
 
 const AccountBio = ({ profileData, loading }: any) => {
-  console.log('profile through props', profileData);
+  console.log("profile through props", profileData);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -26,92 +26,120 @@ const AccountBio = ({ profileData, loading }: any) => {
   };
   return (
     <div className="container">
-      {
-        loading ? (
-          <Loaders/>
-        ):(
-          <div className={`profile_wrapper ${styles.account_wrapper} card `}>
+      {loading ? (
+        <Loaders />
+      ) : (
+        <div className={`profile_wrapper ${styles.account_wrapper} card `}>
           <div className="row">
             <div className="mb-4">
               <h1 className={`${styles.header_text}`}>Bio</h1>
             </div>
-  
-            <div className="col-sm-4">
+
+            <div className="col-sm-6">
               <div className="text-center mt-4">
                 {/* <AccountCircleIcon sx={{ fontSize: "100px" }} /> */}
-                {
-                  profileData && profileData?.photo_url === null || profileData && profileData?.photo_url === "" ? <>
-                    <AccountCircleIcon sx={{ fontSize: "100px", color:'#00B2D4' }} />
-                  </> : <>
-                    <img src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`} width='150px' />
+                {(profileData && profileData?.photo_url === null) ||
+                (profileData && profileData?.photo_url === "") ? (
+                  <>
+                    <AccountCircleIcon
+                      sx={{ fontSize: "100px", color: "#00B2D4" }}
+                    />
                   </>
-  
-                }
+                ) : (
+                  <>
+                    <img
+                      src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`}
+                      width="150px"
+                    />
+                  </>
+                )}
               </div>
             </div>
             <div className="col-sm-6 ">
-              {
-                profileData && profileData?.bio === null || profileData && profileData?.bio === "" ? <>
+              {(profileData && profileData?.bio === null) ||
+              (profileData && profileData?.bio === "") ? (
+                <>
                   <p>You Have not entered your bio yet.</p>
-                </> : <>
-  
+                </>
+              ) : (
+                <>
                   <p>{profileData && profileData?.bio}</p>
                 </>
-              }
+              )}
               <div>
-                {
-                  profileData && profileData?.technical_skills.length > 0 ? <>
+                {profileData && profileData?.technical_skills.length > 0 ? (
+                  <>
                     <h2>Technical Skills</h2>
                     <ul>
-                      {profileData && profileData?.technical_skills?.map((skills: any, index: any) => (
-                        <li key={index}>{skills?.technical_skills}</li>
-                      ))}
+                      {profileData &&
+                        profileData?.technical_skills?.map(
+                          (skills: any, index: any) => (
+                            <li className={`${styles.li_marker}`} key={index}>
+                              {skills?.technical_skills}
+                            </li>
+                          )
+                        )}
                     </ul>
-                  </> : <>
+                  </>
+                ) : (
+                  <>
                     <h2>Technical Skills</h2>
                     <p> No Technical Skills details available yet.</p>
                   </>
-                }
+                )}
               </div>
-  
+
               <div>
-                {
-                  profileData && profileData.language.length > 0 ? <>
+                {profileData && profileData.language.length > 0 ? (
+                  <>
                     <h2>Languages</h2>
                     <ul>
-                      {profileData && profileData.language.map((language: any, index: any) => (
-                        <li key={index}>{language?.language}</li>
-                      ))}
+                      {profileData &&
+                        profileData.language.map(
+                          (language: any, index: any) => (
+                            <li className={`${styles.li_marker}`} key={index}>
+                              {language?.language}
+                            </li>
+                          )
+                        )}
                     </ul>
-                  </> : <>
+                  </>
+                ) : (
+                  <>
                     <h2>Languages</h2>
                     <p> No Language details available yet.</p>
                   </>
-                }
-  
+                )}
               </div>
-  
+
               <div>
-                {
-                  profileData && profileData?.certifications.length > 0 ? <>
+                {profileData && profileData?.certifications.length > 0 ? (
+                  <>
                     <h2>Certifications</h2>
                     <ul>
-                      {profileData && profileData?.certifications.map((certification: any, index: any) => (
-                        <>
-                          <div className="col-4">
-  
-                            <li key={index}>{certification?.certification_name}</li>
-                          </div>
-  
-                        </>
-                      ))}
+                      {profileData &&
+                        profileData?.certifications.map(
+                          (certification: any, index: any) => (
+                            <>
+                              <div className="col-4">
+                                <li
+                                  className={`${styles.li_marker}`}
+                                  key={index}
+                                >
+                                  {certification?.certification_name}
+                                </li>
+                              </div>
+                            </>
+                          )
+                        )}
                     </ul>
-                  </> : <>
+                  </>
+                ) : (
+                  <>
                     <h2>Languages</h2>
                     <p> No Certifications details available yet.</p>
                   </>
-                }
-  
+                )}
               </div>
               <div className="text-center">
                 {/* <button onClick={handleOpenModal} className="btn btn-later">
@@ -120,21 +148,21 @@ const AccountBio = ({ profileData, loading }: any) => {
                 {/* <button onClick={handleOpenModal} className="btn btn-later">
                   Update
                 </button> */}
-                <div className='mt-5'>
-  
-                  <Link href='/build-your-bio' target='_blank' className='btn btn-signup mx-2'>Update/Build Your Bio Here</Link>
-                </div>
               </div>
             </div>
-  
-  
+            <div className="mt-4 text-center">
+              <Link
+                href="/build-your-bio"
+                target="_blank"
+                className="btn btn-signup mx-2"
+              >
+                Update/Build Your Bio Here
+              </Link>
+            </div>
           </div>
-  
-  
         </div>
-        )
-      }
-     
+      )}
+
       {/* The Modal */}
       <Dialog open={modalOpen} onClose={handleCloseModal}>
         <DialogContent>

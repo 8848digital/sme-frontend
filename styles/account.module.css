@@ -40,3 +40,7 @@
   font-size: 45px;
   color: #00b2d4;
 }
+
+.li_marker::marker{
+  color: #00b2d4;
+}
