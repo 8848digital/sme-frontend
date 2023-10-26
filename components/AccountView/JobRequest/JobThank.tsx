@@ -10,13 +10,13 @@ const JobThank = () => {
         <div className="col-12 text-center my-4">
           <div className={`  row justify-content-md-center card  ${styles.account_wrapper}`}>
             <div className="mb-5 pt-4">
-              <img src={thankyouImg.src} alt="" width="120px" />
+              <img src={thankyouImg.src} alt="" width="100px" />
             </div>
-          <h1 className="">
+          <h4 className="color">
             Thank you for approving this Job Request. We are excited to have you
             with our team.
-          </h1>
-          <h1 className="mt-2">The Project manager will be in contact with you.</h1>
+          </h4>
+          <h4 className="mt-2 color">The Project manager will be in contact with you.</h4>
 
           </div>
         </div>

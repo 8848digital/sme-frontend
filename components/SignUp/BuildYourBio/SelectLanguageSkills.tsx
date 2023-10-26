@@ -42,7 +42,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
             </div> */}
           </div>
           <div className="row justify-content-center">
-            <div className="col-5">
+            <div className="col-sm-5">
               <form>
                 <div
                   className="mb-3 d-flex justify-content-center mt-3 flex-column"
