@@ -93,7 +93,7 @@ const fileInputRef = useRef<HTMLInputElement | null>(null);
                             <div className="upload-circle">
                               <i className="fas fa-upload "></i>
                             </div>
-                            Upload Logo
+                            Upload CV
                           </label>
                           <input
                             id="input-file"

@@ -5,9 +5,13 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import AccountUpdateModal from "./AccountUpdateModal";
 import styles from "@/styles/account.module.css";
-const AccountBio: React.FC = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+import { CONNREFUSED } from "dns";
+import { CONSTANTS } from "@/services/config/api-config";
 
+const AccountBio = ({profileData , loading}:any) => {
+console.log('profile through props' , profileData);
+  const [modalOpen, setModalOpen] = useState(false);
+ 
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -28,17 +32,17 @@ const AccountBio: React.FC = () => {
 
           <div className="col-sm-4">
             <div className="text-center mt-4">
-              <AccountCircleIcon sx={{ fontSize: "100px" }} />
+              {/* <AccountCircleIcon sx={{ fontSize: "100px" }} /> */}
+              <img src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`} width='100px'/>
             </div>
           </div>
           <div className="col-sm-6 ">
-            <p>{AccountProfile.bio}</p>
-
+            <p>{profileData && profileData?.bio}</p>
             <div>
               <h2>Technical Skills</h2>
               <ul>
-                {AccountProfile.techSkills.map((skill, index) => (
-                  <li key={index}>{skill}</li>
+                { profileData && profileData?.technical_skills?.map((skills:any, index:any) => (
+                  <li key={index}>{skills?.technical_skills}</li>
                 ))}
               </ul>
             </div>
@@ -46,81 +50,43 @@ const AccountBio: React.FC = () => {
             <div>
               <h2>Languages</h2>
               <ul>
-                {AccountProfile.languages.map((language, index) => (
-                  <li key={index}>{language}</li>
+                {profileData && profileData.language.map((language:any, index:any) => (
+                  <li key={index}>{language?.language}</li>
                 ))}
               </ul>
             </div>
 
             <div>
               <h2>Certifications</h2>
+              <div className="row">
+                
+              </div>
               <ul>
-                {AccountProfile.certifications.map((certification, index) => (
-                  <li key={index}>{certification}</li>
+                {profileData && profileData?.certifications.map((certification:any, index:any) => (
+                  <>
+                  <div className="col-4">
+
+                    <li key={index}>{certification?.certification_name}</li>
+                  </div>
+                  
+                  </>
                 ))}
               </ul>
             </div>
             <div className="text-center">
-              <button onClick={handleOpenModal} className="btn btn-later">
+              {/* <button onClick={handleOpenModal} className="btn btn-later">
                 Update
-              </button>
+              </button> */}
+              {/* <button onClick={handleOpenModal} className="btn btn-later">
+                Update
+              </button> */}
             </div>
           </div>
 
          
         </div>
 
-        {/* <div className="row">
-          <h1 >Bio</h1>
-        </div>
-        <div className="row">
-          <div className="col-sm-2 text-end">
-            <AccountCircleIcon sx={{ fontSize: "100px" }} />
-          </div>
-
-          <div className="col-sm-7">
-            <div className="d-flex justify-content-center">
-              <div>
-                <p>{AccountProfile.bio}</p>
-
-                <div>
-                  <h2>Technical Skills</h2>
-                  <ul>
-                    {AccountProfile.techSkills.map((skill, index) => (
-                      <li key={index}>{skill}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h2>Languages</h2>
-                  <ul>
-                    {AccountProfile.languages.map((language, index) => (
-                      <li key={index}>{language}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h2>Certifications</h2>
-                  <ul>
-                    {AccountProfile.certifications.map(
-                      (certification, index) => (
-                        <li key={index}>{certification}</li>
-                      )
-                    )}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-3">
-            <button onClick={handleOpenModal} className="btn btn-next">
-              Update
-            </button>
-          </div>
-
-        </div> */}
+      
       </div>
       {/* The Modal */}
       <Dialog open={modalOpen} onClose={handleCloseModal}>
