@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-
+import styles from "@/styles/wizard.module.css";
 const AcademicBackgroundSchema = Yup.object().shape({
   certifications: Yup.array().of(
     Yup.object().shape({
@@ -24,10 +24,12 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-12 text-start">
+      <div className="row justify-content-center">
+        <div className="col-12 text-center">
           <h2>Academic Background</h2>
         </div>
+      </div>
+      <div className="row">
         <div className="col-12">
           <Formik
             initialValues={{
@@ -49,110 +51,111 @@ const AcademicChildTable = ({ formData, onFormDataChange }: any) => {
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
-              <form>
-                <table className="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Certification Level</th>
-                      <th>Year</th>
-                      <th>GPA</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <FieldArray
-                      name="certifications"
-                      render={(arrayHelpers) => (
-                        <>
-                          {values.certifications.map((cert: any, index: any) => (
-                            <tr key={index}>
-                              <td>
-                                <Field
-                                  type="text"
-                                  name={`certifications.${index}.certification_level`}
-                                  placeholder="Certification Level"
-                                  onBlur={handleBlur}
-                                  onChange={(e:any) => {
-                                    // Update the form data in real-time
-                                    handleChange(e);
-                                    onFormDataChange('academic_background', values.certifications);
-                                  }}
-                                />
-                                <div className="error_message">
-                                  <ErrorMessage name={`certifications.${index}.certification_level`} />
-                                </div>
-                              </td>
-                              <td>
-                                <Field
-                                  type="text"
-                                  name={`certifications.${index}.year`}
-                                  placeholder="Year"
-                                  onBlur={handleBlur}
-                                  onChange={(e:any) => {
-                                    // Update the form data in real-time
-                                    handleChange(e);
-                                    onFormDataChange('academic_background', values.certifications);
-                                  }}
-                                />
-                                <div className="error_message">
-                                  <ErrorMessage name={`certifications.${index}.year`} />
-                                </div>
-                              </td>
-                              <td>
-                                <Field
-                                  type="text"
-                                  name={`certifications.${index}.gpa`}
-                                  placeholder="GPA"
-                                  onBlur={handleBlur}
-                                  onChange={(e:any) => {
-                                    // Update the form data in real-time
-                                    handleChange(e);
-                                    onFormDataChange('academic_background', values.certifications);
-                                  }}
-                                />
-                                <div className="error_message">
-                                  <ErrorMessage name={`certifications.${index}.gpa`} />
-                                </div>
-                              </td>
-                              <td>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                  onClick={() => {
-                                    arrayHelpers.remove(index);
-                                    notifyError('Academic data deleted successfully');
-                                    // Update the form data in real-time after deletion
-                                    onFormDataChange('academic_background', values.certifications);
-                                  }}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
-                          <tr>
-                            <td colSpan={3}></td>
-                            <td>
-                              <button
-                                type="button"
-                                className="btn btn-success"
-                                onClick={() =>
-                                  arrayHelpers.push({
-                                    certification_level: '',
-                                    year: '',
-                                    gpa: '',
-                                  })
-                                }
-                              >
-                                Add Row
-                              </button>
-                            </td>
-                          </tr>
-                        </>
-                      )}
-                    />
-                  </tbody>
-                </table>
+              <form className="border p-3 rounded">
+                <div className="row">
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                    <strong>Certification Level</strong>
+                  </div>
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                    <strong>Year</strong>
+                  </div>
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                    <strong>GPA</strong>
+                  </div>
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}></div>
+                </div>
+
+                <FieldArray
+                  name="certifications"
+                  render={(arrayHelpers) => (
+                    <>
+                      {values.certifications.map((cert: any, index: any) => (
+                        <div className="row mb-3" key={index}>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <Field
+                              type="text"
+                              name={`certifications.${index}.certification_level`}
+                              placeholder="Certification Level"
+                              onBlur={handleBlur}
+                              onChange={(e: any) => {
+                                // Update the form data in real-time
+                                handleChange(e);
+                                onFormDataChange('academic_background', values.certifications);
+                              }}
+                            />
+                            <div className="error_message">
+                              <ErrorMessage name={`certifications.${index}.certification_level`} />
+                            </div>
+                          </div>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <Field
+                              type="text"
+                              name={`certifications.${index}.year`}
+                              placeholder="Year"
+                              onBlur={handleBlur}
+                              onChange={(e: any) => {
+                                // Update the form data in real-time
+                                handleChange(e);
+                                onFormDataChange('academic_background', values.certifications);
+                              }}
+                            />
+                            <div className="error_message">
+                              <ErrorMessage name={`certifications.${index}.year`} />
+                            </div>
+                          </div>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <Field
+                              type="text"
+                              name={`certifications.${index}.gpa`}
+                              placeholder="GPA"
+                              onBlur={handleBlur}
+                              onChange={(e: any) => {
+                                // Update the form data in real-time
+                                handleChange(e);
+                                onFormDataChange('academic_background', values.certifications);
+                              }}
+                            />
+                            <div className="error_message">
+                              <ErrorMessage name={`certifications.${index}.gpa`} />
+                            </div>
+                          </div>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              onClick={() => {
+                                arrayHelpers.remove(index);
+                                notifyError('Academic data deleted successfully');
+                                // Update the form data in real-time after deletion
+                                onFormDataChange('academic_background', values.certifications);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="row">
+                        <div className="col-md-9"></div>
+                        <div className={`col-md-3 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
+                          <button
+                            type="button"
+                            className="btn btn-success"
+                            onClick={() =>
+                              arrayHelpers.push({
+                                certification_level: '',
+                                year: '',
+                                gpa: '',
+                              })
+                            }
+                          >
+                            Add Row
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                />
               </form>
             )}
           </Formik>

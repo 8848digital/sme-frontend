@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-
+import styles from "@/styles/wizard.module.css";
 const ProfessionalExperienceSchema = Yup.object().shape({
   professional_exp: Yup.array().of(
     Yup.object().shape({
@@ -24,10 +24,12 @@ const ProfessionalExperienceChildTable = ({ formData, onFormDataChange }: any) =
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-12 text-start">
+      <div className="row justify-content-center">
+        <div className="col-12 text-center">
           <h2>Professional Experience</h2>
         </div>
+      </div>
+      <div className="row">
         <div className="col-12">
           <Formik
             initialValues={{
@@ -50,110 +52,111 @@ const ProfessionalExperienceChildTable = ({ formData, onFormDataChange }: any) =
             }}
           >
             {({ values, handleSubmit, handleBlur, handleChange }) => (
-              <form>
-                <table className="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Year</th>
-                      <th>Company</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <FieldArray
-                      name="professional_exp"
-                      render={(arrayHelpers) => (
-                        <>
-                          {values.professional_exp.map((PE: any, index: any) => (
-                            <tr key={index}>
-                              <td>
-                                <Field
-                                  type="text"
-                                  name={`professional_exp.${index}.title`}
-                                  placeholder="Title"
-                                  onBlur={handleBlur}
-                                  onChange={(e:any) => {
-                                    // Update the form data in real-time
-                                    handleChange(e);
-                                    onFormDataChange('professional_experience', values.professional_exp);
-                                  }}
-                                />
-                                <div className="error_message">
-                                  <ErrorMessage name={`professional_exp.${index}.title`} />
-                                </div>
-                              </td>
-                              <td>
-                                <Field
-                                  type="text"
-                                  name={`professional_exp.${index}.year`}
-                                  placeholder="Year"
-                                  onBlur={handleBlur}
-                                  onChange={(e:any) => {
-                                    // Update the form data in real-time
-                                    handleChange(e);
-                                    onFormDataChange('professional_experience', values.professional_exp);
-                                  }}
-                                />
-                                <div className="error_message">
-                                  <ErrorMessage name={`professional_exp.${index}.year`} />
-                                </div>
-                              </td>
-                              <td>
-                                <Field
-                                  type="text"
-                                  name={`professional_exp.${index}.company`}
-                                  placeholder="Company"
-                                  onBlur={handleBlur}
-                                  onChange={(e:any) => {
-                                    // Update the form data in real-time
-                                    handleChange(e);
-                                    onFormDataChange('professional_experience', values.professional_exp);
-                                  }}
-                                />
-                                <div className="error_message">
-                                  <ErrorMessage name={`professional_exp.${index}.company`} />
-                                </div>
-                              </td>
-                              <td>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                  onClick={() => {
-                                    arrayHelpers.remove(index);
-                                    notifyError('Professional Experience data deleted successfully');
-                                    // Update the form data in real-time after deletion
-                                    onFormDataChange('professional_experience', values.professional_exp);
-                                  }}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
-                          <tr>
-                            <td colSpan={3}></td>
-                            <td>
-                              <button
-                                type="button"
-                                className="btn btn-success"
-                                onClick={() =>
-                                  arrayHelpers.push({
-                                    title: '',
-                                    year: '',
-                                    company: '',
-                                  })
-                                }
-                              >
-                                Add Row
-                              </button>
-                            </td>
-                          </tr>
-                        </>
-                      )}
-                    />
-                  </tbody>
-                </table>
+              <form className="border p-3 rounded">
+                <div className="row">
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                    <strong>Title</strong>
+                  </div>
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                    <strong>Year</strong>
+                  </div>
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                    <strong>Company</strong>
+                  </div>
+                  <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}></div>
+                </div>
+
+                <FieldArray
+                  name="professional_exp"
+                  render={(arrayHelpers) => (
+                    <>
+                      {values.professional_exp.map((PE: any, index: any) => (
+                        <div className="row mb-3" key={index}>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <Field
+                              type="text"
+                              name={`professional_exp.${index}.title`}
+                              placeholder="Title"
+                              onBlur={handleBlur}
+                              onChange={(e:any) => {
+                                // Update the form data in real-time
+                                handleChange(e);
+                                onFormDataChange('professional_experience', values.professional_exp);
+                              }}
+                            />
+                            <div className="error_message">
+                              <ErrorMessage name={`professional_exp.${index}.title`} />
+                            </div>
+                          </div>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <Field
+                              type="text"
+                              name={`professional_exp.${index}.year`}
+                              placeholder="Year"
+                              onBlur={handleBlur}
+                              onChange={(e:any) => {
+                                // Update the form data in real-time
+                                handleChange(e);
+                                onFormDataChange('professional_experience', values.professional_exp);
+                              }}
+                            />
+                            <div className="error_message">
+                              <ErrorMessage name={`professional_exp.${index}.year`} />
+                            </div>
+                          </div>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <Field
+                              type="text"
+                              name={`professional_exp.${index}.company`}
+                              placeholder="Company"
+                              onBlur={handleBlur}
+                              onChange={(e:any) => {
+                                // Update the form data in real-time
+                                handleChange(e);
+                                onFormDataChange('professional_experience', values.professional_exp);
+                              }}
+                            />
+                            <div className="error_message">
+                              <ErrorMessage name={`professional_exp.${index}.company`} />
+                            </div>
+                          </div>
+                          <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              onClick={() => {
+                                arrayHelpers.remove(index);
+                                notifyError('Professional Experience data deleted successfully');
+                                // Update the form data in real-time after deletion
+                                onFormDataChange('professional_experience', values.professional_exp);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="row">
+                        <div className="col-md-9"></div>
+                        <div className={`col-md-3 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
+                          <button
+                            type="button"
+                            className="btn btn-success"
+                            onClick={() =>
+                              arrayHelpers.push({
+                                title: '',
+                                year: '',
+                                company: '',
+                              })
+                            }
+                          >
+                            Add Row
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                />
               </form>
             )}
           </Formik>

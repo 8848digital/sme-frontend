@@ -13,6 +13,13 @@
     right: 5rem;
 }
 
+.wizard_childtable_responsive_class {
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+}
 .progress_bar_div{
     position: absolute !important;
     background-color: transparent !important;

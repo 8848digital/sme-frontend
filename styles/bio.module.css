@@ -11,6 +11,13 @@
     /* margin-top: 100px; */
 }
 
+.bio_childtable_responsive_class {
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+}
 .profile_wrapper{
     margin: 130px auto 30px auto;
 }
