@@ -14,33 +14,54 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
         <div className="col-12">
           <Formik
             initialValues={{
-              certifications: [
-                {
-                  certification_name: "",
-                  issuing_organization: "",
-                  date: "",
-                },
-              ],
+              certifications:
+                bioData.certifications && bioData.certifications.length > 0
+                  ? bioData.certifications
+                  : [
+                      {
+                        certification_name: "",
+                        issuing_organization: "",
+                        date: "",
+                      },
+                    ],
             }}
             onSubmit={(values) => {
-              console.log('values', values);
-            
+              console.log("values", values);
+
               // onFormDataChange('certifications', values.certifications);
             }}
           >
-            {({ values, handleBlur, handleChange }: FormikProps<{ certifications: { certification_name: string; issuing_organization: string; date: string; }[] }>) => (
+            {({
+              values,
+              handleBlur,
+              handleChange,
+            }: FormikProps<{
+              certifications: {
+                certification_name: string;
+                issuing_organization: string;
+                date: string;
+              }[];
+            }>) => (
               <form className="border p-3 rounded">
                 <div className="row">
-                  <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                  <div
+                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                  >
                     <strong>Certification Name</strong>
                   </div>
-                  <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                  <div
+                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                  >
                     <strong>Issuing organization</strong>
                   </div>
-                  <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                  <div
+                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                  >
                     <strong>Issue Date</strong>
                   </div>
-                  <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}></div>
+                  <div
+                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                  ></div>
                 </div>
                 <FieldArray
                   name="certifications"
@@ -48,43 +69,60 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                     <>
                       {values.certifications.map((cert, index) => (
                         <div className="row mb-3" key={index}>
-                          <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                          <div
+                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                          >
                             <Field
                               type="text"
                               name={`certifications.${index}.certification_name`}
                               placeholder="Certification Name"
                               onBlur={handleBlur}
-                              onChange={(e:any) => {
+                              onChange={(e: any) => {
                                 handleChange(e);
-                                onFormDataChange("certifications", values.certifications);
+                                onFormDataChange(
+                                  "certifications",
+                                  values.certifications
+                                );
                               }}
                             />
                           </div>
-                          <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                          <div
+                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                          >
                             <Field
                               type="text"
                               name={`certifications.${index}.issuing_organization`}
                               placeholder="Issuing organization"
                               onBlur={handleBlur}
-                              onChange={(e:any) => {
+                              onChange={(e: any) => {
                                 handleChange(e);
-                                onFormDataChange("certifications", values.certifications);
+                                onFormDataChange(
+                                  "certifications",
+                                  values.certifications
+                                );
                               }}
                             />
                           </div>
-                          <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                          <div
+                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                          >
                             <Field
                               type="date"
                               name={`certifications.${index}.date`}
                               placeholder="Issue Date"
                               onBlur={handleBlur}
-                              onChange={(e:any) => {
+                              onChange={(e: any) => {
                                 handleChange(e);
-                                onFormDataChange("certifications", values.certifications);
+                                onFormDataChange(
+                                  "certifications",
+                                  values.certifications
+                                );
                               }}
                             />
                           </div>
-                          <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
+                          <div
+                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
+                          >
                             <button
                               type="button"
                               className="btn btn-danger"
@@ -97,7 +135,9 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                       ))}
                       <div className="row">
                         <div className="col-md-9"></div>
-                        <div className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}>
+                        <div
+                          className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}
+                        >
                           <button
                             type="button"
                             className="btn btn-success"

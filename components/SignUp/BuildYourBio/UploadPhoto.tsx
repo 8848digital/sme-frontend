@@ -13,7 +13,7 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
     setSelectedFile(bioData.upload_photo);
   }, [bioData.upload_photo]);
 
-  const [fileURL, setFileURL] = useState<any>(bioData.upload_cv || null);
+  const [fileURL, setFileURL] = useState<any>(bioData.upload_photo || null);
 
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
   console.log(signuptoken);

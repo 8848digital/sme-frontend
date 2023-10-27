@@ -15,7 +15,7 @@ const SelectCertifications = ({ bioData, onFormDataChange }: any) => {
               <h1>Coding Certifications</h1>
             </div>
             <CodingCertificationChildTable
-              formData={bioData}
+              bioData={bioData}
               onFormDataChange={onFormDataChange}
             />
           </div>
