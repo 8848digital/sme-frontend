@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import logoImg from "../../public/assets/SG_logo.svg"
+import LogoutIcon from '@mui/icons-material/Logout';
 const WebNavbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -121,7 +122,7 @@ const WebNavbar = () => {
 
                   <Link href="/login" legacyBehavior>
                     <a className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                      Log in
+                     <span style={{color:'#00578a'}}> Log in</span> 
                     </a>
                   </Link>
                 )}
@@ -129,13 +130,13 @@ const WebNavbar = () => {
                   <div>
                     <Link href='' legacyBehavior>
                       <a onClick={handleLogOut} className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                        Log out
+                       <LogoutIcon style={{color:'#00578a' , fontSize:'18px'}}/> <span style={{color:'#00578a'}}>Log out</span> 
                       </a>
                     </Link>
                   </div>
                 ) : (
                   <Link href='/signup-start' legacyBehavior>
-                    <a className="btn btn-signup text-uppercase font-size-3">
+                    <a className="btn btn-signup text-uppercase font-size-3" > 
                       Sign up
                     </a>
                   </Link>
