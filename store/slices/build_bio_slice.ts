@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../root-reducer';
 
 // Define the initial state interface for the form data
-interface FormState {
+interface BioFormState {
   enter_your_bio: string,
   upload_photo: File | null; // Add the cvFile key
   technical_skills: any,
@@ -12,13 +12,13 @@ interface FormState {
   language: any
 }
 
-const initialState: FormState = {
+const initialState: BioFormState = {
 
   enter_your_bio: "",
   upload_photo: null,
   technical_skills: [],
-  certifications: [],
   language: [],
+  certifications: [],
 };
 
 // Create a form slice with reducers
@@ -26,7 +26,7 @@ const bioSlice = createSlice({
   name: 'bio',
   initialState,
   reducers: {
-    setBuildBioData: (state, action: PayloadAction<Partial<FormState>>) => {
+    setBuildBioData: (state, action: PayloadAction<BioFormState>) => {
       return { ...state, ...action.payload };
     },
     setResetBuildBioData: (state) => {

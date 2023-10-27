@@ -1,6 +1,7 @@
 import React from "react";
-import { Formik, Field, FieldArray } from "formik";
+import { Formik, Field, FieldArray, FormikProps } from "formik";
 import styles from "@/styles/bio.module.css";
+
 const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
   return (
     <div className="container">
@@ -21,12 +22,13 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                 },
               ],
             }}
-            onSubmit={(values: any) => {
-              console.log("values", values.certifications);
-              onFormDataChange("certifications", values.certifications);
+            onSubmit={(values) => {
+              console.log('values', values);
+            
+              // onFormDataChange('certifications', values.certifications);
             }}
           >
-            {({ values, handleSubmit, handleBlur, handleChange }) => (
+            {({ values, handleBlur, handleChange }: FormikProps<{ certifications: { certification_name: string; issuing_organization: string; date: string; }[] }>) => (
               <form className="border p-3 rounded">
                 <div className="row">
                   <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
@@ -44,7 +46,7 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                   name="certifications"
                   render={(arrayHelpers) => (
                     <>
-                      {values.certifications.map((cert:any, index:number) => (
+                      {values.certifications.map((cert, index) => (
                         <div className="row mb-3" key={index}>
                           <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                             <Field
@@ -52,7 +54,10 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                               name={`certifications.${index}.certification_name`}
                               placeholder="Certification Name"
                               onBlur={handleBlur}
-                              onChange={handleChange}
+                              onChange={(e:any) => {
+                                handleChange(e);
+                                onFormDataChange("certifications", values.certifications);
+                              }}
                             />
                           </div>
                           <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
@@ -61,7 +66,10 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                               name={`certifications.${index}.issuing_organization`}
                               placeholder="Issuing organization"
                               onBlur={handleBlur}
-                              onChange={handleChange}
+                              onChange={(e:any) => {
+                                handleChange(e);
+                                onFormDataChange("certifications", values.certifications);
+                              }}
                             />
                           </div>
                           <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
@@ -70,7 +78,10 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                               name={`certifications.${index}.date`}
                               placeholder="Issue Date"
                               onBlur={handleBlur}
-                              onChange={handleChange}
+                              onChange={(e:any) => {
+                                handleChange(e);
+                                onFormDataChange("certifications", values.certifications);
+                              }}
                             />
                           </div>
                           <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>

@@ -35,103 +35,20 @@ const BuildYourBioMaster = () => {
     certifications: [],
   });
 
-  // console.log(bioData);
-
-  // const validateStep1 = () => {
-  //   if (bioData.upload_photo === null) {
-  //     toast.error("Please Upload Image ");
-  //     return false;
-  //   }
-
-  //   return true;
-  // };
-  // const validateStep2 = () => {
-  //   if (bioData.enter_your_bio === "") {
-  //     toast.error("Please Add Bio.");
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
-  // const validateStep3 = () => {
-  //   if (bioData.technical_skills.length === 0) {
-  //     toast.error("Please enter your technical skill.");
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
-  // const validateStep4 = () => {
-  //   if (bioData.language.length === 0) {
-  //     toast.error("Please enter your language.");
-  //     return false;
-  //   }
-  //   return true;
-  // };
-  // const validateStep5 = () => {
-  //   if (bioData.certifications.length === 0) {
-  //     toast.error("Please enter certification.");
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
   const handleNext = () => {
-    // Check validation before proceeding to the next step
     if (currentStep < 5) {
-      let isValid = true;
-
-      // switch (currentStep) {
-      //   case 1:
-      //     isValid = validateStep1();
-      //     break;
-      //   case 2:
-      //     isValid = validateStep2();
-      //     break;
-      //   case 3:
-      //     isValid = validateStep3();
-      //     break;
-      //   case 4:
-      //     isValid = validateStep4();
-      //     break;
-      //   case 5:
-      //     isValid = validateStep5();
-      //     break;
-
-      //   default:
-      //     break;
-      // }
-
-      if (!isValid) {
-        return;
-      }
-
-      //   // If all validations pass, proceed to the next step
-      //   dispatch(setFormData(stepFormData) as any);
       setCurrentStep(currentStep + 1);
     }
   };
 
   const handleBioDataChange = (field: any, value: any) => {
-    if (field === "certification_level") {
-      // If the field is 'certification_level', update it with the provided value
-      setBioData({
-        ...bioData,
-        certification_in_bio: value.certifications,
-      });
-    } else if (field === "professionalexp") {
-      // If the field is 'professionalexp', update it with the provided value
-      setBioData({
-        ...bioData,
-        professionalexp: value.professional_exp,
-      });
-    } else {
-      // For other fields, update the stepFormData object as usual
-      setBioData({
-        ...bioData,
-        [field]: value,
-      });
-    }
+
+    // For other fields, update the stepFormData object as usual
+    setBioData({
+      ...bioData,
+      [field]: value,
+    });
+
   };
 
   const handlePrevious = () => {
@@ -154,15 +71,25 @@ const BuildYourBioMaster = () => {
   // console.log(accessToken);
 
   const handleSubmit = async () => {
-    dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-    dispatch(setBuildBioData(bioData) as any); // Dispatch action to store form data
-    const response = await BuildYourBioAPI(BuildYourBioData, accessToken);
-    // console.log(response);
-    toast.success(response?.data);
-    router.push("/profile-complete");
+    if (currentStep === 5) {
 
-    // You can submit the data to your API or perform other actions here
+      // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+      dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
+      const response = await BuildYourBioAPI(bioData, accessToken);
+      // console.log(response);
+      toast.success(response?.data);
+      router.push("/profile-complete");
+      setTimeout(() => {
+        router.push("/account-view");
+        dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+
+      }, 50000)
+
+      // You can submit the data to your API or perform other actions here
+    }
+
   };
+  console.log('bio', bioData)
   return (
     <>
       <div className="container-fluid">

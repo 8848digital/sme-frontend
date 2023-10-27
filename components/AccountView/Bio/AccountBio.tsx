@@ -136,7 +136,7 @@ const AccountBio = ({ profileData, loading }: any) => {
                   </>
                 ) : (
                   <>
-                    <h2>Languages</h2>
+                    <h2>Certifications</h2>
                     <p> No Certifications details available yet.</p>
                   </>
                 )}
