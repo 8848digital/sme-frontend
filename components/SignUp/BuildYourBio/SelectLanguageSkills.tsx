@@ -28,69 +28,62 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
 
   return (
     <div className="container">
- 
-      <div
-        className={`card p-4 ${styles.common_bio_wrapper}`}
-        style={{ maxWidth: "800px", maxHeight: "400px" }}
-      >
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center">
-              <h1>Languages</h1>
-            </div>
+      {!loading ? (
+        <div
+          className={`card p-4 ${styles.common_bio_wrapper}`}
+          style={{ maxWidth: "800px", maxHeight: "400px" }}
+        >
+          <div className="row">
+            <div className="col-12">
+              <div className="text-center">
+                <h1>Languages</h1>
+              </div>
 
-            {/* <div className="text-center mt-5">
+              {/* <div className="text-center mt-5">
               <p>Selected Languages: {selectedLanguages.join(', ')}</p>
             </div> */}
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-sm-5">
-              <form>
-                <div
-                  className="mb-3 d-flex justify-content-center mt-3 flex-column"
-                  style={{ height: "12rem", overflowY: "scroll" }}
-                >
-                  {loading ? (
-                    <>
-                      {ourLanguage.map((language: any, index: number) => {
-                        return (
-                          <div
-                            key={index}
-                            className="form-check form-check-inline"
+            </div>
+            <div className="row justify-content-center">
+              <div className="col-sm-5">
+                <form>
+                  <div
+                    className="mb-3 d-flex justify-content-center mt-3 flex-column"
+                    style={{ height: "12rem", overflowY: "scroll" }}
+                  >
+                    {ourLanguage.map((language: any, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className="form-check form-check-inline"
+                        >
+                          <input
+                            type="checkbox"
+                            id={language.name}
+                            value={language.name}
+                            checked={selectedLanguages.includes(language.name)}
+                            onChange={() => handleCheckboxChange(language.name)}
+                            className="form-check-input"
+                          />
+                          <label
+                            htmlFor={language.name}
+                            className="form-check-label"
                           >
-                            <input
-                              type="checkbox"
-                              id={language.name}
-                              value={language.name}
-                              checked={selectedLanguages.includes(
-                                language.name
-                              )}
-                              onChange={() =>
-                                handleCheckboxChange(language.name)
-                              }
-                              className="form-check-input"
-                            />
-                            <label
-                              htmlFor={language.name}
-                              className="form-check-label"
-                            >
-                              {language.name}
-                            </label>
-                          </div>
-                        );
-                      })}
-                    </>
-                  ) : (
-                    <>
-                      <Loaders />
-                    </>
-                  )}
-                </div>
-              </form>
+                            {language.name}
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <Loaders />
+        </>
+      )}
     </div>
   );
 };

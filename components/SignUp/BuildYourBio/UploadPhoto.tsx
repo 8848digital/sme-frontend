@@ -20,8 +20,8 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
   const loginToken: any = useSelector(get_access_token);
   console.log(loginToken);
   let accessToken: any;
-  if (loginToken?.data?.length > 0) {
-    accessToken = loginToken?.data;
+  if (loginToken?.token?.length > 0) {
+    accessToken = loginToken?.token;
   } else {
     accessToken = signuptoken?.data?.acess_token;
   }

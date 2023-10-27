@@ -18,10 +18,12 @@ const useFetchOurTechnicalSkills = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setOurSkill(technical?.data);
+    if (technical?.loading) {
+      setOurSkill(technical?.data);
+    }
   }, [technical]);
 
-  return { technical, ourSkill };
+  return { ourSkill, loading: technical?.loading };
 };
 
 export default useFetchOurTechnicalSkills;
