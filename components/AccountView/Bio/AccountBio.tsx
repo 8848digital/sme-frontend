@@ -154,7 +154,7 @@ const AccountBio = ({ profileData, loading }: any) => {
               <Link
                 href="/build-your-bio"
                 target="_blank"
-                className="btn btn-signup mx-2"
+                className="btn btn-signup p-1 mx-2"
               >
                 Update/Build Your Bio Here
               </Link>

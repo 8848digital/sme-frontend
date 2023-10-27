@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/bio.module.css";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
+import Loaders from "@/components/Loaders";
 
 const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
-  const { language, ourLanguage } = useFetchOurLanguage();
+  const { ourLanguage, loading } = useFetchOurLanguage();
   // console.log(technical, ourSkill);
   const handleCheckboxChange = (languages: string) => {
     if (selectedLanguages.includes(languages)) {
@@ -27,6 +28,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
 
   return (
     <div className="container">
+ 
       <div
         className={`card p-4 ${styles.common_bio_wrapper}`}
         style={{ maxWidth: "800px", maxHeight: "400px" }}
@@ -48,7 +50,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                   className="mb-3 d-flex justify-content-center mt-3 flex-column"
                   style={{ height: "12rem", overflowY: "scroll" }}
                 >
-                  {!language.loading && (
+                  {loading ? (
                     <>
                       {ourLanguage.map((language: any, index: number) => {
                         return (
@@ -77,6 +79,10 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                           </div>
                         );
                       })}
+                    </>
+                  ) : (
+                    <>
+                      <Loaders />
                     </>
                   )}
                 </div>
