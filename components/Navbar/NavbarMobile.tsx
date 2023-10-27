@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import logoImg from "../../public/assets/SG_logo.svg"
 import LogoutList from "@/services/api/auth_api/logout_api";
 import { ClearToken, get_access_token } from "@/store/slices/auth_slice/login_slice";
+import LogoutIcon from '@mui/icons-material/Logout';
 const NavbarMobile = () => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -106,7 +107,7 @@ const NavbarMobile = () => {
                                                     </li>
                                                     <Link href='' legacyBehavior>
                                                         <a onClick={handleLogOut} className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                                                            Log out
+                                                        <LogoutIcon style={{color:'#00578a' , fontSize:'18px'}}/> <span style={{color:'#00578a'}}>Log out</span> 
                                                         </a>
                                                     </Link>
 
