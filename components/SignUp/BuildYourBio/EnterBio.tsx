@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/bio.module.css";
 
-const EnterBio = ({ formData, onFormDataChange }: any) => {
+const EnterBio = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>("");
 
   const handleBioChange = (event: any) => {
@@ -31,6 +31,7 @@ const EnterBio = ({ formData, onFormDataChange }: any) => {
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows={6}
+                  value={bioData.enter_your_bio}
                   onChange={handleBioChange}
                 ></textarea>
               </div>

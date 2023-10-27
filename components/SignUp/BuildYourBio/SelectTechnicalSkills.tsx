@@ -4,9 +4,11 @@ import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hoo
 import Loaders from "@/components/Loaders";
 
 const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
+    bioData.technical_skills || []
+  );
 
-  console.log(bioData);
+  console.log(selectedLanguages);
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
   console.log(ourSkill);
   const handleCheckboxChange = (language: string) => {
@@ -61,8 +63,8 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
                             type="checkbox"
                             id={language.name}
                             value={language.name}
-                            checked={selectedLanguages.includes(language.name)}
-                            onChange={() => handleCheckboxChange(language.name)}
+                            checked={selectedLanguages.includes(language)}
+                            onChange={() => handleCheckboxChange(language)}
                             className="form-check-input"
                           />
                           <label
