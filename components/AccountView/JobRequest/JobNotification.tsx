@@ -42,6 +42,7 @@ const JobNotification = ({ jobRequestData }: any) => {
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">
+                    <th className="text-center">Project Id</th>
                     <th className="text-center">Project Name</th>
                     <th className="text-center">Action</th>
                   </tr>
@@ -52,6 +53,11 @@ const JobNotification = ({ jobRequestData }: any) => {
                       return (
                         <>
                           <tr key={index}>
+                            <td>
+                              <h2 className="text-center text-capitalize">
+                                {data.project_id}
+                              </h2>
+                            </td>
                             <td>
                               <h2 className="text-center text-capitalize">
                                 {data.project_name}

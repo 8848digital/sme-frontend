@@ -30,8 +30,8 @@ const BuildYourBioMaster = () => {
   // console.log(BuildYourBioData);
   const router = useRouter();
   const [bioData, setBioData] = useState<any>({
-    upload_photo: null,
-    enter_your_bio: "",
+    photo_url: null,
+    bio: "",
     technical_skills: [],
     language: [],
     certifications: [],

@@ -21,7 +21,7 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                       {
                         certification_name: "",
                         issuing_organization: "",
-                        date: "",
+                        issue_date: "",
                       },
                     ],
             }}
@@ -39,7 +39,7 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
               certifications: {
                 certification_name: string;
                 issuing_organization: string;
-                date: string;
+                issue_date: string;
               }[];
             }>) => (
               <form className="border p-3 rounded">
@@ -108,7 +108,7 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                           >
                             <Field
                               type="date"
-                              name={`certifications.${index}.date`}
+                              name={`certifications.${index}.issue_date`}
                               placeholder="Issue Date"
                               onBlur={handleBlur}
                               onChange={(e: any) => {
@@ -145,7 +145,7 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
                               arrayHelpers.push({
                                 certification_name: "",
                                 issuing_organization: "",
-                                date: "",
+                                issue_date: "",
                               })
                             }
                           >

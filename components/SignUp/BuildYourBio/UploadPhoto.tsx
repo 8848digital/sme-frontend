@@ -10,10 +10,10 @@ import { SignUpUserAccessToken_from_store } from "@/store/slices/auth_slice/sign
 const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   useEffect(() => {
-    setSelectedFile(bioData.upload_photo);
-  }, [bioData.upload_photo]);
+    setSelectedFile(bioData.photo_url);
+  }, [bioData.photo_url]);
 
-  const [fileURL, setFileURL] = useState<any>(bioData.upload_photo || null);
+  const [fileURL, setFileURL] = useState<any>(bioData.photo_url || null);
 
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
   console.log(signuptoken);
@@ -30,7 +30,7 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
   const handleFileChange = (event: any) => {
     const file = event.target.files?.[0] || null;
     setSelectedFile(file);
-    onFormDataChange("upload_photo", file);
+    onFormDataChange("photo_url", file);
 
     if (file) {
       // Handle file upload and set file URL
@@ -40,7 +40,7 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
 
   const handleDeleteFile = () => {
     setSelectedFile(null);
-    onFormDataChange("upload_photo", null);
+    onFormDataChange("photo_url", null);
   };
 
   const uploadFile = async (file: File | null) => {
@@ -50,7 +50,7 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
         console.log("Upload Response:", response.file_url);
 
         // Use the upload response as needed (e.g., store it in your form data)
-        onFormDataChange("upload_photo", response.file_url);
+        onFormDataChange("photo_url", response.file_url);
         setFileURL(response.file_url);
       } catch (error) {
         console.error("Upload Error:", error);
@@ -60,7 +60,7 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
 
   const formik = useFormik({
     initialValues: {
-      upload_photo: null,
+      photo_url: null,
     },
     onSubmit: () => {
       // Do nothing here, as we are handling file upload when the file is selected

@@ -43,7 +43,7 @@ const ProfileCompleted = () => {
               style={{ height: "150px", width: "150px", overflow: "hidden" }}
             >
               <img
-                src={`${CONSTANTS.API_BASE_URL}/${userData.upload_photo}`}
+                src={`${CONSTANTS.API_BASE_URL}/${userData.photo_url}`}
                 alt="logo"
                 className="w-100"
               />
@@ -51,9 +51,9 @@ const ProfileCompleted = () => {
           </div>
 
           <div className="col-sm-6">
-            {userData.enter_your_bio.length > 0 && (
+            {userData.bio.length > 0 && (
               <>
-                <p>{userData.enter_your_bio}</p>
+                <p>{userData.bio}</p>
               </>
             )}
             <div>

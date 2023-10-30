@@ -4,6 +4,7 @@ import UpdateJobRequestAPI from "@/services/api/job_request_api/update_Job_reque
 import { useSelector } from "react-redux";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { toast } from "react-toastify";
+import Link from "next/link";
 const JobDescription = ({ jobData, onclick }: any) => {
 
   const router = useRouter();
@@ -45,15 +46,24 @@ const JobDescription = ({ jobData, onclick }: any) => {
   return (
     <div className="container">
       <div className="job-desc-wrapper border p-3 rounded">
+      <div className="row align-items-center p-2">
+          <div className="col-6">
+           <h2 className="border-end">Project Id </h2>
+          </div>
+          <div className="col-6 text-center ">
+            <h4 className="text-capitalize">{jobData.project_id}</h4>
+          </div>
+          <hr />
+        </div> 
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Project Name </h2>
+           <h2 className="border-end">Project Name </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_name}</h4>
           </div>
           <hr />
-        </div>
+        </div> 
         <div className="row align-items-center p-2">
           <div className="col-6">
             <h2 className="border-end">Client Name </h2>
@@ -93,13 +103,15 @@ const JobDescription = ({ jobData, onclick }: any) => {
         <div className="col-12 text-center">
           <div className="row">
             <div className="col-md-4">
+            <Link href={jobData?.rfq_pdf_url} target="_blank">
               <button
                 className="btn btn-later"
                 style={{ width: "auto" }}
-                onClick={handleReadContractClick}
+                // onClick={handleReadContractClick}
               >
-                Read Full Contract
+              Read Full Contract
               </button>
+              </Link> 
             </div>
             <div className="col-md-4">
               <button

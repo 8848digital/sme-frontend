@@ -6,7 +6,7 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
 
   const handleBioChange = (event: any) => {
     const bio = event.target.value;
-    onFormDataChange("enter_your_bio", bio);
+    onFormDataChange("bio", bio);
   };
 
   const handleDeleteFile = () => {
@@ -31,7 +31,7 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows={6}
-                  value={bioData.enter_your_bio}
+                  value={bioData.bio}
                   onChange={handleBioChange}
                 ></textarea>
               </div>

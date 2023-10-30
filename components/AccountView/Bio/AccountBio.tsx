@@ -49,7 +49,7 @@ const AccountBio = ({ bioData, loading }: any) => {
                 ) : (
                   <>
                     <img
-                      src={`${CONSTANTS.API_BASE_URL}/${bioData?.photo_url}`}
+                      src={`${CONSTANTS.API_BASE_URL}${bioData?.photo_url}`}
                       width="150px"
                     />
                   </>

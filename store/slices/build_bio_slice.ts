@@ -5,8 +5,8 @@ import { RootState } from '../root-reducer';
 
 // Define the initial state interface for the form data
 interface BioFormState {
-  enter_your_bio: string,
-  upload_photo: File | null; // Add the cvFile key
+  bio: string,
+  photo_url: File | null; // Add the cvFile key
   technical_skills: any,
   certifications: any
   language: any
@@ -14,8 +14,8 @@ interface BioFormState {
 
 const initialState: BioFormState = {
 
-  enter_your_bio: "",
-  upload_photo: null,
+  bio: "",
+  photo_url: null,
   technical_skills: [],
   language: [],
   certifications: [],
