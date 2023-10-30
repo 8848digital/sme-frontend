@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
-import styles from "@/styles/wizard.module.css";
+import styles from "@/styles/bio.module.css";
 import UploadFileApi from "@/services/api/auth_api/upload_file_api";
 import BioUploadFileAPI from "@/services/api/buildYourBio_api/bio_upload_file_api";
 import { useSelector } from "react-redux";
@@ -74,7 +74,7 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
   return (
     <div className="container">
       <div
-        className={`card p-4 ${styles.common_wizard_wrapper}`}
+        className={`card p-4 ${styles.common_bio_wrapper}`}
         style={{ maxWidth: "800px", height: "300px" }}
       >
         <div className="row">
