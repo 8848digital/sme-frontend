@@ -1,0 +1,32 @@
+import { get_access_token } from "@/store/slices/auth_slice/login_slice";
+import {
+  bio_data_store,
+  fetchBio,
+} from "@/store/slices/buildYourBio_slice/bio_slice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+const useFetchOurBio = () => {
+  const dispatch = useDispatch();
+  //getting data from bio store
+  const bio = useSelector(bio_data_store);
+  const [BioData, setBioData] = useState<any>([]);
+  //getting token of login user
+  const token = useSelector(get_access_token);
+
+  useEffect(() => {
+    // fetching api of bio
+    dispatch(fetchBio(token) as any);
+  }, [dispatch, token]);
+
+  useEffect(() => {
+    // storing data in state
+    if (bio.data) {
+      setBioData(bio?.data);
+    }
+  }, [bio]);
+
+  return { bio: BioData, loading: bio?.loading };
+};
+
+export default useFetchOurBio;

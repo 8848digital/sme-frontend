@@ -1,37 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "@/styles/bio.module.css";
 import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
 import Loaders from "@/components/Loaders";
 
 const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
-    bioData.technical_skills || []
-  );
-
-  console.log(selectedLanguages);
+  const [technical, setTechnical] = useState<string[]>([]);
+  const [initialized, setInitialized] = useState(false);
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
-  console.log(ourSkill);
-  const handleCheckboxChange = (language: string) => {
-    console.log(selectedLanguages);
-    if (selectedLanguages.includes(language)) {
-      setSelectedLanguages(
-        selectedLanguages.filter((lang) => lang !== language)
-      );
-    } else {
-      setSelectedLanguages([...selectedLanguages, language]);
-    }
-  };
 
   useEffect(() => {
-    const subSectorArray: any = selectedLanguages.map(
-      (technical_skills: string) => ({ technical_skills })
+    if (!initialized && bioData && bioData.technical_skills) {
+      setTechnical(
+        bioData.technical_skills.map((lang: any) => lang.technical_skills)
+      );
+      setInitialized(true);
+    }
+  }, [initialized, bioData]);
+
+  const handleCheckboxChange = useCallback((technical_skills: string) => {
+    setTechnical((prevtechnical) => {
+      if (prevtechnical.includes(technical_skills)) {
+        return prevtechnical.filter((lang) => lang !== technical_skills);
+      } else {
+        return [...prevtechnical, technical_skills];
+      }
+    });
+  }, []);
+  // Update the bioData prop when technical change
+  useEffect(() => {
+    onFormDataChange(
+      "technical_skills",
+      technical.map((technical_skills) => ({ technical_skills }))
     );
-    onFormDataChange("technical_skills", subSectorArray);
-  }, [selectedLanguages]);
+  }, [technical]);
 
   return (
     <div className="container">
-      {!loading ? (
+      {loading ? (
+        <>
+          <Loaders />
+        </>
+      ) : (
         <div
           className={`card p-4 ${styles.common_bio_wrapper}`}
           style={{ maxWidth: "800px", maxHeight: "400px" }}
@@ -41,10 +50,6 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
               <div className="text-center ">
                 <h1>Technical Skills</h1>
               </div>
-
-              {/* <div className="text-center">
-                <p>Selected Languages: {selectedLanguages.join(', ')}</p>
-              </div> */}
             </div>
             <div className="row justify-content-center">
               <div className="col-sm-5">
@@ -63,8 +68,8 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
                             type="checkbox"
                             id={language.name}
                             value={language.name}
-                            checked={selectedLanguages.includes(language)}
-                            onChange={() => handleCheckboxChange(language)}
+                            checked={technical.includes(language.name)}
+                            onChange={() => handleCheckboxChange(language.name)}
                             className="form-check-input"
                           />
                           <label
@@ -82,10 +87,6 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
             </div>
           </div>
         </div>
-      ) : (
-        <>
-          <Loaders />
-        </>
       )}
     </div>
   );

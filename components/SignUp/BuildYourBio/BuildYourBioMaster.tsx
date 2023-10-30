@@ -11,7 +11,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MobileStepper } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import EnterBio from "./EnterBio";
@@ -20,10 +20,12 @@ import SelectLanguageSkills from "./SelectLanguageSkills";
 import SelectTechnicalSkills from "./SelectTechnicalSkills";
 import UploadPhoto from "./UploadPhoto";
 import styles from "@/styles/bio.module.css";
+import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
 const BuildYourBioMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const dispatch = useDispatch();
   const BuildYourBioData = useSelector(form_details_from_store);
+  const getBioData = useSelector(bio_data_store);
 
   // console.log(BuildYourBioData);
   const router = useRouter();
@@ -34,7 +36,6 @@ const BuildYourBioMaster = () => {
     language: [],
     certifications: [],
   });
-
   const handleNext = () => {
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
@@ -42,13 +43,11 @@ const BuildYourBioMaster = () => {
   };
 
   const handleBioDataChange = (field: any, value: any) => {
-
     // For other fields, update the stepFormData object as usual
     setBioData({
       ...bioData,
       [field]: value,
     });
-
   };
 
   const handlePrevious = () => {
@@ -72,7 +71,6 @@ const BuildYourBioMaster = () => {
 
   const handleSubmit = async () => {
     if (currentStep === 5) {
-
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
       const response = await BuildYourBioAPI(bioData, accessToken);
@@ -82,14 +80,18 @@ const BuildYourBioMaster = () => {
       setTimeout(() => {
         router.push("/account-view");
         dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-
-      }, 50000)
+      }, 50000);
 
       // You can submit the data to your API or perform other actions here
     }
-
   };
-  console.log('bio', bioData)
+
+  useEffect(() => {
+    setBioData(getBioData.data);
+    dispatch(setBuildBioData(getBioData.data));
+  }, []);
+  console.log("bio", bioData);
+
   return (
     <>
       <div className="container-fluid">

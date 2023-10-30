@@ -1,6 +1,7 @@
 import React from "react";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "@/styles/bio.module.css";
+import account_style from "@/styles/account.module.css";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { form_details_from_store } from "@/store/slices/build_bio_slice";
@@ -37,7 +38,7 @@ const ProfileCompleted = () => {
             <h1>Thank You for completing your bio.</h1>
           </div>
 
-          <div className="col-sm-4">
+          <div className="col-sm-6">
             <div
               style={{ height: "150px", width: "150px", overflow: "hidden" }}
             >
@@ -49,7 +50,7 @@ const ProfileCompleted = () => {
             </div>
           </div>
 
-          <div className="col-sm-8">
+          <div className="col-sm-6">
             {userData.enter_your_bio.length > 0 && (
               <>
                 <p>{userData.enter_your_bio}</p>
@@ -63,7 +64,12 @@ const ProfileCompleted = () => {
                     {userData.technical_skills.map(
                       (skill: any, index: number) => {
                         return (
-                          <li key={index}>{skill.technical_skills.name}</li>
+                          <li
+                            className={`${account_style.li_marker}`}
+                            key={index}
+                          >
+                            {skill.technical_skills}
+                          </li>
                         );
                       }
                     )}
@@ -78,7 +84,9 @@ const ProfileCompleted = () => {
                 <>
                   <ul>
                     {userData.language.map((languages: any, index: number) => (
-                      <li key={index}>{languages.language}</li>
+                      <li className={`${account_style.li_marker}`} key={index}>
+                        {languages.language}
+                      </li>
                     ))}
                   </ul>
                 </>
@@ -92,7 +100,12 @@ const ProfileCompleted = () => {
                   <ul>
                     {userData.certifications.map(
                       (certification: any, index: number) => (
-                        <li key={index}>{certification.certification_name}</li>
+                        <li
+                          className={`${account_style.li_marker}`}
+                          key={index}
+                        >
+                          {certification.certification_name}
+                        </li>
                       )
                     )}
                   </ul>

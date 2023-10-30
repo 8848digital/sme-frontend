@@ -1,34 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "@/styles/bio.module.css";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 import Loaders from "@/components/Loaders";
-
 const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
+  // Use a unique identifier for key to help React identify each checkbox
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
-
+  const [initialized, setInitialized] = useState(false);
   const { ourLanguage, loading } = useFetchOurLanguage();
-  // console.log(technical, ourSkill);
-  const handleCheckboxChange = (languages: string) => {
-    if (selectedLanguages.includes(languages)) {
-      setSelectedLanguages(
-        selectedLanguages.filter((lang) => lang !== languages)
-      );
-    } else {
-      setSelectedLanguages([...selectedLanguages, languages]);
-    }
-  };
-  // console.log(selectedLanguages);
-
+  // Synchronize the state with bioData prop when it changes
   useEffect(() => {
-    const subSectorArray: any = selectedLanguages.map((language: string) => ({
-      language,
-    }));
-    onFormDataChange("language", subSectorArray);
+    if (!initialized && bioData && bioData.language) {
+      setSelectedLanguages(bioData.language.map((lang: any) => lang.language));
+      setInitialized(true);
+    }
+  }, [initialized, bioData]);
+  const handleCheckboxChange = useCallback((language: string) => {
+    setSelectedLanguages((prevSelectedLanguages) => {
+      if (prevSelectedLanguages.includes(language)) {
+        return prevSelectedLanguages.filter((lang) => lang !== language);
+      } else {
+        return [...prevSelectedLanguages, language];
+      }
+    });
+  }, []);
+  // Update the bioData prop when selectedLanguages change
+  useEffect(() => {
+    onFormDataChange(
+      "language",
+      selectedLanguages.map((language) => ({ language }))
+    );
   }, [selectedLanguages]);
-
   return (
     <div className="container">
-      {!loading ? (
+      {loading ? (
+        <>
+          <Loaders />
+        </>
+      ) : (
         <div
           className={`card p-4 ${styles.common_bio_wrapper}`}
           style={{ maxWidth: "800px", maxHeight: "400px" }}
@@ -38,10 +46,6 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
               <div className="text-center">
                 <h1>Languages</h1>
               </div>
-
-              {/* <div className="text-center mt-5">
-              <p>Selected Languages: {selectedLanguages.join(', ')}</p>
-            </div> */}
             </div>
             <div className="row justify-content-center">
               <div className="col-sm-5">
@@ -79,13 +83,8 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
             </div>
           </div>
         </div>
-      ) : (
-        <>
-          <Loaders />
-        </>
       )}
     </div>
   );
 };
-
 export default SelectLanguageSkills;

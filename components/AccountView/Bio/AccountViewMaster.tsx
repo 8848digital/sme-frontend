@@ -1,15 +1,14 @@
 import React from "react";
 import AccountBio from "./AccountBio";
 import useProfile from "@/hooks/profile_hooks/profile_hooks";
-
+import useFetchOurBio from "@/hooks/buildYourBio/get_bio_hooks";
 
 const AccountViewMaster = () => {
-  const {profileData , loading} = useProfile();
-  console.log('profile Data',profileData);
+  const { bio, loading } = useFetchOurBio();
+  console.log("bio Data", bio);
   return (
     <div>
-      
-      <AccountBio profileData={profileData} loading={loading}/>
+      <AccountBio bioData={bio} loading={loading} />
     </div>
   );
 };

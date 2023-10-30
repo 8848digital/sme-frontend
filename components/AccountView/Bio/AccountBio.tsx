@@ -10,8 +10,9 @@ import { CONSTANTS } from "@/services/config/api-config";
 import Link from "next/link";
 import Loaders from "@/components/Loaders";
 
-const AccountBio = ({ profileData, loading }: any) => {
-  console.log("profile through props", profileData);
+const AccountBio = ({ bioData, loading }: any) => {
+  console.log("bio through props", bioData);
+  console.log(bioData.language);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -38,8 +39,8 @@ const AccountBio = ({ profileData, loading }: any) => {
             <div className="col-sm-6">
               <div className="text-center mt-4">
                 {/* <AccountCircleIcon sx={{ fontSize: "100px" }} /> */}
-                {(profileData && profileData?.photo_url === null) ||
-                (profileData && profileData?.photo_url === "") ? (
+                {(bioData && bioData?.photo_url === null) ||
+                (bioData && bioData?.photo_url === "") ? (
                   <>
                     <AccountCircleIcon
                       sx={{ fontSize: "100px", color: "#00B2D4" }}
@@ -48,7 +49,7 @@ const AccountBio = ({ profileData, loading }: any) => {
                 ) : (
                   <>
                     <img
-                      src={`${CONSTANTS.API_BASE_URL}/${profileData?.photo_url}`}
+                      src={`${CONSTANTS.API_BASE_URL}/${bioData?.photo_url}`}
                       width="150px"
                     />
                   </>
@@ -56,23 +57,23 @@ const AccountBio = ({ profileData, loading }: any) => {
               </div>
             </div>
             <div className="col-sm-6 ">
-              {(profileData && profileData?.bio === null) ||
-              (profileData && profileData?.bio === "") ? (
+              {(bioData && bioData?.bio === null) ||
+              (bioData && bioData?.bio === "") ? (
                 <>
                   <p>You Have not entered your bio yet.</p>
                 </>
               ) : (
                 <>
-                  <p>{profileData && profileData?.bio}</p>
+                  <p>{bioData && bioData?.bio}</p>
                 </>
               )}
               <div>
-                {profileData && profileData?.technical_skills.length > 0 ? (
+                {bioData && bioData?.technical_skills ? (
                   <>
                     <h2>Technical Skills</h2>
                     <ul>
-                      {profileData &&
-                        profileData?.technical_skills?.map(
+                      {bioData &&
+                        bioData?.technical_skills?.map(
                           (skills: any, index: any) => (
                             <li className={`${styles.li_marker}`} key={index}>
                               {skills?.technical_skills}
@@ -90,18 +91,16 @@ const AccountBio = ({ profileData, loading }: any) => {
               </div>
 
               <div>
-                {profileData && profileData.language.length > 0 ? (
+                {bioData && bioData.language ? (
                   <>
                     <h2>Languages</h2>
                     <ul>
-                      {profileData &&
-                        profileData.language.map(
-                          (language: any, index: any) => (
-                            <li className={`${styles.li_marker}`} key={index}>
-                              {language?.language}
-                            </li>
-                          )
-                        )}
+                      {bioData &&
+                        bioData.language.map((language: any, index: any) => (
+                          <li className={`${styles.li_marker}`} key={index}>
+                            {language?.language}
+                          </li>
+                        ))}
                     </ul>
                   </>
                 ) : (
@@ -113,12 +112,12 @@ const AccountBio = ({ profileData, loading }: any) => {
               </div>
 
               <div>
-                {profileData && profileData?.certifications.length > 0 ? (
+                {bioData && bioData?.certifications ? (
                   <>
                     <h2>Certifications</h2>
                     <ul>
-                      {profileData &&
-                        profileData?.certifications.map(
+                      {bioData &&
+                        bioData?.certifications.map(
                           (certification: any, index: any) => (
                             <>
                               <div className="col-4">
