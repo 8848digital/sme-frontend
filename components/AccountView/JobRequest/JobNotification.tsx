@@ -4,10 +4,12 @@ import JobDescription from "./JobDescription";
 import JobApprove from "./JobApprove";
 import JobThank from "./JobThank";
 import styles from "@/styles/account.module.css";
+import { useRouter } from "next/router";
 
-const JobNotification = ({ details }: any) => {
-  console.log(details);
+const JobNotification = ({ jobRequestData }: any) => {
+  console.log('job request data in render',jobRequestData);
   const [tabs, setTabs] = useState<any>("table");
+  const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
@@ -32,19 +34,19 @@ const JobNotification = ({ details }: any) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {details.length > 0 &&
-                    details.map((e: any, index: number) => {
+                  {jobRequestData  &&
+                    jobRequestData.map((data: any, index: number) => {
                       return (
                         <>
-                          <tr>
+                          <tr key={index}>
                             <td>
-                              <h2 className="text-center text-capitalize">{e.project}</h2>
+                              <h2 className="text-center text-capitalize">{data.project_name}</h2>
                             </td>
                             <td className="text-center">
                               <button
                                 className="btn btn-later px-2 mt-0 py-1 "
                                 onClick={() =>
-                                  openDescription(e, "description")
+                                  openDescription(data, "description")
                                 }
                               >
                                 View Full{" "}
@@ -63,7 +65,7 @@ const JobNotification = ({ details }: any) => {
         {tabs === "description" && (
           <div>
             <JobDescription
-              details={descriptionData}
+              jobData={descriptionData}
               onclick={openDescription}
             />
           </div>

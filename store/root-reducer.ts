@@ -6,6 +6,8 @@ import SignUpUserAccessToken from "@/store/slices/auth_slice/signup_user_access_
 import profileSlice from "@/store/slices/profile_slice/profile_slice"
 import TechnicalSlice from "@/store/slices/buildYourBio_slice/technical_skill_slice"
 import LanguageSlice from "@/store/slices/buildYourBio_slice/language_slice"
+import jobRequestSlice from "@/store/slices/job_request_slice/job_request_slice"
+import contractSlice from "@/store/slices/contract_slice/get_contract_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -14,6 +16,8 @@ const appReducer = combineReducers({
   profile: profileSlice,
   technicalSkill: TechnicalSlice,
   language: LanguageSlice,
+  jobRequest:jobRequestSlice,
+  contractList:contractSlice
 });
 
 const rootReducer = (state: any, action: any) => {

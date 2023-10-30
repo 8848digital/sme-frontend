@@ -1,3 +1,4 @@
+'use client'
 import ContractMaster from "@/components/AccountView/Contract/ContractMaster";
 import React from "react";
 
