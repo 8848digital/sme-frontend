@@ -29,7 +29,7 @@ const LogIn = () => {
     let handlesubmit = async (values: any) => {
         console.log('login value check', values.email);
         try {
-            const response = await dispatch(getAccessToken({ usr: values.email, password: values.password }));
+            const response = await dispatch(getAccessToken({ usr:values.usr, password:values.password }));
             console.log('login render file', response.payload);
             // On success
             if (response.payload.msg === 'success') {
@@ -81,10 +81,10 @@ const LogIn = () => {
             <div className="container page-margin-top">
                 <Formik
                     initialValues={{
-                        email: "",
+                        usr: "",
                         password: "",
                     }}
-                    validationSchema={LoginValidation}
+                    // validationSchema={LoginValidation}
                     onSubmit={(values) => {
                         handlesubmit(values);
                     }}
@@ -113,7 +113,7 @@ const LogIn = () => {
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             type="text"
-                                                            name="email"
+                                                            name="usr"
                                                             className="login_inputs"
                                                             onKeyDown={onKeydown}
                                                             placeholder='Enter Email'
@@ -121,7 +121,7 @@ const LogIn = () => {
                                                         <div className="row">
                                                             <div className="col-12">
                                                                 <div className="error_message">
-                                                                    <ErrorMessage name="email" />
+                                                                    <ErrorMessage name="usr" />
                                                                 </div>
                                                             </div>
 

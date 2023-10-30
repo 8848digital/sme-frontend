@@ -7,7 +7,7 @@ const SmeRegistrationApi = async (request:any) => {
     const version = CONSTANTS.VERSION;
     const method = "candidate_signup";
     const entity = "registration";
-    const encodedPassword = encodeURIComponent(request.password);
+    // const encodedPassword = encodeURIComponent(request.password);
     const config = {
         headers: {
             Accept: "application/json",
@@ -19,7 +19,7 @@ const SmeRegistrationApi = async (request:any) => {
         method,
         entity,
         usr: request.usr,
-        password:encodedPassword,
+        password:request.password,
         first_name:request.first_name,
         last_name:request.last_name,
         phone_no:request.phone_no,
