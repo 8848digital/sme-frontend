@@ -46,7 +46,7 @@ const LanguageSlice = createSlice({
                 state.error = "";
             })
             .addCase(fetchLanguage.rejected, (state, action) => {
-                state.loading = false;
+                // state.loading = false;
                 state.data = [];
                 state.error = action.error.message || "An error occurred.";
             });

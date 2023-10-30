@@ -46,7 +46,7 @@ const TechnicalSkillSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchTechnicalSkill.rejected, (state, action) => {
-                state.loading = true;
+                // state.loading = true;
                 state.data = null;
                 state.error = action.error.message || "An error occurred.";
             });
