@@ -16,10 +16,10 @@ const JobDescription = ({ jobData, onclick }: any) => {
   let rejectStatus = 'Rejected'
   const handleApproveClick = async () => {
     console.log('approve button clicked')
-    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_name, approveStatus)
+    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, approveStatus)
     console.log('job approve', response);
-    if (response.msg === 'success') {
-      toast.success(response?.data);
+    if (response[0].msg === 'success') {
+      toast.success(response[0]?.data?.data);
       setTimeout(() => {
         router.push('./job-approve-thankyou');
       }, 5000)
@@ -28,13 +28,14 @@ const JobDescription = ({ jobData, onclick }: any) => {
   };
   const handleRejectClick = async () => {
     console.log('reject button clicked')
-    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_name, rejectStatus)
+    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, rejectStatus)
     console.log('job reject', response);
-    if (response.msg === 'success' || response.data === '') {
-      toast.error(response?.data);
-      setTimeout(() => {
-        //  router.push('./job-approve-thankyou');
-      }, 5000)
+    console.log('job approve', response);
+    if (response[0].msg === 'success') {
+      toast.success(response[0]?.data?.data);
+      // setTimeout(() => {
+      //   router.push('./job-approve-thankyou');
+      // }, 5000)
     }
     return response
   };

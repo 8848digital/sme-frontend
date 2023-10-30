@@ -86,11 +86,11 @@ const BuildYourBioMaster = () => {
     }
   };
 
-  useEffect(() => {
-    setBioData(getBioData.data);
-    dispatch(setBuildBioData(getBioData.data));
-  }, []);
-  console.log("bio", bioData);
+  // useEffect(() => {
+  //   setBioData(getBioData.data);
+  //   dispatch(setBuildBioData(getBioData.data));
+  // }, []);
+  // console.log("bio", bioData);
 
   return (
     <>
