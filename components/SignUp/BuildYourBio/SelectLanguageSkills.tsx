@@ -54,7 +54,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ height: "12rem", overflowY: "scroll" }}
                   >
-                    {ourLanguage.map((language: any, index: number) => {
+                    {ourLanguage && ourLanguage?.map((language: any, index: number) => {
                       return (
                         <div
                           key={index}
