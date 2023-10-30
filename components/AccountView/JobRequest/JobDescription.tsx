@@ -94,7 +94,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
           <div className="row">
             <div className="col-md-4">
               <button
-                className="btn btn-later  px-2"
+                className="btn btn-later"
                 style={{ width: "auto" }}
                 onClick={handleReadContractClick}
               >
