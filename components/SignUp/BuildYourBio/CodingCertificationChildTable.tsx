@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styles from "@/styles/bio.module.css";
 interface Certification {
   certification_name: string;
   issuing_organization: string;
@@ -60,20 +60,20 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
         <div className="col-12">
           <form className="border p-3 rounded">
             <div className="row">
-              <div className="col-md-3">
+              <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                 <strong>Certification Name</strong>
               </div>
-              <div className="col-md-3">
+              <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                 <strong>Issuing organization</strong>
               </div>
-              <div className="col-md-3">
+              <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                 <strong>Issue Date</strong>
               </div>
-              <div className="col-md-3"></div>
+              <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}></div>
             </div>
             {certifications.map((cert, index) => (
               <div className="row mb-3" key={index}>
-                <div className="col-md-3">
+                <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="text"
                     placeholder="Certification Name"
@@ -81,7 +81,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                     onChange={(e) => handleCertificationChange(index, 'certification_name', e.target.value)}
                   />
                 </div>
-                <div className="col-md-3">
+                <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="text"
                     placeholder="Issuing organization"
@@ -89,7 +89,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                     onChange={(e) => handleCertificationChange(index, 'issuing_organization', e.target.value)}
                   />
                 </div>
-                <div className="col-md-3">
+                <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="date"
                     placeholder="Issue Date"
@@ -97,7 +97,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                     onChange={(e) => handleCertificationChange(index, 'issue_date', e.target.value)}
                   />
                 </div>
-                <div className="col-md-3">
+                <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <button type="button" className="btn btn-danger" onClick={() => removeRow(index)}>
                     Delete
                   </button>
@@ -106,7 +106,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
             ))}
             <div className="row">
               <div className="col-md-9"></div>
-              <div className="col-md-3 pt-1 pb-1">
+              <div className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}>
                 <button type="button" className="btn btn-success" onClick={addRow}>
                   Add Row
                 </button>
