@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material'; // Import Material-UI icons
 import styles from "@/styles/wizard.module.css";
 
 interface Step2Props {
@@ -9,11 +11,16 @@ interface Step2Props {
 
 const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
     const [userPassword, setUserPassword] = useState<any>('');
+    const [showPassword, setShowPassword] = useState<boolean>(false);
 
     const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const userPwd = e.target.value;
         setUserPassword(userPwd);
         onFormDataChange('password', userPwd);
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -24,20 +31,25 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                         <div className='text-center mt-5'>
                             <h1>Step 2 of 7</h1>
                             <h2>Personal Information</h2>
-                            <p>{formData.email}</p>
-                                <p className='mb-2 me-2'>Enter Password</p>
+                            {/* <p>{formData.usr}</p> */}
+                            <p className='mb-2 me-2'>Enter Password</p>
                             <div>
                                 <div className='d-flex align-items-center justify-content-center flex-column'>
-                                   
-                                        <input
-                                           
-                                            className="form-control me-2 w-75"
-                                            type="password"
-                                            
-                                            value={formData.password}
-                                            onChange={(e) => handleVerificationCodeChange(e)}
-                                        />
-                                   
+                                    <TextField
+                                        className="w-75"
+                                        type={showPassword ? 'text' : 'password'}
+                                        value={formData.password}
+                                        onChange={(e:any) => handleVerificationCodeChange(e)}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton onClick={togglePasswordVisibility}>
+                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                    />
                                 </div>
                             </div>
                             {/* <p className='mt-2'>Not received? <Link href=''>Re-send</Link></p> */}

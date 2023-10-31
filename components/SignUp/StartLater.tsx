@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
 import subscriptionApi from '@/services/api/general_api/subscription_api';
-
+import { toast } from 'react-toastify';
 
 interface FormValues {
     usr: string;
@@ -29,6 +29,12 @@ const StartLater = () => {
 
             const response = await subscriptionApi(values.usr);
             console.log('API Response:', response);
+            if ( response.msg === 'success') {
+                toast.success(`${response.data}`, {
+                    autoClose: 3000,
+                    className: 'custom-toast',// Close the notification after 3 seconds
+                });
+            }
             resetForm();
             // Handle the response here, you can show a success message or handle errors
         } catch (error) {

@@ -75,7 +75,10 @@ const BuildYourBioMaster = () => {
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
       const response = await BuildYourBioAPI(bioData, accessToken);
       // console.log(response);
-      toast.success(response?.data);
+      toast.success(response?.data, {
+        autoClose: 5000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       router.push("/profile-complete");
       setTimeout(() => {
         router.push("/account-view");

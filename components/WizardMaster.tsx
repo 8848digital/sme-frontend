@@ -67,7 +67,10 @@ const WizardMaster = () => {
   
   const validateStep1 = () => {
     if (!validateEmail(stepFormData.usr)) {
-      toast.error("Please Enter a Valid Email Address");
+      toast.error("Please Enter a Valid Email Address",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -75,7 +78,10 @@ const WizardMaster = () => {
 
   const validateStep2 = () => {
     if (!validatePassword(stepFormData.password)) {
-      toast.error("Password must have at least 1 special character, 1 uppercase letter, 1 number, and be 8 characters long.");
+      toast.error("Password must have at least 1 special character, 1 uppercase letter, 1 number, and be 8 characters long.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -83,16 +89,25 @@ const WizardMaster = () => {
 
   const validateStep3 = () => {
     if (stepFormData.first_name === '') {
-      toast.error("Please enter your first name.");
+      toast.error("Please enter your first name.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     if (stepFormData.last_name === '') {
-      toast.error("Please enter your last name.");
+      toast.error("Please enter your last name.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
   
     if (stepFormData.phone_no === '') {
-      toast.error("Please enter your phone number.");
+      toast.error("Please enter your phone number.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -100,7 +115,10 @@ const WizardMaster = () => {
 
   const validateStep4 = () => {
     if (stepFormData.upload_cv === null) {
-      toast.error("Please upload your CV.");
+      toast.error("Please upload your CV.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -108,10 +126,16 @@ const WizardMaster = () => {
 
   const validateStep5 = () => {
     if (stepFormData.academic_background.length === 0) {
-      toast.error("Please Enter the Academic Information.");
+      toast.error("Please Enter the Academic Information.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }else if (stepFormData.professional_experience.length === 0 ){
-      toast.error("Please Enter the Professional Experience.");
+      toast.error("Please Enter the Professional Experience.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -119,7 +143,10 @@ const WizardMaster = () => {
 
   const validateStep6 = () => {
     if (stepFormData.preferences === '') {
-      toast.error("Please Select Availibility.");
+      toast.error("Please Select Availibility.",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -127,7 +154,10 @@ const WizardMaster = () => {
 
   const validateStep7 = () => {
     if (stepFormData.hourly_rates === '') {
-      toast.error("Please Enter hourly/weekly/monthly Rates");
+      toast.error("Please Enter hourly/weekly/monthly Rates",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
       return false;
     }
     return true;
@@ -220,6 +250,7 @@ const WizardMaster = () => {
             console.log('API Response:', response);
             toast.success(`${response.data}`, {
               autoClose: 5000, // Time in milliseconds (5 seconds)
+              className: 'custom-toast',// Close the notification after 3 seconds
             });
             router.push('/steps-done');
             dispatch(resetFormData());
@@ -227,6 +258,7 @@ const WizardMaster = () => {
             // Handle the failure or error case, e.g., show an error message to the user
             toast.error(`Enter Your Details Properly !! ${response.msg} !! ${response.error}`, {
               autoClose: 5000, // Time in milliseconds (5 seconds)
+              className: 'custom-toast',// Close the notification after 3 seconds
             });
             console.error('API request failed');
           }

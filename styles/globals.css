@@ -9332,6 +9332,8 @@ h2{
     margin-top: 20px;
   }
 }
-
-/* Child Table Form css */
+ /* toast notification custom */
+ .custom-toast {
+  top: 80px;
+}
 

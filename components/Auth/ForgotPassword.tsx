@@ -134,7 +134,7 @@ const ForgotPassword = () => {
                             className='btn btn-primary'
                             style={{ fontWeight: "600" }}
                           >
-                            Change Password
+                            Send
                           </button>
                         </div>
                       </div>
