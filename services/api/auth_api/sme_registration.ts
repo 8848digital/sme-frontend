@@ -26,6 +26,7 @@ const SmeRegistrationApi = async (request:any) => {
         upload_cv:request.upload_cv,
         preferences:request.preferences,
         hourly_rates:request.hourly_rates,
+        price_basis:request.price_basis,
         academic_background:request.academic_background,
         professional_experience:request.professional_experience
       };

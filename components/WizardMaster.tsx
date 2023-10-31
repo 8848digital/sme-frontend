@@ -51,6 +51,7 @@ const WizardMaster = () => {
     upload_cv: null, // Initialize cvFile to null
     preferences:'',
     hourly_rates:'',
+    price_basis:'',
     academic_background:[],
     professional_experience:[],
   });
@@ -160,6 +161,13 @@ const WizardMaster = () => {
     });
       return false;
     }
+    if (stepFormData.price_basis === '') {
+      toast.error("Please Select Price Basis",{
+        autoClose: 3000,
+        className: 'custom-toast',// Close the notification after 3 seconds
+    });
+      return false;
+    }
     return true;
   };
 
@@ -256,7 +264,7 @@ const WizardMaster = () => {
             dispatch(resetFormData());
           } else if (response.msg === 'error') {
             // Handle the failure or error case, e.g., show an error message to the user
-            toast.error(`Enter Your Details Properly !! ${response.msg} !! ${response.error}`, {
+            toast.error(`${response.error}`, {
               autoClose: 5000, // Time in milliseconds (5 seconds)
               className: 'custom-toast',// Close the notification after 3 seconds
             });

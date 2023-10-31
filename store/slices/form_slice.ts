@@ -13,6 +13,7 @@ interface FormState {
   upload_cv: File | null; // Add the cvFile key
   preferences:string,
   hourly_rates:any,
+  price_basis:any,
   academic_background:any
   professional_experience:any
   
@@ -27,6 +28,7 @@ const initialState: FormState = {
   upload_cv: null, // Initialize cvFile to null
   preferences:'',
   hourly_rates:'',
+  price_basis:'',
   academic_background:[],
   professional_experience:[],
 };
