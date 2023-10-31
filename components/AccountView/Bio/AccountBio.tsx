@@ -67,8 +67,8 @@ const AccountBio = ({ bioData, loading }: any) => {
                   <p>{bioData && bioData?.bio}</p>
                 </>
               )}
-              {/* <div>
-                
+              <div>
+{/*                 
                     <h2>Technical Skills</h2>
                     <ul>
                       {bioData &&
@@ -79,13 +79,17 @@ const AccountBio = ({ bioData, loading }: any) => {
                             </li>
                           )
                         )}
-                    </ul>
-                
+                    </ul> */}
+                 <>
+                    <h2>Technical Skills</h2>
+                    <p> No Technical Skills details available yet.</p>
+                  </>
                
-              </div> */}
+              </div>
 
-              {/* <div>
-              
+              <div>
+                {/* {bioData && bioData?.language?.length > 0 || bioData?.language !== undefined ? (
+                  <>
                     <h2>Languages</h2>
                     <ul>
                       {bioData &&
@@ -95,11 +99,18 @@ const AccountBio = ({ bioData, loading }: any) => {
                           </li>
                         ))}
                     </ul>
-                
-              </div> */}
+                  </>
+                ) : ( */}
+                  <>
+                    <h2>Languages</h2>
+                    <p> No Language details available yet.</p>
+                  </>
+                {/* )} */}
+              </div>
 
-              {/* <div>
-               
+              <div>
+                {/* {bioData && bioData?.certifications.length > 0 ? (
+                  <>
                     <h2>Certifications</h2>
                     <ul>
                       {bioData &&
@@ -118,8 +129,14 @@ const AccountBio = ({ bioData, loading }: any) => {
                           )
                         )}
                     </ul>
-               
-              </div> */}
+                  </>
+                ) : ( */}
+                  <>
+                    <h2>Certifications</h2>
+                    <p> No Certifications details available yet.</p>
+                  </>
+                {/* )} */}
+              </div>
               <div className="text-center">
                 {/* <button onClick={handleOpenModal} className="btn btn-later">
                   Update
