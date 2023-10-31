@@ -43,7 +43,7 @@ const ProfileCompleted = () => {
               style={{ height: "150px", width: "150px", overflow: "hidden" }}
             >
               <img
-                src={`${CONSTANTS.API_BASE_URL}/${userData.photo_url}`}
+                src={`${CONSTANTS.API_BASE_URL}${userData.photo_url}`}
                 alt="logo"
                 className="w-100"
               />

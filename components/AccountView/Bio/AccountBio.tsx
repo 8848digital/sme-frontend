@@ -68,7 +68,7 @@ const AccountBio = ({ bioData, loading }: any) => {
                 </>
               )}
               <div>
-                {bioData && bioData?.technical_skills ? (
+                { bioData?.technical_skills.length > 0 ? (
                   <>
                     <h2>Technical Skills</h2>
                     <ul>
@@ -91,7 +91,7 @@ const AccountBio = ({ bioData, loading }: any) => {
               </div>
 
               <div>
-                {bioData && bioData.language ? (
+                {bioData && bioData.language.length > 0 ? (
                   <>
                     <h2>Languages</h2>
                     <ul>
@@ -112,7 +112,7 @@ const AccountBio = ({ bioData, loading }: any) => {
               </div>
 
               <div>
-                {bioData && bioData?.certifications ? (
+                {bioData && bioData?.certifications.length > 0 ? (
                   <>
                     <h2>Certifications</h2>
                     <ul>
