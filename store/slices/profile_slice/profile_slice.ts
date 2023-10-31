@@ -9,7 +9,7 @@ const initialState: {
   loading: boolean;
   error: string | null;
 } = {
-  data: null,
+  data: [],
   loading: false,
   error: null,
 };

@@ -7,7 +7,7 @@ const initialState: {
     loading: boolean;
     error: string | null
 } = {
-    data: null,
+    data: [],
     loading: false,
     error: null
 }
@@ -39,8 +39,8 @@ const BioSlice = createSlice({
                 state.data = action.payload;
             })
             .addCase(fetchBio.rejected, (state, action) => {
-                state.loading = false;
-                state.data = null;
+                state.loading = true;
+                state.data = [];
                 state.error = action.error.message || "An error occured";
             })
     }

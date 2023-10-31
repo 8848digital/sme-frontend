@@ -12,7 +12,7 @@ const SelectCertifications = ({ bioData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-4 mb-3">
-              <h1>Coding Certifications</h1>
+              <h1>Certifications</h1>
             </div>
             <CodingCertificationChildTable
               bioData={bioData}

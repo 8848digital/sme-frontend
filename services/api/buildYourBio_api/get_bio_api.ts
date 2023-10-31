@@ -13,11 +13,14 @@ const GetBioAPI = async (token?: any) => {
             Accept: "application/json",
             Authorization: token
         }
-        , timeout: 5000
+        
     }
 
     await axios.
-        get(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}`, config)
+        get(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}`, {
+            ...config,
+            timeout: 15000,
+        })
         .then((res) => {
             console.log(res.data)
             response = res?.data?.message?.data

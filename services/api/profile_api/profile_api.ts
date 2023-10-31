@@ -14,12 +14,15 @@ const GetProfileAPI =async (token?:any) => {
         headers: {
             Accept: "application/json",
             Authorization: token,
-        },
-        timeout: 5000,
+        }
+       
     };
     await axios
         .get(
-            `${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}`,config)
+            `${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}`, {
+                ...config,
+                timeout: 15000,
+            })
         .then((res) => {
             response = res?.data?.message?.data;
             console.log(response, "profile response in api");

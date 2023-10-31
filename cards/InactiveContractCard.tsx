@@ -10,7 +10,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                 <thead className="p-2">
                     <tr className="">
                         <th>Project Name</th>
-                        <th className="text-center">Status</th>
+                        {/* <th className="text-center">Status</th> */}
                         <th className="text-center">Action</th>
                     </tr>
                 </thead>
@@ -22,9 +22,9 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                                     <td>
                                         <h2>{data?.custom_project_name}</h2>
                                     </td>
-                                    <td className="text-center">
+                                    {/* <td className="text-center">
                                         <h2>{data?.status}</h2>
-                                    </td>
+                                    </td> */}
                                     <td className="text-center">
 
                                         <Link href={data?.contract_pdf_url} target='_blank'> View Full</Link>
@@ -35,7 +35,9 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
 
                         );
                     })
-                ) : 'No Data Available'}
+                ) : <div className='text-center'>
+                <p>No Data Available</p>
+            </div>}
             </table>
         </div>
         </>

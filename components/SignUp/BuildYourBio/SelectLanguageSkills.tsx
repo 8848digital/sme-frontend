@@ -54,12 +54,9 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ height: "12rem", overflowY: "scroll" }}
                   >
-                    {ourLanguage && ourLanguage?.map((language: any, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className="form-check form-check-inline"
-                        >
+                    {ourLanguage && Array.isArray(ourLanguage) && ourLanguage.length > 0 ? (
+                      ourLanguage.map((language: any, index: number) => (
+                        <div key={index} className="form-check form-check-inline">
                           <input
                             type="checkbox"
                             id={language.name}
@@ -68,15 +65,15 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                             onChange={() => handleCheckboxChange(language.name)}
                             className="form-check-input"
                           />
-                          <label
-                            htmlFor={language.name}
-                            className="form-check-label"
-                          >
+                          <label htmlFor={language.name} className="form-check-label">
                             {language.name}
                           </label>
                         </div>
-                      );
-                    })}
+                      ))
+                    ) : (
+                      <p>No Data Available</p>
+                    )}
+
                   </div>
                 </form>
               </div>

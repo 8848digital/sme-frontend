@@ -1,8 +1,54 @@
-import React from "react";
-import { Formik, Field, FieldArray, FormikProps } from "formik";
-import styles from "@/styles/bio.module.css";
+import React, { useState } from 'react';
 
-const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
+interface Certification {
+  certification_name: string;
+  issuing_organization: string;
+  issue_date: string;
+}
+
+interface CodingCertificationChildTableProps {
+  bioData: any;
+  onFormDataChange: (fieldName: string, value: Certification[]) => void;
+}
+
+const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps> = ({ bioData, onFormDataChange }) => {
+  const initialCertifications: Certification[] =
+    bioData.certifications && bioData.certifications.length > 0
+      ? bioData.certifications
+      : [
+          {
+            certification_name: '',
+            issuing_organization: '',
+            issue_date: '',
+          },
+        ];
+
+  const [certifications, setCertifications] = useState<Certification[]>(initialCertifications);
+
+  const handleCertificationChange = (index: number, field: keyof Certification, value: string) => {
+    const updatedCertifications = certifications.map((cert, certIndex) => {
+      if (index === certIndex) {
+        // Create a copy of the certification object and update the field
+        return { ...cert, [field]: value };
+      }
+      return cert;
+    });
+
+    setCertifications(updatedCertifications);
+    onFormDataChange('certifications', updatedCertifications);
+  };
+
+  const addRow = () => {
+    setCertifications([...certifications, { certification_name: '', issuing_organization: '', issue_date: '' }]);
+  };
+
+  const removeRow = (index: number) => {
+    const updatedCertifications = [...certifications];
+    updatedCertifications.splice(index, 1);
+    setCertifications(updatedCertifications);
+    onFormDataChange('certifications', updatedCertifications);
+  };
+
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -12,153 +58,61 @@ const CodingCertificationChildTable = ({ bioData, onFormDataChange }: any) => {
       </div>
       <div className="row">
         <div className="col-12">
-          <Formik
-            initialValues={{
-              certifications:
-                bioData.certifications && bioData.certifications.length > 0
-                  ? bioData.certifications
-                  : [
-                      {
-                        certification_name: "",
-                        issuing_organization: "",
-                        issue_date: "",
-                      },
-                    ],
-            }}
-            onSubmit={(values) => {
-              console.log("values", values);
-
-              // onFormDataChange('certifications', values.certifications);
-            }}
-          >
-            {({
-              values,
-              handleBlur,
-              handleChange,
-            }: FormikProps<{
-              certifications: {
-                certification_name: string;
-                issuing_organization: string;
-                issue_date: string;
-              }[];
-            }>) => (
-              <form className="border p-3 rounded">
-                <div className="row">
-                  <div
-                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                  >
-                    <strong>Certification Name</strong>
-                  </div>
-                  <div
-                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                  >
-                    <strong>Issuing organization</strong>
-                  </div>
-                  <div
-                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                  >
-                    <strong>Issue Date</strong>
-                  </div>
-                  <div
-                    className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                  ></div>
+          <form className="border p-3 rounded">
+            <div className="row">
+              <div className="col-md-3">
+                <strong>Certification Name</strong>
+              </div>
+              <div className="col-md-3">
+                <strong>Issuing organization</strong>
+              </div>
+              <div className="col-md-3">
+                <strong>Issue Date</strong>
+              </div>
+              <div className="col-md-3"></div>
+            </div>
+            {certifications.map((cert, index) => (
+              <div className="row mb-3" key={index}>
+                <div className="col-md-3">
+                  <input
+                    type="text"
+                    placeholder="Certification Name"
+                    value={cert.certification_name}
+                    onChange={(e) => handleCertificationChange(index, 'certification_name', e.target.value)}
+                  />
                 </div>
-                <FieldArray
-                  name="certifications"
-                  render={(arrayHelpers) => (
-                    <>
-                      {values.certifications.map((cert, index) => (
-                        <div className="row mb-3" key={index}>
-                          <div
-                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                          >
-                            <Field
-                              type="text"
-                              name={`certifications.${index}.certification_name`}
-                              placeholder="Certification Name"
-                              onBlur={handleBlur}
-                              onChange={(e: any) => {
-                                handleChange(e);
-                                onFormDataChange(
-                                  "certifications",
-                                  values.certifications
-                                );
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                          >
-                            <Field
-                              type="text"
-                              name={`certifications.${index}.issuing_organization`}
-                              placeholder="Issuing organization"
-                              onBlur={handleBlur}
-                              onChange={(e: any) => {
-                                handleChange(e);
-                                onFormDataChange(
-                                  "certifications",
-                                  values.certifications
-                                );
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                          >
-                            <Field
-                              type="date"
-                              name={`certifications.${index}.issue_date`}
-                              placeholder="Issue Date"
-                              onBlur={handleBlur}
-                              onChange={(e: any) => {
-                                handleChange(e);
-                                onFormDataChange(
-                                  "certifications",
-                                  values.certifications
-                                );
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-                          >
-                            <button
-                              type="button"
-                              className="btn btn-danger"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                      <div className="row">
-                        <div className="col-md-9"></div>
-                        <div
-                          className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}
-                        >
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={() =>
-                              arrayHelpers.push({
-                                certification_name: "",
-                                issuing_organization: "",
-                                issue_date: "",
-                              })
-                            }
-                          >
-                            Add Row
-                          </button>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                />
-              </form>
-            )}
-          </Formik>
+                <div className="col-md-3">
+                  <input
+                    type="text"
+                    placeholder="Issuing organization"
+                    value={cert.issuing_organization}
+                    onChange={(e) => handleCertificationChange(index, 'issuing_organization', e.target.value)}
+                  />
+                </div>
+                <div className="col-md-3">
+                  <input
+                    type="date"
+                    placeholder="Issue Date"
+                    value={cert.issue_date}
+                    onChange={(e) => handleCertificationChange(index, 'issue_date', e.target.value)}
+                  />
+                </div>
+                <div className="col-md-3">
+                  <button type="button" className="btn btn-danger" onClick={() => removeRow(index)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+            <div className="row">
+              <div className="col-md-9"></div>
+              <div className="col-md-3 pt-1 pb-1">
+                <button type="button" className="btn btn-success" onClick={addRow}>
+                  Add Row
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

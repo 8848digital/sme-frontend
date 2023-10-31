@@ -36,7 +36,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
                             );
                         })
                     ) : <div className='text-center'>
-                        <p>'No Data Available'</p>
+                        <p>No Data Available</p>
                     </div>}
                 </table>
             </div>

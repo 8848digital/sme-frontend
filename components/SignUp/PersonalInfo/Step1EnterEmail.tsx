@@ -24,7 +24,7 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
                   <input
                     className="form-control w-75 me-2 input-filed-height"
                     type="email"
-                    placeholder='Enter Email ...'
+                    placeholder='Enter Your Email'
                     value={formData.usr}
                     onChange={handleEmailChange}
                   />

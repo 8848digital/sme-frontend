@@ -93,7 +93,7 @@ const BuildYourBioMaster = () => {
   //   setBioData(getBioData.data);
   //   dispatch(setBuildBioData(getBioData.data));
   // }, []);
-  // console.log("bio", bioData);
+  console.log("bio", bioData)
 
   return (
     <>

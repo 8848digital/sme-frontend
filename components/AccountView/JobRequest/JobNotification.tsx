@@ -48,7 +48,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {jobRequestData &&
+                  {jobRequestData && jobRequestData.length > 0 ? (
                     jobRequestData.map((data: any, index: number) => {
                       return (
                         <>
@@ -76,7 +76,13 @@ const JobNotification = ({ jobRequestData }: any) => {
                           </tr>
                         </>
                       );
-                    })}
+                    })
+                  ) : (
+                    <>
+                    <p>No Data Available</p>
+                    </>
+                  )
+                  }
                 </tbody>
               </table>
             </div>

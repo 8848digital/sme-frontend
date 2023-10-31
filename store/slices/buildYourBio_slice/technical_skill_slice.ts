@@ -9,9 +9,9 @@ const initialState: {
     loading: boolean;
     error: string | null;
 } = {
-    data: null,
+    data: [],
     loading: false,
-    error: null,
+    error: '',
 };
 
 // Create an asynchronous thunk for fetching the technical skills
@@ -46,9 +46,9 @@ const TechnicalSkillSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchTechnicalSkill.rejected, (state, action) => {
-                // state.loading = true;
-                state.data = null;
-                state.error = action.error.message || "An error occurred.";
+                state.loading = true;
+                state.data = [];
+                state.error =  "An error occurred.";
             });
     },
 });
