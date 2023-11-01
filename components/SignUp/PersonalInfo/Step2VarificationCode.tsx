@@ -31,7 +31,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                         <div className='text-center mt-5'>
                             <h1>Step 2 of 7</h1>
                             <h2>Personal Information</h2>
-                            {/* <p>{formData.usr}</p> */}
+                            {/* <p><span className='pe-2'>Email:</span>{formData.usr}</p> */}
                             <p className='mb-2 me-2'>Enter Password</p>
                             <div>
                                 <div className='d-flex align-items-center justify-content-center flex-column'>

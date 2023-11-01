@@ -28,7 +28,13 @@ export const fetchBio = createAsyncThunk(
 const BioSlice = createSlice({
     name: "bio",
     initialState,
-    reducers: {},
+    reducers: {
+        clearBioData: (state) => {
+            state.data = [];
+            state.loading = false;
+            state.error = 'Bio data Cleared';
+          },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchBio.pending, (state) => {
@@ -47,5 +53,5 @@ const BioSlice = createSlice({
 })
 
 export const bio_data_store = (state: RootState)  => state.getbio
-
+export const { clearBioData } = BioSlice.actions;
 export default BioSlice.reducer;

@@ -8,8 +8,10 @@ interface BioFormState {
   bio: string,
   photo_url: File | null; // Add the cvFile key
   technical_skills: any,
-  certifications: any
-  language: any
+  other_technical_skills:any,
+  certifications: any,
+  language: any,
+  other_languages:any
 }
 
 const initialState: BioFormState = {
@@ -17,8 +19,10 @@ const initialState: BioFormState = {
   bio: "",
   photo_url: null,
   technical_skills: [],
-  language: [],
+  other_technical_skills:"",
   certifications: [],
+  language: [],
+  other_languages:"",
 };
 
 // Create a form slice with reducers

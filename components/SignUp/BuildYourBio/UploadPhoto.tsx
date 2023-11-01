@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { SignUpUserAccessToken_from_store } from "@/store/slices/auth_slice/signup_user_access_token_slice";
 
-const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
+const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   useEffect(() => {
     setSelectedFile(bioData.photo_url);
@@ -142,5 +142,5 @@ const Step2of3UploadCv = ({ bioData, onFormDataChange }: any) => {
   );
 };
 
-export default Step2of3UploadCv;
+export default Step2of3UploadPhoto;
 

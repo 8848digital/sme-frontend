@@ -243,7 +243,7 @@ const WizardMaster = () => {
     }
   };
 
-
+console.log('signup form data',stepFormData);
   const handleSubmit = async () => {
     if (validateStep7()) {
       if (currentStep === 7) {

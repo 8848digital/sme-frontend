@@ -33,8 +33,11 @@ const BuildYourBioMaster = () => {
     photo_url: null,
     bio: "",
     technical_skills: [],
+    other_technical_skills:"",
     language: [],
+    other_languages:"",
     certifications: [],
+
   });
   const handleNext = () => {
     if (currentStep < 5) {
@@ -68,7 +71,15 @@ const BuildYourBioMaster = () => {
     accessToken = signuptoken?.data?.acess_token;
   }
   // console.log(accessToken);
+  const [LoggedIn, setLoggedIn] = useState<any>(false);
 
+  let isLoggedIn: any;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      isLoggedIn = localStorage.getItem("LoggedIn");
+      setLoggedIn(isLoggedIn);
+    }
+  }, [router])
   const handleSubmit = async () => {
     if (currentStep === 5) {
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
@@ -81,17 +92,24 @@ const BuildYourBioMaster = () => {
     });
       router.push("/profile-complete");
       setTimeout(() => {
-        router.push("/account-view");
-        dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-      }, 50000);
+        if (LoggedIn === 'true') {
+          router.push("/account-view");
+          dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+        }else{
+          router.push("/login");
+          dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+        }
+      }, 5000);
 
       // You can submit the data to your API or perform other actions here
     }
   };
-
+ 
   // useEffect(() => {
-  //   setBioData(getBioData.data);
-  //   dispatch(setBuildBioData(getBioData.data));
+      
+  //     setBioData(getBioData.data);
+  //     dispatch(setBuildBioData(getBioData.data));
+    
   // }, []);
   console.log("bio", bioData)
 

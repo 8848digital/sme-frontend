@@ -30,6 +30,12 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
       selectedLanguages.map((language) => ({ language }))
     );
   }, [selectedLanguages]);
+
+  const handleOtherLanguages = (e: any) => {
+    const otherLanguages = e.target.value;
+    onFormDataChange(
+      "other_languages", otherLanguages);
+  }
   return (
     <div className="container">
       {loading ? (
@@ -39,7 +45,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
       ) : (
         <div
           className={`card p-4 ${styles.common_bio_wrapper}`}
-          style={{ maxWidth: "800px", maxHeight: "400px" }}
+          style={{ maxWidth: "800px", maxHeight: "420px" }}
         >
           <div className="row">
             <div className="col-12">
@@ -76,6 +82,26 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
 
                   </div>
                 </form>
+              </div>
+              <div className="col-12 px-4 mt-3">
+                <div>
+                  <div className="form-group">
+                    <div className="row">
+                      <div className="col-4 ">
+                        <div className="text-end mt-1">
+
+                         <label htmlFor="exampleFormControlInput1">Other Languages</label>
+                        </div>
+                      </div>
+                      <div className="col-8">
+                        <input type="text" className="form-control" id="other_language" placeholder="Enter Other Languges" onChange={(e:any)=>{handleOtherLanguages(e)}} value={bioData.other_languages}/>
+                        <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
+                          (Add other languages comma-separated like, Arabic, English, etc...)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

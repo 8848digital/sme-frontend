@@ -9,6 +9,10 @@ import logoImg from "../../public/assets/SG_logo.svg"
 import LogoutList from "@/services/api/auth_api/logout_api";
 import { ClearToken, get_access_token } from "@/store/slices/auth_slice/login_slice";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { resetFormData } from "@/store/slices/form_slice";
+import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
+import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
+import { persistor } from "@/store/store";
 const NavbarMobile = () => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -43,15 +47,19 @@ const NavbarMobile = () => {
     const handleLogOut = () => {
         LogoutList();
         dispatch(ClearToken());
+        dispatch(resetFormData());
+        dispatch(setResetBuildBioData());
+        dispatch(clearBioData());
         localStorage.removeItem("LoggedIn");
         console.log("Logged out");
         toast.success("Logout successful", {
             autoClose: 3000,
             className: "custom-toast", // Close the notification after 3 seconds
         });
+        dispatch({ type: "Login/LogoutSuccess" });
         setTimeout(() => {
             router.push("/");
-        }, 1000);
+        },5);
         console.log("logout called");
     };
 

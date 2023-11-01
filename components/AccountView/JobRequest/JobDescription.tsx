@@ -19,7 +19,10 @@ const JobDescription = ({ jobData, onclick }: any) => {
     response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, approveStatus)
     console.log('job approve', response);
     if (response[0].msg === 'success') {
-      toast.success(response[0]?.data?.data);
+      toast.success(response[0]?.data?.data, {
+        autoClose: 3000, // Time in milliseconds (5 seconds)
+        className: 'custom-toast',// Close the notification after 3 seconds
+      });
       setTimeout(() => {
         router.push('./job-approve-thankyou');
       }, 5000)
@@ -32,7 +35,10 @@ const JobDescription = ({ jobData, onclick }: any) => {
     console.log('job reject', response);
     console.log('job approve', response);
     if (response[0].msg === 'success') {
-      toast.success(response[0]?.data?.data);
+      toast.success(response[0]?.data?.data, {
+        autoClose: 3000, // Time in milliseconds (5 seconds)
+        className: 'custom-toast',// Close the notification after 3 seconds
+      });
       // setTimeout(() => {
       //   router.push('./job-approve-thankyou');
       // }, 5000)

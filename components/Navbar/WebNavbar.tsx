@@ -12,6 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import logoImg from "../../public/assets/SG_logo.svg"
 import LogoutIcon from '@mui/icons-material/Logout';
+import { resetFormData } from "@/store/slices/form_slice";
+import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
+import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
+import { persistor } from "@/store/store";
 const WebNavbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -44,15 +48,20 @@ const WebNavbar = () => {
   const handleLogOut = () => {
     LogoutList();
     dispatch(ClearToken());
+    dispatch(resetFormData());
+    dispatch(setResetBuildBioData());
+    dispatch(clearBioData());
     localStorage.removeItem("LoggedIn");
+
     console.log("Logged out");
     toast.success("Logout successful", {
       autoClose: 3000,
       className: "custom-toast", // Close the notification after 3 seconds
     });
+    dispatch({ type: "Login/LogoutSuccess" });
     setTimeout(() => {
       router.push("/");
-    }, 1000);
+    }, 500);
     console.log("logout called");
   };
 

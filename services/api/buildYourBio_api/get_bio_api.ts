@@ -19,7 +19,7 @@ const GetBioAPI = async (token?: any) => {
     await axios.
         get(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}`, {
             ...config,
-            timeout: 15000,
+            // timeout: 15000,
         })
         .then((res) => {
             console.log(res.data)

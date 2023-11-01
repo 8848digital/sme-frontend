@@ -30,8 +30,10 @@ const BuildYourBioAPI = async (request: any, token: any) => {
         bio: request.bio,
         photo_url: request.photo_url,
         technical_skills: request.technical_skills,
+        other_technical_skills:request.other_technical_skills,
         certifications: request.certifications,
         language: request.language,
+        other_languages:request.other_languages
     };
     // console.log(requestBody)
     await axios

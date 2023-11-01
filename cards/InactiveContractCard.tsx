@@ -26,10 +26,19 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                                         <h2>{data?.status}</h2>
                                     </td> */}
                                     <td className="text-center">
+                                            <Link href={data?.contract_pdf_url} target="_blank">
+                                                <button
+                                                    className="btn btn-later"
+                                                    style={{ width: "auto" }}
+                                                // onClick={handleReadContractClick}
+                                                >
+                                                View Full
+                                                </button>
+                                            </Link>
 
-                                        <Link href={data?.contract_pdf_url} target='_blank'> View Full</Link>
+                                            <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link>
 
-                                    </td>
+                                        </td>
                                 </tr>
                             </tbody>
 

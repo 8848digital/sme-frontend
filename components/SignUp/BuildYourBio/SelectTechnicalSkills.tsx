@@ -34,6 +34,11 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
     );
   }, [technical]);
 
+  const handleOtherTechSkills = (e: any) => {
+    const otherTechSkills = e.target.value;
+    onFormDataChange(
+      "other_technical_skills", otherTechSkills);
+  }
   return (
     <div className="container">
       {loading ? (
@@ -43,7 +48,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
       ) : (
         <div
           className={`card p-4 ${styles.common_bio_wrapper}`}
-          style={{ maxWidth: "800px", maxHeight: "400px" }}
+          style={{ maxWidth: "800px", maxHeight: "420px" }}
         >
           <div className="row">
             <div className="col-12">
@@ -80,6 +85,26 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
 
                   </div>
                 </form>
+              </div>
+              <div className="col-12 px-4 mt-3">
+                <div>
+                  <div className="form-group">
+                    <div className="row">
+                      <div className="col-4 ">
+                        <div className="text-end mt-1">
+
+                          <label htmlFor="exampleFormControlInput1">Other Technical Skills</label>
+                        </div>
+                      </div>
+                      <div className="col-8">
+                        <input type="text" className="form-control" id="other_tech_skills" placeholder="Enter Other Technical Skills" onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData.other_technical_skills}/>
+                        <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
+                          (Add other technical skills comma-separated like, Ruby, Python, etc...)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
