@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import UpdateJobRequestAPI from "@/services/api/job_request_api/update_Job_request_api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
 const JobDescription = ({ jobData, onclick }: any) => {
 
   const router = useRouter();
+  const dispatch = useDispatch();
   let response: any;
   const token = useSelector(get_access_token);
   console.log('profile token', token.token);
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   let approveStatus = 'Received'
   let rejectStatus = 'Rejected'
   const handleApproveClick = async () => {
@@ -23,8 +24,10 @@ const JobDescription = ({ jobData, onclick }: any) => {
         autoClose: 3000, // Time in milliseconds (5 seconds)
         className: 'custom-toast',// Close the notification after 3 seconds
       });
+      dispatch(fetchJobRequest(token?.token) as any);
       setTimeout(() => {
         router.push('./job-approve-thankyou');
+        dispatch(fetchJobRequest(token?.token) as any);
       }, 5000)
     }
     return response
@@ -39,6 +42,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
         autoClose: 3000, // Time in milliseconds (5 seconds)
         className: 'custom-toast',// Close the notification after 3 seconds
       });
+      dispatch(fetchJobRequest(token?.token) as any);
       // setTimeout(() => {
       //   router.push('./job-approve-thankyou');
       // }, 5000)
@@ -49,28 +53,30 @@ const JobDescription = ({ jobData, onclick }: any) => {
     console.log('approve button clicked')
     router.push('/');
   };
-
+  const isDisabledButton = (status: string) => {
+    return status === 'Received' || status === 'Rejected';
+  };
   return (
     <div className="container">
       <div className="job-desc-wrapper border p-3 rounded">
-      <div className="row align-items-center p-2">
+        <div className="row align-items-center p-2">
           <div className="col-6">
-           <h2 className="border-end">Project Id </h2>
+            <h2 className="border-end">Project Id </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_id}</h4>
           </div>
           <hr />
-        </div> 
+        </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-           <h2 className="border-end">Project Name </h2>
+            <h2 className="border-end">Project Name </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_name}</h4>
           </div>
           <hr />
-        </div> 
+        </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
             <h2 className="border-end">Client Name </h2>
@@ -110,23 +116,49 @@ const JobDescription = ({ jobData, onclick }: any) => {
         <div className="col-12 text-center">
           <div className="row">
             <div className="col-md-4">
-            <Link href={jobData?.rfq_pdf_url} target="_blank">
-              <button
-                className="btn btn-later"
-                style={{ width: "auto" }}
+              <Link href={jobData?.rfq_pdf_url} target="_blank">
+                <button
+                  className="btn btn-later"
+                  style={{ width: "auto" }}
                 // onClick={handleReadContractClick}
-              >
-              Read Full Contract
-              </button>
-              </Link> 
+                >
+                  Read Full Contract
+                </button>
+              </Link>
             </div>
+            {/* {
+              jobData?.status === 'Pending' ? (
+                <div className="col-md-4">
+                  <button
+                    className="btn btn-later"
+                    style={{ width: "auto" }}
+                    // onClick={handleApproveClick}
+                    disabled
+                  >
+                    Received
+                  </button>
+                </div>
+              ) : (
+                <div className="col-md-4">
+                  <button
+                    className="btn btn-later"
+                    style={{ width: "auto" }}
+                    onClick={handleApproveClick}
+                  >
+                    Approve
+                  </button>
+                </div>
+              )
+            } */}
+
             <div className="col-md-4">
               <button
                 className="btn btn-later"
                 style={{ width: "auto" }}
                 onClick={handleApproveClick}
+                disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                Approve
+                {jobData.status === 'Received' ? 'Received' : 'Approve'}
               </button>
             </div>
             <div className="col-md-4">
@@ -134,8 +166,9 @@ const JobDescription = ({ jobData, onclick }: any) => {
                 className="btn btn-later "
                 style={{ width: "auto" }}
                 onClick={handleRejectClick}
+                disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                Reject
+                  {jobData.status === 'Rejected' ? 'Rejected' : 'Reject'}
               </button>
             </div>
           </div>

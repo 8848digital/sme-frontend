@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import styles from "@/styles/wizard.module.css";
 
 interface ProfessionalExperience {
   title: string;
-  year: string;
+  year: string; // Change the type to string
   company: string;
 }
 
@@ -21,7 +23,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
       : [
           {
             title: '',
-            year: '',
+            year: '', // Change the initial year value to an empty string
             company: '',
           },
         ]
@@ -35,7 +37,12 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
     toast.error(message);
   };
 
-  const handleProfessionalExpChange = (index:any, field:any, value:any) => {
+  const handleProfessionalExpChange = (index: number, field: keyof ProfessionalExperience, value: any) => {
+    if (field === 'year' && value instanceof Date) {
+      // Convert the Date object to a string containing only the year
+      value = value.getFullYear().toString();
+    }
+
     const updatedProfessionalExp = professionalExp.map((exp, expIndex) => {
       if (index === expIndex) {
         // Create a copy of the professional experience object and update the field
@@ -43,22 +50,19 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
       }
       return exp;
     });
-  
+
     setProfessionalExp(updatedProfessionalExp);
     onFormDataChange('professional_experience', updatedProfessionalExp);
   };
-  
 
   const addRow = () => {
-    setProfessionalExp([
-      ...professionalExp,
-      { title: '', year: '', company: '' },
-    ]);
+    setProfessionalExp([...professionalExp, { title: '', year: '', company: '' }]);
   };
 
   const removeRow = (index: number) => {
     const updatedProfessionalExp = [...professionalExp];
     updatedProfessionalExp.splice(index, 1);
+
     setProfessionalExp(updatedProfessionalExp);
     notifyError('Professional Experience data deleted successfully');
     onFormDataChange('professional_experience', updatedProfessionalExp);
@@ -95,22 +99,21 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                     placeholder="Title"
                     value={exp.title}
                     onChange={(e) => handleProfessionalExpChange(index, 'title', e.target.value)}
+                    className={`${styles.input_custom_class}`}
                   />
                   <div className="error_message">
                     {/* Display error message here */}
                   </div>
                 </div>
                 <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                  <input
-                    type="text"
-                    name={`year[${index}]`}
-                    placeholder="Year"
-                    value={exp.year}
-                    onChange={(e) => handleProfessionalExpChange(index, 'year', e.target.value)}
+                  <DatePicker
+                    selected={exp.year ? new Date(exp.year) : null}
+                    placeholderText="Select Year"
+                    onChange={(date: Date | null) => handleProfessionalExpChange(index, 'year', date)}
+                    showYearPicker
+                    dateFormat="yyyy"
+                    className={`${styles.input_custom_class}`}
                   />
-                  <div className="error_message">
-                    {/* Display error message here */}
-                  </div>
                 </div>
                 <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
                   <input
@@ -119,14 +122,15 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                     placeholder="Company"
                     value={exp.company}
                     onChange={(e) => handleProfessionalExpChange(index, 'company', e.target.value)}
+                    className={`${styles.input_custom_class}`}
                   />
                   <div className="error_message">
                     {/* Display error message here */}
                   </div>
                 </div>
                 <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                  <button type="button" className="btn btn-danger" onClick={() => removeRow(index)}>
-                    Delete
+                  <button type="button" className={`btn ${styles.btn_delete_row}`}  onClick={() => removeRow(index)}>
+                    Delete Row
                   </button>
                 </div>
               </div>
@@ -136,7 +140,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
               <div className={`col-md-3 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
                 <button
                   type="button"
-                  className="btn btn-success"
+                  className={`btn ${styles.btn_add_row}`}
                   onClick={addRow}
                 >
                   Add Row

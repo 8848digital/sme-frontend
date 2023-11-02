@@ -10,7 +10,7 @@ import { Form } from "react-bootstrap";
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
-import { RegistrationValidation } from '@/validation/registrationValidation';
+// import { RegistrationValidation } from '@/validation/registrationValidation';
 import RegistrationApi from '@/services/api/auth_api/register_api';
 import UploadFileApi from '@/services/api/auth_api/upload_file_api';
 import { toast } from 'react-toastify';
@@ -119,7 +119,7 @@ const Register = () => {
                         contact_phone: "",
                         logo:uploadResponse?.file_url,
                     }}
-                    validationSchema={RegistrationValidation}
+                    // validationSchema={RegistrationValidation}
                     onSubmit={(values, action) => {
                         handlesubmit(values, action);
                     }}

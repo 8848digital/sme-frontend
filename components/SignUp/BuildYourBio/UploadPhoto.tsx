@@ -6,9 +6,12 @@ import BioUploadFileAPI from "@/services/api/buildYourBio_api/bio_upload_file_ap
 import { useSelector } from "react-redux";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { SignUpUserAccessToken_from_store } from "@/store/slices/auth_slice/signup_user_access_token_slice";
+import { CONSTANTS } from "@/services/config/api-config";
+import LoaderForSkills from "@/components/LoaderForSkills";
 
 const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedFile, setSelectedFile] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     setSelectedFile(bioData.photo_url);
   }, [bioData.photo_url]);
@@ -33,6 +36,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
     onFormDataChange("photo_url", file);
 
     if (file) {
+      setLoading(true);
       // Handle file upload and set file URL
       uploadFile(file);
     }
@@ -54,6 +58,8 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
         setFileURL(response.file_url);
       } catch (error) {
         console.error("Upload Error:", error);
+      }finally {
+        setLoading(false); // Set loading to false when the upload is done (whether successful or not)
       }
     }
   };
@@ -75,11 +81,11 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
     <div className="container">
       <div
         className={`card p-4 ${styles.common_bio_wrapper}`}
-        style={{ maxWidth: "800px", height: "300px" }}
+        style={{ maxWidth: "800px" }}
       >
         <div className="row">
           <div className="col-12">
-            <div className="text-center mt-5">
+            <div className="text-center mt-2">
               <h1>Start Building Your Bio</h1>
               <h2>Upload Your Photo Here</h2>
             </div>
@@ -87,26 +93,18 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
               <form onSubmit={handleSubmit}>
                 <div className="row mt-3">
                   <div className="col-md-12">
-                    {selectedFile ? (
-                      <div className="selected-file">
-                        <span>
-                          {/* Display the file URL as a link */}
-                          <a
-                            href={fileURL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {fileURL}
-                          </a>
-                        </span>
-                        <span
-                          className="delete-file"
-                          onClick={handleDeleteFile}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <i className="fas fa-times-circle cross-class text-red"></i>
-                        </span>
-                      </div>
+                    {
+                      loading ? (
+                        <LoaderForSkills/>
+                      ):selectedFile ? (
+                      <div className={`${styles.selected_file}`}>
+                      <span>
+                        <img src={`${CONSTANTS.API_BASE_URL}${selectedFile}`} alt="Selected File" style={{ width: '120px'}} />
+                      </span>
+                      <span className="delete-file" onClick={handleDeleteFile} style={{ cursor: "pointer" }}>
+                        <i className={`fas fa-times-circle ${styles.cross_class}`}></i>
+                      </span>
+                    </div>
                     ) : (
                       <div className="file file--upload">
                         <label

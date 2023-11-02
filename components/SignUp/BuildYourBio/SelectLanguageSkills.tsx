@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import styles from "@/styles/bio.module.css";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 import Loaders from "@/components/Loaders";
+import LoaderForSkills from "@/components/LoaderForSkills";
 const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
   // Use a unique identifier for key to help React identify each checkbox
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
@@ -36,6 +37,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
     onFormDataChange(
       "other_languages", otherLanguages);
   }
+ 
   return (
     <div className="container">
       {loading ? (
@@ -60,7 +62,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ height: "12rem", overflowY: "scroll" }}
                   >
-                    {ourLanguage && Array.isArray(ourLanguage) && ourLanguage.length > 0 ? (
+                    {ourLanguage &&  (
                       ourLanguage.map((language: any, index: number) => (
                         <div key={index} className="form-check form-check-inline">
                           <input
@@ -76,8 +78,6 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
                           </label>
                         </div>
                       ))
-                    ) : (
-                      <p>No Data Available</p>
                     )}
 
                   </div>

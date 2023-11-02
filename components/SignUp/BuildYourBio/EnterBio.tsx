@@ -33,6 +33,7 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
                   rows={6}
                   value={bioData.bio}
                   onChange={handleBioChange}
+                  style={{ resize: "none" }}
                 ></textarea>
               </div>
             </div>

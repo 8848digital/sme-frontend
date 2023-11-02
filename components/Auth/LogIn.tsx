@@ -154,7 +154,7 @@ const LogIn = () => {
                                         </Form.Group>
 
                                         <div className={`${isAlertVisible === true ? 'login_btn' : ""} mt-4 mb-3 text-center`}>
-                                            <button type="submit" className={` btn btn-primary`}>
+                                            <button type="submit" className={` btn btn-signup`}>
                                                 <LockOutlinedIcon /> Log in
                                             </button><br />
                                         </div>

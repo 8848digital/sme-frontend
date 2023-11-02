@@ -10,13 +10,15 @@ import Step3of3EnterRates from '@/components/SignUp/Preferences/Step3of3EnterRat
 import StepsDone from '@/components/SignUp/Preferences/StepsDone'
 import ThankYou from '@/components/SignUp/ThankYou'
 import BuildYourBioMaster from '@/components/SignUp/BuildYourBio/BuildYourBioMaster'
+import LandingPage from '@/components/LandingPage/LandingPage'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
-    <SignUpMaster/>
+    <LandingPage/>
+    {/* <SignUpMaster/> */}
     {/* <BuildYourBioMaster/> */}
    
     </>

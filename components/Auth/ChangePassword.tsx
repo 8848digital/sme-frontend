@@ -159,7 +159,7 @@ const ChangePassword = () => {
                         className={`btn btn-signup ${styles.common_btn} me-md-5`}
                        
                       >
-                        <Link href="/" className="text-white">
+                        <Link href="/" className="text-white" style={{textDecoration:'none'}}>
                           Back
                         </Link>
                       </button>

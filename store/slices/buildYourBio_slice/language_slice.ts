@@ -16,7 +16,7 @@ const initialState: {
 
 // Create an asynchronous thunk for fetching the technical skills
 export const fetchLanguage = createAsyncThunk(
-    "account/fetchLanguage",
+    "language/fetchLanguage",
     async () => {
         try {
             const response = await LanguageApi();
@@ -30,7 +30,7 @@ export const fetchLanguage = createAsyncThunk(
 
 // Create a slice for the technical skills
 const LanguageSlice = createSlice({
-    name: "Language",
+    name: "language",
     initialState,
     reducers: {},
     extraReducers: (builder) => {

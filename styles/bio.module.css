@@ -21,6 +21,17 @@
 .profile_wrapper{
     margin: 130px auto 30px auto;
 }
+
+.selected_file{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.cross_class{
+    font-size: 24px;
+    color:red;
+}
 /* media */
 
 @media  (max-width:768px) {

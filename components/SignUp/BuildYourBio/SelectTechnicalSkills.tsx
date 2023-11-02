@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import styles from "@/styles/bio.module.css";
 import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
 import Loaders from "@/components/Loaders";
+import LoaderForSkills from "@/components/LoaderForSkills";
 
 const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
   const [technical, setTechnical] = useState<string[]>([]);
@@ -63,7 +64,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ minHeight: "8rem", overflowY: "scroll" }}
                   >
-                    {ourSkill && Array.isArray(ourSkill) && ourSkill.length > 0 ? (
+                    {ourSkill && (
                       ourSkill.map((language: any, index: number) => (
                         <div key={index} className="form-check form-check-inline">
                           <input
@@ -79,9 +80,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
                           </label>
                         </div>
                       ))
-                    ) : (
-                      <p>No Data Available</p>
-                    )}
+                    ) }
 
                   </div>
                 </form>

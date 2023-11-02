@@ -155,16 +155,16 @@ const ResetPassword = () => {
                   <div className={`${styles.custom_btn}`}>
                           <button
                             type="button"
-                            className={`btn btn-primary ${styles.common_btn} me-md-5`}
+                            className={`btn btn-signup ${styles.common_btn} me-md-5`}
                             style={{ fontWeight: "600" }}
                           >
-                            <Link href="/login" className="text-white">
+                            <Link href="/login" className="text-white" style={{textDecoration:'none'}}>
                               BACK
                             </Link>
                           </button>
                           <button
                             type="submit"
-                            className='btn btn-primary'
+                            className='btn btn-signup'
                             style={{ fontWeight: "600" }}
                           >
                             Change Password

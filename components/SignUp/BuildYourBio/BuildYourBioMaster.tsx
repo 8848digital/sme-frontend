@@ -105,12 +105,16 @@ const BuildYourBioMaster = () => {
     }
   };
  
-  // useEffect(() => {
-      
-  //     setBioData(getBioData.data);
-  //     dispatch(setBuildBioData(getBioData.data));
-    
-  // }, []);
+  const handleBioData = () =>{
+      setBioData(getBioData.data);
+      dispatch(setBuildBioData(getBioData.data));
+  }
+
+  useEffect(() => {
+    if (LoggedIn === "true" && router.pathname === "/build-your-bio") {
+      handleBioData();
+    }
+  }, [LoggedIn, router.pathname]);
   console.log("bio", bioData)
 
   return (

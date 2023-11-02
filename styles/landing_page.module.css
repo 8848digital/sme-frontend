@@ -1,0 +1,80 @@
+.landing_wrapper {
+    background-color: #ffffff;
+    /* margin-top: 150px; */
+    /* height: 100vh; */
+}
+
+.landing_content{
+    margin-top: 120px;
+    /* margin-bottom: 150px; */
+}
+
+.count_item_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.count_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px; /* Adjust the size as needed */
+    height: 120px; /* Adjust the size as needed */
+    background-color: #eee; 
+    border: 1px solid #0056b3;
+    /* color: #fff;  */
+    border-radius: 50%; /* Makes it a circle */
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+  .count_item:hover {
+    /* background-color: #0056b3; */
+  }
+
+  .count_item h3 {
+    font-weight: 700;
+  }
+
+/* let started button */
+.get_started_btn {
+    text-align: center;
+    margin: 40px 0;
+}
+.get_started_btn .btn {
+    background-color: #ffffff;
+    color:#00578A;
+    border: 0.5px solid #00578A;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 240px;
+    line-height: 28px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.get_started_btn .btn:hover {
+    background-color: #00578A ;
+    color:#ffffff;
+   
+}
+
+
+/* landing image */
+.landing_image_wrapper{
+    margin-top: 50px;
+}
+
+.social_link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}

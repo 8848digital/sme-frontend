@@ -16,7 +16,7 @@ const initialState: {
 
 // Create an asynchronous thunk for fetching the technical skills
 export const fetchTechnicalSkill = createAsyncThunk(
-    "account/fetchTechnicalSkill",
+    "technicalSkill/fetchTechnicalSkill",
     async () => {
         try {
             const response = await TechnicalSkillAPI();
@@ -30,7 +30,7 @@ export const fetchTechnicalSkill = createAsyncThunk(
 
 // Create a slice for the technical skills
 const TechnicalSkillSlice = createSlice({
-    name: "TechnicalSkill",
+    name: "technicalSkill",
     initialState,
     reducers: {},
     extraReducers: (builder) => {

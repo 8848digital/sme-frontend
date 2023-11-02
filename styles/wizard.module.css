@@ -58,6 +58,73 @@
     fill: #00578A !important;
 }
 
+.btn_add_row {
+    background-color: #00578A ;
+    color:#ffffff;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 130px;
+    line-height: 28px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn_add_row:hover {
+    background-color: #ffffff;
+    color:#00578A;
+    border: 0.5px solid #00578A;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 130px;
+    line-height: 28px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_delete_row {
+    background-color: #ffffff;
+    color:#00578A;
+    border: 0.5px solid #00578A;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 130px;
+    line-height: 28px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn_delete_row:hover {
+    background-color: #00578A ;
+    color:#ffffff;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+    min-width: 130px;
+    line-height: 28px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input_custom_class {
+    border: 0.5px solid #000000;
+    width: 170px;
+    height: 32px;
+    border-radius: 2px;
+    padding-left: 5px;
+}
 @media  (max-width:768px) {
 
     .wizard_wrapper {
