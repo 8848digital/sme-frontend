@@ -149,17 +149,17 @@ const LandingPage = () => {
                   />
                 </div>
                 <div className={`${styles.social_link}`}>
-                  <Link href={`${landingData.social_links[2].linkedin}`} target="_blank">
+                  <Link href={`${landingData?.social_links[2]?.linkedin}`} target="_blank">
                     <LinkedInIcon
                       fontSize="large"
                       color="primary"
                       className="mx-1"
                     />
                   </Link>
-                  <Link href={`${landingData.social_links[0].twitter}`} target="_blank">
+                  <Link href={`${landingData?.social_links[0]?.twitter}`} target="_blank">
                     <img src={twitterIcon.src} alt="" style={{width: '2.1875rem'}}/>
                   </Link>
-                  <Link href={`${landingData.social_links[1].instagram}`} target="_blank">
+                  <Link href={`${landingData?.social_links[1]?.instagram}`} target="_blank">
                     <InstagramIcon
                       fontSize="large"
                       className="text-dark mx-1"
