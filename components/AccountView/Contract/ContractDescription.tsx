@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
 import styles from "@/styles/account.module.css";
+import UpdateContractAPI from "@/services/api/contract_api/update_contract_api";
+import { fetchContractList } from "@/store/slices/contract_slice/get_contract_slice";
 const ContractDescription = ({ data, openDescription }: any) => {
 
   const router = useRouter();
@@ -15,12 +17,12 @@ const ContractDescription = ({ data, openDescription }: any) => {
   let response: any;
   const token = useSelector(get_access_token);
   console.log('profile token', token.token);
-  let approveStatus = 'Received'
+  let approveStatus = 'Approved'
   let rejectStatus = 'Rejected'
   let tableValue = "table"
   const handleApproveClick = async () => {
     console.log('approve button clicked')
-    response = await UpdateJobRequestAPI(token?.token, data.supplier, data.project_id, approveStatus)
+    response = await UpdateContractAPI(token?.token, approveStatus , data?.name)
     console.log('job approve', response);
     if (response[0].msg === 'success') {
       toast.success(response[0]?.data?.data, {
@@ -29,15 +31,15 @@ const ContractDescription = ({ data, openDescription }: any) => {
       });
       dispatch(fetchJobRequest(token?.token) as any);
       setTimeout(() => {
-        router.push('./job-approve-thankyou');
-        dispatch(fetchJobRequest(token?.token) as any);
+        router.push('./contract-approved-thankyou');
+        dispatch(fetchContractList(token?.token) as any);
       }, 5000)
     }
     return response
   };
   const handleRejectClick = async () => {
     console.log('reject button clicked')
-    response = await UpdateJobRequestAPI(token?.token, data.supplier, data.project_id, rejectStatus)
+    response = await UpdateContractAPI(token?.token, rejectStatus , data?.name)
     console.log('job reject', response);
     console.log('job approve', response);
     if (response[0].msg === 'success') {
@@ -45,9 +47,9 @@ const ContractDescription = ({ data, openDescription }: any) => {
         autoClose: 3000, // Time in milliseconds (5 seconds)
         className: 'custom-toast',// Close the notification after 3 seconds
       });
-      dispatch(fetchJobRequest(token?.token) as any);
+      dispatch(fetchContractList(token?.token) as any);
       // setTimeout(() => {
-      //   router.push('./job-approve-thankyou');
+      //   router.push('./contract-approved-thankyou');
       // }, 5000)
     }
     return response
@@ -94,9 +96,9 @@ const ContractDescription = ({ data, openDescription }: any) => {
 
 
         </table>
-        <div className="col-12  p-2">
+        <div className="col-12 text-center p-2">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-6">
               <Link href={data?.contract_pdf_url} target="_blank">
                 <button
                   className="btn btn-later"
@@ -109,26 +111,26 @@ const ContractDescription = ({ data, openDescription }: any) => {
             </div>
 
 
-            <div className="col-md-4">
+            <div className="col-md-6">
               <button
                 className="btn btn-later"
                 style={{ width: "auto" }}
                 onClick={handleApproveClick}
-                disabled={data.status === 'Received' || data.status === 'Rejected'}
+                disabled={data.status === 'Active' || data.status === 'Rejected'}
               >
-                {data.status === 'Received' ? 'Received' : 'Approve'}
+                {data.status === 'Active' ? 'Approved' : 'Approve'}
               </button>
             </div>
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <button
                 className="btn btn-later "
                 style={{ width: "auto" }}
                 onClick={handleRejectClick}
-                disabled={data.status === 'Received' || data.status === 'Rejected'}
+                disabled={data.status === 'Active' || data.status === 'Rejected'}
               >
                 {data.status === 'Rejected' ? 'Rejected' : 'Reject'}
               </button>
-            </div>
+            </div> */}
           </div>
 
         </div>

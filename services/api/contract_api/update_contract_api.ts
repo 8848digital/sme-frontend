@@ -2,11 +2,11 @@ import { CONSTANTS } from '@/services/config/api-config';
 import axios from 'axios';
 
 
-const UpdateContractAPI = async (token: any, supplier: any, project_name: any, status: any,) => {
+const UpdateContractAPI = async (token?: any, status?: any, name?:any) => {
     let response: any;
     const version = CONSTANTS.VERSION;
-    const method = "update_rfq_status";
-    const entity = "job_request";
+    const method = "update_contract_status";
+    const entity = "contract";
     // const params = `?version=${version}&method=${method}&entity=${entity}&supplier=${supplier}&status=${status}&project_name=${project_id}`
     const config = {
         headers: {
@@ -20,9 +20,8 @@ const UpdateContractAPI = async (token: any, supplier: any, project_name: any, s
         version,
         method,
         entity,
-        supplier,
-        project_name:project_name,
-        status
+        status,
+        name
     };
 
     await axios
