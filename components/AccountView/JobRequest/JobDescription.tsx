@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
 const JobDescription = ({ jobData, onclick }: any) => {
-
+const [jobCost , setJobCost] = useState<number>()
+console.log('job cost',jobCost)
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
@@ -17,7 +18,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
   let rejectStatus = 'Rejected'
   const handleApproveClick = async () => {
     console.log('approve button clicked')
-    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, approveStatus)
+    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, approveStatus , jobCost)
     console.log('job approve', response);
     if (response[0].msg === 'success') {
       toast.success(response[0]?.data?.data, {
@@ -28,13 +29,13 @@ const JobDescription = ({ jobData, onclick }: any) => {
       setTimeout(() => {
         router.push('./job-approve-thankyou');
         dispatch(fetchJobRequest(token?.token) as any);
-      }, 5000)
+      }, 3000)
     }
     return response
   };
   const handleRejectClick = async () => {
     console.log('reject button clicked')
-    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, rejectStatus)
+    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, rejectStatus , jobCost)
     console.log('job reject', response);
     console.log('job approve', response);
     if (response[0].msg === 'success') {
@@ -43,9 +44,9 @@ const JobDescription = ({ jobData, onclick }: any) => {
         className: 'custom-toast',// Close the notification after 3 seconds
       });
       dispatch(fetchJobRequest(token?.token) as any);
-      // setTimeout(() => {
-      //   router.push('./job-approve-thankyou');
-      // }, 5000)
+      setTimeout(() => {
+        router.push('./job-rejected');
+      }, 3000)
     }
     return response
   };
@@ -109,7 +110,25 @@ const JobDescription = ({ jobData, onclick }: any) => {
             <h2 className="border-end">Total Payment</h2>
           </div>
           <div className="col-6 text-center">
-            <h4 className="text-capitalize">{jobData.total_payment}</h4>
+          <h4 className="text-capitalize">{jobData.total_payment}</h4>
+          </div>
+          <hr />
+        </div>
+        <div className="row align-items-center p-2">
+          <div className="col-6">
+            <h2 className="border-end">Job Cost</h2>
+          </div>
+          <div className="col-6 text-center">
+            <div className="mb-3">
+              {
+                jobData?.job_cost !== null ? (
+                  <h4 className="text-capitalize">{jobData.job_cost}</h4>
+                ):(
+
+                  <input type="text" className="form-control" onChange={(e:any)=>{setJobCost(e.target.value)}} />
+                )
+              }
+            </div>
           </div>
           <hr />
         </div>
@@ -168,7 +187,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
                 onClick={handleRejectClick}
                 disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                  {jobData.status === 'Rejected' ? 'Rejected' : 'Reject'}
+                {jobData.status === 'Rejected' ? 'Rejected' : 'Reject'}
               </button>
             </div>
           </div>
