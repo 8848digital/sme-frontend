@@ -8,6 +8,13 @@
     margin-top: 120px;
     /* margin-bottom: 150px; */
 }
+.landing_details h1{
+    width: 70%;
+}
+.landing_details{
+    display: flex;
+    justify-content: center;
+}
 
 .count_item_wrapper {
     display: flex;
