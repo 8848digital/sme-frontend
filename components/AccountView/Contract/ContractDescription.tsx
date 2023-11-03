@@ -48,9 +48,9 @@ const ContractDescription = ({ data, openDescription }: any) => {
         className: 'custom-toast',// Close the notification after 3 seconds
       });
       dispatch(fetchContractList(token?.token) as any);
-      // setTimeout(() => {
-      //   router.push('./contract-approved-thankyou');
-      // }, 5000)
+      setTimeout(() => {
+        router.push('./contract-rejected');
+      }, 3000)
     }
     return response
   };

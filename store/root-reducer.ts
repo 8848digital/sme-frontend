@@ -10,6 +10,7 @@ import BioSlice from "@/store/slices/buildYourBio_slice/bio_slice"
 import jobRequestSlice from "@/store/slices/job_request_slice/job_request_slice"
 import contractSlice from "@/store/slices/contract_slice/get_contract_slice"
 import LandningSlice from "@/store/slices/landing_page_slice"
+import EducationLevelSlice from "@/store/slices/auth_slice/education_level_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -21,7 +22,8 @@ const appReducer = combineReducers({
   getbio: BioSlice,
   jobRequest:jobRequestSlice,
   contractList:contractSlice,
-  landingPage:LandningSlice
+  landingPage:LandningSlice,
+  educationLevel:EducationLevelSlice
 });
 
 const rootReducer = (state: any, action: any) => {
