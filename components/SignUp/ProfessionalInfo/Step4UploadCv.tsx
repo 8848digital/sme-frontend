@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import styles from '@/styles/wizard.module.css';
 import UploadFileApi from '@/services/api/auth_api/upload_file_api';
+import LoaderForSkills from '@/components/LoaderForSkills';
 
 interface Step2Props {
   formData: any;
@@ -10,6 +11,7 @@ interface Step2Props {
 
 const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: Step2Props) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     setSelectedFile(formData.upload_cv);
   }, [formData.upload_cv]);
@@ -22,6 +24,7 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
     onFormDataChange('upload_cv', file);
 
     if (file) {
+      setLoading(true);
       // Handle file upload and set file URL
       uploadFile(file);
     }
@@ -44,6 +47,8 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
         setFileURL(response.file_url);
       } catch (error) {
         console.error('Upload Error:', error);
+      }finally {
+        setLoading(false); // Set loading to false when the upload is done (whether successful or not)
       }
     }
   };
@@ -75,7 +80,9 @@ const fileInputRef = useRef<HTMLInputElement | null>(null);
               
                   <div className="row mt-3">
                     <div className="col-md-12">
-                      {selectedFile ? (
+                      {  loading ? (
+                        <LoaderForSkills/>
+                      ):selectedFile ? (
                         <div className="selected-file">
                           <span>
                           {/* Display the file URL as a link */}
@@ -84,7 +91,7 @@ const fileInputRef = useRef<HTMLInputElement | null>(null);
                           </a>
                         </span>
                           <span className="delete-file" onClick={handleDeleteFile} style={{ cursor: 'pointer' }}>
-                            <i className="fas fa-times-circle cross-class text-red"></i>
+                            <i className={`fas fa-times-circle ${styles.cross_class}`}></i>
                           </span>
                         </div>
                       ) : (

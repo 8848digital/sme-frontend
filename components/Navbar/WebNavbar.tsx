@@ -129,8 +129,8 @@ const WebNavbar = () => {
                   // </Link>
                 ) : (
 
-                  <Link href="/login" legacyBehavior>
-                    <a className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
+                  <Link href="/login" legacyBehavior className="d-block" >
+                    <a className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset" style={{padding:"35px 0 33px 0"}}>
                      <span style={{color:'#00578a'}}> Log in</span> 
                     </a>
                   </Link>

@@ -55,7 +55,7 @@ const StartLater = () => {
                         <h2 className='mb-5'>Complete your registration in less than 2 minutes and get started!</h2>
                         <div className="">
                             <Link href='/wizard-master' className='btn btn-signup me-5'>Start</Link>
-                            <Link href='' className='btn btn-later'>Later</Link>
+                            <Link href='/' className='btn btn-later'>Later</Link>
                         </div>
 
                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>

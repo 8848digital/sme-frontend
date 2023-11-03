@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState , useEffect} from 'react';
 import CountUp from 'react-countup';
 import landingImg from "../../public/assets/landing-img.jpg";
 import styles from "@/styles/landing_page.module.css";
@@ -7,8 +7,18 @@ import Link from 'next/link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { useRouter } from 'next/router';
 
 const LandingPage = () => {
+    const [LoggedIn, setLoggedIn] = useState<any>(false);
+    const router = useRouter();
+  let isLoggedIn: any;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      isLoggedIn = localStorage.getItem("LoggedIn");
+      setLoggedIn(isLoggedIn);
+    }
+  }, [router])
     const data:any = {
         "heading_name1": "We are the trusted consulting partner for SMEs who want to achieve their growth goals",
         "short_description": "With our many years of experience, we have helped SMEs to grow, increase their profitability, and become more competitive",
@@ -29,7 +39,7 @@ const LandingPage = () => {
         "label_for_button": "Let's get started"
     };
 
-
+   
     return (
         <>
             <div className={`${styles.landing_wrapper}`}>
@@ -38,16 +48,16 @@ const LandingPage = () => {
                         <div className="col-md-8">
                             <div className='row'>
                                 <div className="col-12">
-                                    <div className='landing-details'>
+                                    <div className='landing-details text-center'>
                                         <h1>{data.heading_name1}</h1>
                                     </div>
-                                    <div className="short_desc">
+                                    <div className="short_desc text-center mt-4">
                                         <p>{data?.short_description}</p>
                                     </div>
                                 </div>
                                 <div className="col-12">
-                                    <div className="benefits_wrapper text-center mt-5">
-                                        <h2>{data?.Heading_name2}</h2>
+                                    <div className="benefits_wrapper text-center mt-3">
+                                        <h1>{data?.Heading_name2}</h1>
                                         <h6 className='text-dark'>We Have</h6>
                                         <div className="count-circle mt-5">
                                             <div className="row">
@@ -83,7 +93,14 @@ const LandingPage = () => {
                                 </div>
                                 <div className="col-12">
                                     <div className={`${styles.get_started_btn}`}>
-                                        <button className={`${styles.btn}`} type='button'>{data?.label_for_button}</button>
+                                        {
+                                            LoggedIn === 'true' ? (
+                                                ''
+                                            ):(
+
+                                                <button className={`${styles.btn}`} type='button' onClick={()=>{router.push('/signup-start')}}>{data?.label_for_button}</button>
+                                            )
+                                        }
                                         <div className="about_services">
                                             <Link href='https://strategicgears.com/index.php/services/strategy-management' className='color' target='_blank'>{data?.link_label}</Link>
                                         </div>
