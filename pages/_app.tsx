@@ -9,6 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Inter } from "next/font/google";
 import { Cairo } from "next/font/google";
+import favicon from "../public/favicon.ico"
+import Head from "next/head";
 const inter = Cairo({ subsets: ["latin"] });
 const cairo = Cairo({
   weight: "400",
@@ -16,6 +18,11 @@ const cairo = Cairo({
 });
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    <>
+    <Head>
+    <title>SME</title>
+    <link rel="icon" type="image/png" href={favicon.src} />
+    </Head>
     <div className={cairo.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -30,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </PersistGate>
       </Provider>
     </div>
+    </>
   );
 }
 
