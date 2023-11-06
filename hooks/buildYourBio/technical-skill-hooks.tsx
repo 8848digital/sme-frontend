@@ -17,14 +17,18 @@ const useFetchOurTechnicalSkills = () => {
   useEffect(() => {
     dispatch(fetchTechnicalSkill() as any);
   }, [router , dispatch]);
-
+  const [cLoading , setCustomLoading] = useState<boolean>(true)
   useEffect(() => {
-  
+
+    if (technical?.loading === false ) 
+    {
+   
       setOurSkill(technical?.data);
+    }
     
   }, [technical]);
 
-  return { ourSkill, loading: technical?.loading };
+  return { ourSkill, loading: technical?.loading , cLoading };
 };
 
 export default useFetchOurTechnicalSkills;

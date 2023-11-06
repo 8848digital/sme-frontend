@@ -7,11 +7,11 @@ import TechnicalSkillAPI from "@/services/api/buildYourBio_api/technical_skill_a
 const initialState: {
     data: any | null;
     loading: boolean;
-    error: string | null;
+    error:  any;
 } = {
     data: [],
     loading: false,
-    error: '',
+    error: null,
 };
 
 // Create an asynchronous thunk for fetching the technical skills
@@ -47,8 +47,8 @@ const TechnicalSkillSlice = createSlice({
             })
             .addCase(fetchTechnicalSkill.rejected, (state, action) => {
                 state.loading = true;
-                state.data = [];
-                state.error =  "An error occurred.";
+                state.data = null;
+                state.error =  action.error  || "An error occurred.";
             });
     },
 });

@@ -42,7 +42,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}
   }
   return (
     <div className="container">
-      {loading ? (
+      {loading  ? (
         <>
           <Loaders />
         </>
@@ -64,23 +64,23 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ minHeight: "8rem", overflowY: "scroll" }}
                   >
-                    {ourSkill && (
-                      ourSkill.map((language: any, index: number) => (
+                    {
+                      ourSkill?.map((skills: any, index: number) => (
                         <div key={index} className="form-check form-check-inline">
                           <input
                             type="checkbox"
-                            id={language.name}
-                            value={language.name}
-                            checked={technical.includes(language.name)}
-                            onChange={() => handleCheckboxChange(language.name)}
+                            id={skills.name}
+                            value={skills.name}
+                            checked={technical.includes(skills.name)}
+                            onChange={() => handleCheckboxChange(skills.name)}
                             className="form-check-input"
                           />
-                          <label htmlFor={language.name} className="form-check-label">
-                            {language.name}
+                          <label htmlFor={skills.name} className="form-check-label">
+                            {skills.name}
                           </label>
                         </div>
                       ))
-                    ) }
+                    }
 
                   </div>
                 </form>
@@ -96,7 +96,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}
                         </div>
                       </div>
                       <div className="col-8">
-                        <input type="text" className="form-control" id="other_tech_skills" placeholder="Enter Other Technical Skills" onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData.other_technical_skills}/>
+                        <input type="text" className="form-control" id="other_tech_skills" placeholder="Enter Other Technical Skills" onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData?.other_technical_skills}/>
                         <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
                           (Add other technical skills comma-separated like, Ruby, Python, etc...)
                         </div>

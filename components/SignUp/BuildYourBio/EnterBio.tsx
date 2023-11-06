@@ -31,7 +31,7 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows={6}
-                  value={bioData.bio}
+                  value={bioData?.bio}
                   onChange={handleBioChange}
                   style={{ resize: "none" }}
                 ></textarea>

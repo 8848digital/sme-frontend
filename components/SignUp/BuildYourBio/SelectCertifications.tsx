@@ -7,7 +7,7 @@ const SelectCertifications = ({ bioData, onFormDataChange }: any) => {
     <div className="container">
       <div
         className={`card p-4 ${styles.common_bio_wrapper}`}
-        style={{ maxWidth: "800px" }}
+        style={{ maxWidth: "900px" }}
       >
         <div className="row">
           <div className="col-12">

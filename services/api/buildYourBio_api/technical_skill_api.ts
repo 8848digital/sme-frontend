@@ -20,7 +20,7 @@ const TechnicalSkillAPI = async () => {
             `${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}`,
             {
                 ...config,
-                // timeout: 15000,
+                timeout: 5000,
             }
         )
         .then((res: any) => {

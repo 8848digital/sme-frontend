@@ -62,8 +62,8 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loadin
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ height: "12rem", overflowY: "scroll" }}
                   >
-                    {ourLanguage &&  (
-                      ourLanguage.map((language: any, index: number) => (
+                  {
+                      ourLanguage?.map((language: any, index: number) => (
                         <div key={index} className="form-check form-check-inline">
                           <input
                             type="checkbox"
@@ -74,11 +74,11 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loadin
                             className="form-check-input"
                           />
                           <label htmlFor={language.name} className="form-check-label">
-                            {language.name}
+                            {language?.name}
                           </label>
                         </div>
                       ))
-                    )}
+                    }
 
                   </div>
                 </form>

@@ -13,10 +13,10 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
-    setSelectedFile(bioData.photo_url);
-  }, [bioData.photo_url]);
+    setSelectedFile(bioData?.photo_url);
+  }, [bioData?.photo_url]);
 
-  const [fileURL, setFileURL] = useState<any>(bioData.photo_url || null);
+  const [fileURL, setFileURL] = useState<any>(bioData?.photo_url || null);
 
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
   console.log(signuptoken);

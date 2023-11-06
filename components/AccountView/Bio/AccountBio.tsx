@@ -123,7 +123,7 @@ const AccountBio = ({ bioData, loading }: any) => {
               </div>
             </div>
             <div className="mt-4 text-center">
-              <Link href="/build-your-bio" target="_blank" className="btn btn-signup p-1 mx-2">
+              <Link href="/build-your-bio"  className="btn btn-signup p-1 mx-2">
                 Update/Build Your Bio Here
               </Link>
             </div>

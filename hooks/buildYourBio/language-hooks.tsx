@@ -19,8 +19,10 @@ const useFetchOurLanguage = () => {
   }, [router , dispatch]);
 
   useEffect(() => {
-
+    if (language?.loading === false) {
+     
       setOurLanguage(language?.data);
+    }
     
   }, [language]);
 

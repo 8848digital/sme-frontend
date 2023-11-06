@@ -7,11 +7,11 @@ import LanguageApi from "@/services/api/buildYourBio_api/language_api";
 const initialState: {
     data: any | null;
     loading: boolean;
-    error: string | null;
+    error:  any;
 } = {
     data: [],
     loading: false,
-    error: "",
+    error:null,
 };
 
 // Create an asynchronous thunk for fetching the technical skills
@@ -37,18 +37,18 @@ const LanguageSlice = createSlice({
         builder
             .addCase(fetchLanguage.pending, (state) => {
                 state.loading = true;
-                state.error = "";
+                state.error = null;
             })
             .addCase(fetchLanguage.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
                 // console.log('language is in slice', action.payload);
-                state.error = "";
+                state.error = null;
             })
             .addCase(fetchLanguage.rejected, (state, action) => {
                 state.loading = true;
                 state.data = [];
-                state.error = "An error occurred.";
+                state.error =  action.error  || "An error occurred.";
             });
     },
 });

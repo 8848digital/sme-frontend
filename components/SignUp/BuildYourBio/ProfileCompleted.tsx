@@ -42,29 +42,29 @@ const ProfileCompleted = () => {
             <div
               style={{ height: "150px", width: "150px", overflow: "hidden" }}
             >
-              {userData && (userData.photo_url === null) ? (
+              {userData && (userData?.photo_url === null) ? (
                 <AccountCircleIcon sx={{ fontSize: "100px", color: "#00B2D4" }} />
               ) : (
-                <img src={`${CONSTANTS.API_BASE_URL}${userData.photo_url}`} width="150px" />
+                <img src={`${CONSTANTS.API_BASE_URL}${userData?.photo_url}`} width="150px" />
               )}
 
             </div>
           </div>
 
           <div className="col-sm-8">
-            {userData.bio.length > 0 && (
+            {userData?.bio.length > 0 && (
               <>
-                <p>{userData.bio}</p>
+                <p>{userData?.bio}</p>
               </>
             )}
             <div>
-              {userData.technical_skills && userData.technical_skills.length > 0 ? (
+              {userData?.technical_skills && userData?.technical_skills.length > 0 ? (
                 <>
                   <h2>Technical Skills</h2>
                   <ul>
-                    {userData.technical_skills.map((skills: any, index: any) => (
+                    {userData?.technical_skills.map((skills: any, index: any) => (
                       <li className={`${styles.li_marker}`} key={index}>
-                        {skills.technical_skills}
+                        {skills?.technical_skills}
                       </li>
                     ))}
                   </ul>
@@ -78,13 +78,13 @@ const ProfileCompleted = () => {
             </div>
 
             <div>
-              {userData.language && userData.language.length > 0 ? (
+              {userData?.language && userData?.language.length > 0 ? (
                 <>
                   <h2>Languages</h2>
                   <ul>
-                    {userData.language.map((language: any, index: any) => (
+                    {userData?.language.map((language: any, index: any) => (
                       <li className={`${styles.li_marker}`} key={index}>
-                        {language.language}
+                        {language?.language}
                       </li>
                     ))}
                   </ul>
@@ -98,13 +98,13 @@ const ProfileCompleted = () => {
             </div>
 
             <div>
-              {userData.certifications && userData.certifications.length > 0 ? (
+              {userData?.certifications && userData?.certifications?.length > 0 ? (
                 <>
                   <h2>Certifications</h2>
                   <ul>
-                    {userData.certifications.map((certification: any, index: any) => (
+                    {userData?.certifications.map((certification: any, index: any) => (
                       <li className={`${styles.li_marker}`} key={index}>
-                        {certification.certification_name}
+                        {certification?.certification_name}
                       </li>
                     ))}
                   </ul>

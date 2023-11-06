@@ -72,7 +72,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}></div>
             </div>
-            {certifications.map((cert, index) => (
+            {certifications?.map((cert, index) => (
               <div className="row mb-3" key={index}>
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
