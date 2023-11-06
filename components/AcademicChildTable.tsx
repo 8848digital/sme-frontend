@@ -12,7 +12,7 @@ interface Certification {
   gpa: string;
 }
 
-const AcademicChildTable: React.FC<{ formData: any; onFormDataChange: (fieldName: string, value: any) => void }> = ({
+const AcademicChildTable: React.FC<{educationLevel:any ,loading:boolean ,  formData: any; onFormDataChange: (fieldName: string, value: any) => void }> = ({
   formData,
   onFormDataChange,
 }) => {

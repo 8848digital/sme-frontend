@@ -3,10 +3,10 @@ import styles from "@/styles/wizard.module.css";
 import AcademicChildTable from '@/components/AcademicChildTable';
 import ProfessionalExpericeneChildTable from '@/components/ProfessionalExpericeneChildTable';
 
-const Step2of3ExtractedDataFromCv = ({ formData, onFormDataChange }:any) => {
+const Step2of3ExtractedDataFromCv = ({ formData, onFormDataChange , educationLevel , loading }:any) => {
   return (
     <div className="container">
-      <div className={`card p-4 ${styles.common_wizard_wrapper}`}>
+      <div className={`card p-4 ${styles.common_wizard_wrapper}`}  style={{ maxWidth: "800px" }}>
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-2">
@@ -15,7 +15,7 @@ const Step2of3ExtractedDataFromCv = ({ formData, onFormDataChange }:any) => {
             </div>
           </div>
           <div className="col-12">
-             <AcademicChildTable formData={formData} onFormDataChange={onFormDataChange}/>
+             <AcademicChildTable formData={formData} onFormDataChange={onFormDataChange} educationLevel={educationLevel} loading={loading} />
 
           </div>
           <div className="col-12 mt-5">

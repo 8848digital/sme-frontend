@@ -68,7 +68,7 @@ const StartLater = () => {
                                             {/* <label htmlFor="email">
                                             Email Address<span className="text-danger">*</span>
                                         </label> */}
-                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder='Enter Email ...' />
+                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder='Enter Your Email' />
                                             <ErrorMessage name="usr" component="div" className="text-danger" />
                                         </div>
 

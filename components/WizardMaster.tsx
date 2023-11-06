@@ -36,6 +36,7 @@ import {
 import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
 import { ToastContainer, toast } from "react-toastify";
 import { setSignUpUserAccessToken } from "@/store/slices/auth_slice/signup_user_access_token_slice";
+import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
@@ -55,11 +56,14 @@ const WizardMaster = () => {
     academic_background:[],
     professional_experience:[],
   });
+  const {educationLevel , loading} = useEducationLevel();
+  console.log('form edu',educationLevel)
   const validateEmail = (email:any) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
   };
   
+
   // Validation function for password
   const validatePassword = (password:any) => {
     const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
@@ -358,6 +362,8 @@ console.log('signup form data',stepFormData);
             )}
             {currentStep === 5 && (
               <Step2of3ExtractedDataFromCv
+              educationLevel={educationLevel}
+              loading={loading}
               formData={stepFormData}
               onFormDataChange={handleFormDataChange}
               />
