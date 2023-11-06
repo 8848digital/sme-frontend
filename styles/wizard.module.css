@@ -26,7 +26,11 @@
     width: 100%;
     z-index: -1;
 }
-
+@media (max-width:578px){
+    .progress_bar_div div:nth-child(1){
+        margin-left: 45px !important;
+    }
+}
 .progress_bar{
     position: absolute !important;
     background-color: transparent !important;

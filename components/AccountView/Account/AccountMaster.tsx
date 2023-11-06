@@ -7,11 +7,11 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 const AccountMaster = () => {
   return (
     <div className="container">
-      <div className={`card row ${styles.account_wrapper} `}>
+      <div className={`card ${styles.account_wrapper} `}>
         <div className={`mb-4`}>
           <h1 className={`${styles.header_text}`}>Account</h1>
         </div>
-        <div className="row justify-content-evenly my-4">
+        <div className="row justify-content-evenly my-4 mx-2">
           {/* <div className="my-3 ">
             <Link href="/account/change-password" legacyBehavior>
               <a className="btn btn-signup font-size-3">Change Password</a>

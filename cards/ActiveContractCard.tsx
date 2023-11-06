@@ -14,7 +14,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
   return (
     <div className="row">
       {tabs === "table" && (
-        <div className="col-12">
+        <div className="col-12" style={{overflowX:"scroll"}}>
           <table className="table table-bordered">
             <thead className="p-2">
               <tr className="">
@@ -41,7 +41,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
                               <td className="text-center">
                                 <button
                                   className="btn btn-later"
-                                  style={{ width: "auto" }}
+                                  style={{ width: "auto",padding:"10px",margin:"0px" }}
                                   onClick={() =>
                                     openDescription(data, "description")
                                   }
