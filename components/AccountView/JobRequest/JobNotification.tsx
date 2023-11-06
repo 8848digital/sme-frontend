@@ -1,8 +1,6 @@
-import React from "react";
 import { useState } from "react";
 import JobDescription from "./JobDescription";
-import JobApprove from "./JobApprove";
-import JobThank from "./JobThank";
+// import JobApprove from "./JobApprove";
 import styles from "@/styles/account.module.css";
 import { useRouter } from "next/router";
 
@@ -48,7 +46,8 @@ const JobNotification = ({ jobRequestData }: any) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {jobRequestData && jobRequestData.length > 0 ? (
+                  {jobRequestData &&
+                    jobRequestData.length > 0 &&
                     jobRequestData.map((data: any, index: number) => {
                       return (
                         <>
@@ -70,21 +69,22 @@ const JobNotification = ({ jobRequestData }: any) => {
                                   openDescription(data, "description")
                                 }
                               >
-                                View Full{" "}
+                                View Full
                               </button>
                             </td>
                           </tr>
                         </>
                       );
-                    })
-                  ) : (
-                    <>
-                    <p>No Data Available</p>
-                    </>
-                  )
-                  }
+                    })}
                 </tbody>
               </table>
+              {jobRequestData && jobRequestData.length > 0 ? (
+                <></>
+              ) : (
+                <div className="text-center">
+                  <p>No Data Available</p>
+                </div>
+              )}
             </div>
           </>
         )}
