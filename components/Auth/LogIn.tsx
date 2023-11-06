@@ -108,7 +108,7 @@ const LogIn = () => {
                                                         name="usr"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder='Enter Email'
+                                                        placeholder='Enter Your Email'
                                                     />
                                                     <div className="row">
                                                         <div className="col-12">
@@ -131,7 +131,7 @@ const LogIn = () => {
                                                         name="password"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder='Enter Password'
+                                                        placeholder='Enter Your Password'
                                                         InputProps={{
                                                             endAdornment: (
                                                                 <InputAdornment position="end">
