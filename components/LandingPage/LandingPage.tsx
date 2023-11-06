@@ -148,7 +148,7 @@ const LandingPage = () => {
                     className="img-fluid"
                   />
                 </div>
-                <div className={`${styles.social_link}`}>
+                {/* <div className={`${styles.social_link}`}>
                   <Link href={`${landingData?.social_links[2]?.linkedin}`} target="_blank">
                     <LinkedInIcon
                       fontSize="large"
@@ -165,7 +165,7 @@ const LandingPage = () => {
                       className="text-dark mx-1"
                     />
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           ) : (
