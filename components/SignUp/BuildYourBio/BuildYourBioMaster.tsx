@@ -21,12 +21,15 @@ import SelectTechnicalSkills from "./SelectTechnicalSkills";
 import UploadPhoto from "./UploadPhoto";
 import styles from "@/styles/bio.module.css";
 import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
+import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
+import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 const BuildYourBioMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const dispatch = useDispatch();
   const BuildYourBioData = useSelector(form_details_from_store);
   const getBioData = useSelector(bio_data_store);
-
+  const { ourSkill, loading } = useFetchOurTechnicalSkills();
+  const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
   // console.log(BuildYourBioData);
   const router = useRouter();
   const [bioData, setBioData] = useState<any>({
@@ -163,12 +166,16 @@ const BuildYourBioMaster = () => {
               )}
               {currentStep === 3 && (
                 <SelectTechnicalSkills
+                ourSkill={ourSkill}
+                loading={loading}
                   bioData={bioData}
                   onFormDataChange={handleBioDataChange}
                 />
               )}
               {currentStep === 4 && (
                 <SelectLanguageSkills
+                ourLanguage={ourLanguage}
+                loading={loadingLanguage}
                   bioData={bioData}
                   onFormDataChange={handleBioDataChange}
                 />

@@ -17,12 +17,12 @@ const useFetchOurLanguage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (language.data) {
+
       setOurLanguage(language?.data);
-    }
+    
   }, [language]);
 
-  return { ourLanguage, loading:language?.loading };
+  return { ourLanguage, loadingLanguage:language?.loading };
 };
 
 export default useFetchOurLanguage;

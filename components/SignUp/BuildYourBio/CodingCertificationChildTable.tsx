@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "@/styles/bio.module.css";
+import wizard_styles from "../../../styles/wizard.module.css";
 interface Certification {
   certification_name: string;
   issuing_organization: string;
@@ -98,7 +99,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                   />
                 </div>
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                  <button type="button" className="btn btn-danger" onClick={() => removeRow(index)}>
+                  <button type="button" className={`btn ${wizard_styles.btn_delete_row}`} onClick={() => removeRow(index)}>
                     Delete
                   </button>
                 </div>
@@ -107,7 +108,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
             <div className="row">
               <div className="col-md-9"></div>
               <div className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}>
-                <button type="button" className="btn btn-success" onClick={addRow}>
+                <button type="button" className={`btn ${wizard_styles.btn_add_row}`} onClick={addRow}>
                   Add Row
                 </button>
               </div>

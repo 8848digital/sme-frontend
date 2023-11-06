@@ -3,11 +3,11 @@ import styles from "@/styles/bio.module.css";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 import Loaders from "@/components/Loaders";
 import LoaderForSkills from "@/components/LoaderForSkills";
-const SelectLanguageSkills = ({ bioData, onFormDataChange }: any) => {
+const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loading }: any) => {
   // Use a unique identifier for key to help React identify each checkbox
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
-  const { ourLanguage, loading } = useFetchOurLanguage();
+  // const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
   // Synchronize the state with bioData prop when it changes
   useEffect(() => {
     if (!initialized && bioData && bioData.language) {

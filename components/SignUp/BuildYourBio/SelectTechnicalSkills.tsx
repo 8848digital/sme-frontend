@@ -4,10 +4,10 @@ import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hoo
 import Loaders from "@/components/Loaders";
 import LoaderForSkills from "@/components/LoaderForSkills";
 
-const SelectTechnicalSkills = ({ bioData, onFormDataChange }: any) => {
+const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}: any) => {
   const [technical, setTechnical] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
-  const { ourSkill, loading } = useFetchOurTechnicalSkills();
+  // const { ourSkill, loading } = useFetchOurTechnicalSkills();
 
   useEffect(() => {
     if (!initialized && bioData && bioData.technical_skills) {

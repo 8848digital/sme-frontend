@@ -18,9 +18,9 @@ const useFetchOurTechnicalSkills = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (technical?.loading) {
+  
       setOurSkill(technical?.data);
-    }
+    
   }, [technical]);
 
   return { ourSkill, loading: technical?.loading };
