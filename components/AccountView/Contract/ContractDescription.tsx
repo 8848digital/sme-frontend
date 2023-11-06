@@ -84,7 +84,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
 
                 <button
                   className="btn btn-later"
-                  style={{ width: "auto" }}
+                  style={{ width: "auto",padding:"10px", margin:"0" }}
                   onClick={() => { openDescription(tableValue) }}
                 >
                   View Less
