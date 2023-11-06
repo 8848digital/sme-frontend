@@ -4,7 +4,7 @@ import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hoo
 import Loaders from "@/components/Loaders";
 import LoaderForSkills from "@/components/LoaderForSkills";
 
-const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}: any) => {
+const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }: any) => {
   const [technical, setTechnical] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
   // const { ourSkill, loading } = useFetchOurTechnicalSkills();
@@ -42,7 +42,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}
   }
   return (
     <div className="container">
-      {loading  ? (
+      {loading ? (
         <>
           <Loaders />
         </>
@@ -65,21 +65,23 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}
                     style={{ minHeight: "8rem", overflowY: "scroll" }}
                   >
                     {
-                      ourSkill?.map((skills: any, index: number) => (
-                        <div key={index} className="form-check form-check-inline">
-                          <input
-                            type="checkbox"
-                            id={skills.name}
-                            value={skills.name}
-                            checked={technical.includes(skills.name)}
-                            onChange={() => handleCheckboxChange(skills.name)}
-                            className="form-check-input"
-                          />
-                          <label htmlFor={skills.name} className="form-check-label">
-                            {skills.name}
-                          </label>
-                        </div>
-                      ))
+                      ourSkill && (
+                        ourSkill?.map((skills: any, index: number) => (
+                          <div key={index} className="form-check form-check-inline">
+                            <input
+                              type="checkbox"
+                              id={skills.name}
+                              value={skills.name}
+                              checked={technical.includes(skills.name)}
+                              onChange={() => handleCheckboxChange(skills.name)}
+                              className="form-check-input"
+                            />
+                            <label htmlFor={skills.name} className="form-check-label">
+                              {skills.name}
+                            </label>
+                          </div>
+                        ))
+                      )
                     }
 
                   </div>
@@ -96,7 +98,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange , ourSkill , loading}
                         </div>
                       </div>
                       <div className="col-8">
-                        <input type="text" className="form-control" id="other_tech_skills" placeholder="Enter Other Technical Skills" onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData?.other_technical_skills}/>
+                        <input type="text" className="form-control" id="other_tech_skills" placeholder="Enter Other Technical Skills" onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData?.other_technical_skills} />
                         <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
                           (Add other technical skills comma-separated like, Ruby, Python, etc...)
                         </div>

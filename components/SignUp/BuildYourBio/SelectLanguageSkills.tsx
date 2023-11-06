@@ -3,7 +3,7 @@ import styles from "@/styles/bio.module.css";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 import Loaders from "@/components/Loaders";
 import LoaderForSkills from "@/components/LoaderForSkills";
-const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loading }: any) => {
+const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading }: any) => {
   // Use a unique identifier for key to help React identify each checkbox
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
@@ -37,7 +37,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loadin
     onFormDataChange(
       "other_languages", otherLanguages);
   }
- 
+
   return (
     <div className="container">
       {loading ? (
@@ -62,7 +62,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loadin
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ height: "12rem", overflowY: "scroll" }}
                   >
-                  {
+                    {ourLanguage && (
                       ourLanguage?.map((language: any, index: number) => (
                         <div key={index} className="form-check form-check-inline">
                           <input
@@ -78,7 +78,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loadin
                           </label>
                         </div>
                       ))
-                    }
+                    )}
 
                   </div>
                 </form>
@@ -90,11 +90,11 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange , ourLanguage , loadin
                       <div className="col-4 ">
                         <div className="text-end mt-1">
 
-                         <label htmlFor="exampleFormControlInput1">Other Languages</label>
+                          <label htmlFor="exampleFormControlInput1">Other Languages</label>
                         </div>
                       </div>
                       <div className="col-8">
-                        <input type="text" className="form-control" id="other_language" placeholder="Enter Other Languges" onChange={(e:any)=>{handleOtherLanguages(e)}} value={bioData.other_languages}/>
+                        <input type="text" className="form-control" id="other_language" placeholder="Enter Other Languges" onChange={(e: any) => { handleOtherLanguages(e) }} value={bioData.other_languages} />
                         <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
                           (Add other languages comma-separated like, Arabic, English, etc...)
                         </div>
