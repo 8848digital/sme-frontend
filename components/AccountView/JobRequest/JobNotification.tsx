@@ -36,7 +36,7 @@ const JobNotification = ({ jobRequestData }: any) => {
         </div>
         {tabs === "table" && (
           <>
-            <div className="col-12">
+            <div className="col-12" style={{overflowX:"scroll"}}>
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">
