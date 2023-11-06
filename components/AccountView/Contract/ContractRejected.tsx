@@ -13,7 +13,7 @@ const ContractRejected = () => {
               <img src={rejectImg.src} alt="" width="100px" />
             </div>
           <h4 className="color">
-            You Have Successfully Rejected this Job Request.
+            You Have Successfully Rejected this Contract.
           </h4>
 
           </div>

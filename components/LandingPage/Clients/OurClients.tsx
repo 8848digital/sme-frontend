@@ -79,14 +79,13 @@ const clients = [
 ];
 
 const OurClients = ({ landingData }: any) => {
-  console.log(landingData.length);
   return (
     <div className="container mb-3">
       <div className="row">
         <div className="text-center">
           {/* <h2>Our Clients</h2> */}
           <Slider {...settings}>
-            {landingData.map((client: any, index: any) => (
+            {landingData && landingData.map((client: any, index: any) => (
               <div key={index}>
                 <a
                   href={client.link_url}

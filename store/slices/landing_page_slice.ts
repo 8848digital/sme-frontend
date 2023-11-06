@@ -16,7 +16,7 @@ const initialState: {
 
 // Create an asynchronous thunk for fetching the landing Page
 export const fetchLandingPage = createAsyncThunk(
-    "fetchLandingPage",
+    "landingPage/fetchLandingPage",
     async () => {
         try {
               const response = await LandingPageApi()

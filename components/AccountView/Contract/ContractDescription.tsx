@@ -118,7 +118,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                 onClick={handleApproveClick}
                 disabled={data.status === 'Active' || data.status === 'Rejected'}
               >
-                {data.status === 'Active' ? 'Approved' : 'Approve'}
+                {data.status === 'Active' ? 'Active' : 'Sign'}
               </button>
             </div>
             {/* <div className="col-md-4">

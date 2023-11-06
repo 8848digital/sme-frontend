@@ -7,27 +7,29 @@ import styles from "@/styles/wizard.module.css";
 
 // Define the shape of a certification object
 interface Certification {
-  certification_level: string;
+  education_level: string;
   year: string; // Change the type to string
   gpa: string;
 }
 
-const AcademicChildTable: React.FC<{ formData: any; onFormDataChange: (fieldName: string, value: any) => void }> = ({
+const AcademicChildTable: React.FC<{educationLevel:any ,loading:boolean ,  formData: any; onFormDataChange: (fieldName: string, value: any) => void }> = ({
   formData,
   onFormDataChange,
+  educationLevel,
+  loading
 }) => {
   const initialCertifications: Certification[] = formData.academic_background && formData.academic_background.length > 0
     ? formData.academic_background
     : [
         {
-          certification_level: '',
+          education_level: '',
           year: '', // Change the initial year value to an empty string
           gpa: '1',
         },
       ];
 
   const [certifications, setCertifications] = useState<Certification[]>(initialCertifications);
-
+console.log('form edu in wizard',educationLevel)
   const notifySuccess = (message: string) => {
     toast.success(message);
   };
@@ -55,7 +57,7 @@ const AcademicChildTable: React.FC<{ formData: any; onFormDataChange: (fieldName
   };
 
   const addRow = () => {
-    setCertifications([...certifications, { certification_level: '', year: '', gpa: '1' }]);
+    setCertifications([...certifications, { education_level: '', year: '', gpa: '1' }]);
   };
 
   const removeRow = (index: number) => {
@@ -101,14 +103,22 @@ const AcademicChildTable: React.FC<{ formData: any; onFormDataChange: (fieldName
                   /> */}
                   <select
                     name={`certification_level[${index}]`}
-                    value={cert.certification_level}
-                    onChange={(e) => handleCertificationChange(index, 'certification_level', e.target.value)}
+                    value={cert.education_level}
+                    onChange={(e) => handleCertificationChange(index, 'education_level', e.target.value)}
                   className={`${styles.input_custom_class}`}
                   >
                      <option value="">Select</option>
-                    <option value="bachelor's">Bachelor's</option>
-                    <option value="master's">Master's</option>
-                    <option value="doctor's">Doctor's</option>
+                     {
+                      educationLevel && educationLevel.map((data:any , index:any)=>{
+                        return (
+                          <>
+                           <option value={data?.name}>{data?.name}</option>
+                          </>
+                        )
+                      })
+                     }
+                   
+                    
                     
                   </select>
                 </div>
