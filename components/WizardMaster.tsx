@@ -362,7 +362,7 @@ console.log('signup form data',stepFormData);
             )}
             {currentStep === 5 && (
               <Step2of3ExtractedDataFromCv
-              educationLevel={educationLevel}
+              educationLevel={educationLevel?.data}
               loading={loading}
               formData={stepFormData}
               onFormDataChange={handleFormDataChange}

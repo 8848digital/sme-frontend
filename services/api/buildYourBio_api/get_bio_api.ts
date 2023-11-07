@@ -1,13 +1,13 @@
 import axios from "axios";
 import { CONSTANTS } from "@/services/config/api-config";
 
-const GetBioAPI = async (token?: any) => {
+const GetBioAPI = async (token?: any , langauge?:any) => {
     let response: any
     const version = CONSTANTS.VERSION
     const method = "get_bio"
     const entity = "profile"
 
-    const params = `?version=${version}&method=${method}&entity=${entity}`
+    const params = `?version=${version}&method=${method}&entity=${entity}&language=${langauge}`
     const config = {
         headers: {
             Accept: "application/json",

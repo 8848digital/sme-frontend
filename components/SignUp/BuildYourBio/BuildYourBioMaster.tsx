@@ -166,7 +166,7 @@ const BuildYourBioMaster = () => {
               )}
               {currentStep === 3 && (
                 <SelectTechnicalSkills
-                ourSkill={ourSkill}
+                ourSkill={ourSkill?.data}
                 loading={loading}
                   bioData={bioData}
                   onFormDataChange={handleBioDataChange}
@@ -174,7 +174,7 @@ const BuildYourBioMaster = () => {
               )}
               {currentStep === 4 && (
                 <SelectLanguageSkills
-                ourLanguage={ourLanguage}
+                ourLanguage={ourLanguage?.data}
                 loading={loadingLanguage}
                   bioData={bioData}
                   onFormDataChange={handleBioDataChange}

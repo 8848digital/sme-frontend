@@ -13,10 +13,11 @@ const initialState: {
 }
 
 export const fetchBio = createAsyncThunk(
-    "fetch/fetchBio",
-    async ({token}: any) => {
+    "bio/fetchBio",
+    async ({token , language_abbr}:any) => {
+        console.log('bio thunk',language_abbr)
         try {
-            const response = await GetBioAPI(token)
+            const response = await GetBioAPI(token.token , language_abbr)
             return response
         } catch (error) {
             throw error
