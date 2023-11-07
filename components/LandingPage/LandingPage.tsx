@@ -88,7 +88,7 @@ const LandingPage = () => {
       }
     }
   }, [language_selector_from_redux, landingData]);
-  console.log(language_selector_from_redux);
+
 
   return (
     <>

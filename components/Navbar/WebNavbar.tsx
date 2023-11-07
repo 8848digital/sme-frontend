@@ -1,4 +1,4 @@
-"use client";
+
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -69,7 +69,6 @@ const WebNavbar = () => {
 
   const { HandleLangToggle, language_selector_from_redux } =
     useFetchOurHtmlLanguage();
-  console.log(language_selector_from_redux);
   return (
     <>
       <div
@@ -136,7 +135,7 @@ const WebNavbar = () => {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckDefault"
-                  checked={!language_selector_from_redux?.languageToggle}
+                  checked={language_selector_from_redux?.languageToggle}
                   onChange={HandleLangToggle}
                 />
               </div>
