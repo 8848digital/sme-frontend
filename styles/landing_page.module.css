@@ -1,11 +1,11 @@
 .landing_wrapper {
     background-color: #ffffff;
-    /* margin-top: 150px; */
-    /* height: 100vh; */
+    /* margin-top: 70px; */
+    height: 100vh;
 }
 
 .landing_content{
-    margin-top: 120px;
+    margin-top: 100px;
     /* margin-bottom: 150px; */
 }
 .landing_details h1{
@@ -84,4 +84,12 @@
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+}
+
+/* media query */
+
+@media screen and (max-width: 992px) {
+    .landing_wrapper {  
+        height: 100% !important;
+    }
 }

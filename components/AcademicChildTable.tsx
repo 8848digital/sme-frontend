@@ -10,6 +10,7 @@ interface Certification {
   education_level: string;
   year: string; // Change the type to string
   gpa: string;
+  gpa_out_of:string;
 }
 
 const AcademicChildTable: React.FC<{educationLevel:any ,loading:boolean ,  formData: any; onFormDataChange: (fieldName: string, value: any) => void }> = ({
@@ -24,7 +25,8 @@ const AcademicChildTable: React.FC<{educationLevel:any ,loading:boolean ,  formD
         {
           education_level: '',
           year: '', // Change the initial year value to an empty string
-          gpa: '1',
+          gpa: '',
+          gpa_out_of:''
         },
       ];
 
@@ -57,7 +59,7 @@ console.log('form edu in wizard',educationLevel)
   };
 
   const addRow = () => {
-    setCertifications([...certifications, { education_level: '', year: '', gpa: '1' }]);
+    setCertifications([...certifications, { education_level: '', year: '', gpa: '',gpa_out_of:'' }]);
   };
 
   const removeRow = (index: number) => {
@@ -83,13 +85,16 @@ console.log('form edu in wizard',educationLevel)
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
                 <strong>Education Level</strong>
               </div>
-              <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+              <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
                 <strong>Year</strong>
+              </div>
+              <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
+                <strong>GPA Out of</strong>
               </div>
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
                 <strong>GPA</strong>
               </div>
-              <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}></div>
+              <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}></div>
             </div>
             {certifications.map((cert, index) => (
               <div className="row mb-3" key={index}>
@@ -105,7 +110,7 @@ console.log('form edu in wizard',educationLevel)
                     name={`certification_level[${index}]`}
                     value={cert.education_level}
                     onChange={(e) => handleCertificationChange(index, 'education_level', e.target.value)}
-                  className={`${styles.input_custom_class}`}
+                  className={`${styles.input_custom_class_academic}`}
                   >
                      <option value="">Select</option>
                      {
@@ -122,31 +127,40 @@ console.log('form edu in wizard',educationLevel)
                     
                   </select>
                 </div>
-                <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
                   <DatePicker
                     selected={cert.year ? new Date(cert.year) : null}
                     placeholderText="Select Year"
                     onChange={(date: Date | null) => handleCertificationChange(index, 'year', date)}
                     showYearPicker
                     dateFormat="yyyy"
-                    className={`${styles.input_custom_class}`}
+                    className={`${styles.input_custom_class_academic}`}
+                  
                   />
                 </div>
-                <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
                   <select
-                    name={`gpa[${index}]`}
-                    value={cert.gpa}
-                    onChange={(e) => handleCertificationChange(index, 'gpa', e.target.value)}
-                    className={`${styles.input_custom_class}`}
+                    name={`gpa_out_of[${index}]`}
+                    value={cert.gpa_out_of}
+                    onChange={(e) => handleCertificationChange(index, 'gpa_out_of', e.target.value)}
+                    // className={`${styles.input_custom_class_academic}`}
                   >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                     <option value="">Select</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
                 </div>
                 <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
+                <input
+                    type="text"
+                    name={`gpa[${index}]`}
+                    placeholder="Enter Grade"
+                    value={cert.gpa}
+                    onChange={(e) => handleCertificationChange(index, 'gpa', e.target.value)}
+                    className={`${styles.input_custom_class_academic}`}
+                  />
+                </div>
+                <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
                   <button type="button" className={`btn ${styles.btn_delete_row}`} onClick={() => removeRow(index)}>
                     Delete Row
                   </button>
@@ -154,8 +168,8 @@ console.log('form edu in wizard',educationLevel)
               </div>
             ))}
             <div className="row">
-              <div className="col-md-9"></div>
-              <div className={`col-md-3 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
+              <div className="col-md-10"></div>
+              <div className={`col-md-2 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
                 <button type="button" className={`btn ${styles.btn_add_row}`} onClick={addRow}>
                   Add Row
                 </button>
