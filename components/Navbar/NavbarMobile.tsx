@@ -5,151 +5,182 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import logoImg from "../../public/assets/SG_logo.svg"
+import logoImg from "../../public/assets/SG_logo.svg";
 import LogoutList from "@/services/api/auth_api/logout_api";
-import { ClearToken, get_access_token } from "@/store/slices/auth_slice/login_slice";
-import LogoutIcon from '@mui/icons-material/Logout';
+import {
+  ClearToken,
+  get_access_token,
+} from "@/store/slices/auth_slice/login_slice";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { resetFormData } from "@/store/slices/form_slice";
 import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
 import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { persistor } from "@/store/store";
+import useFetchOurHtmlLanguage from "@/hooks/language_hook";
 const NavbarMobile = () => {
-    const router = useRouter();
-    const dispatch = useDispatch();
-    const [isSticky, setIsSticky] = useState(false);
-    const login = useSelector(get_access_token);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [isSticky, setIsSticky] = useState(false);
+  const login = useSelector(get_access_token);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-    const [LoggedIn, setLoggedIn] = useState<any>(false);
-
-    let isLoggedIn: any;
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            isLoggedIn = localStorage.getItem("LoggedIn");
-            setLoggedIn(isLoggedIn);
-        }
-    }, [router])
-    const handleLogOut = () => {
-        LogoutList();
-        dispatch(ClearToken());
-        dispatch(resetFormData());
-        dispatch(setResetBuildBioData());
-        dispatch(clearBioData());
-        localStorage.removeItem("LoggedIn");
-        console.log("Logged out");
-        toast.success("Logout successful", {
-            autoClose: 3000,
-            className: "custom-toast", // Close the notification after 3 seconds
-        });
-        dispatch({ type: "Login/LogoutSuccess" });
-        setTimeout(() => {
-            router.push("/");
-        },5);
-        console.log("logout called");
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
     };
 
-    return (
-        <>
-            <div
-                className={`site-wrapper overflow-hidden ${isSticky ? "sticky" : ""}`}
-            >
-                <header
-                    className={`site-header site-header--menu-right ${isSticky ? "sticky" : ""
-                        } py-7 py-lg-0 site-header--absolute site-header--sticky`}
-                >
-                    <div className="container">
-                        <nav className="navbar row site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
-                            <div className="col-5">
-                                <div className="brand-logo">
-                                    <Link href="/">
-                                        <img
-                                            src={logoImg.src}
-                                            alt=""
-                                            width={120}
-                                            height={100}
-                                        />
-                                    </Link>
-                                </div>
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-                            </div>
-                            <div className="col-7 text-end">
-                                <div className="navbar-nav-wrapper">
-                                    {
-                                        LoggedIn === "true" ? (
-                                            <>
-                                                <ul className="navbar-nav main-menu align-items-center">
-                                                    <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/account-view">
-                                                            Bio
-                                                        </Link>
-                                                    </li>
-                                                    <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/job-request">
-                                                            Job request
-                                                        </Link>
-                                                    </li>
-                                                    <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/contract">
-                                                            Contract
-                                                        </Link>
-                                                    </li>
-                                                    <li className="nav-item">
-                                                        <Link className="nav-link p-0" href="/account">
-                                                            Account
-                                                        </Link>
-                                                    </li>
-                                                    <Link href='' legacyBehavior>
-                                                        <a onClick={handleLogOut} className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                                                        <LogoutIcon style={{color:'#00578a' , fontSize:'18px'}}/> <span style={{color:'#00578a'}}>Log out</span> 
-                                                        </a>
-                                                    </Link>
+  const [LoggedIn, setLoggedIn] = useState<any>(false);
 
-                                                </ul>
-                                            </>
-                                        ) : (<>
-                                            <ul className="navbar-nav main-menu align-items-center">
-                                                <li className="nav-item">
-                                                    <Link href="/login" legacyBehavior>
-                                                        <a className="btn p-0 btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                                                            Log in
-                                                        </a>
-                                                    </Link>
-                                                </li>
-                                                <li className="nav-item">
-                                                    <Link href="/signup-start" legacyBehavior>
-                                                        <a className="btn btn-signup text-uppercase font-size-3">
-                                                            Sign up
-                                                        </a>
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        </>)
-                                    }
+  let isLoggedIn: any;
 
-                                </div>
-                            </div>
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      isLoggedIn = localStorage.getItem("LoggedIn");
+      setLoggedIn(isLoggedIn);
+    }
+  }, [router]);
+  const handleLogOut = () => {
+    LogoutList();
+    dispatch(ClearToken());
+    dispatch(resetFormData());
+    dispatch(setResetBuildBioData());
+    dispatch(clearBioData());
+    localStorage.removeItem("LoggedIn");
+    console.log("Logged out");
+    toast.success("Logout successful", {
+      autoClose: 3000,
+      className: "custom-toast", // Close the notification after 3 seconds
+    });
+    dispatch({ type: "Login/LogoutSuccess" });
+    setTimeout(() => {
+      router.push("/");
+    }, 5);
+    console.log("logout called");
+  };
+  const { HandleLangToggle, language_selector_from_redux } =
+    useFetchOurHtmlLanguage();
 
-                        </nav>
-                    </div>
-                </header>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div
+        className={`site-wrapper overflow-hidden ${isSticky ? "sticky" : ""}`}
+      >
+        <header
+          className={`site-header site-header--menu-right ${
+            isSticky ? "sticky" : ""
+          } py-7 py-lg-0 site-header--absolute site-header--sticky`}
+        >
+          <div className="container">
+            <nav className="navbar row site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
+              <div className="col-5">
+                <div className="brand-logo">
+                  <Link href="/">
+                    <img src={logoImg.src} alt="" width={120} height={100} />
+                  </Link>
+                </div>
+              </div>
+              <div className="col-7 text-end">
+                <div className="navbar-nav-wrapper">
+                  {LoggedIn === "true" ? (
+                    <>
+                      <ul className="navbar-nav main-menu align-items-center">
+                        <li className="nav-item">
+                          <Link className="nav-link p-0" href="/account-view">
+                            Bio
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link p-0" href="/job-request">
+                            Job request
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link p-0" href="/contract">
+                            Contract
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link p-0" href="/account">
+                            Account
+                          </Link>
+                        </li>
+                        <Link href="" legacyBehavior>
+                          <a
+                            onClick={handleLogOut}
+                            className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
+                          >
+                            <LogoutIcon
+                              style={{ color: "#00578a", fontSize: "18px" }}
+                            />{" "}
+                            <span style={{ color: "#00578a" }}>Log out</span>
+                          </a>
+                        </Link>
+                      </ul>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-center">
+                        <div
+                          className={` form-switch fs-6 rtl-toggle-section  px-0 mx-2  `}
+                        >
+                          <input
+                            className="form-check-input mx-2 language_cursor"
+                            type="checkbox"
+                            role="switch"
+                            id="flexSwitchCheckDefault"
+                            checked={
+                              language_selector_from_redux?.languageToggle
+                            }
+                            onChange={HandleLangToggle}
+                          />
+                        </div>
+                        <Link
+                          href=""
+                          className={`col-md-1 text-center header-btn-devider language_cursor`}
+                          onClick={HandleLangToggle}
+                        >
+                          <span style={{ color: "#00578a" }}>
+                            {!language_selector_from_redux?.languageToggle
+                              ? "English"
+                              : "عربي"}
+                          </span>
+                        </Link>
+                      </div>
+                      <ul className="navbar-nav main-menu align-items-center">
+                        <li className="nav-item">
+                          <Link href="/login" legacyBehavior>
+                            <a className="btn p-0 btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
+                              Log in
+                            </a>
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link href="/signup-start" legacyBehavior>
+                            <a className="btn btn-signup text-uppercase font-size-3">
+                              Sign up
+                            </a>
+                          </Link>
+                        </li>
+                      </ul>
+                    </>
+                  )}
+                </div>
+              </div>
+            </nav>
+          </div>
+        </header>
+      </div>
+    </>
+  );
 };
 
 export default NavbarMobile;

@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 import favicon from "../public/favicon.ico"
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" dir="ltr">
       <Head>
         {/* Bootstrap Link */}
 

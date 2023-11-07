@@ -274,6 +274,16 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   background: var(--border-color-3);
 }
 
+[dir="rtl"] .header-btn-devider:before {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 25px;
+  width: 1px;
+  background: var(--border-color-3);
+}
+
 @media (min-width: 992px) {
   .header-btn-devider:before {
     content: "";
@@ -9340,3 +9350,6 @@ h2{
 /* slick slider css */
 
 
+.language_cursor{
+  cursor: pointer;
+}

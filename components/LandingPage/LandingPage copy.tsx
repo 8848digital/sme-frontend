@@ -3,7 +3,7 @@ import landingImg from "../../public/assets/landing-img.jpg";
 import styles from "@/styles/landing_page.module.css";
 
 const LandingPage: React.FC = () => {
-    const data = {
+    const englishData = {
         "heading_name1": "We are the trusted consulting partner for SMEs who want to achieve their growth goals",
         "short_description": "With our many years of experience, we have helped SMEs to grow, increase their profitability, and become more competitive",
         "image": landingImg,
