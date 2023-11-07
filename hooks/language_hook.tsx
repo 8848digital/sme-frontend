@@ -13,7 +13,7 @@ const useFetchOurHtmlLanguage = () => {
 
   const HandleLangToggle = (event: any) => {
     // console.log("handletoggle", event?.target?.checked);
-    if (language_selector_from_redux.languageToggle === true) {
+    if (language_selector_from_redux.languageToggle === false) {
       const slicePayload: any = {
         languageToggle: !language_selector_from_redux.languageToggle,
         language_abbr: "ar",

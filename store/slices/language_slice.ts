@@ -12,7 +12,7 @@ const initialState: LanguageState = {
 };
 
 const languageSlice = createSlice({
-  name: "navbar",
+  name: "htmlLanguage",
   initialState,
   reducers: {
     languageSliceData(state: any, action: any) {
