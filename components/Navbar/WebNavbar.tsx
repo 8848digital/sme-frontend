@@ -135,7 +135,7 @@ const WebNavbar = () => {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckDefault"
-                  checked={language_selector_from_redux?.languageToggle}
+                  checked={!language_selector_from_redux?.languageToggle}
                   onChange={HandleLangToggle}
                 />
               </div>
@@ -144,11 +144,11 @@ const WebNavbar = () => {
                 className={`col-md-1 text-center header-btn-devider language_cursor`}
                 onClick={HandleLangToggle}
               >
-                <span style={{ color: "#00578a" }}>
+                {/* <span style={{ color: "#00578a" }}>
                   {language_selector_from_redux?.languageToggle
                     ? "عربي"
                     : "English"}
-                </span>
+                </span> */}
               </Link>
               <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6">
                 {LoggedIn === "true" ? (

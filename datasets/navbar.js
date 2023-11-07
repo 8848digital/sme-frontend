@@ -9,7 +9,7 @@ export const navbarData = {
       href: "/job-request",
     },
     {
-      name: "Job request",
+      name: "Contract",
       href: "/contract",
     },
     {

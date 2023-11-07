@@ -29,7 +29,7 @@ const useFetchOurHtmlLanguage = () => {
     }
   };
   const checkSelectedLang = () => {
-    if (language_selector_from_redux?.languageToggle) {
+    if (!language_selector_from_redux?.languageToggle) {
       document.documentElement.dir = "rtl";
     } else {
       document.documentElement.dir = "ltr";
