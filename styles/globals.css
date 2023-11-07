@@ -8913,6 +8913,7 @@ background: none !important;
   display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* height: 100vh; */
 }
 
 .footer{
@@ -9216,7 +9217,7 @@ h2{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 200px auto;
+  margin: 150px auto;
 }
 
 .start-later-wrapper {
@@ -9224,7 +9225,7 @@ h2{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 200px auto;
+  margin: 150px auto;
 }
 
 .input-filed-height {
