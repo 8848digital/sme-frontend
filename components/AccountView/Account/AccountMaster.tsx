@@ -29,7 +29,7 @@ const AccountMaster = () => {
           </div> */}
           <div className={`col-md-3 text-center ${styles.account_card}`}>
             <div className="mb-4">
-              <SupportAgentIcon className={`${styles.account_card_icon}`} />
+              <SupportAgentIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
             </div>
             <div className="">
               <Link
@@ -44,7 +44,7 @@ const AccountMaster = () => {
           </div>
           <div className={`col-md-3 text-center ${styles.account_card} `}>
             <div className="mb-4">
-              <EditIcon className={`${styles.account_card_icon}`} />
+              <EditIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
             </div>
             <div className="">
               <Link href="/account/change-password" legacyBehavior>
@@ -54,7 +54,7 @@ const AccountMaster = () => {
           </div>
           <div className={`col-md-3 text-center ${styles.account_card}`}>
             <div className="mb-4">
-              <DeleteOutlineIcon className={`${styles.account_card_icon}`} />
+              <DeleteOutlineIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
             </div>
             <div className="">
               <Link href="/account/account-delete" legacyBehavior>
