@@ -2,8 +2,11 @@ import React from "react";
 import thankyouImg from "../../public/assets/thankyou-1.png";
 import thankyouImg1 from "../../public/assets/tv1.png";
 import Link from "next/link";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 
 const ThankYou = () => {
+  const { translationData, translationLoading } = useTranslationText();
+
   return (
     <div className="container">
       <div className="row">
@@ -14,12 +17,12 @@ const ThankYou = () => {
             </div>
             <div className="">
               <h2>
-                Thank you for your interest in working with strategic gears !!!
+               {translationData?.thankyou_description}
               </h2>
             </div>
             <div>
               <Link href="/" className="btn btn-signup ">
-                Go To Home
+                {translationData?.go_to_home_btn}
               </Link>
             </div>
           </div>

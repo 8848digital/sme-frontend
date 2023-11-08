@@ -1,4 +1,5 @@
 import ContractDescription from "@/components/AccountView/Contract/ContractDescription";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React ,{useState} from "react";
@@ -8,6 +9,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
+  const { translationData, translationLoading } = useTranslationText();
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
     setTabs(tabs);
@@ -20,9 +22,9 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
           <table className="table table-bordered">
             <thead className="p-2">
               <tr className="">
-                <th>Project Name</th>
-                <th className="text-center">Status</th>
-                <th className="text-center">Action</th>
+                <th>{translationData?.project_name}</th>
+                <th className="text-center">{translationData?.status}</th>
+                <th className="text-center">{translationData?.action}</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +50,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                                     openDescription(data, "description")
                                   }
                                 >
-                                  View Full
+                                 {translationData?.view_full_btn}
                                 </button>
                                 {/* <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link> */}
                               </td>
@@ -66,7 +68,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
             <></>
           ) : (
             <div className="text-center">
-              <p>No Data Available</p>
+              <p>{translationData?.no_data_available}</p>
             </div>
           )}
         </div>

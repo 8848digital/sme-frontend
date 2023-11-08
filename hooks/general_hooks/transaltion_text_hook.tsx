@@ -22,7 +22,7 @@ const useTranslationText = () => {
     }
   }, [TranslationTextFromStore]);
 
-  return {translationData , loading :TranslationTextFromStore?.loading};
+  return {translationData , translationLoading:TranslationTextFromStore?.loading};
 };
 
 export default useTranslationText;

@@ -17,11 +17,13 @@ import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
 import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { persistor } from "@/store/store";
 import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const NavbarMobile = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [isSticky, setIsSticky] = useState(false);
   const login = useSelector(get_access_token);
+  const { translationData, translationLoading } = useTranslationText();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,22 +97,22 @@ const NavbarMobile = () => {
                       <ul className="navbar-nav main-menu align-items-center">
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account-view">
-                            Bio
+                            {translationData?.bio}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/job-request">
-                            Job request
+                            {translationData?.job_request}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/contract">
-                            Contract
+                            {translationData?.contract}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account">
-                            Account
+                            {translationData?.account}
                           </Link>
                         </li>
                         <Link href="" legacyBehavior>
@@ -121,7 +123,7 @@ const NavbarMobile = () => {
                             <LogoutIcon
                               style={{ color: "#00578a", fontSize: "18px" }}
                             />{" "}
-                            <span style={{ color: "#00578a" }}>Log out</span>
+                            <span style={{ color: "#00578a" }}>{translationData?.log_out}</span>
                           </a>
                         </Link>
                       </ul>
@@ -159,14 +161,14 @@ const NavbarMobile = () => {
                         <li className="nav-item">
                           <Link href="/login" legacyBehavior>
                             <a className="btn p-0 btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                              Log in
+                              {translationData?.login}
                             </a>
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link href="/signup-start" legacyBehavior>
                             <a className="btn btn-signup text-uppercase font-size-3">
-                              Sign up
+                            {translationData?.signup}
                             </a>
                           </Link>
                         </li>

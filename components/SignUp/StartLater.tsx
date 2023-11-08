@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Link from 'next/link';
 import subscriptionApi from '@/services/api/general_api/subscription_api';
 import { toast } from 'react-toastify';
+import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
 
 interface FormValues {
     usr: string;
@@ -44,6 +45,7 @@ const StartLater = () => {
             setSubmitting(false);
         }
     };
+  const { translationData, translationLoading } = useTranslationText();
 
     return (
         <div className="container">
@@ -51,11 +53,11 @@ const StartLater = () => {
 
                 <div className="col-12">
                     <div className='start-later-wrapper card p-4 shadow-lg' style={{ maxWidth: '800px', height: '400px' }}>
-                        <h1>Sign Up In Just 3 Easy Steps!</h1>
-                        <h2 className='mb-5'>Complete your registration in less than 2 minutes and get started!</h2>
+                        <h1>{translationData?.signup_header}</h1>
+                        <h2 className='mb-5'>{translationData?.signup_description}</h2>
                         <div className="">
-                            <Link href='/wizard-master' className='btn btn-signup me-5'>Start</Link>
-                            <Link href='/' className='btn btn-later'>Later</Link>
+                            <Link href='/wizard-master' className='btn btn-signup me-5'>{translationData?.start}</Link>
+                            <Link href='/' className='btn btn-later'>{translationData?.later}</Link>
                         </div>
 
                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
@@ -68,12 +70,12 @@ const StartLater = () => {
                                             {/* <label htmlFor="email">
                                             Email Address<span className="text-danger">*</span>
                                         </label> */}
-                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder='Enter Your Email' />
+                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder={translationData?.email_placeholder} />
                                             <ErrorMessage name="usr" component="div" className="text-danger" />
                                         </div>
 
                                         <button type="submit" className='btn btn-secondary  background' disabled={isSubmitting}>
-                                            Send
+                                            {translationData?.send}
                                         </button>
                                     </div>
 

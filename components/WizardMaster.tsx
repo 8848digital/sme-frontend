@@ -37,12 +37,14 @@ import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
 import { ToastContainer, toast } from "react-toastify";
 import { setSignUpUserAccessToken } from "@/store/slices/auth_slice/signup_user_access_token_slice";
 import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const data = [1, 2, 3, 4, 5, 6, 7];
   const dispatch = useDispatch();
   const router = useRouter();
+  const { translationData, translationLoading } = useTranslationText();
   const [stepFormData, setStepFormData] = useState<any>({
     usr: '',
     password: '',
@@ -313,14 +315,14 @@ console.log('signup form data',stepFormData);
           <div className="row " style={{maxWidth:'800px',margin:'0 auto'}}>
             <div className="col-4 ">
               <div className="">
-                <h2 className="fs-3 text-white">Step {currentStep}</h2>
+                <h2 className="fs-3 text-white">{translationData?.step} {currentStep}</h2>
                 <hr className={styles.step_hr} />
               </div>
             </div>
             <div className="col-8 position-relative">
               <div className={styles.progress_bar_div}>
                 <div className="" style={{marginLeft:'109px'}}>
-                  <p className="mb-4 text-white">{currentStep} of 7 completed</p>
+                  <p className="mb-4 text-white">{currentStep} of 7 {translationData?.completed}</p>
                 </div>
 
                 <MobileStepper
@@ -395,7 +397,7 @@ console.log('signup form data',stepFormData);
                       onClick={handlePrevious}
                     >
                       <ArrowBackIcon />
-                      Previous
+                      {translationData?.previous}
                     </button>
                   )}
                   {currentStep < 7 ? (
@@ -403,12 +405,12 @@ console.log('signup form data',stepFormData);
                       className="btn btn-next d-flex align-items-center justify-content-center"
                       onClick={handleNext}
                     >
-                      Next
+                      {translationData?.next}
                       <ArrowForwardIcon />
                     </button>
                   ) : (
                     <button className="btn btn-next" onClick={handleSubmit}>
-                      Submit
+                      {translationData?.submit}
                     </button>
                   )}
                 </div>

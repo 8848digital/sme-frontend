@@ -8,6 +8,7 @@ import Link from "next/link";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import ChangePasswordAPI from "@/services/api/auth_api/change_password_api";
 import { toast } from 'react-toastify';
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 // import { RootState } from "../store/root_reducer";
 
 interface FormValues {
@@ -25,6 +26,8 @@ const ChangePassword = () => {
     new_password: "",
     confirmPassword: "",
   };
+
+  const { translationData, translationLoading } = useTranslationText();
   const handlesubmit = async (values: any, action: any) => {
     console.log('values', values)
     if (values.new_password !== values.confirmPassword) {
@@ -72,7 +75,7 @@ const ChangePassword = () => {
       <div className='container'>
         <div className={` card ${styles.auth_common_wrapper}`}>
           <div className="page_heading text-center">
-            <h1 className='text-uppercase'>Change Your Password</h1>
+            <h1 className='text-uppercase'>{translationData?.change_password_header}</h1>
           </div>
           <Formik
             initialValues={initialValues}
@@ -87,7 +90,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            Old Password
+                            {translationData?.change_password_old}
                           </label>
                         </div>
                       </div>
@@ -98,7 +101,7 @@ const ChangePassword = () => {
                           className="form-control"
                           name="old_password"
                           onChange={handleChange}
-                          placeholder='Enter Old Password'
+                          placeholder={translationData?.change_password_old_placeholder}
                         />
                         <br />
                         <div className="error_message">
@@ -111,7 +114,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            New Password:
+                           {translationData?.change_password_new}
                           </label>
                         </div>
                       </div>
@@ -122,7 +125,7 @@ const ChangePassword = () => {
                             className="form-control"
                             name="new_password"
                             onChange={handleChange}
-                            placeholder='Enter New Password'
+                            placeholder={translationData?.change_password_new_placeholder}
                           />
                           <br />
                           <div className="error_message">
@@ -135,7 +138,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            Confirm Password:
+                            {translationData?.change_password_confirm}
                           </label>
                         </div>
                       </div>
@@ -145,7 +148,7 @@ const ChangePassword = () => {
                           className="form-control"
                           name="confirmPassword"
                           onChange={handleChange}
-                          placeholder='Confirm New Password'
+                          placeholder={translationData?.change_password_confirm_placeholder}
                         />
                         <br />
                         <div className="error_message">
@@ -160,7 +163,7 @@ const ChangePassword = () => {
                        
                       >
                         <Link href="/" className="text-white" style={{textDecoration:'none'}}>
-                          Back
+                          {translationData?.back}
                         </Link>
                       </button>
                       <button
@@ -168,7 +171,7 @@ const ChangePassword = () => {
                         className='btn btn-signup'
                     
                       >
-                        Change Password
+                        {translationData?.change_password_btn}
                       </button>
                     </div>
                   </div>

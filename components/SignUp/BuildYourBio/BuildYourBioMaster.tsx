@@ -23,6 +23,7 @@ import styles from "@/styles/bio.module.css";
 import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
 import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const BuildYourBioMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const BuildYourBioMaster = () => {
   const getBioData = useSelector(bio_data_store);
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
+  const { translationData, translationLoading } = useTranslationText();
   // console.log(BuildYourBioData);
   const router = useRouter();
   const [bioData, setBioData] = useState<any>({
@@ -127,7 +129,7 @@ const BuildYourBioMaster = () => {
           <div className="row " style={{ maxWidth: "800px", margin: "0 auto" }}>
             <div className="col-4 ">
               <div className="">
-                <h2 className="fs-3 text-white">Step {currentStep}</h2>
+                <h2 className="fs-3 text-white">{translationData?.step} {currentStep}</h2>
                 <hr className={wizardStyles.step_hr} />
               </div>
             </div>
@@ -135,7 +137,7 @@ const BuildYourBioMaster = () => {
               <div className={wizardStyles.progress_bar_div}>
                 <div className="" style={{ marginLeft: "109px" }}>
                   <p className="mb-4 text-white">
-                    {currentStep} of 5 completed
+                    {currentStep} {translationData?.of} 5 {translationData?.completed}
                   </p>
                 </div>
 
@@ -201,7 +203,7 @@ const BuildYourBioMaster = () => {
                       onClick={handlePrevious}
                     >
                       <ArrowBackIcon />
-                      Previous
+                      {translationData?.previous}
                     </button>
                   )}
                   {currentStep < 5 ? (
@@ -209,12 +211,12 @@ const BuildYourBioMaster = () => {
                       className="btn btn-next d-flex align-items-center justify-content-center"
                       onClick={handleNext}
                     >
-                      Next
+                      {translationData?.next}
                       <ArrowForwardIcon />
                     </button>
                   ) : (
                     <button className="btn btn-next" onClick={handleSubmit}>
-                      Submit
+                      {translationData?.submit}
                     </button>
                   )}
                 </div>

@@ -10,11 +10,13 @@ import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_sl
 import styles from "@/styles/account.module.css";
 import UpdateContractAPI from "@/services/api/contract_api/update_contract_api";
 import { fetchContractList } from "@/store/slices/contract_slice/get_contract_slice";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const ContractDescription = ({ data, openDescription }: any) => {
 
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
+  const { translationData, translationLoading } = useTranslationText();
   const token = useSelector(get_access_token);
   console.log('profile token', token.token);
   let approveStatus = 'Approved'
@@ -67,9 +69,9 @@ const ContractDescription = ({ data, openDescription }: any) => {
         <table className="table table-bordered">
           <thead className="p-2">
             <tr className="">
-              <th>Project Name</th>
-              <th className="text-center">Status</th>
-              <th className="text-center">Action</th>
+              <th>{translationData?.project_name}</th>
+              <th className="text-center">{translationData?.status}</th>
+              <th className="text-center">{translationData?.action}</th>
             </tr>
           </thead>
           <tbody>
@@ -105,7 +107,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                   style={{ width: "auto" }}
                 // onClick={handleReadContractClick}
                 >
-                  Read Full Contract
+                  {translationData?.read_full_contract}
                 </button>
               </Link>
             </div>
@@ -118,7 +120,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                 onClick={handleApproveClick}
                 disabled={data.status === 'Active' || data.status === 'Rejected'}
               >
-                {data.status === 'Active' ? 'Active' : 'Sign'}
+                {data.status === `${translationData?.contract_active}` ? `${translationData?.contract_active}` : `${translationData?.sign}`}
               </button>
             </div>
             {/* <div className="col-md-4">

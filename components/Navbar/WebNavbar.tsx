@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
@@ -18,6 +16,7 @@ import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { persistor } from "@/store/store";
 import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import { navbarData } from "@/datasets/navbar";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const WebNavbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -69,6 +68,7 @@ const WebNavbar = () => {
 
   const { HandleLangToggle, language_selector_from_redux } =
     useFetchOurHtmlLanguage();
+  const { translationData, translationLoading } = useTranslationText();
   return (
     <>
       <div
@@ -90,13 +90,26 @@ const WebNavbar = () => {
                 {LoggedIn === "true" ? (
                   <div className="navbar-nav-wrapper">
                     <ul className="navbar-nav main-menu">
-                      {navbarData?.navbar.map((data: any, index: number) => (
-                        <li className="nav-item">
-                          <Link className="nav-link p-0" href={`${data.href}`}>
-                            {data.name}
-                          </Link>
-                        </li>
-                      ))}
+                      <li className="nav-item">
+                        <Link className="nav-link p-0" href="/account-view">
+                          {translationData?.bio}
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link p-0" href="/job-request">
+                          {translationData?.job_request}
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link p-0" href="/contract">
+                          {translationData?.contract}
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link p-0" href="/account">
+                          {translationData?.account}
+                        </Link>
+                      </li>
 
                       {/* <li className="nav-item">
                         <Link className="nav-link p-0" href="/job-request">
@@ -121,10 +134,12 @@ const WebNavbar = () => {
               </div>
               <Link href="/" legacyBehavior className="d-block ">
                 <a
-                  className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset "
-                  style={{ padding: "35px 0 33px 0" }}
+                  className="btn text-uppercase "
+                  style={{ padding: "0px 10px", minWidth: "auto" }}
                 >
-                  <span style={{ color: "#00578a" }}>Home</span>
+                  <span style={{ color: "#00578a" }}>
+                    {translationData?.home_btn}
+                  </span>
                 </a>
               </Link>
               <div
@@ -139,17 +154,17 @@ const WebNavbar = () => {
                   onChange={HandleLangToggle}
                 />
               </div>
-              <Link
+              {/* <Link
                 href=""
                 className={`col-md-1 text-center header-btn-devider language_cursor`}
                 onClick={HandleLangToggle}
               >
-                {/* <span style={{ color: "#00578a" }}>
+                <span style={{ color: "#00578a" }}>
                   {language_selector_from_redux?.languageToggle
                     ? "عربي"
                     : "English"}
-                </span> */}
-              </Link>
+                </span>
+              </Link> */}
               <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6">
                 {LoggedIn === "true" ? (
                   ""
@@ -164,7 +179,9 @@ const WebNavbar = () => {
                       className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
                       style={{ padding: "35px 0 33px 0" }}
                     >
-                      <span style={{ color: "#00578a" }}> Log in</span>
+                      <span style={{ color: "#00578a" }}>
+                        {translationData?.login}
+                      </span>
                     </a>
                   </Link>
                 )}
@@ -178,14 +195,16 @@ const WebNavbar = () => {
                         <LogoutIcon
                           style={{ color: "#00578a", fontSize: "18px" }}
                         />{" "}
-                        <span style={{ color: "#00578a" }}>Log out</span>
+                        <span style={{ color: "#00578a" }}>
+                          {translationData?.log_out}
+                        </span>
                       </a>
                     </Link>
                   </div>
                 ) : (
                   <Link href="/signup-start" legacyBehavior>
                     <a className="btn btn-signup text-uppercase font-size-3">
-                      Sign up
+                      {translationData?.signup}
                     </a>
                   </Link>
                 )}

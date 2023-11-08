@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ContractDescription from "@/components/AccountView/Contract/ContractDescription";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
   console.log("job contract active in card", filteredContractsActiveUnsigned);
   const [tabs, setTabs] = useState<any>("table");
@@ -10,7 +11,9 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
     setTabs(tabs);
+
   };
+  const { translationData, translationLoading } = useTranslationText();
   return (
     <div className="row">
       {tabs === "table" && (
@@ -18,9 +21,9 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
           <table className="table table-bordered">
             <thead className="p-2">
               <tr className="">
-                <th>Project Name</th>
-                <th className="text-center">Status</th>
-                <th className="text-center">Action</th>
+                <th>{translationData?.project_name}</th>
+                <th className="text-center">{translationData?.status}</th>
+                <th className="text-center">{translationData?.action}</th>
               </tr>
             </thead>
             <tbody>
@@ -46,7 +49,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
                                     openDescription(data, "description")
                                   }
                                 >
-                                  View Full
+                                  {translationData?.view_full_btn}
                                 </button>
                                 {/* <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link> */}
                               </td>
@@ -64,7 +67,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
             <></>
           ) : (
             <div className="text-center">
-              <p>No Data Available</p>
+              <p>{translationData?.no_data_available}</p>
             </div>
           )}
         </div>

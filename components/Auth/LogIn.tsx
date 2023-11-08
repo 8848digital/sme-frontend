@@ -19,6 +19,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
 
 const LogIn = () => {
     const [message, setMessage] = useState("");
@@ -32,6 +33,8 @@ const LogIn = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const tokenFromStore = useSelector(get_access_token);
+
+    const { translationData, translationLoading } = useTranslationText();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -95,7 +98,7 @@ const LogIn = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <h1 className="text-center">Login</h1>
+                                        <h1 className="text-center">{translationData?.login_header}</h1>
                                     </div>
                                     <div className="col-lg-12">
                                         <Form.Group controlId="formName">
@@ -108,7 +111,7 @@ const LogIn = () => {
                                                         name="usr"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder='Enter Your Email'
+                                                        placeholder={translationData?.email_placeholder}
                                                     />
                                                     <div className="row">
                                                         <div className="col-12">
@@ -131,7 +134,7 @@ const LogIn = () => {
                                                         name="password"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder='Enter Your Password'
+                                                        placeholder={translationData?.password_placeholder}
                                                         InputProps={{
                                                             endAdornment: (
                                                                 <InputAdornment position="end">
@@ -155,12 +158,12 @@ const LogIn = () => {
 
                                         <div className={`${isAlertVisible === true ? 'login_btn' : ""} mt-4 mb-3 text-center`}>
                                             <button type="submit" className={` btn btn-signup`}>
-                                                <LockOutlinedIcon /> Log in
+                                                <LockOutlinedIcon /> {translationData?.login}
                                             </button><br />
                                         </div>
 
                                         <div className='text-center'>
-                                            <span className='label-color'>Forget Password? <Link href="/forget-password" legacyBehavior><a>Click Here</a></Link></span>
+                                            <span className='label-color'>{translationData?.login_forget_text} <Link href="/forget-password" legacyBehavior><a>{translationData?.login_forget_link}</a></Link></span>
                                         </div>
                                     </div>
 

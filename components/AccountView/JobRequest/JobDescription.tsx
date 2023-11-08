@@ -6,6 +6,7 @@ import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const JobDescription = ({ jobData, onclick }: any) => {
 const [jobCost , setJobCost] = useState<number>()
 console.log('job cost',jobCost)
@@ -57,12 +58,14 @@ console.log('job cost',jobCost)
   const isDisabledButton = (status: string) => {
     return status === 'Received' || status === 'Rejected';
   };
+
+  const { translationData, translationLoading } = useTranslationText();
   return (
     <div className="container">
       <div className="job-desc-wrapper border p-3 rounded">
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Project Id </h2>
+            <h2 className="border-end">{jobData.project_id} </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_id}</h4>
@@ -71,7 +74,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Project Name </h2>
+            <h2 className="border-end">{translationData?.project_name} </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_name}</h4>
@@ -80,7 +83,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Client Name </h2>
+            <h2 className="border-end">{translationData?.job_request_client_name} </h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.client_name}</h4>
@@ -89,7 +92,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Duration</h2>
+            <h2 className="border-end">{translationData?.job_request_duration}</h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.duration}</h4>
@@ -98,7 +101,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Supplier</h2>
+            <h2 className="border-end">{translationData?.job_request_supplier}</h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.supplier}</h4>
@@ -107,7 +110,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Total Payment</h2>
+            <h2 className="border-end">{translationData?.job_request_payment}</h2>
           </div>
           <div className="col-6 text-center">
           <h4 className="text-capitalize">{jobData.total_payment}</h4>
@@ -116,7 +119,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">Job Cost</h2>
+            <h2 className="border-end">{translationData?.job_request_cost}</h2>
           </div>
           <div className="col-6 text-center">
             <div className="mb-3">
@@ -141,7 +144,7 @@ console.log('job cost',jobCost)
                   style={{ width: "auto" }}
                 // onClick={handleReadContractClick}
                 >
-                  Read Full Contract
+                  {translationData?.read_full_contract}
                 </button>
               </Link>
             </div>
@@ -177,7 +180,7 @@ console.log('job cost',jobCost)
                 onClick={handleApproveClick}
                 disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                {jobData.status === 'Received' ? 'Received' : 'Approve'}
+                {jobData.status === `${translationData?.received_btn}` ? `${translationData?.received_btn}` : `${translationData?.approve}`}
               </button>
             </div>
             <div className="col-md-4">
@@ -187,7 +190,7 @@ console.log('job cost',jobCost)
                 onClick={handleRejectClick}
                 disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                {jobData.status === 'Rejected' ? 'Rejected' : 'Reject'}
+                {jobData.status === `${translationData?.reject_btn}` ? `${translationData?.reject_btn}` : `${translationData?.rejected}`}
               </button>
             </div>
           </div>

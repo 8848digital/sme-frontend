@@ -8,6 +8,7 @@ import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { SignUpUserAccessToken_from_store } from "@/store/slices/auth_slice/signup_user_access_token_slice";
 import { CONSTANTS } from "@/services/config/api-config";
 import LoaderForSkills from "@/components/LoaderForSkills";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 
 const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -19,6 +20,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [fileURL, setFileURL] = useState<any>(bioData?.photo_url || null);
 
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
+  const { translationData, translationLoading } = useTranslationText();
   console.log(signuptoken);
   const loginToken: any = useSelector(get_access_token);
   console.log(loginToken);  
@@ -86,8 +88,8 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-2">
-              <h1>Start Building Your Bio</h1>
-              <h2>Upload Your Photo Here</h2>
+              <h1>{translationData?.build_your_bio_step1_header}</h1>
+              <h2>{translationData?.build_your_bio_step1_description}</h2>
             </div>
             <div className="mt-5 text-center">
               <form onSubmit={handleSubmit}>
@@ -114,7 +116,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                           <div className="upload-circle">
                             <i className="fas fa-upload "></i>
                           </div>
-                          Upload Photo
+                          {translationData?.upload_photo}
                         </label>
                         <input
                           id="input-file"

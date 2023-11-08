@@ -3,10 +3,12 @@ import styles from "@/styles/bio.module.css";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 import Loaders from "@/components/Loaders";
 import LoaderForSkills from "@/components/LoaderForSkills";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading }: any) => {
   // Use a unique identifier for key to help React identify each checkbox
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
+  const { translationData, translationLoading } = useTranslationText();
   // const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
   // Synchronize the state with bioData prop when it changes
   useEffect(() => {
@@ -52,7 +54,7 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
           <div className="row">
             <div className="col-12">
               <div className="text-center">
-                <h1>Languages</h1>
+                <h1>{translationData?.build_your_bio_step4_header}</h1>
               </div>
             </div>
             <div className="row justify-content-center">
@@ -90,13 +92,13 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
                       <div className="col-md-4 ">
                         <div className="text-md-end text-center mt-1">
 
-                          <label htmlFor="exampleFormControlInput1">Other Languages</label>
+                          <label htmlFor="exampleFormControlInput1">{translationData?.build_your_bio_step4_input_label}</label>
                         </div>
                       </div>
                       <div className="col-md-8">
-                        <input type="text" className="form-control" id="other_language" placeholder="Enter Other Languges" onChange={(e:any)=>{handleOtherLanguages(e)}} value={bioData.other_languages}/>
+                        <input type="text" className="form-control" id="other_language" placeholder={translationData?.build_your_bio_step4_input_placeholder} onChange={(e:any)=>{handleOtherLanguages(e)}} value={bioData.other_languages}/>
                         <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
-                          (Add other languages comma-separated like, Arabic, English, etc...)
+                          {translationData?.build_your_bio_step4_input_tag}
                         </div>
                       </div>
                     </div>
