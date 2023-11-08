@@ -154,7 +154,7 @@ const WebNavbar = () => {
                   onChange={HandleLangToggle}
                 />
               </div>
-              {/* <Link
+              <Link
                 href=""
                 className={`col-md-1 text-center header-btn-devider language_cursor`}
                 onClick={HandleLangToggle}
@@ -164,7 +164,7 @@ const WebNavbar = () => {
                     ? "عربي"
                     : "English"}
                 </span>
-              </Link> */}
+              </Link>
               <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6">
                 {LoggedIn === "true" ? (
                   ""
