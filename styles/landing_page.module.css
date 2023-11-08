@@ -1,16 +1,16 @@
 .landing_wrapper {
     background-color: #ffffff;
     /* margin-top: 70px; */
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .landing_content{
-    margin-top: 100px;
+    margin-top: 70px;
     /* margin-bottom: 150px; */
 }
-.landing_details h1{
+/* .landing_details h1{
     width: 70%;
-}
+} */
 .landing_details{
     display: flex;
     justify-content: center;
@@ -50,15 +50,15 @@
 /* let started button */
 .get_started_btn {
     text-align: center;
-    margin: 40px 0;
+    margin: 48px 0;
 }
 .get_started_btn .btn {
-    background-color: #ffffff;
-    color:#00578A;
+    background-color:  #00578A;
+    color:#ffffff;
     border: 0.5px solid #00578A;
     border-radius: 3px;
     font-size: 18px;
-    font-weight: 700;
+    /* font-weight: 700; */
     height: 40px;
     min-width: 240px;
     line-height: 28px;
@@ -68,12 +68,25 @@
     justify-content: center;
 }
 .get_started_btn .btn:hover {
-    background-color: #00578A ;
-    color:#ffffff;
+    background-color: #ffffff ;
+    color:#00578A;
    
 }
-
-
+/* .count_container {
+    width: 70px;
+    text-align: center;
+    position: relative;
+  } */
+/*   
+  .count_container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; 
+    background-color: grey; 
+  } */
 /* landing image */
 .landing_image_wrapper{
     margin-top: 50px;
@@ -83,7 +96,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    margin-bottom:20px;
 }
 
 /* media query */
@@ -92,4 +106,5 @@
     .landing_wrapper {  
         height: 100% !important;
     }
+
 }
