@@ -1,13 +1,13 @@
 import { CONSTANTS } from "@/services/config/api-config";
 import axios from "axios";
 
-const TechnicalSkillAPI = async () => {
+const TechnicalSkillAPI = async (language?:any) => {
     let response: any;
     const version = CONSTANTS.VERSION;
     const method = "get_technical_skills";
     const entity = "utils";
 
-    const params = `?version=${version}&method=${method}&entity=${entity}`;
+    const params = `?version=${version}&method=${method}&entity=${entity}&language=${language}`;
     const config = {
         headers: {
             Accept: "application/json",

@@ -17,9 +17,9 @@ const initialState: {
 // Create an asynchronous thunk for fetching the technical skills
 export const fetchLanguage = createAsyncThunk(
     "language/fetchLanguage",
-    async () => {
+    async ({language_abbr}:any) => {
         try {
-            const response = await LanguageApi();
+            const response = await LanguageApi(language_abbr);
             // console.log(response)
             return response;
         } catch (error) {

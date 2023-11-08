@@ -199,7 +199,7 @@ const LandingPage = () => {
                     </div>
                   </div>
                   <div className="col-12">
-                    <OurClients landingData={languageData.clients} />
+                    <OurClients landingData={languageData.clients_list} />
                   </div>
                 </div>
               </div>

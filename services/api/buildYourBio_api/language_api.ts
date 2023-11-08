@@ -1,13 +1,13 @@
 import { CONSTANTS } from "@/services/config/api-config";
 import axios from "axios";
 
-const LanguageApi = async () => {
+const LanguageApi = async (language:any) => {
     let response: any;
     const version = CONSTANTS.VERSION;
     const method = "get_languges";
     const entity = "utils";
 
-    const params = `?version=${version}&method=${method}&entity=${entity}`;
+    const params = `?version=${version}&method=${method}&entity=${entity}&language=${language}`;
     const config = {
         headers: {
             Accept: "application/json",
