@@ -16,7 +16,7 @@ import { resetFormData } from "@/store/slices/form_slice";
 import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
 import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { persistor } from "@/store/store";
-import useFetchOurHtmlLanguage from "@/hooks/language_hook";
+import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import { navbarData } from "@/datasets/navbar";
 const WebNavbar = () => {
   const router = useRouter();

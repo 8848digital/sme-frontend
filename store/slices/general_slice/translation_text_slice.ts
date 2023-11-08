@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store/root-reducer";
-import GetContractAPI from "@/services/api/contract_api/get_contract_api";
-import LandingPageApi from "@/services/api/general_api/landingPage_api";
+import StaticTranslationTextApi from "@/services/api/general_api/translation_text_api";
+
 
 // Define an initial state for your slice
 const initialState: {
@@ -15,11 +15,11 @@ const initialState: {
 };
 
 // Create an asynchronous thunk for fetching the landing Page
-export const fetchLandingPage = createAsyncThunk(
-    "landingPage/fetchLandingPage",
+export const fetchStaticTranslationText = createAsyncThunk(
+    "translationText/fetchStaticTranslationText",
     async ({language_abbr}:any) => {
         try {
-              const response = await LandingPageApi(language_abbr)
+              const response = await StaticTranslationTextApi(language_abbr)
               return response;
         } catch (error) {
             throw error;
@@ -28,23 +28,23 @@ export const fetchLandingPage = createAsyncThunk(
 );
 
 // Create a slice for the landing Page
-const landingSlice = createSlice({
-    name: "landingPage",
+const translationTextSlice = createSlice({
+    name: "translationText",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchLandingPage.pending, (state) => {
+            .addCase(fetchStaticTranslationText.pending, (state) => {
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(fetchLandingPage.fulfilled, (state, action) => {
+            .addCase(fetchStaticTranslationText.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
-                console.log('Landing data in slice', state.data);
+                console.log('translation text data in slice', state.data);
                 state.error = "";
             })
-            .addCase(fetchLandingPage.rejected, (state, action) => {
+            .addCase(fetchStaticTranslationText.rejected, (state, action) => {
                 state.loading = true;
                 state.data = [];
                 state.error = action.error.message || "An error occurred.";
@@ -52,6 +52,6 @@ const landingSlice = createSlice({
     },
 });
 
-export const landing_data_from_Store = (state: RootState) => state.landingPage;
+export const translation_text_from_Store = (state: RootState) => state.translationText;
 // Export the reducer
-export default landingSlice.reducer;
+export default translationTextSlice.reducer;

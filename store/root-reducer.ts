@@ -12,6 +12,7 @@ import contractSlice from "@/store/slices/contract_slice/get_contract_slice"
 import LandningSlice from "@/store/slices/landing_page_slice"
 import EducationLevelSlice from "@/store/slices/auth_slice/education_level_slice"
 import HTMLLanguageSlice from "@/store/slices/language_slice"
+import translationTextSlice from "@/store/slices/general_slice/translation_text_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -25,7 +26,8 @@ const appReducer = combineReducers({
   contractList:contractSlice,
   landingPage:LandningSlice,
   educationLevel:EducationLevelSlice,
-  htmlLanguage:HTMLLanguageSlice
+  htmlLanguage:HTMLLanguageSlice,
+  translationText:translationTextSlice
 });
 
 const rootReducer = (state: any, action: any) => {

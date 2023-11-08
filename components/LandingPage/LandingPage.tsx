@@ -8,12 +8,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { useRouter } from "next/router";
-import useLandingPage from "@/hooks/landingpage_hook";
+import useLandingPage from "@/hooks/general_hooks/landingpage_hook";
 import Loaders from "../Loaders";
 import LoaderForSkills from "../LoaderForSkills";
 import { CONSTANTS } from "@/services/config/api-config";
 import twitterIcon from "../../public/assets/icons8-twitter-50.png";
-import useFetchOurHtmlLanguage from "@/hooks/language_hook";
+import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import {staticData} from "@/datasets/staticData"
 const LandingPage = () => {
   const arabicData = {
@@ -70,47 +70,47 @@ const LandingPage = () => {
     }
   }, [router]);
 
-  const [languageData, setLanguageData] = useState<any>({});
-  const { HandleLangToggle, language_selector_from_redux } =
-    useFetchOurHtmlLanguage();
+  // const [landingData, setlandingData] = useState<any>({});
+  // const { HandleLangToggle, language_selector_from_redux } =
+  //   useFetchOurHtmlLanguage();
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const htmlTag = document.querySelector("html");
-      if (htmlTag) {
-        const dirAttribute = htmlTag.getAttribute("dir");
+  // useEffect(() => {
+  //   if (typeof document !== "undefined") {
+  //     const htmlTag = document.querySelector("html");
+  //     if (htmlTag) {
+  //       const dirAttribute = htmlTag.getAttribute("dir");
 
-        if (dirAttribute === "rtl") {
-          setLanguageData(arabicData);
-        } else {
-          setLanguageData(landingData);
-        }
-      }
-    }
-  }, [language_selector_from_redux, landingData]);
+  //       if (dirAttribute === "rtl") {
+  //         setlandingData(arabicData);
+  //       } else {
+  //         setlandingData(landingData);
+  //       }
+  //     }
+  //   }
+  // }, [language_selector_from_redux, landingData]);
 
 
   return (
     <>
       <div className={`${styles.landing_wrapper}`}>
         <div className={` container ${styles.landing_content}`}>
-          {!loading && languageData ? (
+          {!loading && landingData ? (
             <div className="row">
               <div className="col-md-8">
                 <div className="row">
                   <div className="col-12">
                     <div className={`${styles.landing_details} text-center`}>
-                      <h1>{languageData.heading_name1}</h1>
+                      <h1>{landingData.heading_name1}</h1>
                     </div>
                     <div className="short_desc text-center mt-4">
                       <h6 className="text-dark">
-                        {languageData?.short_description}
+                        {landingData?.short_description}
                       </h6>
                     </div>
                   </div>
                   <div className="col-12">
                     <div className="benefits_wrapper text-center mt-3">
-                      <h1>{languageData?.Heading_name2}</h1>
+                      <h1>{landingData?.Heading_name2}</h1>
                       <h6 className="text-dark">{staticData.landingPage.benefits_header}</h6>
                       <div className="count-circle mt-5">
                         <div className="row">
@@ -121,7 +121,7 @@ const LandingPage = () => {
                                   +
                                   <CountUp
                                     start={0}
-                                    end={languageData.total_projects}
+                                    end={landingData.total_projects}
                                     duration={4}
                                     separator=","
                                     useEasing={true}
@@ -139,7 +139,7 @@ const LandingPage = () => {
                                   +
                                   <CountUp
                                     start={0}
-                                    end={languageData.total_clients}
+                                    end={landingData.total_clients}
                                     duration={4}
                                     separator=","
                                     useEasing={true}
@@ -157,7 +157,7 @@ const LandingPage = () => {
                                   +
                                   <CountUp
                                     start={0}
-                                    end={languageData.total_smes}
+                                    end={landingData.total_smes}
                                     duration={4}
                                     separator=","
                                     useEasing={true}
@@ -184,7 +184,7 @@ const LandingPage = () => {
                             router.push("/signup-start");
                           }}
                         >
-                          {languageData?.label_for_button}
+                          {landingData?.label_for_button}
                         </button>
                       )}
                       <div className="about_services">
@@ -193,20 +193,20 @@ const LandingPage = () => {
                           className="color"
                           target="_blank"
                         >
-                          {languageData?.link_label}
+                          {landingData?.link_label}
                         </Link>
                       </div>
                     </div>
                   </div>
                   <div className="col-12">
-                    <OurClients landingData={languageData.clients_list} />
+                    <OurClients landingData={landingData.clients_list} />
                   </div>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className={`${styles.landing_image_wrapper}`}>
                   <img
-                    src={`${CONSTANTS.API_BASE_URL}${languageData?.image}`}
+                    src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
                     alt=""
                     className="img-fluid"
                   />

@@ -1,9 +1,9 @@
 export const staticData = {
   landingPage: {
-    benefits_header: "لدينا",
-    total_projects: "SMEs",
-    total_clients: "العملاء",
-    total_smes: "مشروع",
+    benefits_header: "We Have",
+    total_projects: "Projects",
+    total_clients: "Cleints",
+    total_smes: "SMEs",
   },
   login: {
     header: "Login",
