@@ -14,7 +14,7 @@ import LoaderForSkills from "../LoaderForSkills";
 import { CONSTANTS } from "@/services/config/api-config";
 import twitterIcon from "../../public/assets/icons8-twitter-50.png";
 import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
-import {staticData} from "@/datasets/staticData"
+import { staticData } from "@/datasets/staticData"
 const LandingPage = () => {
   const arabicData = {
     heading_name1:
@@ -96,13 +96,28 @@ const LandingPage = () => {
         <div className={` container ${styles.landing_content}`}>
           {!loading && landingData ? (
             <div className="row">
-              <div className="col-md-8">
+              <div className="col-md-12 text-center">
+
+                <div className={`${styles.landing_image_wrapper}`}>
+                  <img
+                    src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
+                    alt=""
+                    width='650px'
+                    height='200px'
+                    style={{ objectFit: 'cover' }}
+                  // className="img-fluid"
+                  />
+
+                </div>
+                <hr />
+              </div>
+              <div className="col-md-12">
                 <div className="row">
                   <div className="col-12">
                     <div className={`${styles.landing_details} text-center`}>
                       <h1>{landingData.heading_name1}</h1>
                     </div>
-                    <div className="short_desc text-center mt-4">
+                    <div className="short_desc text-center">
                       <h6 className="text-dark">
                         {landingData?.short_description}
                       </h6>
@@ -110,62 +125,72 @@ const LandingPage = () => {
                   </div>
                   <div className="col-12">
                     <div className="benefits_wrapper text-center mt-3">
-                      <h1>{landingData?.Heading_name2}</h1>
+                      <h4 className="color">{landingData?.Heading_name2}</h4>
                       <h6 className="text-dark">{staticData.landingPage.benefits_header}</h6>
                       <div className="count-circle mt-5">
                         <div className="row">
                           <div className="col-md-4">
-                            <div className={`${styles.count_item_wrapper}`}>
-                              <div className={`${styles.count_item}`}>
-                                <h3>
-                                  +
-                                  <CountUp
-                                    start={0}
-                                    end={landingData.total_projects}
-                                    duration={4}
-                                    separator=","
-                                    useEasing={true}
-                                    useGrouping={true}
-                                  />
-                                </h3>
-                                <h5>{staticData.landingPage.total_projects}</h5>
+                            <div className="d-flex flex-column justify-content-center align-items-end">
+
+                              <div className={`${styles.count_item_wrapper}`}>
+                                <div className='d-flex justify-content-center align-items-center border-bottom'>
+                                  <div className={`${styles.count_container}`}> {/* Wrap the count in a container */}
+                                    <h3 className="d-flex">
+                                      <CountUp
+                                        start={0}
+                                        end={landingData.total_projects}
+                                        duration={4}
+                                        separator=","
+                                        useEasing={true}
+                                        useGrouping={true}
+                                      /> +
+                                    </h3>
+                                  </div>
+                                </div>
                               </div>
+                              <h5>{staticData.landingPage.total_projects}</h5>
                             </div>
                           </div>
                           <div className="col-md-4">
                             <div className={`${styles.count_item_wrapper}`}>
-                              <div className={`${styles.count_item}`}>
-                                <h3>
-                                  +
-                                  <CountUp
-                                    start={0}
-                                    end={landingData.total_clients}
-                                    duration={4}
-                                    separator=","
-                                    useEasing={true}
-                                    useGrouping={true}
-                                  />
-                                </h3>
-                                <h5>{staticData.landingPage.total_clients}</h5>
+                              <div className='d-flex justify-content-center align-items-center border-bottom'>
+                                <div className={`${styles.count_container}`}> {/* Wrap the count in a container */}
+                                  <h3 className="d-flex">
+                                    <CountUp
+                                      start={0}
+                                      end={landingData.total_clients}
+                                      duration={4}
+                                      separator=","
+                                      useEasing={true}
+                                      useGrouping={true}
+                                    /> +
+                                  </h3>
+                                </div>
                               </div>
                             </div>
+                            <h5>{staticData.landingPage.total_clients}</h5>
                           </div>
                           <div className="col-md-4">
+                            <div className="d-flex flex-column justify-content-center align-items-start">
+
+
                             <div className={`${styles.count_item_wrapper}`}>
-                              <div className={`${styles.count_item}`}>
-                                <h3>
-                                  +
-                                  <CountUp
-                                    start={0}
-                                    end={landingData.total_smes}
-                                    duration={4}
-                                    separator=","
-                                    useEasing={true}
-                                    useGrouping={true}
-                                  />
-                                </h3>
-                                <h5>{staticData.landingPage.total_smes}</h5>
+                              <div className='d-flex justify-content-center align-items-center border-bottom'>
+                                <div className={`${styles.count_container}`}> {/* Wrap the count in a container */}
+                                  <h3 className="d-flex">
+                                    <CountUp
+                                      start={0}
+                                      end={landingData.total_smes}
+                                      duration={4}
+                                      separator=","
+                                      useEasing={true}
+                                      useGrouping={true}
+                                    /> +
+                                  </h3>
+                                </div>
                               </div>
+                            </div>
+                            <h5>{staticData.landingPage.total_smes}</h5>
                             </div>
                           </div>
                         </div>
@@ -178,7 +203,7 @@ const LandingPage = () => {
                         ""
                       ) : (
                         <button
-                          className={`${styles.btn}`}
+                          className={`text-uppercase ${styles.btn}`}
                           type="button"
                           onClick={() => {
                             router.push("/signup-start");
@@ -187,7 +212,7 @@ const LandingPage = () => {
                           {landingData?.label_for_button}
                         </button>
                       )}
-                      <div className="about_services">
+                      <div className="about_services" style={{ fontSize: '14px', marginTop: '10px' }}>
                         <Link
                           href="https://strategicgears.com/index.php/services/strategy-management"
                           className="color"
@@ -203,15 +228,15 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className={`${styles.landing_image_wrapper}`}>
+              <div className="">
+                {/* <div className={`${styles.landing_image_wrapper}`}>
                   <img
                     src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
                     alt=""
                     className="img-fluid"
                   />
-                </div>
-                {/* <div className={`${styles.social_link}`}>
+                </div> */}
+                <div className={`${styles.social_link}`}>
                   <Link href={`${landingData?.social_links[2]?.linkedin}`} target="_blank">
                     <LinkedInIcon
                       fontSize="large"
@@ -220,7 +245,7 @@ const LandingPage = () => {
                     />
                   </Link>
                   <Link href={`${landingData?.social_links[0]?.twitter}`} target="_blank">
-                    <img src={twitterIcon.src} alt="" style={{width: '2.1875rem'}}/>
+                    <img src={twitterIcon.src} alt="" style={{ width: '2.1875rem' }} />
                   </Link>
                   <Link href={`${landingData?.social_links[1]?.instagram}`} target="_blank">
                     <InstagramIcon
@@ -228,7 +253,7 @@ const LandingPage = () => {
                       className="text-dark mx-1"
                     />
                   </Link>
-                </div> */}
+                </div>
               </div>
             </div>
           ) : (
