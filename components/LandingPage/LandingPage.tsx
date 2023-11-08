@@ -15,29 +15,30 @@ import { CONSTANTS } from "@/services/config/api-config";
 import twitterIcon from "../../public/assets/icons8-twitter-50.png";
 import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import { staticData } from "@/datasets/staticData"
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 const LandingPage = () => {
-  const arabicData = {
-    heading_name1:
-      "نحن الشريك الاستشاري الموثوق به للشركات الصغيرة والمتوسطة التي ترغب في تحقيق أهداف النمو الخاصة بها",
-    short_description:
-      "بفضل سنوات خبرتنا العديدة، ساعدنا الشركات الصغيرة والمتوسطة على النمو وزيادة ربحيتها وتصبح أكثر قدرة على المنافسة",
-    image: landingImg,
-    social_links: [
-      {
-        twitter: "https://twitter.com/",
-      },
-      {
-        "linked-in": "https://www.linkedin.com/",
-      },
-    ],
-    Heading_name2: "فيما يلي بعض الفوائد في العمل معًا",
-    total_projects: 100,
-    total_clients: 50,
-    total_smes: 25,
-    link_label: "أعرف أكثر عن خدماتنا",
-    url_for_link_label: "https://example.com/services",
-    label_for_button: "هيا بنا نبدأ",
-  };
+  // const arabicData = {
+  //   heading_name1:
+  //     "نحن الشريك الاستشاري الموثوق به للشركات الصغيرة والمتوسطة التي ترغب في تحقيق أهداف النمو الخاصة بها",
+  //   short_description:
+  //     "بفضل سنوات خبرتنا العديدة، ساعدنا الشركات الصغيرة والمتوسطة على النمو وزيادة ربحيتها وتصبح أكثر قدرة على المنافسة",
+  //   image: landingImg,
+  //   social_links: [
+  //     {
+  //       twitter: "https://twitter.com/",
+  //     },
+  //     {
+  //       "linked-in": "https://www.linkedin.com/",
+  //     },
+  //   ],
+  //   Heading_name2: "فيما يلي بعض الفوائد في العمل معًا",
+  //   total_projects: 100,
+  //   total_clients: 50,
+  //   total_smes: 25,
+  //   link_label: "أعرف أكثر عن خدماتنا",
+  //   url_for_link_label: "https://example.com/services",
+  //   label_for_button: "هيا بنا نبدأ",
+  // };
   //   const englishData = {
   //     "heading_name1": "We are the trusted consulting partner for SMEs who want to achieve their growth goals",
   //     "short_description": "With our many years of experience, we have helped SMEs to grow, increase their profitability, and become more competitive",
@@ -61,6 +62,8 @@ const LandingPage = () => {
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
   const { landingData, loading } = useLandingPage();
+  const { translationData, translationLoading } = useTranslationText();
+
   console.log(loading);
   let isLoggedIn: any;
   useEffect(() => {
@@ -126,7 +129,7 @@ const LandingPage = () => {
                   <div className="col-12">
                     <div className="benefits_wrapper text-center mt-3">
                       <h4 className="color">{landingData?.Heading_name2}</h4>
-                      <h6 className="text-dark">{staticData.landingPage.benefits_header}</h6>
+                      <h6 className="text-dark">{translationData?.landingPage_header}</h6>
                       <div className="count-circle mt-5">
                         <div className="row">
                           <div className="col-md-4">
@@ -148,7 +151,7 @@ const LandingPage = () => {
                                   </div>
                                 </div>
                               </div>
-                              <h5>{staticData.landingPage.total_projects}</h5>
+                              <h5>{translationData?.landingPage_project}</h5>
                             </div>
                           </div>
                           <div className="col-md-4">
@@ -168,7 +171,7 @@ const LandingPage = () => {
                                 </div>
                               </div>
                             </div>
-                            <h5>{staticData.landingPage.total_clients}</h5>
+                            <h5>{translationData?.landingPage_client}</h5>
                           </div>
                           <div className="col-md-4">
                             <div className="d-flex flex-column justify-content-center align-items-start">
@@ -190,7 +193,7 @@ const LandingPage = () => {
                                 </div>
                               </div>
                             </div>
-                            <h5>{staticData.landingPage.total_smes}</h5>
+                            <h5>{translationData?.landingPage_sme}</h5>
                             </div>
                           </div>
                         </div>
