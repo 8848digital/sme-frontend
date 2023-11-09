@@ -13,6 +13,8 @@ import LandningSlice from "@/store/slices/landing_page_slice"
 import EducationLevelSlice from "@/store/slices/auth_slice/education_level_slice"
 import HTMLLanguageSlice from "@/store/slices/language_slice"
 import translationTextSlice from "@/store/slices/general_slice/translation_text_slice"
+import PriceBasisSlice from "@/store/slices/general_slice/price_basis_slice"
+import PreferencesSlice from "@/store/slices/general_slice/get_preferences_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -27,7 +29,9 @@ const appReducer = combineReducers({
   landingPage:LandningSlice,
   educationLevel:EducationLevelSlice,
   htmlLanguage:HTMLLanguageSlice,
-  translationText:translationTextSlice
+  translationText:translationTextSlice,
+  priceBasis:PriceBasisSlice,
+  preferences:PreferencesSlice,
 });
 
 const rootReducer = (state: any, action: any) => {

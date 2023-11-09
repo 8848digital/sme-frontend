@@ -102,20 +102,21 @@ console.log(translationDataFromStore)
         <div className={` container ${styles.landing_content}`}>
           {!loading && landingData ? (
             <div className="row">
-              <div className="col-md-12 text-center">
+              <div className="col-md-12 mt-3">
+                <div className={`${styles.image_section}`}>
 
                 <div className={`${styles.landing_image_wrapper}`}>
                   <img
                     src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
                     alt=""
-                    width='650px'
-                    height='200px'
-                    style={{ objectFit: 'cover' }}
-                  // className="img-fluid"
+                    width='450px'
+                    // height='200px'
+                    // style={{ objectFit: 'cover' }}
+                  className="img-fluid"
                   />
-
                 </div>
-                <hr />
+                </div>
+
               </div>
               <div className="col-md-12">
                 <div className="row">
@@ -129,17 +130,17 @@ console.log(translationDataFromStore)
                       </h6>
                     </div>
                   </div>
-                  <div className="col-12">
-                    <div className="benefits_wrapper text-center mt-3">
+                  <div className="col-12 mt-4">
+                    <div className="benefits_wrapper text-center">
                       <h4 className="color">{landingData?.Heading_name2}</h4>
                       <h6 className="text-dark">{translationDataFromStore?.data?.landingPage_header}</h6>
-                      <div className="count-circle mt-5">
+                      <div className="count-circle mt-1">
                         <div className="row">
                           <div className="col-md-4">
                             <div className="d-flex flex-column justify-content-center align-items-end">
 
                               <div className={`${styles.count_item_wrapper}`}>
-                                <div className='d-flex justify-content-center align-items-center border-bottom'>
+                                <div className='d-flex justify-content-center align-items-center border-bottom' style={{borderColor:'darkgray'}}>
                                   <div className={`${styles.count_container}`}> {/* Wrap the count in a container */}
                                     <h3 className="d-flex">
                                       <CountUp
@@ -203,7 +204,7 @@ console.log(translationDataFromStore)
                       </div>
                     </div>
                   </div>
-                  <div className="col-12">
+                  <div className="col-12 mt-5">
                     <div className={`${styles.get_started_btn}`}>
                       {LoggedIn === "true" ? (
                         ""
@@ -229,7 +230,7 @@ console.log(translationDataFromStore)
                       </div>
                     </div>
                   </div>
-                  <div className="col-12">
+                  <div className="col-12 mt-4">
                     <OurClients landingData={landingData.clients_list} />
                   </div>
                 </div>
