@@ -79,7 +79,8 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
                             className="form-check-input"
                           />
                           <label htmlFor={language.name} className="form-check-label">
-                            {language?.name}
+                            {language?.name} {language?.label && (<span>&#40;{language?.label}&#41;</span>)}
+                          
                           </label>
                         </div>
                       ))

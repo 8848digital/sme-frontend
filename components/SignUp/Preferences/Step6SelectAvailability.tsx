@@ -4,7 +4,7 @@ import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
 import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 import { useSelector } from 'react-redux';
 
-const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
+const Step3of3SelectAvailability = ({ formData, onFormDataChange , preference ,preferenceLoading }: any) => {
   const handleAvailabilityChange = (event: any) => {
     const availability = event.target.value;
     onFormDataChange('preferences', availability);
@@ -33,8 +33,19 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
                   onChange={handleAvailabilityChange}
                 >
                   <option value="Select">{translationDataFromStore?.data?.select}</option>
-                  <option value="Full Time">{translationDataFromStore?.data?.signup_step6_full_time}</option>
-                  <option value="Part Time">{translationDataFromStore?.data?.signup_step6_part_time}</option>
+                  {
+                    preference && preference.length > 0 && (
+                      preference.map((data:any , index:number)=>{
+                        return (
+                          <>
+                          <option value={data?.name}>{data?.name} {data?.label && (<span>&#40;{data?.label}&#41;</span>)}</option>
+                          </>
+                        )
+                      })
+                    )
+                  }
+                  {/* <option value="Full Time">{translationDataFromStore?.data?.signup_step6_full_time}</option>
+                  <option value="Part Time">{translationDataFromStore?.data?.signup_step6_part_time}</option> */}
                 </select>
               </div>
 
