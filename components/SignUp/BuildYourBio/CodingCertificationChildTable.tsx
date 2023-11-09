@@ -28,7 +28,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
         ];
 
   const [certifications, setCertifications] = useState<Certification[]>(initialCertifications);
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
   const handleCertificationChange = (index: number, field: keyof Certification, value: string) => {
@@ -67,13 +67,13 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
           <form className="border p-3 rounded">
             <div className="row">
               <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.build_your_bio_step5_certification_name}</strong>
+                <strong>{translationDataFromStore?.data?.build_your_bio_step5_certification_name}</strong>
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.build_your_bio_step5_organization}</strong>
+                <strong>{translationDataFromStore?.data?.build_your_bio_step5_organization}</strong>
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.build_your_bio_step5_date}</strong>
+                <strong>{translationDataFromStore?.data?.build_your_bio_step5_date}</strong>
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}></div>
             </div>
@@ -82,7 +82,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="text"
-                    placeholder={transtationDataFromStore?.data?.build_your_bio_step5_certification_name}
+                    placeholder={translationDataFromStore?.data?.build_your_bio_step5_certification_name}
                     value={cert.certification_name}
                     onChange={(e) => handleCertificationChange(index, 'certification_name', e.target.value)}
                   />
@@ -90,7 +90,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="text"
-                    placeholder={transtationDataFromStore?.data?.build_your_bio_step5_organization}
+                    placeholder={translationDataFromStore?.data?.build_your_bio_step5_organization}
                     value={cert.issuing_organization}
                     onChange={(e) => handleCertificationChange(index, 'issuing_organization', e.target.value)}
                   />
@@ -105,7 +105,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                 </div>
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <button type="button" className={`btn ${wizard_styles.btn_delete_row}`} onClick={() => removeRow(index)}>
-                    {transtationDataFromStore?.data?.delete_btn}
+                    {translationDataFromStore?.data?.delete_btn}
                   </button>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
               <div className="col-md-9"></div>
               <div className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}>
                 <button type="button" className={`btn ${wizard_styles.btn_add_row}`} onClick={addRow}>
-                  {transtationDataFromStore?.data?.add_row_btn}
+                  {translationDataFromStore?.data?.add_row_btn}
                 </button>
               </div>
             </div>

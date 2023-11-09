@@ -70,14 +70,14 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
     notifyError('Professional Experience data deleted successfully');
     onFormDataChange('professional_experience', updatedProfessionalExp);
   };
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
   return (
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 text-center">
-          <h2>{transtationDataFromStore?.data?.professional_experience}</h2>
+          <h2>{translationDataFromStore?.data?.professional_experience}</h2>
         </div>
       </div>
       <div className="row">
@@ -85,13 +85,13 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
           <form className="border p-3 rounded">
             <div className="row">
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.title}</strong>
+                <strong>{translationDataFromStore?.data?.title}</strong>
               </div>
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.year}</strong>
+                <strong>{translationDataFromStore?.data?.year}</strong>
               </div>
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.company}</strong>
+                <strong>{translationDataFromStore?.data?.company}</strong>
               </div>
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}></div>
             </div>
@@ -101,7 +101,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                   <input
                     type="text"
                     name={`title[${index}]`}
-                    placeholder={transtationDataFromStore?.data?.title}
+                    placeholder={translationDataFromStore?.data?.title}
                     value={exp.title}
                     onChange={(e) => handleProfessionalExpChange(index, 'title', e.target.value)}
                     className={`${styles.input_custom_class}`}
@@ -113,7 +113,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                 <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
                   <DatePicker
                     selected={exp.year ? new Date(exp.year) : null}
-                    placeholderText={transtationDataFromStore?.data?.year_placeholder}
+                    placeholderText={translationDataFromStore?.data?.year_placeholder}
                     onChange={(date: Date | null) => handleProfessionalExpChange(index, 'year', date)}
                     showYearPicker
                     dateFormat="yyyy"
@@ -124,7 +124,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                   <input
                     type="text"
                     name={`company[${index}]`}
-                    placeholder={transtationDataFromStore?.data?.company}
+                    placeholder={translationDataFromStore?.data?.company}
                     value={exp.company}
                     onChange={(e) => handleProfessionalExpChange(index, 'company', e.target.value)}
                     className={`${styles.input_custom_class}`}
@@ -135,7 +135,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                 </div>
                 <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
                   <button type="button" className={`btn ${styles.btn_delete_row}`}  onClick={() => removeRow(index)}>
-                    {transtationDataFromStore?.data?.delete_row_btn}
+                    {translationDataFromStore?.data?.delete_row_btn}
                   </button>
                 </div>
               </div>
@@ -148,7 +148,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                   className={`btn ${styles.btn_add_row}`}
                   onClick={addRow}
                 >
-                  {transtationDataFromStore?.data?.add_row_btn}
+                  {translationDataFromStore?.data?.add_row_btn}
                 </button>
               </div>
             </div>

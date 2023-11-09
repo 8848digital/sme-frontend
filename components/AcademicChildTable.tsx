@@ -74,12 +74,12 @@ console.log('form edu in wizard',educationLevel)
     onFormDataChange('academic_background', updatedCertifications);
   };
 
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
   return (
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 text-center">
-          <h2>{transtationDataFromStore?.data?.signup_step5_academic}</h2>
+          <h2>{translationDataFromStore?.data?.signup_step5_academic}</h2>
         </div>
       </div>
       <div className="row">
@@ -87,16 +87,16 @@ console.log('form edu in wizard',educationLevel)
           <form className="border p-3 rounded">
             <div className="row">
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.signup_step5_level}</strong>
+                <strong>{translationDataFromStore?.data?.signup_step5_level}</strong>
               </div>
               <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.year}</strong>
+                <strong>{translationDataFromStore?.data?.year}</strong>
               </div>
               <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.signup_step5_gpaoutof}</strong>
+                <strong>{translationDataFromStore?.data?.signup_step5_gpaoutof}</strong>
               </div>
               <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{transtationDataFromStore?.data?.signup_step5_gpa}</strong>
+                <strong>{translationDataFromStore?.data?.signup_step5_gpa}</strong>
               </div>
               <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}></div>
             </div>
@@ -116,7 +116,7 @@ console.log('form edu in wizard',educationLevel)
                     onChange={(e) => handleCertificationChange(index, 'education_level', e.target.value)}
                   className={`${styles.input_custom_class_academic}`}
                   >
-                     <option value="">{transtationDataFromStore?.data?.select}</option>
+                     <option value="">{translationDataFromStore?.data?.select}</option>
                      {
                       educationLevel && educationLevel.map((data:any , index:any)=>{
                         return (
@@ -134,7 +134,7 @@ console.log('form edu in wizard',educationLevel)
                 <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
                   <DatePicker
                     selected={cert.year ? new Date(cert.year) : null}
-                    placeholderText={transtationDataFromStore?.data?.year_placeholder}
+                    placeholderText={translationDataFromStore?.data?.year_placeholder}
                     onChange={(date: Date | null) => handleCertificationChange(index, 'year', date)}
                     showYearPicker
                     dateFormat="yyyy"
@@ -149,7 +149,7 @@ console.log('form edu in wizard',educationLevel)
                     onChange={(e) => handleCertificationChange(index, 'gpa_out_of', e.target.value)}
                     // className={`${styles.input_custom_class_academic}`}
                   >
-                     <option value="">{transtationDataFromStore?.data?.select}</option>
+                     <option value="">{translationDataFromStore?.data?.select}</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
@@ -158,7 +158,7 @@ console.log('form edu in wizard',educationLevel)
                 <input
                     type="text"
                     name={`gpa[${index}]`}
-                    placeholder={transtationDataFromStore?.data?.signup_step5_gpa_placeholder}
+                    placeholder={translationDataFromStore?.data?.signup_step5_gpa_placeholder}
                     value={cert.gpa}
                     onChange={(e) => handleCertificationChange(index, 'gpa', e.target.value)}
                     className={`${styles.input_custom_class_academic}`}
@@ -166,7 +166,7 @@ console.log('form edu in wizard',educationLevel)
                 </div>
                 <div className={`col-md-2 border ${styles.wizard_childtable_responsive_class}`}>
                   <button type="button" className={`btn ${styles.btn_delete_row}`} onClick={() => removeRow(index)}>
-                    {transtationDataFromStore?.data?.delete_row_btn}
+                    {translationDataFromStore?.data?.delete_row_btn}
                   </button>
                 </div>
               </div>
@@ -175,7 +175,7 @@ console.log('form edu in wizard',educationLevel)
               <div className="col-md-10"></div>
               <div className={`col-md-2 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
                 <button type="button" className={`btn ${styles.btn_add_row}`} onClick={addRow}>
-                  {transtationDataFromStore?.data?.add_row_btn}
+                  {translationDataFromStore?.data?.add_row_btn}
                 </button>
               </div>
             </div>

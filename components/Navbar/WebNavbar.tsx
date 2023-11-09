@@ -56,7 +56,7 @@ const WebNavbar = () => {
     localStorage.removeItem("LoggedIn");
 
     console.log("Logged out");
-    toast.success("Logout successful", {
+    toast.success(translationDataFromStore?.data?.toast_logout_success, {
       autoClose: 3000,
       className: "custom-toast", // Close the notification after 3 seconds
     });
@@ -70,7 +70,7 @@ const WebNavbar = () => {
   // const { translationData, translationLoading } = useTranslationText();
   const { HandleLangToggle, language_selector_from_redux } =
     useFetchOurHtmlLanguage();
-  const transtationDataFromStore = useSelector(translation_text_from_Store);
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
     <>
@@ -95,22 +95,22 @@ const WebNavbar = () => {
                     <ul className="navbar-nav main-menu">
                       <li className="nav-item">
                         <Link className="nav-link p-0" href="/account-view">
-                          {transtationDataFromStore?.data?.bio}
+                          {translationDataFromStore?.data?.bio}
                         </Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link p-0" href="/job-request">
-                          {transtationDataFromStore?.data?.job_request}
+                          {translationDataFromStore?.data?.job_request}
                         </Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link p-0" href="/contract">
-                          {transtationDataFromStore?.data?.contract}
+                          {translationDataFromStore?.data?.contract}
                         </Link>
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link p-0" href="/account">
-                          {transtationDataFromStore?.data?.account}
+                          {translationDataFromStore?.data?.account}
                         </Link>
                       </li>
 
@@ -141,7 +141,7 @@ const WebNavbar = () => {
                   style={{ padding: "0px 10px", minWidth: "auto" }}
                 >
                   <span style={{ color: "#00578a" }}>
-                    {transtationDataFromStore?.data?.home_btn}
+                    {translationDataFromStore?.data?.home_btn}
                   </span>
                 </a>
               </Link>
@@ -183,7 +183,7 @@ const WebNavbar = () => {
                       style={{ padding: "35px 0 33px 0" }}
                     >
                       <span style={{ color: "#00578a" }}>
-                        {transtationDataFromStore?.data?.login}
+                        {translationDataFromStore?.data?.login}
                       </span>
                     </a>
                   </Link>
@@ -199,7 +199,7 @@ const WebNavbar = () => {
                           style={{ color: "#00578a", fontSize: "18px" }}
                         />{" "}
                         <span style={{ color: "#00578a" }}>
-                          {transtationDataFromStore?.data?.log_out}
+                          {translationDataFromStore?.data?.log_out}
                         </span>
                       </a>
                     </Link>
@@ -207,7 +207,7 @@ const WebNavbar = () => {
                 ) : (
                   <Link href="/signup-start" legacyBehavior>
                     <a className="btn btn-signup text-uppercase font-size-3">
-                      {transtationDataFromStore?.data?.signup}
+                      {translationDataFromStore?.data?.signup}
                     </a>
                   </Link>
                 )}

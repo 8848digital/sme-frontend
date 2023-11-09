@@ -28,14 +28,14 @@ const ChangePassword = () => {
     confirmPassword: "",
   };
 
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   const handlesubmit = async (values: any, action: any) => {
     console.log('values', values)
     if (values.new_password !== values.confirmPassword) {
       // Display an error message or handle it as needed
       console.error("New password and confirm password do not match");
-      toast.error('Enter the correct New/Confirm Password', {
+      toast.error(translationDataFromStore?.data?.toast_confirm_password_error, {
         autoClose: 3000,
         className: 'custom-toast',// Close the notification after 3 seconds
       });
@@ -43,19 +43,19 @@ const ChangePassword = () => {
 
       const response = await ChangePasswordAPI(values.old_password, values.new_password, token.token);
       if (response === 'success') {
-        toast.success('Password has changed successfully', {
+        toast.success(translationDataFromStore?.data?.toast_change_password_success, {
           autoClose: 3000,
           className: 'custom-toast',// Close the notification after 3 seconds
         });
         action.resetForm();
         router.push('/');
       } else if (response === 'error') {
-        toast.error(`Check your password again! ${response.error}`, {
+        toast.error(`${translationDataFromStore?.data?.toast_check_password_error} ${response.error}`, {
           autoClose: 3000,
           className: 'custom-toast',// Close the notification after 3 seconds
         });
       } else {
-        toast.error(`Check your password again! ${response.error}`, {
+        toast.error(`${translationDataFromStore?.data?.toast_check_password_error} ${response.error}`, {
           autoClose: 3000,
           className: 'custom-toast',// Close the notification after 3 seconds
         });
@@ -77,7 +77,7 @@ const ChangePassword = () => {
       <div className='container'>
         <div className={` card ${styles.auth_common_wrapper}`}>
           <div className="page_heading text-center">
-            <h1 className='text-uppercase'>{transtationDataFromStore?.data?.change_password_header}</h1>
+            <h1 className='text-uppercase'>{translationDataFromStore?.data?.change_password_header}</h1>
           </div>
           <Formik
             initialValues={initialValues}
@@ -92,7 +92,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            {transtationDataFromStore?.data?.change_password_old}
+                            {translationDataFromStore?.data?.change_password_old}
                           </label>
                         </div>
                       </div>
@@ -103,7 +103,7 @@ const ChangePassword = () => {
                           className="form-control"
                           name="old_password"
                           onChange={handleChange}
-                          placeholder={transtationDataFromStore?.data?.change_password_old_placeholder}
+                          placeholder={translationDataFromStore?.data?.change_password_old_placeholder}
                         />
                         <br />
                         <div className="error_message">
@@ -116,7 +116,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                           {transtationDataFromStore?.data?.change_password_new}
+                           {translationDataFromStore?.data?.change_password_new}
                           </label>
                         </div>
                       </div>
@@ -127,7 +127,7 @@ const ChangePassword = () => {
                             className="form-control"
                             name="new_password"
                             onChange={handleChange}
-                            placeholder={transtationDataFromStore?.data?.change_password_new_placeholder}
+                            placeholder={translationDataFromStore?.data?.change_password_new_placeholder}
                           />
                           <br />
                           <div className="error_message">
@@ -140,7 +140,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            {transtationDataFromStore?.data?.change_password_confirm}
+                            {translationDataFromStore?.data?.change_password_confirm}
                           </label>
                         </div>
                       </div>
@@ -150,7 +150,7 @@ const ChangePassword = () => {
                           className="form-control"
                           name="confirmPassword"
                           onChange={handleChange}
-                          placeholder={transtationDataFromStore?.data?.change_password_confirm_placeholder}
+                          placeholder={translationDataFromStore?.data?.change_password_confirm_placeholder}
                         />
                         <br />
                         <div className="error_message">
@@ -165,7 +165,7 @@ const ChangePassword = () => {
                        
                       >
                         <Link href="/" className="text-white" style={{textDecoration:'none'}}>
-                          {transtationDataFromStore?.data?.back}
+                          {translationDataFromStore?.data?.back}
                         </Link>
                       </button>
                       <button
@@ -173,7 +173,7 @@ const ChangePassword = () => {
                         className='btn btn-signup'
                     
                       >
-                        {transtationDataFromStore?.data?.change_password_btn}
+                        {translationDataFromStore?.data?.change_password_btn}
                       </button>
                     </div>
                   </div>

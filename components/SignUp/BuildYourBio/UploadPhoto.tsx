@@ -21,7 +21,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [fileURL, setFileURL] = useState<any>(bioData?.photo_url || null);
 
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
   console.log(signuptoken);
   const loginToken: any = useSelector(get_access_token);
   console.log(loginToken);  
@@ -89,8 +89,8 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-2">
-              <h1>{transtationDataFromStore?.data?.build_your_bio_step1_header}</h1>
-              <h2>{transtationDataFromStore?.data?.build_your_bio_step1_description}</h2>
+              <h1>{translationDataFromStore?.data?.build_your_bio_step1_header}</h1>
+              <h2>{translationDataFromStore?.data?.build_your_bio_step1_description}</h2>
             </div>
             <div className="mt-5 text-center">
               <form onSubmit={handleSubmit}>
@@ -117,7 +117,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                           <div className="upload-circle">
                             <i className="fas fa-upload "></i>
                           </div>
-                          {transtationDataFromStore?.data?.upload_photo}
+                          {translationDataFromStore?.data?.upload_photo}
                         </label>
                         <input
                           id="input-file"

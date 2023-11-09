@@ -60,7 +60,7 @@ console.log('job cost',jobCost)
     return status === 'Received' || status === 'Rejected';
   };
 
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
   return (
     <div className="container">
       <div className="job-desc-wrapper border p-3 rounded">
@@ -75,7 +75,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{transtationDataFromStore?.data?.project_name} </h2>
+            <h2 className="border-end">{translationDataFromStore?.data?.project_name} </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_name}</h4>
@@ -84,7 +84,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{transtationDataFromStore?.data?.job_request_client_name} </h2>
+            <h2 className="border-end">{translationDataFromStore?.data?.job_request_client_name} </h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.client_name}</h4>
@@ -93,7 +93,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{transtationDataFromStore?.data?.job_request_duration}</h2>
+            <h2 className="border-end">{translationDataFromStore?.data?.job_request_duration}</h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.duration}</h4>
@@ -102,7 +102,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{transtationDataFromStore?.data?.job_request_supplier}</h2>
+            <h2 className="border-end">{translationDataFromStore?.data?.job_request_supplier}</h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.supplier}</h4>
@@ -111,7 +111,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{transtationDataFromStore?.data?.job_request_payment}</h2>
+            <h2 className="border-end">{translationDataFromStore?.data?.job_request_payment}</h2>
           </div>
           <div className="col-6 text-center">
           <h4 className="text-capitalize">{jobData.total_payment}</h4>
@@ -120,7 +120,7 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{transtationDataFromStore?.data?.job_request_cost}</h2>
+            <h2 className="border-end">{translationDataFromStore?.data?.job_request_cost}</h2>
           </div>
           <div className="col-6 text-center">
             <div className="mb-3">
@@ -145,7 +145,7 @@ console.log('job cost',jobCost)
                   style={{ width: "auto" }}
                 // onClick={handleReadContractClick}
                 >
-                  {transtationDataFromStore?.data?.read_full_contract}
+                  {translationDataFromStore?.data?.read_full_contract}
                 </button>
               </Link>
             </div>
@@ -181,7 +181,7 @@ console.log('job cost',jobCost)
                 onClick={handleApproveClick}
                 disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                {jobData.status === `${transtationDataFromStore?.data?.received_btn}` ? `${transtationDataFromStore?.data?.received_btn}` : `${transtationDataFromStore?.data?.approve}`}
+                {jobData.status === `${translationDataFromStore?.data?.received_btn}` ? `${translationDataFromStore?.data?.received_btn}` : `${translationDataFromStore?.data?.approve}`}
               </button>
             </div>
             <div className="col-md-4">
@@ -191,7 +191,7 @@ console.log('job cost',jobCost)
                 onClick={handleRejectClick}
                 disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
               >
-                {jobData.status === `${transtationDataFromStore?.data?.reject_btn}` ? `${transtationDataFromStore?.data?.reject_btn}` : `${transtationDataFromStore?.data?.rejected}`}
+                {jobData.status === `${translationDataFromStore?.data?.reject_btn}` ? `${translationDataFromStore?.data?.reject_btn}` : `${translationDataFromStore?.data?.rejected}`}
               </button>
             </div>
           </div>

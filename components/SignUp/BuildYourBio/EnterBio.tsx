@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const EnterBio = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>("");
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
 
@@ -28,7 +28,7 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center">
-              <h1>{transtationDataFromStore?.data?.build_your_bio_step2_header}</h1>
+              <h1>{translationDataFromStore?.data?.build_your_bio_step2_header}</h1>
               <h3></h3>
             </div>
             <div className="mt-5">

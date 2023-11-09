@@ -17,7 +17,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   const token = useSelector(get_access_token);
   console.log('profile token', token.token);
@@ -71,9 +71,9 @@ const ContractDescription = ({ data, openDescription }: any) => {
         <table className="table table-bordered">
           <thead className="p-2">
             <tr className="">
-              <th>{transtationDataFromStore?.data?.project_name}</th>
-              <th className="text-center">{transtationDataFromStore?.data?.status}</th>
-              <th className="text-center">{transtationDataFromStore?.data?.action}</th>
+              <th>{translationDataFromStore?.data?.project_name}</th>
+              <th className="text-center">{translationDataFromStore?.data?.status}</th>
+              <th className="text-center">{translationDataFromStore?.data?.action}</th>
             </tr>
           </thead>
           <tbody>
@@ -109,7 +109,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                   style={{ width: "auto" }}
                 // onClick={handleReadContractClick}
                 >
-                  {transtationDataFromStore?.data?.read_full_contract}
+                  {translationDataFromStore?.data?.read_full_contract}
                 </button>
               </Link>
             </div>
@@ -122,7 +122,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                 onClick={handleApproveClick}
                 disabled={data.status === 'Active' || data.status === 'Rejected'}
               >
-                {data.status === `${transtationDataFromStore?.data?.contract_active}` ? `${transtationDataFromStore?.data?.contract_active}` : `${transtationDataFromStore?.data?.sign}`}
+                {data.status === `${translationDataFromStore?.data?.contract_active}` ? `${translationDataFromStore?.data?.contract_active}` : `${translationDataFromStore?.data?.sign}`}
               </button>
             </div>
             {/* <div className="col-md-4">

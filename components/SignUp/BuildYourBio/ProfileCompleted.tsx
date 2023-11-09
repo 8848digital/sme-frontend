@@ -21,7 +21,7 @@ const ProfileCompleted = () => {
   //   ],
   // };
   const userData = useSelector(form_details_from_store);
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
   console.log(userData);
@@ -40,7 +40,7 @@ const ProfileCompleted = () => {
       >
         <div className="row">
           <div className="text-center my-3">
-            <h1>{transtationDataFromStore?.data?.bio_profile_complete_header}</h1>
+            <h1>{translationDataFromStore?.data?.bio_profile_complete_header}</h1>
           </div>
 
           <div className="col-sm-4 text-end">
@@ -65,7 +65,7 @@ const ProfileCompleted = () => {
             <div>
               {userData?.technical_skills && userData?.technical_skills.length > 0 ? (
                 <>
-                  <h2>{transtationDataFromStore?.data?.build_your_bio_step3_header}</h2>
+                  <h2>{translationDataFromStore?.data?.build_your_bio_step3_header}</h2>
                   <ul>
                     {userData?.technical_skills.map((skills: any, index: any) => (
                       <li className={`${styles.li_marker}`} key={index}>
@@ -76,8 +76,8 @@ const ProfileCompleted = () => {
                 </>
               ) : (
                 <>
-                  <h2>{transtationDataFromStore?.data?.build_your_bio_step3_header}</h2>
-                  <p>{transtationDataFromStore?.data?.bio_profile_complete_technical_tag}</p>
+                  <h2>{translationDataFromStore?.data?.build_your_bio_step3_header}</h2>
+                  <p>{translationDataFromStore?.data?.bio_profile_complete_technical_tag}</p>
                 </>
               )}
             </div>
@@ -85,7 +85,7 @@ const ProfileCompleted = () => {
             <div>
               {userData?.language && userData?.language.length > 0 ? (
                 <>
-                  <h2>{transtationDataFromStore?.data?.build_your_bio_step4_header}</h2>
+                  <h2>{translationDataFromStore?.data?.build_your_bio_step4_header}</h2>
                   <ul>
                     {userData?.language.map((language: any, index: any) => (
                       <li className={`${styles.li_marker}`} key={index}>
@@ -96,8 +96,8 @@ const ProfileCompleted = () => {
                 </>
               ) : (
                 <>
-                  <h2>{transtationDataFromStore?.data?.build_your_bio_step4_header}</h2>
-                  <p>{transtationDataFromStore?.data?.bio_profile_complete_language_tag}</p>
+                  <h2>{translationDataFromStore?.data?.build_your_bio_step4_header}</h2>
+                  <p>{translationDataFromStore?.data?.bio_profile_complete_language_tag}</p>
                 </>
               )}
             </div>
@@ -116,8 +116,8 @@ const ProfileCompleted = () => {
                 </>
               ) : (
                 <>
-                  <h2>{transtationDataFromStore?.data?.bio_certification}</h2>
-                  <p>{transtationDataFromStore?.data?.bio_profile_complete_certification_tag}</p>
+                  <h2>{translationDataFromStore?.data?.bio_certification}</h2>
+                  <p>{translationDataFromStore?.data?.bio_profile_complete_certification_tag}</p>
                 </>
               )}
             </div>
@@ -129,7 +129,7 @@ const ProfileCompleted = () => {
             className="btn btn-signup"
             onClick={() => router.push("/")}
           >
-            {transtationDataFromStore?.data?.go_to_home_btn}
+            {translationDataFromStore?.data?.go_to_home_btn}
           </button>
         </div>
       </div>

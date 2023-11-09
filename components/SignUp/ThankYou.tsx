@@ -7,7 +7,7 @@ import { translation_text_from_Store } from "@/store/slices/general_slice/transl
 import { useSelector } from "react-redux";
 
 const ThankYou = () => {
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
   return (
@@ -20,12 +20,12 @@ const ThankYou = () => {
             </div>
             <div className="">
               <h2>
-               {transtationDataFromStore?.data?.thankyou_description}
+               {translationDataFromStore?.data?.thankyou_description}
               </h2>
             </div>
             <div>
               <Link href="/" className="btn btn-signup ">
-                {transtationDataFromStore?.data?.go_to_home_btn}
+                {translationDataFromStore?.data?.go_to_home_btn}
               </Link>
             </div>
           </div>

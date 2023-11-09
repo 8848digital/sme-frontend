@@ -11,7 +11,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
@@ -25,9 +25,9 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
           <table className="table table-bordered">
             <thead className="p-2">
               <tr className="">
-                <th>{transtationDataFromStore?.data?.project_name}</th>
-                <th className="text-center">{transtationDataFromStore?.data?.status}</th>
-                <th className="text-center">{transtationDataFromStore?.data?.action}</th>
+                <th>{translationDataFromStore?.data?.project_name}</th>
+                <th className="text-center">{translationDataFromStore?.data?.status}</th>
+                <th className="text-center">{translationDataFromStore?.data?.action}</th>
               </tr>
             </thead>
             <tbody>
@@ -53,7 +53,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                                     openDescription(data, "description")
                                   }
                                 >
-                                 {transtationDataFromStore?.data?.view_full_btn}
+                                 {translationDataFromStore?.data?.view_full_btn}
                                 </button>
                                 {/* <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link> */}
                               </td>
@@ -71,7 +71,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
             <></>
           ) : (
             <div className="text-center">
-              <p>{transtationDataFromStore?.data?.no_data_available}</p>
+              <p>{translationDataFromStore?.data?.no_data_available}</p>
             </div>
           )}
         </div>

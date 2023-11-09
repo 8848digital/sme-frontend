@@ -6,7 +6,7 @@ import { translation_text_from_Store } from '@/store/slices/general_slice/transl
 import { useSelector } from 'react-redux';
 
 const StepsDone = () => {
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   return (
     <div className="container">
@@ -14,12 +14,12 @@ const StepsDone = () => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-4">
-              <h1>{transtationDataFromStore?.data?.done}</h1>
-              <h2>{transtationDataFromStore?.data?.signup_complete_description}</h2>
+              <h1>{translationDataFromStore?.data?.done}</h1>
+              <h2>{translationDataFromStore?.data?.signup_complete_description}</h2>
             </div>
             <div className='text-center mt-5'>
-              <Link href='/build-your-bio' className='btn btn-signup mx-2'>{transtationDataFromStore?.data?.build_your_bio_btn}</Link>
-              <Link href='/thank-you' className='btn btn-later mx-2'>{transtationDataFromStore?.data?.later}</Link>
+              <Link href='/build-your-bio' className='btn btn-signup mx-2'>{translationDataFromStore?.data?.build_your_bio_btn}</Link>
+              <Link href='/thank-you' className='btn btn-later mx-2'>{translationDataFromStore?.data?.later}</Link>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
         const phoneNumber = e.target.value;
         onFormDataChange('phone_no', phoneNumber);
     };
-    const transtationDataFromStore = useSelector(translation_text_from_Store)
+    const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
     return (
@@ -34,20 +34,20 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                 <div className="row">
                     <div className="col-12">
                         <div className='text-center'>
-                            <h1>{transtationDataFromStore?.data?.step} 3 {transtationDataFromStore?.data?.of} 7</h1>
-                            <h2>{transtationDataFromStore?.data?.signup_personal}</h2>
+                            <h1>{translationDataFromStore?.data?.step} 3 {translationDataFromStore?.data?.of} 7</h1>
+                            <h2>{translationDataFromStore?.data?.signup_personal}</h2>
                             <div className=' d-flex align-items-center justify-content-center flex-column'>
                                 <input
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
-                                    placeholder={transtationDataFromStore?.data?.first_name_placeholder}
+                                    placeholder={translationDataFromStore?.data?.first_name_placeholder}
                                     value={formData.first_name}
                                     onChange={handleFirstNameChange}
                                 />
                                 <input
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
-                                    placeholder={transtationDataFromStore?.data?.last_name_placeholder}
+                                    placeholder={translationDataFromStore?.data?.last_name_placeholder}
                                     value={formData.last_name}
                                     onChange={handleLastNameChange}
                                 />
@@ -55,7 +55,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                                 <input
                                     className="form-control w-75 mt-3 input-filed-height"
                                     type="text"
-                                    placeholder={transtationDataFromStore?.data?.phone_number}
+                                    placeholder={translationDataFromStore?.data?.phone_number}
                                     value={formData.phone_no}
                                     onChange={handlePhoneNumberChange}
                                 />

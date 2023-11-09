@@ -9,6 +9,7 @@ import { get_access_token } from '@/store/slices/auth_slice/login_slice';
 import ForgetPasswordLinkAPI from '@/services/api/auth_api/forget_password_link_api';
 import { toast } from 'react-toastify';
 import styles from "@/styles/auth.module.css";
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 interface FormValues {
   email: any
 }
@@ -26,11 +27,13 @@ const ForgotPassword = () => {
       setIsAlertVisible(true);
     }
   }, [message]);
+  const translationDataFromStore = useSelector(translation_text_from_Store);
+
   const handlesubmit = async (values: any, action: any) => {
     console.log('values', values)
     const response = await ForgetPasswordLinkAPI(values.email, token.token);
     if (response === 'success') {
-      toast.success('Password Reset Link Sent to your Registerd Email successfully', {
+      toast.success(translationDataFromStore?.data?.toast_password_reset_link_success, {
         autoClose: 3000,
         className: 'custom-toast',// Close the notification after 3 seconds
       });
@@ -39,12 +42,12 @@ const ForgotPassword = () => {
         router.push('/');
       }, 5000)
     } else if (response === 'error') {
-      toast.error(`Enter Correct Email ${response.error}`, {
+      toast.error(`${translationDataFromStore?.data?.toast_email_error} ${response.error}`, {
         autoClose: 3000,
         className: 'custom-toast',// Close the notification after 3 seconds
       });
     } else {
-      toast.error(`Enter Correct Email! ${response.error}`, {
+      toast.error(`${translationDataFromStore?.data?.toast_email_error} ${response.error}`, {
         autoClose: 3000,
         className: 'custom-toast',// Close the notification after 3 seconds
       });

@@ -32,7 +32,7 @@ const BuildYourBioMaster = () => {
   const getBioData = useSelector(bio_data_store);
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   // console.log(BuildYourBioData);
   const router = useRouter();
@@ -131,15 +131,15 @@ const BuildYourBioMaster = () => {
           <div className="row " style={{ maxWidth: "800px", margin: "0 auto" }}>
             <div className="col-4 ">
               <div className="">
-                <h2 className="fs-3 text-white">{transtationDataFromStore?.data?.step} {currentStep}</h2>
+                <h2 className="fs-3 text-white">{translationDataFromStore?.data?.step} {currentStep}</h2>
                 <hr className={wizardStyles.step_hr} />
               </div>
             </div>
             <div className="col-8 position-relative">
               <div className={wizardStyles.progress_bar_div}>
-                <div className="" style={{ marginLeft: "109px" }}>
+                <div className={wizardStyles.progress_bar_div_tag}>
                   <p className="mb-4 text-white">
-                    {currentStep} {transtationDataFromStore?.data?.of} 5 {transtationDataFromStore?.data?.completed}
+                    {currentStep} {translationDataFromStore?.data?.of} 5 {translationDataFromStore?.data?.completed}
                   </p>
                 </div>
 
@@ -205,7 +205,7 @@ const BuildYourBioMaster = () => {
                       onClick={handlePrevious}
                     >
                       <ArrowBackIcon />
-                      {transtationDataFromStore?.data?.previous}
+                      {translationDataFromStore?.data?.previous}
                     </button>
                   )}
                   {currentStep < 5 ? (
@@ -213,12 +213,12 @@ const BuildYourBioMaster = () => {
                       className="btn btn-next d-flex align-items-center justify-content-center"
                       onClick={handleNext}
                     >
-                      {transtationDataFromStore?.data?.next}
+                      {translationDataFromStore?.data?.next}
                       <ArrowForwardIcon />
                     </button>
                   ) : (
                     <button className="btn btn-next" onClick={handleSubmit}>
-                      {transtationDataFromStore?.data?.submit}
+                      {translationDataFromStore?.data?.submit}
                     </button>
                   )}
                 </div>

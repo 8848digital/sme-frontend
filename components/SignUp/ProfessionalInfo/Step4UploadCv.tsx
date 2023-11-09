@@ -68,7 +68,7 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
   const { handleSubmit, setFieldValue } = formik;
 
 const fileInputRef = useRef<HTMLInputElement | null>(null);
-const transtationDataFromStore = useSelector(translation_text_from_Store)
+const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
   return (
@@ -77,8 +77,8 @@ const transtationDataFromStore = useSelector(translation_text_from_Store)
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-5">
-              <h1>{transtationDataFromStore?.data?.step} 4 {transtationDataFromStore?.data?.of} 7</h1>
-              <h2>{transtationDataFromStore?.data?.professional_experience}</h2>
+              <h1>{translationDataFromStore?.data?.step} 4 {translationDataFromStore?.data?.of} 7</h1>
+              <h2>{translationDataFromStore?.data?.professional_experience}</h2>
             </div>
             <div className="mt-5 text-center">
               <form onSubmit={handleSubmit}>
@@ -105,7 +105,7 @@ const transtationDataFromStore = useSelector(translation_text_from_Store)
                             <div className="upload-circle">
                               <i className="fas fa-upload "></i>
                             </div>
-                            {transtationDataFromStore?.data?.upload_cv}
+                            {translationDataFromStore?.data?.upload_cv}
                           </label>
                           <input
                             id="input-file"

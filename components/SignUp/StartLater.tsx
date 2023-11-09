@@ -47,7 +47,7 @@ const StartLater = () => {
             setSubmitting(false);
         }
     };
-    const transtationDataFromStore = useSelector(translation_text_from_Store)
+    const translationDataFromStore = useSelector(translation_text_from_Store)
 
     return (
         <div className="container">
@@ -55,11 +55,11 @@ const StartLater = () => {
 
                 <div className="col-12">
                     <div className='start-later-wrapper card p-4 shadow-lg' style={{ maxWidth: '800px', height: '400px' }}>
-                        <h1>{transtationDataFromStore?.data?.signup_header}</h1>
-                        <h2 className='mb-5'>{transtationDataFromStore?.data?.signup_description}</h2>
+                        <h1>{translationDataFromStore?.data?.signup_header}</h1>
+                        <h2 className='mb-5'>{translationDataFromStore?.data?.signup_description}</h2>
                         <div className="">
-                            <Link href='/wizard-master' className='btn btn-signup me-5'>{transtationDataFromStore?.data?.start}</Link>
-                            <Link href='/' className='btn btn-later'>{transtationDataFromStore?.data?.later}</Link>
+                            <Link href='/wizard-master' className='btn btn-signup me-5'>{translationDataFromStore?.data?.start}</Link>
+                            <Link href='/' className='btn btn-later'>{translationDataFromStore?.data?.later}</Link>
                         </div>
 
                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
@@ -72,12 +72,12 @@ const StartLater = () => {
                                             {/* <label htmlFor="email">
                                             Email Address<span className="text-danger">*</span>
                                         </label> */}
-                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder={transtationDataFromStore?.data?.email_placeholder} />
+                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder={translationDataFromStore?.data?.email_placeholder} />
                                             <ErrorMessage name="usr" component="div" className="text-danger" />
                                         </div>
 
                                         <button type="submit" className='btn btn-secondary  background' disabled={isSubmitting}>
-                                            {transtationDataFromStore?.data?.send}
+                                            {translationDataFromStore?.data?.send}
                                         </button>
                                     </div>
 

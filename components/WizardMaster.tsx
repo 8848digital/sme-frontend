@@ -39,47 +39,49 @@ import { setSignUpUserAccessToken } from "@/store/slices/auth_slice/signup_user_
 import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { language_selector } from "@/store/slices/language_slice";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const data = [1, 2, 3, 4, 5, 6, 7];
   const dispatch = useDispatch();
   const router = useRouter();
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
+  const { language_abbr }: any = useSelector(language_selector);
+  console.log(language_abbr);
 
   const [stepFormData, setStepFormData] = useState<any>({
-    usr: '',
-    password: '',
-    first_name: '',
-    last_name: '',
-    phone_no: '',
+    usr: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    phone_no: "",
     upload_cv: null, // Initialize cvFile to null
-    preferences:'',
-    hourly_rates:'',
-    price_basis:'',
-    academic_background:[],
-    professional_experience:[],
+    preferences: "",
+    hourly_rates: "",
+    price_basis: "",
+    academic_background: [],
+    professional_experience: [],
   });
-  const {educationLevel , loading} = useEducationLevel();
-  console.log('form edu',educationLevel)
-  const validateEmail = (email:any) => {
+  const { educationLevel, loading } = useEducationLevel();
+  console.log("form edu", educationLevel);
+  const validateEmail = (email: any) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
   };
-  
 
   // Validation function for password
-  const validatePassword = (password:any) => {
+  const validatePassword = (password: any) => {
     const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     return passwordRegex.test(password);
   };
-  
+
   const validateStep1 = () => {
     if (!validateEmail(stepFormData.usr)) {
-      toast.error("Please Enter a Valid Email Address",{
+      toast.error(translationDataFromStore?.data?.toast_email_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
     return true;
@@ -87,36 +89,36 @@ const WizardMaster = () => {
 
   const validateStep2 = () => {
     if (!validatePassword(stepFormData.password)) {
-      toast.error("Password must have at least 1 special character, 1 uppercase letter, 1 number, and be 8 characters long.",{
+      toast.error(translationDataFromStore?.data?.toast_password_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
     return true;
   };
 
   const validateStep3 = () => {
-    if (stepFormData.first_name === '') {
-      toast.error("Please enter your first name.",{
+    if (stepFormData.first_name === "") {
+      toast.error(translationDataFromStore?.data?.toast_first_name_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
-    if (stepFormData.last_name === '') {
-      toast.error("Please enter your last name.",{
+    if (stepFormData.last_name === "") {
+      toast.error(translationDataFromStore?.data?.toast_last_name_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
-  
-    if (stepFormData.phone_no === '') {
-      toast.error("Please enter your phone number.",{
+
+    if (stepFormData.phone_no === "") {
+      toast.error(translationDataFromStore?.data?.toast_number_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
     return true;
@@ -124,10 +126,10 @@ const WizardMaster = () => {
 
   const validateStep4 = () => {
     if (stepFormData.upload_cv === null) {
-      toast.error("Please upload your CV.",{
+      toast.error(translationDataFromStore?.data?.toast_upload_cv_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
     return true;
@@ -135,45 +137,51 @@ const WizardMaster = () => {
 
   const validateStep5 = () => {
     if (stepFormData.academic_background.length === 0) {
-      toast.error("Please Enter the Academic Information.",{
-        autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+      toast.error(
+        translationDataFromStore?.data?.toast_academic_information_error,
+        {
+          autoClose: 3000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
       return false;
-    }else if (stepFormData.professional_experience.length === 0 ){
-      toast.error("Please Enter the Professional Experience.",{
-        autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+    } else if (stepFormData.professional_experience.length === 0) {
+      toast.error(
+        translationDataFromStore?.data?.toast_professional_experience_error,
+        {
+          autoClose: 3000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
       return false;
     }
     return true;
   };
 
   const validateStep6 = () => {
-    if (stepFormData.preferences === '') {
-      toast.error("Please Select Availibility.",{
+    if (stepFormData.preferences === "") {
+      toast.error(translationDataFromStore?.data?.toast_select_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
     return true;
   };
 
   const validateStep7 = () => {
-    if (stepFormData.hourly_rates === '') {
-      toast.error("Please Enter hourly/weekly/monthly Rates",{
+    if (stepFormData.hourly_rates === "") {
+      toast.error(translationDataFromStore?.data?.toast_rates_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
-    if (stepFormData.price_basis === '') {
-      toast.error("Please Select Price Basis",{
+    if (stepFormData.price_basis === "") {
+      toast.error(translationDataFromStore?.data?.toast_price_error, {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
       return false;
     }
     return true;
@@ -230,13 +238,13 @@ const WizardMaster = () => {
   console.log("form Data values", formDataFromStore);
 
   const handleFormDataChange = (field: string, value: any) => {
-    if (field === 'certification_level') {
+    if (field === "certification_level") {
       // If the field is 'certification_level', update it with the provided value
       setStepFormData({
         ...stepFormData,
         certification_level: value.certifications,
       });
-    } else if (field === 'professionalexp') {
+    } else if (field === "professionalexp") {
       // If the field is 'professionalexp', update it with the provided value
       setStepFormData({
         ...stepFormData,
@@ -251,7 +259,7 @@ const WizardMaster = () => {
     }
   };
 
-console.log('signup form data',stepFormData);
+  console.log("signup form data", stepFormData);
   const handleSubmit = async () => {
     if (validateStep7()) {
       if (currentStep === 7) {
@@ -259,39 +267,38 @@ console.log('signup form data',stepFormData);
         // You can submit the data to your API or perform other actions here
         try {
           const response = await SmeRegistrationApi(stepFormData);
-          console.log('form Data values in render file api res', response);
+          console.log("form Data values in render file api res", response);
           dispatch(setSignUpUserAccessToken(response));
-          if (response.msg === 'success') {
+          if (response.msg === "success") {
             // Handle the success response, e.g., show a success message or redirect the user
-            console.log('API Response:', response);
+            console.log("API Response:", response);
             toast.success(`${response.data}`, {
               autoClose: 5000, // Time in milliseconds (5 seconds)
-              className: 'custom-toast',// Close the notification after 3 seconds
+              className: "custom-toast", // Close the notification after 3 seconds
             });
-            router.push('/steps-done');
+            router.push("/steps-done");
             dispatch(resetFormData());
-          } else if (response.msg === 'error') {
+          } else if (response.msg === "error") {
             // Handle the failure or error case, e.g., show an error message to the user
             toast.error(`${response.error}`, {
               autoClose: 5000, // Time in milliseconds (5 seconds)
-              className: 'custom-toast',// Close the notification after 3 seconds
+              className: "custom-toast", // Close the notification after 3 seconds
             });
-            console.error('API request failed');
+            console.error("API request failed");
           }
         } catch (error) {
           // Handle any unexpected errors
-          console.error('API request error:', error);
+          console.error("API request error:", error);
         }
       }
     }
   };
 
   return (
-    <div className="container" >
+    <div className="container">
       <div className={styles.wizard_wrapper}>
-
-      <div className="row">
-        {/* <div className="col-md-4 p-0 d-none d-sm-block">
+        <div className="row">
+          {/* <div className="col-md-4 p-0 d-none d-sm-block">
           <div style={{ width: "380px" }} className={styles.image_cont}>
             <img
               src={sideImg.src}
@@ -313,114 +320,122 @@ console.log('signup form data',stepFormData);
             </div>
           </div>
         </div> */}
-        <div className="col-md-12 col-lg-12 mt-5">
-          <div className="row " style={{maxWidth:'800px',margin:'0 auto'}}>
-            <div className="col-4 ">
-              <div className="">
-                <h2 className="fs-3 text-white">{transtationDataFromStore?.data?.step} {currentStep}</h2>
-                <hr className={styles.step_hr} />
-              </div>
-            </div>
-            <div className="col-8 position-relative">
-              <div className={styles.progress_bar_div}>
-                <div className="" style={{marginLeft:'109px'}}>
-                  <p className="mb-4 text-white">{currentStep} of 7 {transtationDataFromStore?.data?.completed}</p>
+          <div className="col-md-12 col-lg-12 mt-5">
+            <div
+              className="row "
+              style={{ maxWidth: "800px", margin: "0 auto" }}
+            >
+              <div className="col-4 ">
+                <div className="">
+                  <h2 className="fs-3 text-white">
+                    {translationDataFromStore?.data?.step} {currentStep}
+                  </h2>
+                  <hr className={styles.step_hr} />
                 </div>
+              </div>
+              <div className="col-8 position-relative">
+                <div className={styles.progress_bar_div}>
+                  <div className="" style={{ margin: "10px" }}>
+                    <p className="mb-4 text-white">
+                      {currentStep} of 7{" "}
+                      {translationDataFromStore?.data?.completed}
+                    </p>
+                  </div>
 
-                <MobileStepper
-                  variant="progress"
-                  steps={8}
-                  backButton={<></>}
-                  nextButton={<></>}
-                  activeStep={currentStep}
-                  className={styles.progress_bar}
-                />
+                  <MobileStepper
+                    variant="progress"
+                    steps={8}
+                    backButton={<></>}
+                    nextButton={<></>}
+                    activeStep={currentStep}
+                    className={styles.progress_bar}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div>
-            {currentStep === 1 && (
-              <Step1EnterEmail
-                formData={stepFormData}
-                onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 2 && (
-              <Step2VarificationCode
-                formData={stepFormData}
-                onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 3 && (
-              <Step3EnterName
-                formData={stepFormData}
-                onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 4 && (
-              <Step2of3UploadCv
-                formData={stepFormData}
-                onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 5 && (
-              <Step2of3ExtractedDataFromCv
-              educationLevel={educationLevel?.data}
-              loading={loading}
-              formData={stepFormData}
-              onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 6 && (
-              <Step3of3SelectAvailability
-                formData={stepFormData}
-                onFormDataChange={handleFormDataChange}
-              />
-            )}
-            {currentStep === 7 && (
-              <Step3of3EnterRates
-                formData={stepFormData}
-                onFormDataChange={handleFormDataChange}
-              />
-            )}
-          </div>
+            <div>
+              {currentStep === 1 && (
+                <Step1EnterEmail
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+              {currentStep === 2 && (
+                <Step2VarificationCode
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+              {currentStep === 3 && (
+                <Step3EnterName
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+              {currentStep === 4 && (
+                <Step2of3UploadCv
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+              {currentStep === 5 && (
+                <Step2of3ExtractedDataFromCv
+                  educationLevel={educationLevel?.data}
+                  loading={loading}
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+              {currentStep === 6 && (
+                <Step3of3SelectAvailability
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+              {currentStep === 7 && (
+                <Step3of3EnterRates
+                  formData={stepFormData}
+                  onFormDataChange={handleFormDataChange}
+                />
+              )}
+            </div>
 
-          <div className="row">
-            <div className="col-12">
-              <div
-                className=" d-flex justify-content-center"
-                style={{ marginBottom: "50px" }}
-              >
-                <div className="d-sm-flex d-static">
-                  {currentStep > 1 && (
-                    <button
-                      className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
-                      onClick={handlePrevious}
-                    >
-                      <ArrowBackIcon />
-                      {transtationDataFromStore?.data?.previous}
-                    </button>
-                  )}
-                  {currentStep < 7 ? (
-                    <button
-                      className="btn btn-next d-flex align-items-center justify-content-center"
-                      onClick={handleNext}
-                    >
-                      {transtationDataFromStore?.data?.next}
-                      <ArrowForwardIcon />
-                    </button>
-                  ) : (
-                    <button className="btn btn-next" onClick={handleSubmit}>
-                      {transtationDataFromStore?.data?.submit}
-                    </button>
-                  )}
+            <div className="row">
+              <div className="col-12">
+                <div
+                  className=" d-flex justify-content-center"
+                  style={{ marginBottom: "50px" }}
+                >
+                  <div className="d-sm-flex d-static">
+                    {currentStep > 1 && (
+                      <button
+                        className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
+                        onClick={handlePrevious}
+                      >
+                        <ArrowBackIcon />
+                        {translationDataFromStore?.data?.previous}
+                      </button>
+                    )}
+                    {currentStep < 7 ? (
+                      <button
+                        className="btn btn-next d-flex align-items-center justify-content-center"
+                        onClick={handleNext}
+                      >
+                        {translationDataFromStore?.data?.next}
+                        <ArrowForwardIcon />
+                      </button>
+                    ) : (
+                      <button className="btn btn-next" onClick={handleSubmit}>
+                        {translationDataFromStore?.data?.submit}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );

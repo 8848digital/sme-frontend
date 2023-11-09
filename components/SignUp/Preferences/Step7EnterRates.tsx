@@ -15,7 +15,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
     console.log("form rate", rates);
     onFormDataChange("price_basis", rates);
   };
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   return (
     <div className="container">
@@ -27,15 +27,15 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
           <div className="col-12">
             <div className="text-center">
               <h1>
-                {transtationDataFromStore?.data?.step} 7 {transtationDataFromStore?.data?.of} 7
+                {translationDataFromStore?.data?.step} 7 {translationDataFromStore?.data?.of} 7
               </h1>
-              <h2>{transtationDataFromStore?.data?.signup_step6_preference}</h2>
+              <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
             </div>
             <form className="">
               <div className="row">
                 <div className="col-12 text-center mt-3">
                   <label htmlFor="enter-rates" className="form-label mt-2 pe-2">
-                    {transtationDataFromStore?.data?.signup_step7_description}
+                    {translationDataFromStore?.data?.signup_step7_description}
                   </label>
                 </div>
                 <div className="col-12">
@@ -48,10 +48,10 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
                           onChange={handleSelectPriceBasis}
                           value={formData.price_basis}
                         >
-                          <option>{transtationDataFromStore?.data?.signup_step7_select_placeholder}</option>
-                          <option value="Monthly">{transtationDataFromStore?.data?.signup_step7_select_monthly}</option>
-                          <option value="Weekly">{transtationDataFromStore?.data?.signup_step7_select_weekly}</option>
-                          <option value="Hourly">{transtationDataFromStore?.data?.signup_step7_select_hourly}</option>
+                          <option>{translationDataFromStore?.data?.signup_step7_select_placeholder}</option>
+                          <option value="Monthly">{translationDataFromStore?.data?.signup_step7_select_monthly}</option>
+                          <option value="Weekly">{translationDataFromStore?.data?.signup_step7_select_weekly}</option>
+                          <option value="Hourly">{translationDataFromStore?.data?.signup_step7_select_hourly}</option>
                         </select>
                       </div>
                     </div>
@@ -60,7 +60,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
                         <input
                           className="form-control w-100  input-filed-height"
                           type="text"
-                          placeholder={transtationDataFromStore?.data?.signup_step7_rate_placeholder}
+                          placeholder={translationDataFromStore?.data?.signup_step7_rate_placeholder}
                           value={formData.hourly_rates}
                           onChange={handleRatesChange}
                         />

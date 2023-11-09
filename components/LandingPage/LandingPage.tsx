@@ -65,9 +65,9 @@ const LandingPage = () => {
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
   const { landingData, loading } = useLandingPage();  
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
-console.log(transtationDataFromStore)
-  console.log(loading);
+  const translationDataFromStore = useSelector(translation_text_from_Store)
+console.log(translationDataFromStore)
+  console.log(landingData);
   let isLoggedIn: any;
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -132,7 +132,7 @@ console.log(transtationDataFromStore)
                   <div className="col-12">
                     <div className="benefits_wrapper text-center mt-3">
                       <h4 className="color">{landingData?.Heading_name2}</h4>
-                      <h6 className="text-dark">{transtationDataFromStore?.data?.landingPage_header}</h6>
+                      <h6 className="text-dark">{translationDataFromStore?.data?.landingPage_header}</h6>
                       <div className="count-circle mt-5">
                         <div className="row">
                           <div className="col-md-4">
@@ -154,7 +154,7 @@ console.log(transtationDataFromStore)
                                   </div>
                                 </div>
                               </div>
-                              <h5>{transtationDataFromStore?.data?.landingPage_project}</h5>
+                              <h5>{translationDataFromStore?.data?.landingPage_project}</h5>
                             </div>
                           </div>
                           <div className="col-md-4">
@@ -174,7 +174,7 @@ console.log(transtationDataFromStore)
                                 </div>
                               </div>
                             </div>
-                            <h5>{transtationDataFromStore?.data?.landingPage_client}</h5>
+                            <h5>{translationDataFromStore?.data?.landingPage_client}</h5>
                           </div>
                           <div className="col-md-4">
                             <div className="d-flex flex-column justify-content-center align-items-start">
@@ -196,7 +196,7 @@ console.log(transtationDataFromStore)
                                 </div>
                               </div>
                             </div>
-                            <h5>{transtationDataFromStore?.data?.landingPage_sme}</h5>
+                            <h5>{translationDataFromStore?.data?.landingPage_sme}</h5>
                             </div>
                           </div>
                         </div>

@@ -35,7 +35,7 @@ const LogIn = () => {
     const router = useRouter();
     const tokenFromStore = useSelector(get_access_token);
 
-    const transtationDataFromStore = useSelector(translation_text_from_Store)
+    const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
     const togglePasswordVisibility = () => {
@@ -47,19 +47,19 @@ const LogIn = () => {
             const response = await dispatch(getAccessToken({ usr: values.usr, password: values.password }));
 
             if (response.payload.msg === 'success') {
-                toast.success('Login successful', {
+                toast.success(translationDataFromStore?.data?.toast_login_success, {
                     autoClose: 3000,
                     className: 'custom-toast',
                 });
                 router.push("/");
             } else {
-                toast.error('Login failed. Please check your credentials and try again.', {
+                toast.error(translationDataFromStore?.data?.toast_login_error, {
                     autoClose: 5000,
                     className: 'custom-toast',
                 });
             }
         } catch (error) {
-            toast.error('Login failed. Please check your credentials and try again.', {
+            toast.error(translationDataFromStore?.data?.toast_login_error, {
                 autoClose: 5000,
                 className: 'custom-toast',
             });
@@ -100,7 +100,7 @@ const LogIn = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <h1 className="text-center">{transtationDataFromStore?.data?.login_header}</h1>
+                                        <h1 className="text-center">{translationDataFromStore?.data?.login_header}</h1>
                                     </div>
                                     <div className="col-lg-12">
                                         <Form.Group controlId="formName">
@@ -113,7 +113,7 @@ const LogIn = () => {
                                                         name="usr"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder={transtationDataFromStore?.data?.email_placeholder}
+                                                        placeholder={translationDataFromStore?.data?.email_placeholder}
                                                     />
                                                     <div className="row">
                                                         <div className="col-12">
@@ -136,7 +136,7 @@ const LogIn = () => {
                                                         name="password"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder={transtationDataFromStore?.data?.password_placeholder}
+                                                        placeholder={translationDataFromStore?.data?.password_placeholder}
                                                         InputProps={{
                                                             endAdornment: (
                                                                 <InputAdornment position="end">
@@ -160,12 +160,12 @@ const LogIn = () => {
 
                                         <div className={`${isAlertVisible === true ? 'login_btn' : ""} mt-4 mb-3 text-center`}>
                                             <button type="submit" className={` btn btn-signup`}>
-                                                <LockOutlinedIcon /> {transtationDataFromStore?.data?.login}
+                                                <LockOutlinedIcon /> {translationDataFromStore?.data?.login}
                                             </button><br />
                                         </div>
 
                                         <div className='text-center'>
-                                            <span className='label-color'>{transtationDataFromStore?.data?.login_forget_text} <Link href="/forget-password" legacyBehavior><a>{transtationDataFromStore?.data?.login_forget_link}</a></Link></span>
+                                            <span className='label-color'>{translationDataFromStore?.data?.login_forget_text} <Link href="/forget-password" legacyBehavior><a>{translationDataFromStore?.data?.login_forget_link}</a></Link></span>
                                         </div>
                                     </div>
 

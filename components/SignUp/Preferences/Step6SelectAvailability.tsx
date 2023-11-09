@@ -9,7 +9,7 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
     const availability = event.target.value;
     onFormDataChange('preferences', availability);
   };
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   return (
     <div className="container">
@@ -17,13 +17,13 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-3">
-              <h1>{transtationDataFromStore?.data?.step} 6 {transtationDataFromStore?.data?.of} 7</h1>
-              <h2>{transtationDataFromStore?.data?.signup_step6_preference}</h2>
+              <h1>{translationDataFromStore?.data?.step} 6 {translationDataFromStore?.data?.of} 7</h1>
+              <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
             </div>
             <form>
               <div className="mb-3 d-flex flex-column justify-content-center align-items-center mt-5">
                 <label htmlFor="availability" className="form-label mt-2 pe-2">
-                  {transtationDataFromStore?.data?.signup_step6_availability}
+                  {translationDataFromStore?.data?.signup_step6_availability}
                 </label>
                 <select
                   id="availability"
@@ -32,9 +32,9 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange }: any) => {
                   value={formData.preferences}
                   onChange={handleAvailabilityChange}
                 >
-                  <option value="Select">{transtationDataFromStore?.data?.select}</option>
-                  <option value="Full Time">{transtationDataFromStore?.data?.signup_step6_full_time}</option>
-                  <option value="Part Time">{transtationDataFromStore?.data?.signup_step6_part_time}</option>
+                  <option value="Select">{translationDataFromStore?.data?.select}</option>
+                  <option value="Full Time">{translationDataFromStore?.data?.signup_step6_full_time}</option>
+                  <option value="Part Time">{translationDataFromStore?.data?.signup_step6_part_time}</option>
                 </select>
               </div>
 

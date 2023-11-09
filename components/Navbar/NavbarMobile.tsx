@@ -24,7 +24,7 @@ const NavbarMobile = () => {
   const dispatch = useDispatch();
   const [isSticky, setIsSticky] = useState(false);
   const login = useSelector(get_access_token);
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const NavbarMobile = () => {
     dispatch(clearBioData());
     localStorage.removeItem("LoggedIn");
     console.log("Logged out");
-    toast.success("Logout successful", {
+    toast.success(translationDataFromStore?.data?.toast_logout_success, {
       autoClose: 3000,
       className: "custom-toast", // Close the notification after 3 seconds
     });
@@ -99,22 +99,22 @@ const NavbarMobile = () => {
                       <ul className="navbar-nav main-menu align-items-center">
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account-view">
-                            {transtationDataFromStore?.data?.bio}
+                            {translationDataFromStore?.data?.bio}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/job-request">
-                            {transtationDataFromStore?.data?.job_request}
+                            {translationDataFromStore?.data?.job_request}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/contract">
-                            {transtationDataFromStore?.data?.contract}
+                            {translationDataFromStore?.data?.contract}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account">
-                            {transtationDataFromStore?.data?.account}
+                            {translationDataFromStore?.data?.account}
                           </Link>
                         </li>
                         <Link href="" legacyBehavior>
@@ -125,7 +125,7 @@ const NavbarMobile = () => {
                             <LogoutIcon
                               style={{ color: "#00578a", fontSize: "18px" }}
                             />{" "}
-                            <span style={{ color: "#00578a" }}>{transtationDataFromStore?.data?.log_out}</span>
+                            <span style={{ color: "#00578a" }}>{translationDataFromStore?.data?.log_out}</span>
                           </a>
                         </Link>
                       </ul>
@@ -163,14 +163,14 @@ const NavbarMobile = () => {
                         <li className="nav-item">
                           <Link href="/login" legacyBehavior>
                             <a className="btn p-0 btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                              {transtationDataFromStore?.data?.login}
+                              {translationDataFromStore?.data?.login}
                             </a>
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link href="/signup-start" legacyBehavior>
                             <a className="btn btn-signup text-uppercase font-size-3">
-                            {transtationDataFromStore?.data?.signup}
+                            {translationDataFromStore?.data?.signup}
                             </a>
                           </Link>
                         </li>

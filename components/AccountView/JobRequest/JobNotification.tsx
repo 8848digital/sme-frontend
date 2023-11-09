@@ -12,7 +12,7 @@ const JobNotification = ({ jobRequestData }: any) => {
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
-  const transtationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store)
 
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
@@ -26,7 +26,7 @@ const JobNotification = ({ jobRequestData }: any) => {
         <div className="mb-4 row">
           <div className="col-sm-6">
             {" "}
-            <h1 className={`${styles.header_text}`}>{transtationDataFromStore?.data?.job_request}</h1>
+            <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.job_request}</h1>
           </div>
           <div className="col-sm-6 text-sm-end">
             {tabs === "description" && (
@@ -34,7 +34,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                 className="btn btn-later px-2"
                 onClick={() => setTabs("table")}
               >
-             {transtationDataFromStore?.data?.view_less_btn}
+             {translationDataFromStore?.data?.view_less_btn}
               </button>
             )}
           </div>
@@ -45,9 +45,9 @@ const JobNotification = ({ jobRequestData }: any) => {
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">
-                    <th className="text-center">{transtationDataFromStore?.data?.job_request_project_id}</th>
-                    <th className="text-center">{transtationDataFromStore?.data?.project_name}</th>
-                    <th className="text-center">{transtationDataFromStore?.data?.action}</th>
+                    <th className="text-center">{translationDataFromStore?.data?.job_request_project_id}</th>
+                    <th className="text-center">{translationDataFromStore?.data?.project_name}</th>
+                    <th className="text-center">{translationDataFromStore?.data?.action}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -74,7 +74,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                                   openDescription(data, "description")
                                 }
                               >
-                                {transtationDataFromStore?.data?.view_full_btn}
+                                {translationDataFromStore?.data?.view_full_btn}
                               </button>
                             </td>
                           </tr>
@@ -87,7 +87,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                 <></>
               ) : (
                 <div className="text-center">
-                  <p>{transtationDataFromStore?.data?.no_data_available}</p>
+                  <p>{translationDataFromStore?.data?.no_data_available}</p>
                 </div>
               )}
             </div>
