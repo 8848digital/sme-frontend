@@ -121,7 +121,7 @@ console.log('form edu in wizard',educationLevel)
                       educationLevel && educationLevel.map((data:any , index:any)=>{
                         return (
                           <>
-                           <option value={data?.name}>{data?.name}</option>
+                           <option value={data?.name}>{data?.name} {data?.label && (<span>&#40;{data?.label}&#41;</span>)}</option>
                           </>
                         )
                       })

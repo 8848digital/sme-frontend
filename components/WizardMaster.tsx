@@ -40,6 +40,8 @@ import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import { language_selector } from "@/store/slices/language_slice";
+import usePriceBasis from "@/hooks/general_hooks/price_basis_hook";
+import usePreferences from "@/hooks/general_hooks/preferences_hook";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
@@ -65,6 +67,11 @@ const WizardMaster = () => {
   });
   const { educationLevel, loading } = useEducationLevel();
   console.log("form edu", educationLevel);
+  const { priceBasis, priceBasisLoading } = usePriceBasis();
+  console.log("form price basis", priceBasis);
+  const { preference, preferenceLoading } = usePreferences();
+  console.log("form preference", preference);
+
   const validateEmail = (email: any) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
@@ -388,13 +395,18 @@ const WizardMaster = () => {
                 />
               )}
               {currentStep === 6 && (
+
                 <Step3of3SelectAvailability
+                  preference={preference}
+                  preferenceLoading={preferenceLoading}
                   formData={stepFormData}
                   onFormDataChange={handleFormDataChange}
                 />
               )}
               {currentStep === 7 && (
                 <Step3of3EnterRates
+                  priceBasisLoading={priceBasisLoading}
+                  priceBasis={priceBasis}
                   formData={stepFormData}
                   onFormDataChange={handleFormDataChange}
                 />

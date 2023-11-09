@@ -4,7 +4,7 @@ import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import { useSelector } from "react-redux";
 
-const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
+const Step3of3EnterRates = ({ formData, onFormDataChange , priceBasis , priceBasisLoading }: any) => {
   const handleRatesChange = (event: any) => {
     const rates = event.target.value;
     console.log("form rate", rates);
@@ -49,9 +49,20 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
                           value={formData.price_basis}
                         >
                           <option>{translationDataFromStore?.data?.signup_step7_select_placeholder}</option>
-                          <option value="Monthly">{translationDataFromStore?.data?.signup_step7_select_monthly}</option>
+                          {
+                            priceBasis && priceBasis.length > 0 && (
+                              priceBasis.map((data:any , index:number)=>{
+                                return (
+                                  <>
+                                 <option value={data?.name}>{data?.name}  {data?.label && (<span>&#40;{data?.label}&#41;</span>)}</option>
+                                  </>
+                                )
+                              })
+                            )
+                          }
+                          {/* <option value="Monthly">{translationDataFromStore?.data?.signup_step7_select_monthly}</option>
                           <option value="Weekly">{translationDataFromStore?.data?.signup_step7_select_weekly}</option>
-                          <option value="Hourly">{translationDataFromStore?.data?.signup_step7_select_hourly}</option>
+                          <option value="Hourly">{translationDataFromStore?.data?.signup_step7_select_hourly}</option> */}
                         </select>
                       </div>
                     </div>

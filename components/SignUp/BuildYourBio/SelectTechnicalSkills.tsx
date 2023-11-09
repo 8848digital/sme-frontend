@@ -82,7 +82,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }:
                               className="form-check-input"
                             />
                             <label htmlFor={skills.name} className="form-check-label">
-                              {skills.name}
+                              {skills.name} {skills?.label && (<span>&#40;{skills?.label}&#41;</span>)}
                             </label>
                           </div>
                         ))
