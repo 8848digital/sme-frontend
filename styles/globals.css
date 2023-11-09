@@ -9156,16 +9156,7 @@ h2{
   font-weight: 500 !important;
   /* margin-top: 20px; */
 }
-[dir="rtl"] .btn-signup{
-  margin-left: 2rem;
-}
 
-@media (max-width: 578px) {
-  [dir="rtl"] .btn-signup{
-    margin:0 !important;
-  }
-  
-}
 .btn-signup:hover {
   background-color: #00578A !important;
   border-color: #00578A;
@@ -9203,9 +9194,7 @@ h2{
   margin-top: 20px;
   width: 160px;
 }
-[dir="rtl"] .btn-next{
-  margin-right: 1rem;
-}
+
 .btn-next:hover {
   background-color: #aaa !important;
   border-color: #00578A;
@@ -9366,4 +9355,21 @@ h2{
 
 .language_cursor{
   cursor: pointer;
+}
+
+
+/* -------------------common RTL ------------- */
+
+[dir="rtl"] .btn-signup{
+  margin-left: 2rem;
+}
+
+@media (max-width: 578px) {
+  [dir="rtl"] .btn-signup{
+    margin:0 !important;
+  }
+  
+}
+[dir="rtl"] .btn-next{
+  margin-right: 1rem;
 }

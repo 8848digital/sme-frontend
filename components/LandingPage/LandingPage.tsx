@@ -136,8 +136,8 @@ console.log(translationDataFromStore)
                       <h6 className="text-dark">{translationDataFromStore?.data?.landingPage_header}</h6>
                       <div className="count-circle mt-1">
                         <div className="row">
-                          <div className="col-md-4">
-                            <div className="d-flex flex-column justify-content-center align-items-end">
+                          <div className="col-md-4 mt-2">
+                            <div className="d-flex flex-column justify-content-center align-items-center">
 
                               <div className={`${styles.count_item_wrapper}`}>
                                 <div className='d-flex justify-content-center align-items-center border-bottom' style={{borderColor:'darkgray'}}>
@@ -158,7 +158,7 @@ console.log(translationDataFromStore)
                               <h5>{translationDataFromStore?.data?.landingPage_project}</h5>
                             </div>
                           </div>
-                          <div className="col-md-4">
+                          <div className="col-md-4 mt-2">
                             <div className={`${styles.count_item_wrapper}`}>
                               <div className='d-flex justify-content-center align-items-center border-bottom'>
                                 <div className={`${styles.count_container}`}> {/* Wrap the count in a container */}
@@ -177,8 +177,8 @@ console.log(translationDataFromStore)
                             </div>
                             <h5>{translationDataFromStore?.data?.landingPage_client}</h5>
                           </div>
-                          <div className="col-md-4">
-                            <div className="d-flex flex-column justify-content-center align-items-start">
+                          <div className="col-md-4 mt-2">
+                            <div className="d-flex flex-column justify-content-center align-items-center">
 
 
                             <div className={`${styles.count_item_wrapper}`}>
