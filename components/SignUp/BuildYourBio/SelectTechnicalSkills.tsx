@@ -4,12 +4,15 @@ import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hoo
 import Loaders from "@/components/Loaders";
 import LoaderForSkills from "@/components/LoaderForSkills";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { useSelector } from "react-redux";
 
 const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }: any) => {
   const [technical, setTechnical] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
   // const { ourSkill, loading } = useFetchOurTechnicalSkills();
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
   useEffect(() => {
     if (!initialized && bioData && bioData.technical_skills) {
@@ -56,7 +59,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }:
           <div className="row">
             <div className="col-12">
               <div className="text-center ">
-                <h1>{translationData?.build_your_bio_step3_header}</h1>
+                <h1>{transtationDataFromStore?.data?.build_your_bio_step3_header}</h1>
               </div>
             </div>
             <div className="row justify-content-center">
@@ -96,13 +99,13 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }:
                       <div className="col-md-4 ">
                         <div className="text-md-end text-center mt-1">
 
-                          <label htmlFor="exampleFormControlInput1">{translationData?.build_your_bio_step3_input_label}</label>
+                          <label htmlFor="exampleFormControlInput1">{transtationDataFromStore?.data?.build_your_bio_step3_input_label}</label>
                         </div>
                       </div>
                       <div className="col-md-8">
-                        <input type="text" className="form-control" id="other_tech_skills" placeholder={translationData?.build_your_bio_step3_input_placeholder} onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData?.other_technical_skills}/>
+                        <input type="text" className="form-control" id="other_tech_skills" placeholder={transtationDataFromStore?.data?.build_your_bio_step3_input_placeholder} onChange={(e: any) => { handleOtherTechSkills(e) }} value={bioData?.other_technical_skills}/>
                         <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
-                          {translationData?.build_your_bio_step3_input_tag}
+                          {transtationDataFromStore?.data?.build_your_bio_step3_input_tag}
                         </div>
                       </div>
                     </div>

@@ -4,13 +4,16 @@ import JobDescription from "./JobDescription";
 import styles from "@/styles/account.module.css";
 import { useRouter } from "next/router";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { useSelector } from "react-redux";
 
 const JobNotification = ({ jobRequestData }: any) => {
   console.log("job request data in render", jobRequestData);
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
     setTabs(tabs);
@@ -23,7 +26,7 @@ const JobNotification = ({ jobRequestData }: any) => {
         <div className="mb-4 row">
           <div className="col-sm-6">
             {" "}
-            <h1 className={`${styles.header_text}`}>{translationData?.job_request}</h1>
+            <h1 className={`${styles.header_text}`}>{transtationDataFromStore?.data?.job_request}</h1>
           </div>
           <div className="col-sm-6 text-sm-end">
             {tabs === "description" && (
@@ -31,7 +34,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                 className="btn btn-later px-2"
                 onClick={() => setTabs("table")}
               >
-             {translationData?.view_less_btn}
+             {transtationDataFromStore?.data?.view_less_btn}
               </button>
             )}
           </div>
@@ -42,9 +45,9 @@ const JobNotification = ({ jobRequestData }: any) => {
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">
-                    <th className="text-center">{translationData?.job_request_project_id}</th>
-                    <th className="text-center">{translationData?.project_name}</th>
-                    <th className="text-center">{translationData?.action}</th>
+                    <th className="text-center">{transtationDataFromStore?.data?.job_request_project_id}</th>
+                    <th className="text-center">{transtationDataFromStore?.data?.project_name}</th>
+                    <th className="text-center">{transtationDataFromStore?.data?.action}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,7 +74,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                                   openDescription(data, "description")
                                 }
                               >
-                                {translationData?.view_full_btn}
+                                {transtationDataFromStore?.data?.view_full_btn}
                               </button>
                             </td>
                           </tr>
@@ -84,7 +87,7 @@ const JobNotification = ({ jobRequestData }: any) => {
                 <></>
               ) : (
                 <div className="text-center">
-                  <p>{translationData?.no_data_available}</p>
+                  <p>{transtationDataFromStore?.data?.no_data_available}</p>
                 </div>
               )}
             </div>

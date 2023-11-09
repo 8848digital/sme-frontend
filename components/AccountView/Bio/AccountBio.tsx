@@ -9,10 +9,13 @@ import { CONSTANTS } from "@/services/config/api-config";
 import Link from "next/link";
 import Loaders from "@/components/Loaders";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { useSelector } from "react-redux";
 
 const AccountBio = ({ bioData, loading }: any) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
 
   const handleOpenModal = () => {
@@ -33,7 +36,7 @@ const AccountBio = ({ bioData, loading }: any) => {
         <div className={`profile_wrapper ${styles.account_wrapper} card `}>
           <div className="row">
             <div className="mb-4">
-              <h1 className={`${styles.header_text}`}>{translationData?.bio}</h1>
+              <h1 className={`${styles.header_text}`}>{transtationDataFromStore?.data?.bio}</h1>
             </div>
 
             <div className="col-sm-6">
@@ -49,14 +52,14 @@ const AccountBio = ({ bioData, loading }: any) => {
               {bioData ? (
                 <>
                   {(bioData.bio === null || bioData.bio === "") ? (
-                    <p>{translationData?.bio_no_data_added}</p>
+                    <p>{transtationDataFromStore?.data?.bio_no_data_added}</p>
                   ) : (
                     <p>{bioData.bio}</p>
                   )}
                   <div>
                     {bioData.technical_skills && bioData.technical_skills.length > 0 ? (
                       <>
-                        <h2>{translationData?.bio_technical_skills}</h2>
+                        <h2>{transtationDataFromStore?.data?.bio_technical_skills}</h2>
                         <ul>
                           {bioData.technical_skills.map((skills: any, index: any) => (
                             <li className={`${styles.li_marker}`} key={index}>
@@ -67,8 +70,8 @@ const AccountBio = ({ bioData, loading }: any) => {
                       </>
                     ) : (
                       <>
-                        <h2>{translationData?.bio_technical_skills}</h2>
-                        <p>{translationData?.bio_profile_complete_technical_tag}</p>
+                        <h2>{transtationDataFromStore?.data?.bio_technical_skills}</h2>
+                        <p>{transtationDataFromStore?.data?.bio_profile_complete_technical_tag}</p>
                       </>
                     )}
                   </div>
@@ -76,7 +79,7 @@ const AccountBio = ({ bioData, loading }: any) => {
                   <div>
                     {bioData.language && bioData.language.length > 0 ? (
                       <>
-                        <h2>{translationData?.bio_languages}</h2>
+                        <h2>{transtationDataFromStore?.data?.bio_languages}</h2>
                         <ul>
                           {bioData.language.map((language: any, index: any) => (
                             <li className={`${styles.li_marker}`} key={index}>
@@ -87,8 +90,8 @@ const AccountBio = ({ bioData, loading }: any) => {
                       </>
                     ) : (
                       <>
-                        <h2>{translationData?.bio_languages}</h2>
-                        <p>{translationData?.bio_profile_complete_language_tag}</p>
+                        <h2>{transtationDataFromStore?.data?.bio_languages}</h2>
+                        <p>{transtationDataFromStore?.data?.bio_profile_complete_language_tag}</p>
                       </>
                     )}
                   </div>
@@ -96,7 +99,7 @@ const AccountBio = ({ bioData, loading }: any) => {
                   <div>
                     {bioData.certifications && bioData.certifications.length > 0 ? (
                       <>
-                        <h2>{translationData?.bio_certification}</h2>
+                        <h2>{transtationDataFromStore?.data?.bio_certification}</h2>
                         <ul>
                           {bioData.certifications.map((certification: any, index: any) => (
                             <li className={`${styles.li_marker}`} key={index}>
@@ -107,14 +110,14 @@ const AccountBio = ({ bioData, loading }: any) => {
                       </>
                     ) : (
                       <>
-                        <h2>{translationData?.bio_certification}</h2>
-                        <p>{translationData?.bio_profile_complete_certification_tag}</p>
+                        <h2>{transtationDataFromStore?.data?.bio_certification}</h2>
+                        <p>{transtationDataFromStore?.data?.bio_profile_complete_certification_tag}</p>
                       </>
                     )}
                   </div>
                 </>
               ) : (
-                <p>{translationData?.bio_no_data}</p>
+                <p>{transtationDataFromStore?.data?.bio_no_data}</p>
               )}
               <div className="text-center">
                 {/* <button onClick={handleOpenModal} className="btn btn-later">
@@ -127,7 +130,7 @@ const AccountBio = ({ bioData, loading }: any) => {
             </div>
             <div className="mt-4 text-center">
               <Link href="/build-your-bio"  className="btn btn-signup p-1 mx-2">
-              {translationData?.bio_update_btn}
+              {transtationDataFromStore?.data?.bio_update_btn}
               </Link>
             </div>
           </div>

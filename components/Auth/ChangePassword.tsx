@@ -9,6 +9,7 @@ import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import ChangePasswordAPI from "@/services/api/auth_api/change_password_api";
 import { toast } from 'react-toastify';
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 // import { RootState } from "../store/root_reducer";
 
 interface FormValues {
@@ -27,7 +28,8 @@ const ChangePassword = () => {
     confirmPassword: "",
   };
 
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
   const handlesubmit = async (values: any, action: any) => {
     console.log('values', values)
     if (values.new_password !== values.confirmPassword) {
@@ -75,7 +77,7 @@ const ChangePassword = () => {
       <div className='container'>
         <div className={` card ${styles.auth_common_wrapper}`}>
           <div className="page_heading text-center">
-            <h1 className='text-uppercase'>{translationData?.change_password_header}</h1>
+            <h1 className='text-uppercase'>{transtationDataFromStore?.data?.change_password_header}</h1>
           </div>
           <Formik
             initialValues={initialValues}
@@ -90,7 +92,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            {translationData?.change_password_old}
+                            {transtationDataFromStore?.data?.change_password_old}
                           </label>
                         </div>
                       </div>
@@ -101,7 +103,7 @@ const ChangePassword = () => {
                           className="form-control"
                           name="old_password"
                           onChange={handleChange}
-                          placeholder={translationData?.change_password_old_placeholder}
+                          placeholder={transtationDataFromStore?.data?.change_password_old_placeholder}
                         />
                         <br />
                         <div className="error_message">
@@ -114,7 +116,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                           {translationData?.change_password_new}
+                           {transtationDataFromStore?.data?.change_password_new}
                           </label>
                         </div>
                       </div>
@@ -125,7 +127,7 @@ const ChangePassword = () => {
                             className="form-control"
                             name="new_password"
                             onChange={handleChange}
-                            placeholder={translationData?.change_password_new_placeholder}
+                            placeholder={transtationDataFromStore?.data?.change_password_new_placeholder}
                           />
                           <br />
                           <div className="error_message">
@@ -138,7 +140,7 @@ const ChangePassword = () => {
                       <div className="col-md-3 ">
                         <div className=''>
                           <label htmlFor="" className="">
-                            {translationData?.change_password_confirm}
+                            {transtationDataFromStore?.data?.change_password_confirm}
                           </label>
                         </div>
                       </div>
@@ -148,7 +150,7 @@ const ChangePassword = () => {
                           className="form-control"
                           name="confirmPassword"
                           onChange={handleChange}
-                          placeholder={translationData?.change_password_confirm_placeholder}
+                          placeholder={transtationDataFromStore?.data?.change_password_confirm_placeholder}
                         />
                         <br />
                         <div className="error_message">
@@ -163,7 +165,7 @@ const ChangePassword = () => {
                        
                       >
                         <Link href="/" className="text-white" style={{textDecoration:'none'}}>
-                          {translationData?.back}
+                          {transtationDataFromStore?.data?.back}
                         </Link>
                       </button>
                       <button
@@ -171,7 +173,7 @@ const ChangePassword = () => {
                         className='btn btn-signup'
                     
                       >
-                        {translationData?.change_password_btn}
+                        {transtationDataFromStore?.data?.change_password_btn}
                       </button>
                     </div>
                   </div>

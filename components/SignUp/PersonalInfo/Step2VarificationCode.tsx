@@ -4,6 +4,8 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material'; // Import Material-UI icons
 import styles from "@/styles/wizard.module.css";
 import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
+import { useSelector } from 'react-redux';
 
 interface Step2Props {
     formData: any;
@@ -23,7 +25,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-  const { translationData, translationLoading } = useTranslationText();
+    const transtationDataFromStore = useSelector(translation_text_from_Store)
 
     return (
         <div className="container">
@@ -31,10 +33,10 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                 <div className="row">
                     <div className="col-12">
                         <div className='text-center mt-5'>
-                            <h1>{translationData?.step} 2 {translationData?.of} 7</h1>
-                            <h2>{translationData?.signup_personal}</h2>
+                            <h1>{transtationDataFromStore?.data?.step} 2 {transtationDataFromStore?.data?.of} 7</h1>
+                            <h2>{transtationDataFromStore?.data?.signup_personal}</h2>
                             {/* <p><span className='pe-2'>Email:</span>{formData.usr}</p> */}
-                            <p className='mb-2 me-2'>{translationData?.enter_password}</p>
+                            <p className='mb-2 me-2'>{transtationDataFromStore?.data?.enter_password}</p>
                             <div>
                                 <div className='d-flex align-items-center justify-content-center flex-column'>
                                     <TextField

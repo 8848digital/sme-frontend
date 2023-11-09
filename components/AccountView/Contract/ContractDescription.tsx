@@ -11,12 +11,14 @@ import styles from "@/styles/account.module.css";
 import UpdateContractAPI from "@/services/api/contract_api/update_contract_api";
 import { fetchContractList } from "@/store/slices/contract_slice/get_contract_slice";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const ContractDescription = ({ data, openDescription }: any) => {
 
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
   const token = useSelector(get_access_token);
   console.log('profile token', token.token);
   let approveStatus = 'Approved'
@@ -69,9 +71,9 @@ const ContractDescription = ({ data, openDescription }: any) => {
         <table className="table table-bordered">
           <thead className="p-2">
             <tr className="">
-              <th>{translationData?.project_name}</th>
-              <th className="text-center">{translationData?.status}</th>
-              <th className="text-center">{translationData?.action}</th>
+              <th>{transtationDataFromStore?.data?.project_name}</th>
+              <th className="text-center">{transtationDataFromStore?.data?.status}</th>
+              <th className="text-center">{transtationDataFromStore?.data?.action}</th>
             </tr>
           </thead>
           <tbody>
@@ -107,7 +109,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                   style={{ width: "auto" }}
                 // onClick={handleReadContractClick}
                 >
-                  {translationData?.read_full_contract}
+                  {transtationDataFromStore?.data?.read_full_contract}
                 </button>
               </Link>
             </div>
@@ -120,7 +122,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                 onClick={handleApproveClick}
                 disabled={data.status === 'Active' || data.status === 'Rejected'}
               >
-                {data.status === `${translationData?.contract_active}` ? `${translationData?.contract_active}` : `${translationData?.sign}`}
+                {data.status === `${transtationDataFromStore?.data?.contract_active}` ? `${transtationDataFromStore?.data?.contract_active}` : `${transtationDataFromStore?.data?.sign}`}
               </button>
             </div>
             {/* <div className="col-md-4">

@@ -6,6 +6,8 @@ import Link from 'next/link';
 import subscriptionApi from '@/services/api/general_api/subscription_api';
 import { toast } from 'react-toastify';
 import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
+import { useSelector } from 'react-redux';
 
 interface FormValues {
     usr: string;
@@ -45,7 +47,7 @@ const StartLater = () => {
             setSubmitting(false);
         }
     };
-  const { translationData, translationLoading } = useTranslationText();
+    const transtationDataFromStore = useSelector(translation_text_from_Store)
 
     return (
         <div className="container">
@@ -53,11 +55,11 @@ const StartLater = () => {
 
                 <div className="col-12">
                     <div className='start-later-wrapper card p-4 shadow-lg' style={{ maxWidth: '800px', height: '400px' }}>
-                        <h1>{translationData?.signup_header}</h1>
-                        <h2 className='mb-5'>{translationData?.signup_description}</h2>
+                        <h1>{transtationDataFromStore?.data?.signup_header}</h1>
+                        <h2 className='mb-5'>{transtationDataFromStore?.data?.signup_description}</h2>
                         <div className="">
-                            <Link href='/wizard-master' className='btn btn-signup me-5'>{translationData?.start}</Link>
-                            <Link href='/' className='btn btn-later'>{translationData?.later}</Link>
+                            <Link href='/wizard-master' className='btn btn-signup me-5'>{transtationDataFromStore?.data?.start}</Link>
+                            <Link href='/' className='btn btn-later'>{transtationDataFromStore?.data?.later}</Link>
                         </div>
 
                         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
@@ -70,12 +72,12 @@ const StartLater = () => {
                                             {/* <label htmlFor="email">
                                             Email Address<span className="text-danger">*</span>
                                         </label> */}
-                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder={translationData?.email_placeholder} />
+                                            <Field type="email" id="usr" name="usr" required className="form-control" placeholder={transtationDataFromStore?.data?.email_placeholder} />
                                             <ErrorMessage name="usr" component="div" className="text-danger" />
                                         </div>
 
                                         <button type="submit" className='btn btn-secondary  background' disabled={isSubmitting}>
-                                            {translationData?.send}
+                                            {transtationDataFromStore?.data?.send}
                                         </button>
                                     </div>
 

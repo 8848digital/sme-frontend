@@ -20,6 +20,7 @@ import TextField from '@mui/material/TextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 
 const LogIn = () => {
     const [message, setMessage] = useState("");
@@ -34,7 +35,8 @@ const LogIn = () => {
     const router = useRouter();
     const tokenFromStore = useSelector(get_access_token);
 
-    const { translationData, translationLoading } = useTranslationText();
+    const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -98,7 +100,7 @@ const LogIn = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <h1 className="text-center">{translationData?.login_header}</h1>
+                                        <h1 className="text-center">{transtationDataFromStore?.data?.login_header}</h1>
                                     </div>
                                     <div className="col-lg-12">
                                         <Form.Group controlId="formName">
@@ -111,7 +113,7 @@ const LogIn = () => {
                                                         name="usr"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder={translationData?.email_placeholder}
+                                                        placeholder={transtationDataFromStore?.data?.email_placeholder}
                                                     />
                                                     <div className="row">
                                                         <div className="col-12">
@@ -134,7 +136,7 @@ const LogIn = () => {
                                                         name="password"
                                                         className="login_inputs w-100"
                                                         onKeyDown={onKeydown}
-                                                        placeholder={translationData?.password_placeholder}
+                                                        placeholder={transtationDataFromStore?.data?.password_placeholder}
                                                         InputProps={{
                                                             endAdornment: (
                                                                 <InputAdornment position="end">
@@ -158,12 +160,12 @@ const LogIn = () => {
 
                                         <div className={`${isAlertVisible === true ? 'login_btn' : ""} mt-4 mb-3 text-center`}>
                                             <button type="submit" className={` btn btn-signup`}>
-                                                <LockOutlinedIcon /> {translationData?.login}
+                                                <LockOutlinedIcon /> {transtationDataFromStore?.data?.login}
                                             </button><br />
                                         </div>
 
                                         <div className='text-center'>
-                                            <span className='label-color'>{translationData?.login_forget_text} <Link href="/forget-password" legacyBehavior><a>{translationData?.login_forget_link}</a></Link></span>
+                                            <span className='label-color'>{transtationDataFromStore?.data?.login_forget_text} <Link href="/forget-password" legacyBehavior><a>{transtationDataFromStore?.data?.login_forget_link}</a></Link></span>
                                         </div>
                                     </div>
 

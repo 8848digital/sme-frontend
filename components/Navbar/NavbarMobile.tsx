@@ -18,12 +18,14 @@ import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { persistor } from "@/store/store";
 import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const NavbarMobile = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [isSticky, setIsSticky] = useState(false);
   const login = useSelector(get_access_token);
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,22 +99,22 @@ const NavbarMobile = () => {
                       <ul className="navbar-nav main-menu align-items-center">
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account-view">
-                            {translationData?.bio}
+                            {transtationDataFromStore?.data?.bio}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/job-request">
-                            {translationData?.job_request}
+                            {transtationDataFromStore?.data?.job_request}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/contract">
-                            {translationData?.contract}
+                            {transtationDataFromStore?.data?.contract}
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account">
-                            {translationData?.account}
+                            {transtationDataFromStore?.data?.account}
                           </Link>
                         </li>
                         <Link href="" legacyBehavior>
@@ -123,7 +125,7 @@ const NavbarMobile = () => {
                             <LogoutIcon
                               style={{ color: "#00578a", fontSize: "18px" }}
                             />{" "}
-                            <span style={{ color: "#00578a" }}>{translationData?.log_out}</span>
+                            <span style={{ color: "#00578a" }}>{transtationDataFromStore?.data?.log_out}</span>
                           </a>
                         </Link>
                       </ul>
@@ -161,14 +163,14 @@ const NavbarMobile = () => {
                         <li className="nav-item">
                           <Link href="/login" legacyBehavior>
                             <a className="btn p-0 btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                              {translationData?.login}
+                              {transtationDataFromStore?.data?.login}
                             </a>
                           </Link>
                         </li>
                         <li className="nav-item">
                           <Link href="/signup-start" legacyBehavior>
                             <a className="btn btn-signup text-uppercase font-size-3">
-                            {translationData?.signup}
+                            {transtationDataFromStore?.data?.signup}
                             </a>
                           </Link>
                         </li>

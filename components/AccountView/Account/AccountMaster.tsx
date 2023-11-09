@@ -5,13 +5,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { useSelector } from "react-redux";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const AccountMaster = () => {
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
   return (
     <div className="container">
       <div className={`card ${styles.account_wrapper} `}>
         <div className={`mb-4`}>
-          <h1 className={`${styles.header_text}`}>{translationData?.account}</h1>
+          <h1 className={`${styles.header_text}`}>{transtationDataFromStore?.data?.account}</h1>
         </div>
         <div className="row justify-content-evenly my-4 mx-2">
           {/* <div className="my-3 ">
@@ -39,7 +42,7 @@ const AccountMaster = () => {
                 legacyBehavior
               >
                 <a target="_blank" className="color  px-3">
-                  {translationData?.contact_support}
+                  {transtationDataFromStore?.data?.contact_support}
                 </a>
               </Link>
             </div>
@@ -50,7 +53,7 @@ const AccountMaster = () => {
             </div>
             <div className="">
               <Link href="/account/change-password" legacyBehavior>
-                <a className="color px-3">{translationData?.change_password}</a>
+                <a className="color px-3">{transtationDataFromStore?.data?.change_password}</a>
               </Link>
             </div>
           </div>
@@ -60,7 +63,7 @@ const AccountMaster = () => {
             </div>
             <div className="">
               <Link href="/account/account-delete" legacyBehavior>
-                <a className="color px-3">{translationData?.delete_account}</a>
+                <a className="color px-3">{transtationDataFromStore?.data?.delete_account}</a>
               </Link>
             </div>
           </div>

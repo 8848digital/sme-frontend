@@ -4,6 +4,8 @@ import styles from '@/styles/wizard.module.css';
 import UploadFileApi from '@/services/api/auth_api/upload_file_api';
 import LoaderForSkills from '@/components/LoaderForSkills';
 import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
+import { useSelector } from 'react-redux';
 
 interface Step2Props {
   formData: any;
@@ -66,7 +68,8 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({ formData, onFormDataChange }: 
   const { handleSubmit, setFieldValue } = formik;
 
 const fileInputRef = useRef<HTMLInputElement | null>(null);
-const { translationData, translationLoading } = useTranslationText();
+const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
   return (
     <div className="container">
@@ -74,8 +77,8 @@ const { translationData, translationLoading } = useTranslationText();
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-5">
-              <h1>{translationData?.step} 4 {translationData?.of} 7</h1>
-              <h2>{translationData?.professional_experience}</h2>
+              <h1>{transtationDataFromStore?.data?.step} 4 {transtationDataFromStore?.data?.of} 7</h1>
+              <h2>{transtationDataFromStore?.data?.professional_experience}</h2>
             </div>
             <div className="mt-5 text-center">
               <form onSubmit={handleSubmit}>
@@ -102,7 +105,7 @@ const { translationData, translationLoading } = useTranslationText();
                             <div className="upload-circle">
                               <i className="fas fa-upload "></i>
                             </div>
-                            {translationData?.upload_cv}
+                            {transtationDataFromStore?.data?.upload_cv}
                           </label>
                           <input
                             id="input-file"

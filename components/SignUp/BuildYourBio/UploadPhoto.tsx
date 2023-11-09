@@ -9,6 +9,7 @@ import { SignUpUserAccessToken_from_store } from "@/store/slices/auth_slice/sign
 import { CONSTANTS } from "@/services/config/api-config";
 import LoaderForSkills from "@/components/LoaderForSkills";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 
 const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -20,7 +21,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [fileURL, setFileURL] = useState<any>(bioData?.photo_url || null);
 
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
   console.log(signuptoken);
   const loginToken: any = useSelector(get_access_token);
   console.log(loginToken);  
@@ -88,8 +89,8 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-2">
-              <h1>{translationData?.build_your_bio_step1_header}</h1>
-              <h2>{translationData?.build_your_bio_step1_description}</h2>
+              <h1>{transtationDataFromStore?.data?.build_your_bio_step1_header}</h1>
+              <h2>{transtationDataFromStore?.data?.build_your_bio_step1_description}</h2>
             </div>
             <div className="mt-5 text-center">
               <form onSubmit={handleSubmit}>
@@ -116,7 +117,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                           <div className="upload-circle">
                             <i className="fas fa-upload "></i>
                           </div>
-                          {translationData?.upload_photo}
+                          {transtationDataFromStore?.data?.upload_photo}
                         </label>
                         <input
                           id="input-file"

@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "@/styles/wizard.module.css";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { useSelector } from "react-redux";
 
 const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
   const handleRatesChange = (event: any) => {
@@ -13,7 +15,8 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
     console.log("form rate", rates);
     onFormDataChange("price_basis", rates);
   };
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
   return (
     <div className="container">
       <div
@@ -24,15 +27,15 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
           <div className="col-12">
             <div className="text-center">
               <h1>
-                {translationData?.step} 7 {translationData?.of} 7
+                {transtationDataFromStore?.data?.step} 7 {transtationDataFromStore?.data?.of} 7
               </h1>
-              <h2>{translationData?.signup_step6_preference}</h2>
+              <h2>{transtationDataFromStore?.data?.signup_step6_preference}</h2>
             </div>
             <form className="">
               <div className="row">
                 <div className="col-12 text-center mt-3">
                   <label htmlFor="enter-rates" className="form-label mt-2 pe-2">
-                    {translationData?.signup_step7_description}
+                    {transtationDataFromStore?.data?.signup_step7_description}
                   </label>
                 </div>
                 <div className="col-12">
@@ -45,10 +48,10 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
                           onChange={handleSelectPriceBasis}
                           value={formData.price_basis}
                         >
-                          <option>{translationData?.signup_step7_select_placeholder}</option>
-                          <option value="Monthly">{translationData?.signup_step7_select_monthly}</option>
-                          <option value="Weekly">{translationData?.signup_step7_select_weekly}</option>
-                          <option value="Hourly">{translationData?.signup_step7_select_hourly}</option>
+                          <option>{transtationDataFromStore?.data?.signup_step7_select_placeholder}</option>
+                          <option value="Monthly">{transtationDataFromStore?.data?.signup_step7_select_monthly}</option>
+                          <option value="Weekly">{transtationDataFromStore?.data?.signup_step7_select_weekly}</option>
+                          <option value="Hourly">{transtationDataFromStore?.data?.signup_step7_select_hourly}</option>
                         </select>
                       </div>
                     </div>
@@ -57,7 +60,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange }: any) => {
                         <input
                           className="form-control w-100  input-filed-height"
                           type="text"
-                          placeholder={translationData?.signup_step7_rate_placeholder}
+                          placeholder={transtationDataFromStore?.data?.signup_step7_rate_placeholder}
                           value={formData.hourly_rates}
                           onChange={handleRatesChange}
                         />

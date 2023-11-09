@@ -16,6 +16,9 @@ import twitterIcon from "../../public/assets/icons8-twitter-50.png";
 import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import { staticData } from "@/datasets/staticData"
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { useSelector } from "react-redux";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+
 const LandingPage = () => {
   // const arabicData = {
   //   heading_name1:
@@ -61,9 +64,9 @@ const LandingPage = () => {
 
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
-  const { landingData, loading } = useLandingPage();
-  const { translationData, translationLoading } = useTranslationText();
-
+  const { landingData, loading } = useLandingPage();  
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+console.log(transtationDataFromStore)
   console.log(loading);
   let isLoggedIn: any;
   useEffect(() => {
@@ -129,7 +132,7 @@ const LandingPage = () => {
                   <div className="col-12">
                     <div className="benefits_wrapper text-center mt-3">
                       <h4 className="color">{landingData?.Heading_name2}</h4>
-                      <h6 className="text-dark">{translationData?.landingPage_header}</h6>
+                      <h6 className="text-dark">{transtationDataFromStore?.data?.landingPage_header}</h6>
                       <div className="count-circle mt-5">
                         <div className="row">
                           <div className="col-md-4">
@@ -151,7 +154,7 @@ const LandingPage = () => {
                                   </div>
                                 </div>
                               </div>
-                              <h5>{translationData?.landingPage_project}</h5>
+                              <h5>{transtationDataFromStore?.data?.landingPage_project}</h5>
                             </div>
                           </div>
                           <div className="col-md-4">
@@ -171,7 +174,7 @@ const LandingPage = () => {
                                 </div>
                               </div>
                             </div>
-                            <h5>{translationData?.landingPage_client}</h5>
+                            <h5>{transtationDataFromStore?.data?.landingPage_client}</h5>
                           </div>
                           <div className="col-md-4">
                             <div className="d-flex flex-column justify-content-center align-items-start">
@@ -193,7 +196,7 @@ const LandingPage = () => {
                                 </div>
                               </div>
                             </div>
-                            <h5>{translationData?.landingPage_sme}</h5>
+                            <h5>{transtationDataFromStore?.data?.landingPage_sme}</h5>
                             </div>
                           </div>
                         </div>

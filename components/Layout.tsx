@@ -1,20 +1,24 @@
 import { useRouter } from "next/router";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
-
-
+import { useEffect, useState } from "react";
 
 const Layout = ({ children }: any) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    typeof window !== "undefined" && setIsClient(true);
+  }, []);
+
   return (
     <>
-    {/* <div className="d-flex flex-column min-vh-100">
-    
-    </div> */}
-    <Navbar/>
-      <div className="main">
-        {children}
-      </div>
-      <Footer/>
+      {isClient && (
+        <>
+          <Navbar />
+          <div className="main">{children}</div>
+          <Footer />
+        </>
+      )}
     </>
   );
 };

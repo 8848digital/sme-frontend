@@ -10,11 +10,12 @@ const useTranslationText = () => {
   const router = useRouter();
   const [translationData, setTranslationData] = useState<any>(null);
   const TranslationTextFromStore = useSelector(translation_text_from_Store);
+  console.log(TranslationTextFromStore)
   const {languageToggle , language_abbr}  = useSelector(language_selector);
   const language_selector_from_redux: any = useSelector(language_selector);
   useEffect(() => {
     dispatch(fetchStaticTranslationText({language_abbr}) as any);
-  }, [router , dispatch , language_selector_from_redux]);
+  }, [ dispatch , language_selector_from_redux]);
 
   useEffect(() => {
     if (TranslationTextFromStore.data && TranslationTextFromStore.error === "") {

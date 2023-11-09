@@ -3,9 +3,12 @@ import thankyouImg from "../../public/assets/thankyou-1.png";
 import thankyouImg1 from "../../public/assets/tv1.png";
 import Link from "next/link";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { useSelector } from "react-redux";
 
 const ThankYou = () => {
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
   return (
     <div className="container">
@@ -17,12 +20,12 @@ const ThankYou = () => {
             </div>
             <div className="">
               <h2>
-               {translationData?.thankyou_description}
+               {transtationDataFromStore?.data?.thankyou_description}
               </h2>
             </div>
             <div>
               <Link href="/" className="btn btn-signup ">
-                {translationData?.go_to_home_btn}
+                {transtationDataFromStore?.data?.go_to_home_btn}
               </Link>
             </div>
           </div>

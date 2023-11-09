@@ -1,15 +1,18 @@
 import ContractDescription from "@/components/AccountView/Contract/ContractDescription";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React ,{useState} from "react";
+import { useSelector } from "react-redux";
 const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   console.log("job contract inactive in card", filteredContractsInactive);
   console.log("job contract active in card", filteredContractsInactive);
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
     setTabs(tabs);
@@ -22,9 +25,9 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
           <table className="table table-bordered">
             <thead className="p-2">
               <tr className="">
-                <th>{translationData?.project_name}</th>
-                <th className="text-center">{translationData?.status}</th>
-                <th className="text-center">{translationData?.action}</th>
+                <th>{transtationDataFromStore?.data?.project_name}</th>
+                <th className="text-center">{transtationDataFromStore?.data?.status}</th>
+                <th className="text-center">{transtationDataFromStore?.data?.action}</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +53,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                                     openDescription(data, "description")
                                   }
                                 >
-                                 {translationData?.view_full_btn}
+                                 {transtationDataFromStore?.data?.view_full_btn}
                                 </button>
                                 {/* <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link> */}
                               </td>
@@ -68,7 +71,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
             <></>
           ) : (
             <div className="text-center">
-              <p>{translationData?.no_data_available}</p>
+              <p>{transtationDataFromStore?.data?.no_data_available}</p>
             </div>
           )}
         </div>

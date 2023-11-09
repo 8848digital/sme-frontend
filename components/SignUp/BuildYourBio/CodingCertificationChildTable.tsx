@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from "@/styles/bio.module.css";
 import wizard_styles from "../../../styles/wizard.module.css";
 import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
+import { useSelector } from 'react-redux';
 interface Certification {
   certification_name: string;
   issuing_organization: string;
@@ -26,7 +28,8 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
         ];
 
   const [certifications, setCertifications] = useState<Certification[]>(initialCertifications);
-  const { translationData, translationLoading } = useTranslationText();
+  const transtationDataFromStore = useSelector(translation_text_from_Store)
+
 
   const handleCertificationChange = (index: number, field: keyof Certification, value: string) => {
     const updatedCertifications = certifications.map((cert, certIndex) => {
@@ -64,13 +67,13 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
           <form className="border p-3 rounded">
             <div className="row">
               <div className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                <strong>{translationData?.build_your_bio_step5_certification_name}</strong>
+                <strong>{transtationDataFromStore?.data?.build_your_bio_step5_certification_name}</strong>
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                <strong>{translationData?.build_your_bio_step5_organization}</strong>
+                <strong>{transtationDataFromStore?.data?.build_your_bio_step5_organization}</strong>
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
-                <strong>{translationData?.build_your_bio_step5_date}</strong>
+                <strong>{transtationDataFromStore?.data?.build_your_bio_step5_date}</strong>
               </div>
               <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}></div>
             </div>
@@ -79,7 +82,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="text"
-                    placeholder={translationData?.build_your_bio_step5_certification_name}
+                    placeholder={transtationDataFromStore?.data?.build_your_bio_step5_certification_name}
                     value={cert.certification_name}
                     onChange={(e) => handleCertificationChange(index, 'certification_name', e.target.value)}
                   />
@@ -87,7 +90,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <input
                     type="text"
-                    placeholder={translationData?.build_your_bio_step5_organization}
+                    placeholder={transtationDataFromStore?.data?.build_your_bio_step5_organization}
                     value={cert.issuing_organization}
                     onChange={(e) => handleCertificationChange(index, 'issuing_organization', e.target.value)}
                   />
@@ -102,7 +105,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
                 </div>
                 <div  className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}>
                   <button type="button" className={`btn ${wizard_styles.btn_delete_row}`} onClick={() => removeRow(index)}>
-                    {translationData?.delete_btn}
+                    {transtationDataFromStore?.data?.delete_btn}
                   </button>
                 </div>
               </div>
@@ -111,7 +114,7 @@ const CodingCertificationChildTable: React.FC<CodingCertificationChildTableProps
               <div className="col-md-9"></div>
               <div className={`col-md-3 pt-1 pb-1 ${styles.bio_childtable_responsive_class}`}>
                 <button type="button" className={`btn ${wizard_styles.btn_add_row}`} onClick={addRow}>
-                  {translationData?.add_row_btn}
+                  {transtationDataFromStore?.data?.add_row_btn}
                 </button>
               </div>
             </div>
