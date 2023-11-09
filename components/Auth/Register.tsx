@@ -8,12 +8,13 @@ import {
 } from "formik";
 import { Form } from "react-bootstrap";
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 // import { RegistrationValidation } from '@/validation/registrationValidation';
 import RegistrationApi from '@/services/api/auth_api/register_api';
 import UploadFileApi from '@/services/api/auth_api/upload_file_api';
 import { toast } from 'react-toastify';
+import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 
 const Register = () => {
     const [message, setMessage] = useState("");
@@ -22,6 +23,8 @@ const Register = () => {
     const router = useRouter();
     const [wantUpdates, setWantUpdates] = useState(false);
     const [termsAndConditon, setTermsAndConditon] = useState(false);
+  const translationDataFromStore = useSelector(translation_text_from_Store);
+
     let handlesubmit = async (values: any, action: any) => {
         values.want_updates = wantUpdates ? 1 : 0;
         values.agree_terms_conditions = termsAndConditon ? 1 : 0;
@@ -34,7 +37,9 @@ const Register = () => {
           // Check if the registration was successful
           if (response.msg === 'success') {
             // Show a success toast notification
-            toast.success(`${response.data}`, {
+            toast.success(  response.data === "SME Registration done successfully"
+            ? translationDataFromStore?.data?.toast_sme_register_success
+            : translationDataFromStore?.data?.toast_user_exist_error, {
                 className: 'custom-toast',
               autoClose: 30000, // Close the notification after 3 seconds
             });
@@ -46,7 +51,9 @@ const Register = () => {
           } else if(response.msg === 'error') {
             // Handle other response statuses as needed
             // For example, display an error toast notification
-            toast.error(response.error, {
+            toast.error(response.data === "User Already Exists"
+            ? translationDataFromStore?.data?.toast_user_exist_error
+            : translationDataFromStore?.data?.toast_user_exist_error, {
               position: toast.POSITION.TOP_CENTER,
               autoClose: 3000,
             });

@@ -342,9 +342,9 @@ const WizardMaster = () => {
               </div>
               <div className="col-8 position-relative">
                 <div className={styles.progress_bar_div}>
-                  <div className="" style={{ margin: "10px" }}>
+                  <div className="" style={{ marginInline: "10px" }}>
                     <p className="mb-4 text-white">
-                      {currentStep} of 7{" "}
+                      {currentStep} {translationDataFromStore?.data?.of} 7{" "}
                       {translationDataFromStore?.data?.completed}
                     </p>
                   </div>

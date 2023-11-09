@@ -9,58 +9,77 @@ import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_sl
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const JobDescription = ({ jobData, onclick }: any) => {
-const [jobCost , setJobCost] = useState<number>()
-console.log('job cost',jobCost)
+  const [jobCost, setJobCost] = useState<number>();
+  console.log("job cost", jobCost);
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
   const token = useSelector(get_access_token);
-  console.log('profile token', token.token);
-  let approveStatus = 'Received'
-  let rejectStatus = 'Rejected'
+  console.log("profile token", token.token);
+  let approveStatus = "Approved";
+  let rejectStatus = "Rejected";
   const handleApproveClick = async () => {
-    console.log('approve button clicked')
-    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, approveStatus , jobCost)
-    console.log('job approve', response);
-    if (response[0].msg === 'success') {
-      toast.success(response[0]?.data?.data, {
+    console.log("approve button clicked");
+    response = await UpdateJobRequestAPI(
+      token?.token,
+      jobData.supplier,
+      jobData.project_id,
+      approveStatus,
+      jobCost
+    );
+    console.log("job approve", response);
+    if (response[0].msg === "success") {
+      toast.success(response[0]?.data?.data ===
+        "RFQ Supplier status updated to Approved" &&
+        translationDataFromStore?.data?.toast_approve_job_request_success, {
         autoClose: 3000, // Time in milliseconds (5 seconds)
-        className: 'custom-toast',// Close the notification after 3 seconds
+        className: "custom-toast", // Close the notification after 3 seconds
       });
       dispatch(fetchJobRequest(token?.token) as any);
       setTimeout(() => {
-        router.push('./job-approve-thankyou');
+        router.push("./job-approve-thankyou");
         dispatch(fetchJobRequest(token?.token) as any);
-      }, 3000)
+      }, 3000);
     }
-    return response
+    return response;
   };
   const handleRejectClick = async () => {
-    console.log('reject button clicked')
-    response = await UpdateJobRequestAPI(token?.token, jobData.supplier, jobData.project_id, rejectStatus , jobCost)
-    console.log('job reject', response);
-    console.log('job approve', response);
-    if (response[0].msg === 'success') {
-      toast.success(response[0]?.data?.data, {
-        autoClose: 3000, // Time in milliseconds (5 seconds)
-        className: 'custom-toast',// Close the notification after 3 seconds
-      });
+    console.log("reject button clicked");
+    response = await UpdateJobRequestAPI(
+      token?.token,
+      jobData.supplier,
+      jobData.project_id,
+      rejectStatus,
+      jobCost
+    );
+    console.log("job reject", response);
+    console.log("job approve", response);
+    if (response[0].msg === "success") {
+      toast.success(
+        response[0]?.data?.data ===
+          "RFQ Supplier status updated to Rejected" &&
+          translationDataFromStore?.data?.toast_reject_job_request_success,
+        {
+          autoClose: 3000, // Time in milliseconds (5 seconds)
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
       dispatch(fetchJobRequest(token?.token) as any);
       setTimeout(() => {
-        router.push('./job-rejected');
-      }, 3000)
+        router.push("./job-rejected");
+      }, 3000);
     }
-    return response
+    return response;
   };
   const handleReadContractClick = () => {
-    console.log('approve button clicked')
-    router.push('/');
+    console.log("approve button clicked");
+    router.push("/");
   };
   const isDisabledButton = (status: string) => {
-    return status === 'Received' || status === 'Rejected';
+    return status === "Received" || status === "Rejected";
   };
 
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
   return (
     <div className="container">
       <div className="job-desc-wrapper border p-3 rounded">
@@ -75,7 +94,9 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{translationDataFromStore?.data?.project_name} </h2>
+            <h2 className="border-end">
+              {translationDataFromStore?.data?.project_name}{" "}
+            </h2>
           </div>
           <div className="col-6 text-center ">
             <h4 className="text-capitalize">{jobData.project_name}</h4>
@@ -84,7 +105,9 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{translationDataFromStore?.data?.job_request_client_name} </h2>
+            <h2 className="border-end">
+              {translationDataFromStore?.data?.job_request_client_name}{" "}
+            </h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.client_name}</h4>
@@ -93,7 +116,9 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{translationDataFromStore?.data?.job_request_duration}</h2>
+            <h2 className="border-end">
+              {translationDataFromStore?.data?.job_request_duration}
+            </h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.duration}</h4>
@@ -102,7 +127,9 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{translationDataFromStore?.data?.job_request_supplier}</h2>
+            <h2 className="border-end">
+              {translationDataFromStore?.data?.job_request_supplier}
+            </h2>
           </div>
           <div className="col-6 text-center">
             <h4 className="text-capitalize">{jobData.supplier}</h4>
@@ -111,27 +138,34 @@ console.log('job cost',jobCost)
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{translationDataFromStore?.data?.job_request_payment}</h2>
+            <h2 className="border-end">
+              {translationDataFromStore?.data?.job_request_payment}
+            </h2>
           </div>
           <div className="col-6 text-center">
-          <h4 className="text-capitalize">{jobData.total_payment}</h4>
+            <h4 className="text-capitalize">{jobData.total_payment}</h4>
           </div>
           <hr />
         </div>
         <div className="row align-items-center p-2">
           <div className="col-6">
-            <h2 className="border-end">{translationDataFromStore?.data?.job_request_cost}</h2>
+            <h2 className="border-end">
+              {translationDataFromStore?.data?.job_request_cost}
+            </h2>
           </div>
           <div className="col-6 text-center">
             <div className="mb-3">
-              {
-                jobData?.job_cost !== null ? (
-                  <h4 className="text-capitalize">{jobData.job_cost}</h4>
-                ):(
-
-                  <input type="text" className="form-control" onChange={(e:any)=>{setJobCost(e.target.value)}} />
-                )
-              }
+              {jobData?.job_cost !== null ? (
+                <h4 className="text-capitalize">{jobData.job_cost}</h4>
+              ) : (
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e: any) => {
+                    setJobCost(e.target.value);
+                  }}
+                />
+              )}
             </div>
           </div>
           <hr />
@@ -143,7 +177,7 @@ console.log('job cost',jobCost)
                 <button
                   className="btn btn-later"
                   style={{ width: "auto" }}
-                // onClick={handleReadContractClick}
+                  // onClick={handleReadContractClick}
                 >
                   {translationDataFromStore?.data?.read_full_contract}
                 </button>
@@ -179,9 +213,14 @@ console.log('job cost',jobCost)
                 className="btn btn-later"
                 style={{ width: "auto" }}
                 onClick={handleApproveClick}
-                disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
+                disabled={
+                  jobData.status === "Received" || jobData.status === "Rejected"
+                }
               >
-                {jobData.status === `${translationDataFromStore?.data?.received_btn}` ? `${translationDataFromStore?.data?.received_btn}` : `${translationDataFromStore?.data?.approve}`}
+                {jobData.status ===
+                `${translationDataFromStore?.data?.received_btn}`
+                  ? `${translationDataFromStore?.data?.received_btn}`
+                  : `${translationDataFromStore?.data?.approve}`}
               </button>
             </div>
             <div className="col-md-4">
@@ -189,13 +228,17 @@ console.log('job cost',jobCost)
                 className="btn btn-later "
                 style={{ width: "auto" }}
                 onClick={handleRejectClick}
-                disabled={jobData.status === 'Received' || jobData.status === 'Rejected'}
+                disabled={
+                  jobData.status === "Received" || jobData.status === "Rejected"
+                }
               >
-                {jobData.status === `${translationDataFromStore?.data?.reject_btn}` ? `${translationDataFromStore?.data?.reject_btn}` : `${translationDataFromStore?.data?.rejected}`}
+                {jobData.status ===
+                `${translationDataFromStore?.data?.reject_btn}`
+                  ? `${translationDataFromStore?.data?.reject_btn}`
+                  : `${translationDataFromStore?.data?.rejected}`}
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>

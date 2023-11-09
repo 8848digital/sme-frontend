@@ -28,7 +28,7 @@ const JobNotification = ({ jobRequestData }: any) => {
             {" "}
             <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.job_request}</h1>
           </div>
-          <div className="col-sm-6 text-sm-end">
+          <div className="col-sm-6 text-sm-end rtl_text_align_start">
             {tabs === "description" && (
               <button
                 className="btn btn-later px-2"
@@ -95,7 +95,7 @@ const JobNotification = ({ jobRequestData }: any) => {
         )}
 
         {tabs === "description" && (
-          <div>
+          <div className="p-0">
             <JobDescription
               jobData={descriptionData}
               onclick={openDescription}

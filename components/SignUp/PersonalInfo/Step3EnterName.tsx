@@ -54,7 +54,7 @@ const Step3EnterName: React.FC<Step3Props> = ({ formData, onFormDataChange }) =>
                               
                                 <input
                                     className="form-control w-75 mt-3 input-filed-height"
-                                    type="text"
+                                    type="number"
                                     placeholder={translationDataFromStore?.data?.phone_number}
                                     value={formData.phone_no}
                                     onChange={handlePhoneNumberChange}

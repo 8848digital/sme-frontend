@@ -32,7 +32,7 @@ const BuildYourBioMaster = () => {
   const getBioData = useSelector(bio_data_store);
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   // console.log(BuildYourBioData);
   const router = useRouter();
@@ -40,11 +40,10 @@ const BuildYourBioMaster = () => {
     photo_url: null,
     bio: "",
     technical_skills: [],
-    other_technical_skills:"",
+    other_technical_skills: "",
     language: [],
-    other_languages:"",
+    other_languages: "",
     certifications: [],
-
   });
   const handleNext = () => {
     if (currentStep < 5) {
@@ -86,23 +85,27 @@ const BuildYourBioMaster = () => {
       isLoggedIn = localStorage.getItem("LoggedIn");
       setLoggedIn(isLoggedIn);
     }
-  }, [router])
+  }, [router]);
   const handleSubmit = async () => {
     if (currentStep === 5) {
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
       const response = await BuildYourBioAPI(bioData, accessToken);
       // console.log(response);
-      toast.success(response?.data, {
-        autoClose: 5000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-    });
+      toast.success(
+        response.data === "Thank You for updating your profile" &&
+          translationDataFromStore?.data?.toast_update_profile_success,
+        {
+          autoClose: 5000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
       router.push("/profile-complete");
       setTimeout(() => {
-        if (LoggedIn === 'true') {
+        if (LoggedIn === "true") {
           router.push("/account-view");
           dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-        }else{
+        } else {
           router.push("/login");
           dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
         }
@@ -111,18 +114,18 @@ const BuildYourBioMaster = () => {
       // You can submit the data to your API or perform other actions here
     }
   };
- 
-  const handleBioData = () =>{
-      setBioData(getBioData.data);
-      dispatch(setBuildBioData(getBioData.data));
-  }
+
+  const handleBioData = () => {
+    setBioData(getBioData.data);
+    dispatch(setBuildBioData(getBioData.data));
+  };
 
   useEffect(() => {
     if (LoggedIn === "true" && router.pathname === "/build-your-bio") {
       handleBioData();
     }
   }, [LoggedIn, router.pathname]);
-  console.log("bio", bioData)
+  console.log("bio", bioData);
 
   return (
     <>
@@ -131,7 +134,9 @@ const BuildYourBioMaster = () => {
           <div className="row " style={{ maxWidth: "800px", margin: "0 auto" }}>
             <div className="col-4 ">
               <div className="">
-                <h2 className="fs-3 text-white">{translationDataFromStore?.data?.step} {currentStep}</h2>
+                <h2 className="fs-3 text-white">
+                  {translationDataFromStore?.data?.step} {currentStep}
+                </h2>
                 <hr className={wizardStyles.step_hr} />
               </div>
             </div>
@@ -139,7 +144,8 @@ const BuildYourBioMaster = () => {
               <div className={wizardStyles.progress_bar_div}>
                 <div className={wizardStyles.progress_bar_div_tag}>
                   <p className="mb-4 text-white">
-                    {currentStep} {translationDataFromStore?.data?.of} 5 {translationDataFromStore?.data?.completed}
+                    {currentStep} {translationDataFromStore?.data?.of} 5{" "}
+                    {translationDataFromStore?.data?.completed}
                   </p>
                 </div>
 
@@ -170,16 +176,16 @@ const BuildYourBioMaster = () => {
               )}
               {currentStep === 3 && (
                 <SelectTechnicalSkills
-                ourSkill={ourSkill?.data}
-                loading={loading}
+                  ourSkill={ourSkill?.data}
+                  loading={loading}
                   bioData={bioData}
                   onFormDataChange={handleBioDataChange}
                 />
               )}
               {currentStep === 4 && (
                 <SelectLanguageSkills
-                ourLanguage={ourLanguage?.data}
-                loading={loadingLanguage}
+                  ourLanguage={ourLanguage?.data}
+                  loading={loadingLanguage}
                   bioData={bioData}
                   onFormDataChange={handleBioDataChange}
                 />
@@ -196,7 +202,7 @@ const BuildYourBioMaster = () => {
             <div className="col-12">
               <div
                 className=" d-flex justify-content-center"
-                style={{ marginTop: "50px" }}
+                style={{ marginTop: "50px", marginBottom: "20px" }}
               >
                 <div className="d-sm-flex d-static">
                   {currentStep > 1 && (

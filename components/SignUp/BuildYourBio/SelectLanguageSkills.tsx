@@ -6,11 +6,16 @@ import LoaderForSkills from "@/components/LoaderForSkills";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import { useSelector } from "react-redux";
-const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading }: any) => {
+const SelectLanguageSkills = ({
+  bioData,
+  onFormDataChange,
+  ourLanguage,
+  loading,
+}: any) => {
   // Use a unique identifier for key to help React identify each checkbox
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [initialized, setInitialized] = useState(false);
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   // const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
   // Synchronize the state with bioData prop when it changes
@@ -39,9 +44,8 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
 
   const handleOtherLanguages = (e: any) => {
     const otherLanguages = e.target.value;
-    onFormDataChange(
-      "other_languages", otherLanguages);
-  }
+    onFormDataChange("other_languages", otherLanguages);
+  };
 
   return (
     <div className="container">
@@ -57,7 +61,9 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
           <div className="row">
             <div className="col-12">
               <div className="text-center">
-                <h1>{translationDataFromStore?.data?.build_your_bio_step4_header}</h1>
+                <h1>
+                  {translationDataFromStore?.data?.build_your_bio_step4_header}
+                </h1>
               </div>
             </div>
             <div className="row justify-content-center">
@@ -67,9 +73,12 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
                     className="mb-3 d-flex justify-content-center mt-3 flex-column"
                     style={{ height: "12rem", overflowY: "scroll" }}
                   >
-                    {ourLanguage && (
+                    {ourLanguage &&
                       ourLanguage?.map((language: any, index: number) => (
-                        <div key={index} className="form-check form-check-inline">
+                        <div
+                          key={index}
+                          className="form-check form-check-inline rtl_chechbox"
+                        >
                           <input
                             type="checkbox"
                             id={language.name}
@@ -78,14 +87,17 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
                             onChange={() => handleCheckboxChange(language.name)}
                             className="form-check-input"
                           />
-                          <label htmlFor={language.name} className="form-check-label">
-                            {language?.name} {language?.label && (<span>&#40;{language?.label}&#41;</span>)}
-                          
+                          <label
+                            htmlFor={language.name}
+                            className="form-check-label"
+                          >
+                            {language?.name}{" "}
+                            {language?.label && (
+                              <span>&#40;{language?.label}&#41;</span>
+                            )}
                           </label>
                         </div>
-                      ))
-                    )}
-
+                      ))}
                   </div>
                 </form>
               </div>
@@ -94,15 +106,37 @@ const SelectLanguageSkills = ({ bioData, onFormDataChange, ourLanguage, loading 
                   <div className="form-group">
                     <div className="row">
                       <div className="col-md-4 ">
-                        <div className="text-md-end text-center mt-1">
-
-                          <label htmlFor="exampleFormControlInput1">{translationDataFromStore?.data?.build_your_bio_step4_input_label}</label>
+                        <div className="text-md-end text-center mt-1 rtl_text_align_start">
+                          <label htmlFor="exampleFormControlInput1">
+                            {
+                              translationDataFromStore?.data
+                                ?.build_your_bio_step4_input_label
+                            }
+                          </label>
                         </div>
                       </div>
                       <div className="col-md-8">
-                        <input type="text" className="form-control" id="other_language" placeholder={translationDataFromStore?.data?.build_your_bio_step4_input_placeholder} onChange={(e:any)=>{handleOtherLanguages(e)}} value={bioData.other_languages}/>
-                        <div className="pb-3" style={{ color: 'grey', fontSize: '12px' }}>
-                          {translationDataFromStore?.data?.build_your_bio_step4_input_tag}
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="other_language"
+                          placeholder={
+                            translationDataFromStore?.data
+                              ?.build_your_bio_step4_input_placeholder
+                          }
+                          onChange={(e: any) => {
+                            handleOtherLanguages(e);
+                          }}
+                          value={bioData.other_languages}
+                        />
+                        <div
+                          className="pb-3"
+                          style={{ color: "grey", fontSize: "12px" }}
+                        >
+                          {
+                            translationDataFromStore?.data
+                              ?.build_your_bio_step4_input_tag
+                          }
                         </div>
                       </div>
                     </div>

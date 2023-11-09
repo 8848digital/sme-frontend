@@ -24,8 +24,7 @@ const NavbarMobile = () => {
   const dispatch = useDispatch();
   const [isSticky, setIsSticky] = useState(false);
   const login = useSelector(get_access_token);
-  const translationDataFromStore = useSelector(translation_text_from_Store)
-
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,7 +92,34 @@ const NavbarMobile = () => {
                 </div>
               </div>
               <div className="col-7 text-end">
-                <div className="navbar-nav-wrapper">
+                <div className="text-center">
+                  <div className="navbar-nav-wrapper">
+                    <div
+                      className={` form-switch fs-6 rtl-toggle-section  px-0 mx-2  `}
+                    >
+                      <input
+                        className="form-check-input mx-2 language_cursor"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        checked={language_selector_from_redux?.languageToggle}
+                        onChange={HandleLangToggle}
+                      />
+                    </div>
+                    <div className="text-center mb-1">
+                      <Link
+                        href=""
+                        className={`col-md-1 text-center header-btn-devider language_cursor`}
+                        onClick={HandleLangToggle}
+                      >
+                        <span style={{ color: "#00578a" }}>
+                          {!language_selector_from_redux?.languageToggle
+                            ? "English"
+                            : "عربي"}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
                   {LoggedIn === "true" ? (
                     <>
                       <ul className="navbar-nav main-menu align-items-center">
@@ -125,40 +151,15 @@ const NavbarMobile = () => {
                             <LogoutIcon
                               style={{ color: "#00578a", fontSize: "18px" }}
                             />{" "}
-                            <span style={{ color: "#00578a" }}>{translationDataFromStore?.data?.log_out}</span>
+                            <span style={{ color: "#00578a" }}>
+                              {translationDataFromStore?.data?.log_out}
+                            </span>
                           </a>
                         </Link>
                       </ul>
                     </>
                   ) : (
                     <>
-                      <div className="text-center">
-                        <div
-                          className={` form-switch fs-6 rtl-toggle-section  px-0 mx-2  `}
-                        >
-                          <input
-                            className="form-check-input mx-2 language_cursor"
-                            type="checkbox"
-                            role="switch"
-                            id="flexSwitchCheckDefault"
-                            checked={
-                              language_selector_from_redux?.languageToggle
-                            }
-                            onChange={HandleLangToggle}
-                          />
-                        </div>
-                        <Link
-                          href=""
-                          className={`col-md-1 text-center header-btn-devider language_cursor`}
-                          onClick={HandleLangToggle}
-                        >
-                          <span style={{ color: "#00578a" }}>
-                            {!language_selector_from_redux?.languageToggle
-                              ? "English"
-                              : "عربي"}
-                          </span>
-                        </Link>
-                      </div>
                       <ul className="navbar-nav main-menu align-items-center">
                         <li className="nav-item">
                           <Link href="/login" legacyBehavior>
@@ -170,7 +171,7 @@ const NavbarMobile = () => {
                         <li className="nav-item">
                           <Link href="/signup-start" legacyBehavior>
                             <a className="btn btn-signup text-uppercase font-size-3">
-                            {translationDataFromStore?.data?.signup}
+                              {translationDataFromStore?.data?.signup}
                             </a>
                           </Link>
                         </li>

@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "@/styles/account.module.css";
 import thankyouImg from "../../../public/assets/thankyou-1.png";
+import { useSelector } from "react-redux";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const JobThank = () => {
+  const translationDataFromStore = useSelector(translation_text_from_Store);
   return (
     <>
     <div className="container">
@@ -13,10 +16,9 @@ const JobThank = () => {
               <img src={thankyouImg.src} alt="" width="100px" />
             </div>
           <h4 className="color">
-            Thank you for approving this Job Request. We are excited to have you
-            with our team.
+            {translationDataFromStore?.data?.job_approve_thankyou_desp1}
           </h4>
-          <h4 className="mt-2 color">The Project manager will be in contact with you.</h4>
+          <h4 className="mt-2 color">{translationDataFromStore?.data?.job_approve_thankyou_desp2}</h4>
 
           </div>
         </div>

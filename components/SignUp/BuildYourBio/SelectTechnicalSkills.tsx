@@ -72,7 +72,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }:
                     {
                       ourSkill && (
                         ourSkill?.map((skills: any, index: number) => (
-                          <div key={index} className="form-check form-check-inline">
+                          <div key={index} className="form-check form-check-inline rtl_chechbox">
                             <input
                               type="checkbox"
                               id={skills.name}
@@ -97,7 +97,7 @@ const SelectTechnicalSkills = ({ bioData, onFormDataChange, ourSkill, loading }:
                   <div className="form-group">
                     <div className="row">
                       <div className="col-md-4 ">
-                        <div className="text-md-end text-center mt-1">
+                        <div className="text-md-end text-center mt-1 rtl_text_align_start">
 
                           <label htmlFor="exampleFormControlInput1">{translationDataFromStore?.data?.build_your_bio_step3_input_label}</label>
                         </div>
