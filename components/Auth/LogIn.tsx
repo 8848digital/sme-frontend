@@ -46,18 +46,18 @@ const LogIn = () => {
         try {
             const response = await dispatch(getAccessToken({ usr: values.usr, password: values.password }));
             console.log('login ', response.payload)
-            if (response.payload.msg === 'success') {
+            if (response?.payload.data === 'Waiting for admin approval for SME Registerd User' && response?.payload.msg === 'success') {
+                toast.error(`${translationDataFromStore?.data?.waiting_for_admin_approval}`, {
+                    autoClose: 5000,
+                    className: 'custom-toast',
+                });
+            } else if (response.payload.msg === 'success') {
+               
                 toast.success(translationDataFromStore?.data?.toast_login_success, {
                     autoClose: 3000,
                     className: 'custom-toast',
                 });
                 router.push("/");
-            } else if (response?.payload?.data === 'Waiting for admin approval for SME Registerd User') {
-                toast.error(`${translationDataFromStore?.data?.waiting_for_admin_approval}`, {
-                    autoClose: 5000,
-                    className: 'custom-toast',
-                });
-
             } else {
                 toast.error(translationDataFromStore?.data?.toast_login_error, {
                     autoClose: 5000,
