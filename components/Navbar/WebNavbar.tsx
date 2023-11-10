@@ -153,7 +153,7 @@ const WebNavbar = () => {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckDefault"
-                  checked={!language_selector_from_redux?.languageToggle}
+                  checked={language_selector_from_redux?.languageToggle}
                   onChange={HandleLangToggle}
                 />
               </div>
@@ -163,7 +163,7 @@ const WebNavbar = () => {
                 onClick={HandleLangToggle}
               >
                 <span style={{ color: "#00578a" }}>
-                  {language_selector_from_redux?.languageToggle
+                  {!language_selector_from_redux?.languageToggle
                     ? "عربي"
                     : "English"}
                 </span>
