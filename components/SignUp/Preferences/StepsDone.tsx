@@ -1,8 +1,6 @@
-import Link from 'next/link';
-import React from 'react';
-import styles from "@/styles/bio.module.css";
-import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
 import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
+import styles from "@/styles/bio.module.css";
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
 const StepsDone = () => {

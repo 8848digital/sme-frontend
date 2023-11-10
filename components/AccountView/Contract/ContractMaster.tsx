@@ -1,9 +1,6 @@
 
-import React from "react";
-import AccountSidebar from "../AccountSidebar";
-import ContractNavbars from "./ContractNavtabs";
-import useContract from "@/hooks/contract_hooks/contract_hooks";
 import useContractList from "@/hooks/contract_hooks/contract_hooks";
+import ContractNavbars from "./ContractNavtabs";
 
 const ContractMaster = () => {
   const {contractData , loading} = useContractList();

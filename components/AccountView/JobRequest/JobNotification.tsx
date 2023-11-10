@@ -1,10 +1,9 @@
 import { useState } from "react";
 import JobDescription from "./JobDescription";
 // import JobApprove from "./JobApprove";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/account.module.css";
 import { useRouter } from "next/router";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
-import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import { useSelector } from "react-redux";
 
 const JobNotification = ({ jobRequestData }: any) => {

@@ -1,51 +1,35 @@
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MultiStep from "./StepsProgressIndicator";
 import Step1EnterEmail from "./SignUp/PersonalInfo/Step1EnterEmail";
-import Step3EnterName from "./SignUp/PersonalInfo/Step3EnterName";
 import Step2VarificationCode from "./SignUp/PersonalInfo/Step2VarificationCode";
-import sideImg from "../public/assets/side-img.jpg";
+import Step3EnterName from "./SignUp/PersonalInfo/Step3EnterName";
 // import StepWizard from "react-step-wizard";
-import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import MobileStepper from "@mui/material/MobileStepper";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import styles from "@/styles/wizard.module.css";
-import { styled } from "@mui/material/styles";
-import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step4UploadCv";
-import Step2of3ExtractedDataFromCv from "./SignUp/ProfessionalInfo/Step5ExtractedDataFromCv";
-import Step3of3SelectAvailability from "./SignUp/Preferences/Step6SelectAvailability";
-import Step3of3EnterRates from "./SignUp/Preferences/Step7EnterRates";
-import StepsDone from "./SignUp/Preferences/StepsDone";
-import ThankYou from "./SignUp/ThankYou";
-import UploadPhoto from "./SignUp/BuildYourBio/UploadPhoto";
-import EnterBio from "./SignUp/BuildYourBio/EnterBio";
-import SelectTechnicalSkills from "./SignUp/BuildYourBio/SelectTechnicalSkills";
-import SelectLanguageSkills from "./SignUp/BuildYourBio/SelectLanguageSkills";
-import SelectCertifications from "./SignUp/BuildYourBio/SelectCertifications";
-import ProfileCompleted from "./SignUp/BuildYourBio/ProfileCompleted";
-import { useRouter } from "next/router";
+import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
+import usePreferences from "@/hooks/general_hooks/preferences_hook";
+import usePriceBasis from "@/hooks/general_hooks/price_basis_hook";
+import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
+import { setSignUpUserAccessToken } from "@/store/slices/auth_slice/signup_user_access_token_slice";
 import {
   form_details_from_store,
   resetFormData,
   setFormData,
 } from "@/store/slices/form_slice";
-import SmeRegistrationApi from "@/services/api/auth_api/sme_registration";
-import { ToastContainer, toast } from "react-toastify";
-import { setSignUpUserAccessToken } from "@/store/slices/auth_slice/signup_user_access_token_slice";
-import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import { language_selector } from "@/store/slices/language_slice";
-import usePriceBasis from "@/hooks/general_hooks/price_basis_hook";
-import usePreferences from "@/hooks/general_hooks/preferences_hook";
+import styles from "@/styles/wizard.module.css";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import MobileStepper from "@mui/material/MobileStepper";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import Step3of3SelectAvailability from "./SignUp/Preferences/Step6SelectAvailability";
+import Step3of3EnterRates from "./SignUp/Preferences/Step7EnterRates";
+import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step4UploadCv";
+import Step2of3ExtractedDataFromCv from "./SignUp/ProfessionalInfo/Step5ExtractedDataFromCv";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
-  const data = [1, 2, 3, 4, 5, 6, 7];
+
   const dispatch = useDispatch();
   const router = useRouter();
   const translationDataFromStore = useSelector(translation_text_from_Store);
@@ -305,28 +289,6 @@ const WizardMaster = () => {
     <div className="container">
       <div className={styles.wizard_wrapper}>
         <div className="row">
-          {/* <div className="col-md-4 p-0 d-none d-sm-block">
-          <div style={{ width: "380px" }} className={styles.image_cont}>
-            <img
-              src={sideImg.src}
-              alt="Your Image"
-              style={{ width: "100%", height: "700px" }}
-            />
-            <div className={styles.wizard_cont}>
-              <Box sx={{ width: "100%" }}>
-                <Stepper activeStep={currentStep - 1} orientation="vertical">
-                  {data.map((e: number) => {
-                    return (
-                      <Step key={e}>
-                        <StepLabel></StepLabel>
-                      </Step>
-                    );
-                  })}
-                </Stepper>
-              </Box>
-            </div>
-          </div>
-        </div> */}
           <div className="col-md-12 col-lg-12 mt-5">
             <div
               className="row "
@@ -395,7 +357,6 @@ const WizardMaster = () => {
                 />
               )}
               {currentStep === 6 && (
-
                 <Step3of3SelectAvailability
                   preference={preference}
                   preferenceLoading={preferenceLoading}

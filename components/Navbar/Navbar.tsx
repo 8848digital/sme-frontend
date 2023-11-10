@@ -1,33 +1,26 @@
-
-import React, { useEffect, useState } from 'react';
-import WebNavbar from './WebNavbar'
-import NavbarMobile from './NavbarMobile'
-import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
+import { useEffect, useState } from "react";
+import NavbarMobile from "./NavbarMobile";
+import WebNavbar from "./WebNavbar";
 
 const Navbar = () => {
-    const [isMobile, setIsMobile] = useState(false);
-    const { translationData, translationLoading } = useTranslationText();
+  const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth < 992);
-      };
-  
-      // Initial check
-      handleResize();
-  
-      window.addEventListener('resize', handleResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
-  
-    return (
-      <div>
-        {isMobile ? <NavbarMobile /> : <WebNavbar />}
-      </div>
-    );
-}
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 992);
+    };
 
-export default Navbar
+    // Initial check
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return <div>{isMobile ? <NavbarMobile /> : <WebNavbar />}</div>;
+};
+
+export default Navbar;

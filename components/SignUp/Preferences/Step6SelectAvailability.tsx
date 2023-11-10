@@ -1,23 +1,32 @@
-import React from 'react';
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
-import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
-import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-const Step3of3SelectAvailability = ({ formData, onFormDataChange , preference ,preferenceLoading }: any) => {
+const Step3of3SelectAvailability = ({
+  formData,
+  onFormDataChange,
+  preference,
+  preferenceLoading,
+}: any) => {
   const handleAvailabilityChange = (event: any) => {
     const availability = event.target.value;
-    onFormDataChange('preferences', availability);
+    onFormDataChange("preferences", availability);
   };
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
     <div className="container">
-      <div className={`card p-4 ${styles.common_wizard_wrapper}`} style={{ maxWidth: '800px', height: '300px' }}>
+      <div
+        className={`card p-4 ${styles.common_wizard_wrapper}`}
+        style={{ maxWidth: "800px", height: "300px" }}
+      >
         <div className="row">
           <div className="col-12">
             <div className="text-center mt-3">
-              <h1>{translationDataFromStore?.data?.step} 6 {translationDataFromStore?.data?.of} 7</h1>
+              <h1>
+                {translationDataFromStore?.data?.step} 6{" "}
+                {translationDataFromStore?.data?.of} 7
+              </h1>
               <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
             </div>
             <form>
@@ -32,24 +41,25 @@ const Step3of3SelectAvailability = ({ formData, onFormDataChange , preference ,p
                   value={formData.preferences}
                   onChange={handleAvailabilityChange}
                 >
-                  <option value="Select">{translationDataFromStore?.data?.select}</option>
-                  {
-                    preference && preference.length > 0 && (
-                      preference.map((data:any , index:number)=>{
-                        return (
-                          <>
-                          <option value={data?.name}>{data?.name} {data?.label && (<span>&#40;{data?.label}&#41;</span>)}</option>
-                          </>
-                        )
-                      })
-                    )
-                  }
-                  {/* <option value="Full Time">{translationDataFromStore?.data?.signup_step6_full_time}</option>
-                  <option value="Part Time">{translationDataFromStore?.data?.signup_step6_part_time}</option> */}
+                  <option value="Select">
+                    {translationDataFromStore?.data?.select}
+                  </option>
+                  {preference &&
+                    preference.length > 0 &&
+                    preference.map((data: any, index: number) => {
+                      return (
+                        <>
+                          <option value={data?.name}>
+                            {data?.name}{" "}
+                            {data?.label && (
+                              <span>&#40;{data?.label}&#41;</span>
+                            )}
+                          </option>
+                        </>
+                      );
+                    })}
                 </select>
               </div>
-
-              {/* Add more form fields for preferences here */}
             </form>
           </div>
         </div>

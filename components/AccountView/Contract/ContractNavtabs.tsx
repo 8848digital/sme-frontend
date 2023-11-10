@@ -1,9 +1,7 @@
 import ActiveContractCard from "@/cards/ActiveContractCard";
 import InactiveContractCard from "@/cards/InactiveContractCard";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/account.module.css";
-import * as React from "react";
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 

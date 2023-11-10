@@ -1,10 +1,13 @@
-import React from "react";
-import styles from "@/styles/wizard.module.css";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import styles from "@/styles/wizard.module.css";
 import { useSelector } from "react-redux";
 
-const Step3of3EnterRates = ({ formData, onFormDataChange , priceBasis , priceBasisLoading }: any) => {
+const Step3of3EnterRates = ({
+  formData,
+  onFormDataChange,
+  priceBasis,
+  priceBasisLoading,
+}: any) => {
   const handleRatesChange = (event: any) => {
     const rates = event.target.value;
     console.log("form rate", rates);
@@ -15,7 +18,7 @@ const Step3of3EnterRates = ({ formData, onFormDataChange , priceBasis , priceBas
     console.log("form rate", rates);
     onFormDataChange("price_basis", rates);
   };
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
     <div className="container">
@@ -27,7 +30,8 @@ const Step3of3EnterRates = ({ formData, onFormDataChange , priceBasis , priceBas
           <div className="col-12">
             <div className="text-center">
               <h1>
-                {translationDataFromStore?.data?.step} 7 {translationDataFromStore?.data?.of} 7
+                {translationDataFromStore?.data?.step} 7{" "}
+                {translationDataFromStore?.data?.of} 7
               </h1>
               <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
             </div>
@@ -48,21 +52,26 @@ const Step3of3EnterRates = ({ formData, onFormDataChange , priceBasis , priceBas
                           onChange={handleSelectPriceBasis}
                           value={formData.price_basis}
                         >
-                          <option>{translationDataFromStore?.data?.signup_step7_select_placeholder}</option>
-                          {
-                            priceBasis && priceBasis.length > 0 && (
-                              priceBasis.map((data:any , index:number)=>{
-                                return (
-                                  <>
-                                 <option value={data?.name}>{data?.name}  {data?.label && (<span>&#40;{data?.label}&#41;</span>)}</option>
-                                  </>
-                                )
-                              })
-                            )
-                          }
-                          {/* <option value="Monthly">{translationDataFromStore?.data?.signup_step7_select_monthly}</option>
-                          <option value="Weekly">{translationDataFromStore?.data?.signup_step7_select_weekly}</option>
-                          <option value="Hourly">{translationDataFromStore?.data?.signup_step7_select_hourly}</option> */}
+                          <option>
+                            {
+                              translationDataFromStore?.data
+                                ?.signup_step7_select_placeholder
+                            }
+                          </option>
+                          {priceBasis &&
+                            priceBasis.length > 0 &&
+                            priceBasis.map((data: any, index: number) => {
+                              return (
+                                <>
+                                  <option value={data?.name}>
+                                    {data?.name}{" "}
+                                    {data?.label && (
+                                      <span>&#40;{data?.label}&#41;</span>
+                                    )}
+                                  </option>
+                                </>
+                              );
+                            })}
                         </select>
                       </div>
                     </div>
@@ -71,7 +80,10 @@ const Step3of3EnterRates = ({ formData, onFormDataChange , priceBasis , priceBas
                         <input
                           className="form-control w-100  input-filed-height"
                           type="text"
-                          placeholder={translationDataFromStore?.data?.signup_step7_rate_placeholder}
+                          placeholder={
+                            translationDataFromStore?.data
+                              ?.signup_step7_rate_placeholder
+                          }
                           value={formData.hourly_rates}
                           onChange={handleRatesChange}
                         />

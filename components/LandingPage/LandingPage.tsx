@@ -1,67 +1,19 @@
-import React, { useState, useEffect } from "react";
-import CountUp from "react-countup";
-import landingImg from "../../public/assets/landing-img.jpg";
-import styles from "@/styles/landing_page.module.css";
-import OurClients from "./Clients/OurClients";
-import Link from "next/link";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import { useRouter } from "next/router";
 import useLandingPage from "@/hooks/general_hooks/landingpage_hook";
-import Loaders from "../Loaders";
-import LoaderForSkills from "../LoaderForSkills";
 import { CONSTANTS } from "@/services/config/api-config";
-import twitterIcon from "../../public/assets/icons8-twitter-50.png";
-import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
-import { staticData } from "@/datasets/staticData";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
-import { useSelector } from "react-redux";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import styles from "@/styles/landing_page.module.css";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import CountUp from "react-countup";
+import { useSelector } from "react-redux";
+import twitterIcon from "../../public/assets/icons8-twitter-50.png";
+import LoaderForSkills from "../LoaderForSkills";
+import OurClients from "./Clients/OurClients";
 
 const LandingPage = () => {
-  // const arabicData = {
-  //   heading_name1:
-  //     "نحن الشريك الاستشاري الموثوق به للشركات الصغيرة والمتوسطة التي ترغب في تحقيق أهداف النمو الخاصة بها",
-  //   short_description:
-  //     "بفضل سنوات خبرتنا العديدة، ساعدنا الشركات الصغيرة والمتوسطة على النمو وزيادة ربحيتها وتصبح أكثر قدرة على المنافسة",
-  //   image: landingImg,
-  //   social_links: [
-  //     {
-  //       twitter: "https://twitter.com/",
-  //     },
-  //     {
-  //       "linked-in": "https://www.linkedin.com/",
-  //     },
-  //   ],
-  //   Heading_name2: "فيما يلي بعض الفوائد في العمل معًا",
-  //   total_projects: 100,
-  //   total_clients: 50,
-  //   total_smes: 25,
-  //   link_label: "أعرف أكثر عن خدماتنا",
-  //   url_for_link_label: "https://example.com/services",
-  //   label_for_button: "هيا بنا نبدأ",
-  // };
-  //   const englishData = {
-  //     "heading_name1": "We are the trusted consulting partner for SMEs who want to achieve their growth goals",
-  //     "short_description": "With our many years of experience, we have helped SMEs to grow, increase their profitability, and become more competitive",
-  //     "image": landingImg,
-  //     "social_links": [
-  //         {
-  //             "twitter": "https://twitter.com/"
-  //         }, {
-  //             "linked-in": "https://www.linkedin.com/"
-  //         }
-  //     ],
-  //     "Heading_name2": "Here are some benefits in working together",
-  //     "total_projects": 100,
-  //     "total_clients": 50,
-  //     "total_smes": 25,
-  //     "link_label": "Learn more about our services",
-  //     "url_for_link_label": "https://example.com/services",
-  //     "label_for_button": "Let's get started"
-  // };
-
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
   const { landingData, loading } = useLandingPage();
@@ -76,25 +28,6 @@ const LandingPage = () => {
     }
   }, [router]);
 
-  // const [landingData, setlandingData] = useState<any>({});
-  // const { HandleLangToggle, language_selector_from_redux } =
-  //   useFetchOurHtmlLanguage();
-
-  // useEffect(() => {
-  //   if (typeof document !== "undefined") {
-  //     const htmlTag = document.querySelector("html");
-  //     if (htmlTag) {
-  //       const dirAttribute = htmlTag.getAttribute("dir");
-
-  //       if (dirAttribute === "rtl") {
-  //         setlandingData(arabicData);
-  //       } else {
-  //         setlandingData(landingData);
-  //       }
-  //     }
-  //   }
-  // }, [language_selector_from_redux, landingData]);
-
   return (
     <>
       <div className={`${styles.landing_wrapper}`}>
@@ -108,8 +41,6 @@ const LandingPage = () => {
                       src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
                       alt=""
                       width="450px"
-                      // height='200px'
-                      // style={{ objectFit: 'cover' }}
                       className="img-fluid"
                     />
                   </div>
@@ -266,14 +197,6 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="">
-                {/* <div className={`${styles.landing_image_wrapper}`}>
-                  <img
-                    src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
-                    alt=""
-                    className="img-fluid"
-                  />
-                </div> */}
-
                 <div className={`${styles.social_link}`}>
                   <Link
                     href={`${landingData?.social_links?.[2]?.linkedin}`}

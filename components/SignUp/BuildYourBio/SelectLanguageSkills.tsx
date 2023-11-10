@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
-import styles from "@/styles/bio.module.css";
-import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
 import Loaders from "@/components/Loaders";
-import LoaderForSkills from "@/components/LoaderForSkills";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import styles from "@/styles/bio.module.css";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const SelectLanguageSkills = ({
   bioData,

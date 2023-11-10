@@ -1,14 +1,10 @@
-import React from "react";
-import style from "../../styles/homepage.module.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import Link from "next/link";
 import subscriptionApi from "@/services/api/general_api/subscription_api";
-import { toast } from "react-toastify";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import Link from "next/link";
 import { useSelector } from "react-redux";
-import { language_selector } from "@/store/slices/language_slice";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 interface FormValues {
   usr: string;

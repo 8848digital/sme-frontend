@@ -1,15 +1,12 @@
-import React from "react";
-import { Formik, Form as FormikForm, Field, ErrorMessage } from "formik";
-import styles from "@/styles/auth.module.css";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import Link from "next/link";
-import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import ChangePasswordAPI from "@/services/api/auth_api/change_password_api";
-import { toast } from "react-toastify";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import styles from "@/styles/auth.module.css";
+import { ErrorMessage, Field, Formik, Form as FormikForm } from "formik";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 // import { RootState } from "../store/root_reducer";
 
 interface FormValues {

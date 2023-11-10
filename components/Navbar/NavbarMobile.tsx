@@ -1,24 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import logoImg from "../../public/assets/SG_logo.svg";
+import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import LogoutList from "@/services/api/auth_api/logout_api";
 import {
   ClearToken,
   get_access_token,
 } from "@/store/slices/auth_slice/login_slice";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { resetFormData } from "@/store/slices/form_slice";
-import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
 import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
-import { persistor } from "@/store/store";
-import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
+import { resetFormData } from "@/store/slices/form_slice";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import logoImg from "../../public/assets/SG_logo.svg";
 const NavbarMobile = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -113,7 +111,7 @@ const NavbarMobile = () => {
                         onClick={HandleLangToggle}
                       >
                         <span style={{ color: "#00578a" }}>
-                          {!language_selector_from_redux?.languageToggle
+                          {language_selector_from_redux?.languageToggle
                             ? "English"
                             : "عربي"}
                         </span>

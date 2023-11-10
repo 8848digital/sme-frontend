@@ -1,22 +1,13 @@
-import React, { useState } from "react";
-import styles from "@/styles/bio.module.css";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import styles from "@/styles/bio.module.css";
 import { useSelector } from "react-redux";
 
 const EnterBio = ({ bioData, onFormDataChange }: any) => {
-  const [selectedFile, setSelectedFile] = useState<any>("");
-  const translationDataFromStore = useSelector(translation_text_from_Store)
-
-
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   const handleBioChange = (event: any) => {
     const bio = event.target.value;
     onFormDataChange("bio", bio);
-  };
-
-  const handleDeleteFile = () => {
-    setSelectedFile("");
   };
 
   return (
@@ -28,7 +19,9 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
         <div className="row">
           <div className="col-12">
             <div className="text-center">
-              <h1>{translationDataFromStore?.data?.build_your_bio_step2_header}</h1>
+              <h1>
+                {translationDataFromStore?.data?.build_your_bio_step2_header}
+              </h1>
               <h3></h3>
             </div>
             <div className="mt-5">

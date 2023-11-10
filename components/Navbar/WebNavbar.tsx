@@ -1,28 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import {
-  ClearToken,
-  get_access_token,
-} from "@/store/slices/auth_slice/login_slice";
+import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
 import LogoutList from "@/services/api/auth_api/logout_api";
+import { ClearToken } from "@/store/slices/auth_slice/login_slice";
+import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
+import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
+import { resetFormData } from "@/store/slices/form_slice";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import logoImg from "../../public/assets/SG_logo.svg";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { resetFormData } from "@/store/slices/form_slice";
-import { setResetBuildBioData } from "@/store/slices/build_bio_slice";
-import { clearBioData } from "@/store/slices/buildYourBio_slice/bio_slice";
-import { persistor } from "@/store/store";
-import useFetchOurHtmlLanguage from "@/hooks/general_hooks/language_hook";
-import { navbarData } from "@/datasets/navbar";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
-import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const WebNavbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [isSticky, setIsSticky] = useState(false);
-  const login = useSelector(get_access_token);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,22 +106,6 @@ const WebNavbar = () => {
                           {translationDataFromStore?.data?.account}
                         </Link>
                       </li>
-
-                      {/* <li className="nav-item">
-                        <Link className="nav-link p-0" href="/job-request">
-                          Job request
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link p-0" href="/contract">
-                          Contract
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link p-0" href="/account">
-                          Account
-                        </Link>
-                      </li> */}
                     </ul>
                   </div>
                 ) : (
@@ -172,11 +149,6 @@ const WebNavbar = () => {
                 {LoggedIn === "true" ? (
                   ""
                 ) : (
-                  // <Link href='' legacyBehavior>
-                  // <a  onClick={handleLogOut} className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">
-                  //   Log out
-                  // </a>
-                  // </Link>
                   <Link href="/login" legacyBehavior className="d-block">
                     <a
                       className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"

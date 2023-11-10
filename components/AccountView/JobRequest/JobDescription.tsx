@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
 import UpdateJobRequestAPI from "@/services/api/job_request_api/update_Job_request_api";
-import { useDispatch, useSelector } from "react-redux";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
-import { toast } from "react-toastify";
-import Link from "next/link";
-import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 const JobDescription = ({ jobData, onclick }: any) => {
   const [jobCost, setJobCost] = useState<number>();
   console.log("job cost", jobCost);
@@ -185,30 +184,6 @@ const JobDescription = ({ jobData, onclick }: any) => {
                 </button>
               </Link>
             </div>
-            {/* {
-              jobData?.status === 'Pending' ? (
-                <div className="col-md-4">
-                  <button
-                    className="btn btn-later"
-                    style={{ width: "auto" }}
-                    // onClick={handleApproveClick}
-                    disabled
-                  >
-                    Received
-                  </button>
-                </div>
-              ) : (
-                <div className="col-md-4">
-                  <button
-                    className="btn btn-later"
-                    style={{ width: "auto" }}
-                    onClick={handleApproveClick}
-                  >
-                    Approve
-                  </button>
-                </div>
-              )
-            } */}
 
             <div className="col-md-4">
               <button
