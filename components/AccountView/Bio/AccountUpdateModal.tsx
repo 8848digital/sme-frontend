@@ -191,7 +191,7 @@ const AccountUpdateModal = ({ user, isOpen, onClose, onUpdateUser }: any) => {
             <div className="text-center mt-4 mb-3">
               <h1>Coding Certifications</h1>
             </div>
-           <CodingCertificationChildTable/>
+           {/* <CodingCertificationChildTable/> */}
           </div>
         <div className="d-flex my-4 justify-content-around">
           <button className="btn btn-later mt-0" onClick={onClose}>
