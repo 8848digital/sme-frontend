@@ -13,7 +13,7 @@ const getAccessTokenApi = async (usr:any , password:any) => {
       const encodedPassword = encodeURIComponent(password);
 
     await axios
-    .post(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}?version=v1&method=get_access_token&entity=access_token&usr=${usr}&password=${encodedPassword}`,undefined,{
+    .post(`${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}?version=v1&method=user_signin&entity=access_token&usr=${usr}&password=${encodedPassword}`,undefined,{
       ...config,
       timeout: 5000,
     })
