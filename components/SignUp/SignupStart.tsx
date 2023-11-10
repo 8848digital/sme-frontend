@@ -18,7 +18,7 @@ const SignupStart = () => {
                 <h2 className=''>{translationDataFromStore?.data?.signup_description}</h2>
                 <div className="signup-btn mt-5">
                   <Link href='/wizard-master' className='btn btn-signup mx-2'>{translationDataFromStore?.data?.start}</Link>
-                  <Link href='/signup-later' className='btn btn-later mx-2'>{translationDataFromStore?.data?.later}</Link>
+                  <Link href='/signup-later' className='btn btn-later mx-2 mt-0'>{translationDataFromStore?.data?.later}</Link>
                 </div>
               </div>
             </div>

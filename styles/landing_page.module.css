@@ -122,4 +122,11 @@
     [dir="rtl"] .landing_item_center_center {
       align-items: center !important;
     }
+    .landing_item_center_center {
+      align-items: center !important;
+    }
+
+    .landing_content{
+      margin-top: 120px;
+    }
   }

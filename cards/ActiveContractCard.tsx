@@ -47,7 +47,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
                               </td>
                               <td className="text-center">
                                 <button
-                                  className="btn btn-later"
+                                  className="btn btn-later mt-0"
                                   style={{ width: "auto",padding:"10px",margin:"0px" }}
                                   onClick={() =>
                                     openDescription(data, "description")

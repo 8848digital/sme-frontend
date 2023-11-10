@@ -19,7 +19,7 @@ const StepsDone = () => {
             </div>
             <div className='text-center mt-5'>
               <Link href='/build-your-bio' className='btn btn-signup mx-2'>{translationDataFromStore?.data?.build_your_bio_btn}</Link>
-              <Link href='/thank-you' className='btn btn-later mx-2'>{translationDataFromStore?.data?.later}</Link>
+              <Link href='/thank-you' className='btn btn-later mt-0 mx-2'>{translationDataFromStore?.data?.later}</Link>
             </div>
           </div>
         </div>

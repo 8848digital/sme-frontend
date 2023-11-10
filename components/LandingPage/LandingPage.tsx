@@ -136,7 +136,9 @@ const LandingPage = () => {
                       <div className="count-circle mt-1">
                         <div className="row">
                           <div className="col-md-4 mt-2">
-                            <div className={`d-flex flex-column justify-content-center align-items-end ${styles.landing_item_center_center} `}>
+                            <div
+                              className={`d-flex flex-column justify-content-center align-items-end ${styles.landing_item_center_center} `}
+                            >
                               <div className={`${styles.count_item_wrapper}`}>
                                 <div
                                   className="d-flex justify-content-center align-items-center border-bottom"
@@ -195,7 +197,9 @@ const LandingPage = () => {
                             </h5>
                           </div>
                           <div className="col-md-4 mt-2">
-                            <div className={`d-flex flex-column justify-content-center align-items-start ${styles.landing_item_center_center}`}>
+                            <div
+                              className={`d-flex flex-column justify-content-center align-items-start ${styles.landing_item_center_center}`}
+                            >
                               <div className={`${styles.count_item_wrapper}`}>
                                 <div className="d-flex justify-content-center align-items-center border-bottom">
                                   <div className={`${styles.count_container}`}>

@@ -45,3 +45,9 @@
   color: #00b2d4;
 }
 
+@media (max-width:578px){
+  .account_wrapper {
+    margin: 200px auto;
+   
+  }
+}

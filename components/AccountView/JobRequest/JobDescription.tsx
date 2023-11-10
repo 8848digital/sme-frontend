@@ -14,6 +14,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
+  console.log(jobData, "jobb");
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
   let approveStatus = "Approved";
@@ -29,12 +30,14 @@ const JobDescription = ({ jobData, onclick }: any) => {
     );
     console.log("job approve", response);
     if (response[0].msg === "success") {
-      toast.success(response[0]?.data?.data ===
-        "RFQ Supplier status updated to Approved" &&
-        translationDataFromStore?.data?.toast_approve_job_request_success, {
-        autoClose: 3000, // Time in milliseconds (5 seconds)
-        className: "custom-toast", // Close the notification after 3 seconds
-      });
+      toast.success(
+        response[0]?.data?.data === "RFQ Supplier status updated to Approved" &&
+          translationDataFromStore?.data?.toast_approve_job_request_success,
+        {
+          autoClose: 3000, // Time in milliseconds (5 seconds)
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
       dispatch(fetchJobRequest(token?.token) as any);
       setTimeout(() => {
         router.push("./job-approve-thankyou");
@@ -56,8 +59,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
     console.log("job approve", response);
     if (response[0].msg === "success") {
       toast.success(
-        response[0]?.data?.data ===
-          "RFQ Supplier status updated to Rejected" &&
+        response[0]?.data?.data === "RFQ Supplier status updated to Rejected" &&
           translationDataFromStore?.data?.toast_reject_job_request_success,
         {
           autoClose: 3000, // Time in milliseconds (5 seconds)
@@ -214,13 +216,12 @@ const JobDescription = ({ jobData, onclick }: any) => {
                 style={{ width: "auto" }}
                 onClick={handleApproveClick}
                 disabled={
-                  jobData.status === "Received" || jobData.status === "Rejected"
+                  jobData.status === "Approved" || jobData.status === "Rejected"
                 }
               >
-                {jobData.status ===
-                `${translationDataFromStore?.data?.received_btn}`
-                  ? `${translationDataFromStore?.data?.received_btn}`
-                  : `${translationDataFromStore?.data?.approve}`}
+                {jobData.status === "Pending"
+                  ? `${translationDataFromStore?.data?.approve}`
+                  : `${translationDataFromStore?.data?.approved}`}
               </button>
             </div>
             <div className="col-md-4">
@@ -229,11 +230,10 @@ const JobDescription = ({ jobData, onclick }: any) => {
                 style={{ width: "auto" }}
                 onClick={handleRejectClick}
                 disabled={
-                  jobData.status === "Received" || jobData.status === "Rejected"
+                  jobData.status === "Approved" || jobData.status === "Rejected"
                 }
               >
-                {jobData.status ===
-                `${translationDataFromStore?.data?.reject_btn}`
+                {jobData.status === "Pending"
                   ? `${translationDataFromStore?.data?.reject_btn}`
                   : `${translationDataFromStore?.data?.rejected}`}
               </button>

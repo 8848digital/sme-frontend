@@ -20,7 +20,7 @@ const  ContractNavbars = ({filteredContractsActiveUnsigned , filteredContractsIn
           <div className="">
             <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.contract}</h1>
           </div>
-          <div className="mt-5">
+          <div className="mt-5 p-0">
             <Tab.Container id="tabs-example" defaultActiveKey="tab1">
               <Nav variant="tabs">
                 <Nav.Item>

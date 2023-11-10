@@ -72,7 +72,7 @@ const StartLater = () => {
               <Link href="/wizard-master" className="btn btn-signup mx-3">
                 {translationDataFromStore?.data?.start}
               </Link>
-              <Link href="/" className="btn btn-later">
+              <Link href="/" className="btn btn-later mt-0">
                 {translationDataFromStore?.data?.later}
               </Link>
             </div>

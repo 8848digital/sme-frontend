@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import ChangePasswordAPI from "@/services/api/auth_api/change_password_api";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 // import { RootState } from "../store/root_reducer";
@@ -28,56 +28,70 @@ const ChangePassword = () => {
     confirmPassword: "",
   };
 
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   const handlesubmit = async (values: any, action: any) => {
-    console.log('values', values)
+    console.log("values", values);
     if (values.new_password !== values.confirmPassword) {
       // Display an error message or handle it as needed
       console.error("New password and confirm password do not match");
-      toast.error(translationDataFromStore?.data?.toast_confirm_password_error, {
-        autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-      });
+      toast.error(
+        translationDataFromStore?.data?.toast_confirm_password_error,
+        {
+          autoClose: 3000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
     } else if (values.new_password === values.confirmPassword) {
-
-      const response = await ChangePasswordAPI(values.old_password, values.new_password, token.token);
-      if (response === 'success') {
-        toast.success(translationDataFromStore?.data?.toast_change_password_success, {
-          autoClose: 3000,
-          className: 'custom-toast',// Close the notification after 3 seconds
-        });
+      const response = await ChangePasswordAPI(
+        values.old_password,
+        values.new_password,
+        token.token
+      );
+      if (response === "success") {
+        toast.success(
+          translationDataFromStore?.data?.toast_change_password_success,
+          {
+            autoClose: 3000,
+            className: "custom-toast", // Close the notification after 3 seconds
+          }
+        );
         action.resetForm();
-        router.push('/');
-      } else if (response === 'error') {
-        toast.error(`${translationDataFromStore?.data?.toast_check_password_error} ${response.error}`, {
-          autoClose: 3000,
-          className: 'custom-toast',// Close the notification after 3 seconds
-        });
+        router.push("/");
+      } else if (response === "error") {
+        toast.error(
+          `${translationDataFromStore?.data?.toast_check_password_error} ${response.error}`,
+          {
+            autoClose: 3000,
+            className: "custom-toast", // Close the notification after 3 seconds
+          }
+        );
       } else {
-        toast.error(`${translationDataFromStore?.data?.toast_check_password_error} ${response.error}`, {
-          autoClose: 3000,
-          className: 'custom-toast',// Close the notification after 3 seconds
-        });
+        toast.error(
+          `${translationDataFromStore?.data?.toast_check_password_error} ${response.error}`,
+          {
+            autoClose: 3000,
+            className: "custom-toast", // Close the notification after 3 seconds
+          }
+        );
       }
-
-
-
     } else {
       console.error("New password and confirm password do not match");
-      toast.error('Enter the correct New/Confirm Password', {
+      toast.error("Enter the correct New/Confirm Password", {
         autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-      })
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
     }
   };
 
   return (
     <>
-      <div className='container'>
+      <div className="container">
         <div className={` card ${styles.auth_common_wrapper}`}>
           <div className="page_heading text-center">
-            <h1 className='text-uppercase'>{translationDataFromStore?.data?.change_password_header}</h1>
+            <h1 className="text-uppercase">
+              {translationDataFromStore?.data?.change_password_header}
+            </h1>
           </div>
           <Formik
             initialValues={initialValues}
@@ -88,13 +102,11 @@ const ChangePassword = () => {
               <FormikForm className="">
                 <div className=" text-center mt-4">
                   <div className="container">
-                    <div className='row mb-2 form-group'>
+                    <div className="row mb-2 form-group">
                       <div className="col-md-3 ">
-                        <div className=''>
-                          <label htmlFor="" className="">
-                            {translationDataFromStore?.data?.change_password_old}
-                          </label>
-                        </div>
+                        <label htmlFor="" className="">
+                          {translationDataFromStore?.data?.change_password_old}
+                        </label>
                       </div>
                       <div className="col-md-12 col-lg-9">
                         {/* <div className="password_block "> */}
@@ -103,7 +115,10 @@ const ChangePassword = () => {
                           className="form-control"
                           name="old_password"
                           onChange={handleChange}
-                          placeholder={translationDataFromStore?.data?.change_password_old_placeholder}
+                          placeholder={
+                            translationDataFromStore?.data
+                              ?.change_password_old_placeholder
+                          }
                         />
                         <br />
                         <div className="error_message">
@@ -112,13 +127,11 @@ const ChangePassword = () => {
                         {/* </div> */}
                       </div>
                     </div>
-                    <div className='row mb-2 form-group'>
+                    <div className="row mb-2 form-group">
                       <div className="col-md-3 ">
-                        <div className=''>
-                          <label htmlFor="" className="">
-                           {translationDataFromStore?.data?.change_password_new}
-                          </label>
-                        </div>
+                        <label htmlFor="" className="">
+                          {translationDataFromStore?.data?.change_password_new}
+                        </label>
                       </div>
                       <div className="col-md-12 col-lg-9">
                         <div className="password_block">
@@ -127,7 +140,10 @@ const ChangePassword = () => {
                             className="form-control"
                             name="new_password"
                             onChange={handleChange}
-                            placeholder={translationDataFromStore?.data?.change_password_new_placeholder}
+                            placeholder={
+                              translationDataFromStore?.data
+                                ?.change_password_new_placeholder
+                            }
                           />
                           <br />
                           <div className="error_message">
@@ -136,11 +152,14 @@ const ChangePassword = () => {
                         </div>
                       </div>
                     </div>
-                    <div className='row mb-2 form-group'>
+                    <div className="row mb-2 form-group">
                       <div className="col-md-3 ">
-                        <div className=''>
+                        <div className="">
                           <label htmlFor="" className="">
-                            {translationDataFromStore?.data?.change_password_confirm}
+                            {
+                              translationDataFromStore?.data
+                                ?.change_password_confirm
+                            }
                           </label>
                         </div>
                       </div>
@@ -150,7 +169,10 @@ const ChangePassword = () => {
                           className="form-control"
                           name="confirmPassword"
                           onChange={handleChange}
-                          placeholder={translationDataFromStore?.data?.change_password_confirm_placeholder}
+                          placeholder={
+                            translationDataFromStore?.data
+                              ?.change_password_confirm_placeholder
+                          }
                         />
                         <br />
                         <div className="error_message">
@@ -162,17 +184,16 @@ const ChangePassword = () => {
                       <button
                         type="button"
                         className={`btn btn-signup ${styles.common_btn} me-md-5`}
-                       
                       >
-                        <Link href="/" className="text-white" style={{textDecoration:'none'}}>
+                        <Link
+                          href="/"
+                          className="text-white"
+                          style={{ textDecoration: "none" }}
+                        >
                           {translationDataFromStore?.data?.back}
                         </Link>
                       </button>
-                      <button
-                        type="submit"
-                        className='btn btn-signup'
-                    
-                      >
+                      <button type="submit" className="btn btn-signup">
                         {translationDataFromStore?.data?.change_password_btn}
                       </button>
                     </div>
