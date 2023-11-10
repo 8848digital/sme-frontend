@@ -26,6 +26,7 @@ import Step3of3SelectAvailability from "./SignUp/Preferences/Step6SelectAvailabi
 import Step3of3EnterRates from "./SignUp/Preferences/Step7EnterRates";
 import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step4UploadCv";
 import Step2of3ExtractedDataFromCv from "./SignUp/ProfessionalInfo/Step5ExtractedDataFromCv";
+import ButtonLoader from "./ButtonLoader";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
@@ -35,6 +36,7 @@ const WizardMaster = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
   const { language_abbr }: any = useSelector(language_selector);
   console.log(language_abbr);
+  const [loginbtnLoader, setLoginbtnLoader] = useState(false);
 
   const [stepFormData, setStepFormData] = useState<any>({
     usr: "",
@@ -261,6 +263,7 @@ const WizardMaster = () => {
           console.log("form Data values in render file api res", response);
           dispatch(setSignUpUserAccessToken(response));
           if (response.msg === "success") {
+            setLoginbtnLoader(true);
             // Handle the success response, e.g., show a success message or redirect the user
             console.log("API Response:", response);
             toast.success(`${response.data}`, {
@@ -270,6 +273,8 @@ const WizardMaster = () => {
             router.push("/steps-done");
             dispatch(resetFormData());
           } else if (response.msg === "error") {
+            setLoginbtnLoader(false);
+
             // Handle the failure or error case, e.g., show an error message to the user
             toast.error(`${response.error}`, {
               autoClose: 5000, // Time in milliseconds (5 seconds)
@@ -286,123 +291,125 @@ const WizardMaster = () => {
   };
 
   return (
-    <div className="container">
-      <div className={styles.wizard_wrapper}>
-        <div className="row">
-          <div className="col-md-12 col-lg-12 mt-5">
-            <div
-              className="row "
-              style={{ maxWidth: "800px", margin: "0 auto" }}
-            >
-              <div className="col-4 ">
-                <div className="">
-                  <h2 className="fs-3 text-white">
-                    {translationDataFromStore?.data?.step} {currentStep}
-                  </h2>
-                  <hr className={styles.step_hr} />
-                </div>
-              </div>
-              <div className="col-8 position-relative">
-                <div className={styles.progress_bar_div}>
-                  <div className="" style={{ marginInline: "10px" }}>
-                    <p className="mb-4 text-white">
-                      {currentStep} {translationDataFromStore?.data?.of} 7{" "}
-                      {translationDataFromStore?.data?.completed}
-                    </p>
+    <>
+      <div className="container">
+        <div className={styles.wizard_wrapper}>
+          <div className="row">
+            <div className="col-md-12 col-lg-12 mt-5">
+              <div
+                className="row "
+                style={{ maxWidth: "800px", margin: "0 auto" }}
+              >
+                <div className="col-4 ">
+                  <div className="">
+                    <h2 className="fs-3 text-white">
+                      {translationDataFromStore?.data?.step} {currentStep}
+                    </h2>
+                    <hr className={styles.step_hr} />
                   </div>
+                </div>
+                <div className="col-8 position-relative">
+                  <div className={styles.progress_bar_div}>
+                    <div className="" style={{ marginInline: "10px" }}>
+                      <p className="mb-4 text-white">
+                        {currentStep} {translationDataFromStore?.data?.of} 7{" "}
+                        {translationDataFromStore?.data?.completed}
+                      </p>
+                    </div>
 
-                  <MobileStepper
-                    variant="progress"
-                    steps={8}
-                    backButton={<></>}
-                    nextButton={<></>}
-                    activeStep={currentStep}
-                    className={styles.progress_bar}
-                  />
+                    <MobileStepper
+                      variant="progress"
+                      steps={8}
+                      backButton={<></>}
+                      nextButton={<></>}
+                      activeStep={currentStep}
+                      className={styles.progress_bar}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              {currentStep === 1 && (
-                <Step1EnterEmail
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-              {currentStep === 2 && (
-                <Step2VarificationCode
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-              {currentStep === 3 && (
-                <Step3EnterName
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-              {currentStep === 4 && (
-                <Step2of3UploadCv
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-              {currentStep === 5 && (
-                <Step2of3ExtractedDataFromCv
-                  educationLevel={educationLevel?.data}
-                  loading={loading}
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-              {currentStep === 6 && (
-                <Step3of3SelectAvailability
-                  preference={preference}
-                  preferenceLoading={preferenceLoading}
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-              {currentStep === 7 && (
-                <Step3of3EnterRates
-                  priceBasisLoading={priceBasisLoading}
-                  priceBasis={priceBasis}
-                  formData={stepFormData}
-                  onFormDataChange={handleFormDataChange}
-                />
-              )}
-            </div>
+              <div>
+                {currentStep === 1 && (
+                  <Step1EnterEmail
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+                {currentStep === 2 && (
+                  <Step2VarificationCode
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+                {currentStep === 3 && (
+                  <Step3EnterName
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+                {currentStep === 4 && (
+                  <Step2of3UploadCv
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+                {currentStep === 5 && (
+                  <Step2of3ExtractedDataFromCv
+                    educationLevel={educationLevel?.data}
+                    loading={loading}
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+                {currentStep === 6 && (
+                  <Step3of3SelectAvailability
+                    preference={preference}
+                    preferenceLoading={preferenceLoading}
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+                {currentStep === 7 && (
+                  <Step3of3EnterRates
+                    priceBasisLoading={priceBasisLoading}
+                    priceBasis={priceBasis}
+                    formData={stepFormData}
+                    onFormDataChange={handleFormDataChange}
+                  />
+                )}
+              </div>
 
-            <div className="row">
-              <div className="col-12">
-                <div
-                  className=" d-flex justify-content-center"
-                  style={{ marginBottom: "50px" }}
-                >
-                  <div className="d-sm-flex d-static">
-                    {currentStep > 1 && (
-                      <button
-                        className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
-                        onClick={handlePrevious}
-                      >
-                        <ArrowBackIcon />
-                        {translationDataFromStore?.data?.previous}
-                      </button>
-                    )}
-                    {currentStep < 7 ? (
-                      <button
-                        className="btn btn-next d-flex align-items-center justify-content-center"
-                        onClick={handleNext}
-                      >
-                        {translationDataFromStore?.data?.next}
-                        <ArrowForwardIcon />
-                      </button>
-                    ) : (
-                      <button className="btn btn-next" onClick={handleSubmit}>
-                        {translationDataFromStore?.data?.submit}
-                      </button>
-                    )}
+              <div className="row">
+                <div className="col-12">
+                  <div
+                    className=" d-flex justify-content-center"
+                    style={{ marginBottom: "50px" }}
+                  >
+                    <div className="d-sm-flex d-static">
+                      {currentStep > 1 && (
+                        <button
+                          className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
+                          onClick={handlePrevious}
+                        >
+                          <ArrowBackIcon />
+                          {translationDataFromStore?.data?.previous}
+                        </button>
+                      )}
+                      {currentStep < 7 ? (
+                        <button
+                          className="btn btn-next d-flex align-items-center justify-content-center"
+                          onClick={handleNext}
+                        >
+                          {translationDataFromStore?.data?.next}
+                          <ArrowForwardIcon />
+                        </button>
+                      ) : (
+                        <button className="btn btn-next" onClick={handleSubmit}>
+                          {translationDataFromStore?.data?.submit}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -410,7 +417,8 @@ const WizardMaster = () => {
           </div>
         </div>
       </div>
-    </div>
+      {loginbtnLoader && <ButtonLoader />}
+    </>
   );
 };
 

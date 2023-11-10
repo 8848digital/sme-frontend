@@ -1,16 +1,11 @@
-import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
-import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
 import BuildYourBioAPI from "@/services/api/buildYourBio_api/buildYourBio_api";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { SignUpUserAccessToken_from_store } from "@/store/slices/auth_slice/signup_user_access_token_slice";
-import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
 import {
   form_details_from_store,
   setBuildBioData,
   setResetBuildBioData,
 } from "@/store/slices/build_bio_slice";
-import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
-import styles from "@/styles/bio.module.css";
 import wizardStyles from "@/styles/wizard.module.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -24,7 +19,12 @@ import SelectCertifications from "./SelectCertifications";
 import SelectLanguageSkills from "./SelectLanguageSkills";
 import SelectTechnicalSkills from "./SelectTechnicalSkills";
 import UploadPhoto from "./UploadPhoto";
-import ButtonLoader from "@/components/ButtonLoader";
+import styles from "@/styles/bio.module.css";
+import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
+import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
+import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 const BuildYourBioMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);
   const dispatch = useDispatch();
@@ -69,7 +69,6 @@ const BuildYourBioMaster = () => {
   const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
   console.log(signuptoken);
   const loginToken: any = useSelector(get_access_token);
-  const [loginbtnLoader, setLoginbtnLoader] = useState(false);
   console.log(loginToken);
   let accessToken: any;
   if (loginToken?.token?.length > 0) {
@@ -89,7 +88,6 @@ const BuildYourBioMaster = () => {
   }, [router]);
   const handleSubmit = async () => {
     if (currentStep === 5) {
-      setLoginbtnLoader(true);
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
       const response = await BuildYourBioAPI(bioData, accessToken);
@@ -114,8 +112,6 @@ const BuildYourBioMaster = () => {
       }, 5000);
 
       // You can submit the data to your API or perform other actions here
-    } else {
-      setLoginbtnLoader(false);
     }
   };
 
@@ -237,7 +233,6 @@ const BuildYourBioMaster = () => {
           </div>
         </div>
       </div>
-      {loginbtnLoader && <ButtonLoader />}
     </>
   );
 };
