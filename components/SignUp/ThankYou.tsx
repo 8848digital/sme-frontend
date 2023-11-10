@@ -12,9 +12,9 @@ const ThankYou = () => {
         <div className="col-12">
           <div
             className=" card thank_you_wrapper text-center"
-            style={{ maxWidth: "800px", height: "300px" }}
+            style={{ maxWidth: "800px", height: "350px" }}
           >
-            <div className="mb-5 pt-5">
+            <div className="mb-4 py-5">
               <img src={thankyouImg.src} alt="" width="120px" />
             </div>
             <div className="">
