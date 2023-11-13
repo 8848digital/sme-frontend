@@ -42,5 +42,8 @@
     .steps_done_wrapper{
         margin: 250px auto;
     }
+    .profile_wrapper{
+        margin: 200px auto 30px auto;
+    }
     
 }

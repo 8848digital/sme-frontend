@@ -22,7 +22,7 @@ const JobNotification = ({ jobRequestData }: any) => {
       <div
         className={`  row justify-content-md-center card  ${styles.account_wrapper}`}
       >
-        <div className="mb-4 row">
+        <div className="mb-4 row p-0">
           <div className="col-sm-6">
             {" "}
             <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.job_request}</h1>
@@ -40,7 +40,7 @@ const JobNotification = ({ jobRequestData }: any) => {
         </div>
         {tabs === "table" && (
           <>
-            <div className="col-12" style={{overflowX:"scroll"}}>
+            <div className="col-12 p-0" style={{overflowX:"scroll"}}>
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">

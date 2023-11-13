@@ -15,7 +15,7 @@ const  ContractNavbars = ({filteredContractsActiveUnsigned , filteredContractsIn
     <>
       <div className="container">
         <div className={`row card  ${styles.account_wrapper}`}>
-          <div className="">
+          <div className="p-0">
             <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.contract}</h1>
           </div>
           <div className="mt-5 p-0">
@@ -29,7 +29,7 @@ const  ContractNavbars = ({filteredContractsActiveUnsigned , filteredContractsIn
                 </Nav.Item>
               </Nav>
 
-              <Tab.Content>
+              <Tab.Content style={{overflowX:"scroll"}}>
                 <Tab.Pane eventKey="tab1">
                   
                   <ActiveContractCard filteredContractsActiveUnsigned={filteredContractsActiveUnsigned}/>

@@ -27,7 +27,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   if (loginToken?.token?.length > 0) {
     accessToken = loginToken?.token;
   } else {
-    accessToken = signuptoken?.data?.acess_token;
+    accessToken = signuptoken?.data?.access_token;
   }
   console.log(accessToken);
 

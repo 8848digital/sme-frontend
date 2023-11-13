@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import NavbarMobile from "./NavbarMobile";
 import WebNavbar from "./WebNavbar";
+import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const { translationData, translationLoading } = useTranslationText();
+
 
   useEffect(() => {
     const handleResize = () => {

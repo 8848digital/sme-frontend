@@ -9299,7 +9299,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 150px auto;
+  margin: 160px auto;
 }
 
 .start-later-wrapper {
@@ -9449,6 +9449,17 @@ opacity: 0.7;
 
 }
 
+
+/* ------------toastify custon css ----------- */
+@media (max-width: 578px){
+  .Toastify__toast-body > div:last-child{
+  font-size: 12px;
+  }
+  .Toastify__toast-container--top-left, .Toastify__toast-container--top-center, .Toastify__toast-container--top-right{
+    top: 4rem  !important;
+  }
+
+}
 /* -------------------common RTL ------------- */
 
 [dir="rtl"] .btn-signup {

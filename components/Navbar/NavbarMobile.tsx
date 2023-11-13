@@ -81,7 +81,7 @@ const NavbarMobile = () => {
           } py-7 py-lg-0 site-header--absolute site-header--sticky`}
         >
           <div className="container">
-            <nav className="navbar row site-navbar offcanvas-active navbar-expand-lg  px-0 py-0">
+            <nav className="navbar row site-navbar offcanvas-active navbar-expand-lg p-0">
               <div className="col-5">
                 <div className="brand-logo">
                   <Link href="/">
@@ -120,7 +120,7 @@ const NavbarMobile = () => {
                   </div>
                   {LoggedIn === "true" ? (
                     <>
-                      <ul className="navbar-nav main-menu align-items-center">
+                      <ul className="navbar-nav main-menu align-items-center p-0 py-1">
                         <li className="nav-item">
                           <Link className="nav-link p-0" href="/account-view">
                             {translationDataFromStore?.data?.bio}
@@ -158,7 +158,7 @@ const NavbarMobile = () => {
                     </>
                   ) : (
                     <>
-                      <ul className="navbar-nav main-menu align-items-center">
+                      <ul className="navbar-nav main-menu align-items-center p-0 py-1">
                         <li className="nav-item">
                           <Link href="/login" legacyBehavior>
                             <a className="btn p-0 btn-transparent text-uppercase font-size-3 heading-default-color focus-reset">

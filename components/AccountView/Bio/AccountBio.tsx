@@ -159,7 +159,7 @@ const AccountBio = ({ bioData, loading }: any) => {
               <div className="text-center"></div>
             </div>
             <div className="mt-4 text-center">
-              <Link href="/build-your-bio" className="btn btn-signup p-1 mx-2">
+              <Link href="/build-your-bio" className="btn btn-signup p-1 mx-2 " style={{fontSize:"15px"}}>
                 {translationDataFromStore?.data?.bio_update_btn}
               </Link>
             </div>
