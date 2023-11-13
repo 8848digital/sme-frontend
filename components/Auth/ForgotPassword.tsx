@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 import { Formik, Form as FormikForm, Field, ErrorMessage } from "formik";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { get_access_token } from '@/store/slices/auth_slice/login_slice';
-import ForgetPasswordLinkAPI from '@/services/api/auth_api/forget_password_link_api';
-import { toast } from 'react-toastify';
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { get_access_token } from "@/store/slices/auth_slice/login_slice";
+import ForgetPasswordLinkAPI from "@/services/api/auth_api/forget_password_link_api";
+import { toast } from "react-toastify";
 import styles from "@/styles/auth.module.css";
-import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 interface FormValues {
-  email: any
+  email: any;
 }
 
 const ForgotPassword = () => {
@@ -30,46 +30,50 @@ const ForgotPassword = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   const handlesubmit = async (values: any, action: any) => {
-    console.log('values', values)
+    console.log("values", values);
     const response = await ForgetPasswordLinkAPI(values.email, token.token);
-    if (response === 'success') {
-      toast.success(translationDataFromStore?.data?.toast_password_reset_link_success, {
-        autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-      });
+    if (response === "success") {
+      toast.success(
+        translationDataFromStore?.data?.toast_password_reset_link_success,
+        {
+          autoClose: 3000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
       action.resetForm();
       setTimeout(() => {
-        router.push('/');
-      }, 5000)
-    } else if (response === 'error') {
-      toast.error(`${translationDataFromStore?.data?.toast_email_error} ${response.error}`, {
-        autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-      });
+        router.push("/");
+      }, 5000);
+    } else if (response === "error") {
+      toast.error(
+        `${translationDataFromStore?.data?.toast_email_error} ${response.error}`,
+        {
+          autoClose: 3000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
     } else {
-      toast.error(`${translationDataFromStore?.data?.toast_email_error} ${response.error}`, {
-        autoClose: 3000,
-        className: 'custom-toast',// Close the notification after 3 seconds
-      });
+      toast.error(
+        `${translationDataFromStore?.data?.toast_email_error} ${response.error}`,
+        {
+          autoClose: 3000,
+          className: "custom-toast", // Close the notification after 3 seconds
+        }
+      );
     }
-
-
-
-  }
+  };
   return (
     <>
-
       <div className="container mt-5">
         <div className={` card ${styles.auth_common_wrapper}`}>
-
           <div className="row">
             <div className="col-12">
-
               <div className="page_heading text-center">
-                <h1 className="text-uppercase">forgot your password</h1>
+                <h1 className="text-uppercase">
+                  {translationDataFromStore?.data?.forget_header}
+                </h1>
                 <p className="mt-4 ms-2">
-                  Please enter your email address associated with your account and we
-                  will email you instructions to reset your password.
+                  {translationDataFromStore?.data?.forget_description}
                 </p>
               </div>
             </div>
@@ -98,7 +102,7 @@ const ForgotPassword = () => {
                                 className="form-control"
                                 name="email"
                                 onChange={handleChange}
-                                placeholder='Enter Your Email Here'
+                                placeholder="Enter Your Email Here"
                               />
                               <br />
                               <div className="error_message">
@@ -107,10 +111,11 @@ const ForgotPassword = () => {
                             </div>
                             {isAlertVisible && (
                               <div
-                                className={`alert ${message === "success"
-                                  ? "alert-success"
-                                  : "alert-danger"
-                                  } otp_alertbox`}
+                                className={`alert ${
+                                  message === "success"
+                                    ? "alert-success"
+                                    : "alert-danger"
+                                } otp_alertbox`}
                                 role="alert"
                               >
                                 {message === "success"
@@ -119,25 +124,28 @@ const ForgotPassword = () => {
                               </div>
                             )}
                           </div>
-
                         </div>
 
                         <div className={`${styles.custom_btn}`}>
                           <button
                             type="button"
-                            className={`btn btn-signup ${styles.common_btn} me-md-5`}
+                            className={`btn btn-signup ${styles.common_btn} `}
                             style={{ fontWeight: "600" }}
                           >
-                            <Link href="/login" className="text-white" style={{textDecoration:'none'}}>
-                              Back
+                            <Link
+                              href="/login"
+                              className="text-white"
+                              style={{ textDecoration: "none" }}
+                            >
+                              {translationDataFromStore?.data?.back}
                             </Link>
                           </button>
                           <button
                             type="submit"
-                            className='btn btn-signup'
+                            className="btn btn-signup mx-2"
                             style={{ fontWeight: "600" }}
                           >
-                            Send
+                            {translationDataFromStore?.data?.send}
                           </button>
                         </div>
                       </div>
@@ -148,10 +156,9 @@ const ForgotPassword = () => {
             </div>
           </div>
         </div>
-
       </div>
     </>
-  )
-}
+  );
+};
 
 export default ForgotPassword;

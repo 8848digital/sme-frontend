@@ -156,7 +156,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
           </div>
           <div className="col-6 text-center">
             <div className="mb-3">
-              {jobData?.job_cost !== null ? (
+              {jobData?.job_cost.length> 0  ? (
                 <h4 className="text-capitalize">{jobData.job_cost}</h4>
               ) : (
                 <input

@@ -7,6 +7,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import InputAdornment from "@mui/material/InputAdornment";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import { useState } from "react";
+import TextField from "@mui/material/TextField";
 // import { RootState } from "../store/root_reducer";
 
 interface FormValues {
@@ -23,6 +29,24 @@ const ChangePassword = () => {
     old_password: "",
     new_password: "",
     confirmPassword: "",
+  };
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePasswordVisibility = (field: string) => {
+    switch (field) {
+      case "old_password":
+        setShowOldPassword((prev) => !prev);
+        break;
+      case "new_password":
+        setShowNewPassword((prev) => !prev);
+        break;
+      case "confirmPassword":
+        setShowConfirmPassword((prev) => !prev);
+        break;
+      default:
+        break;
+    }
   };
 
   const translationDataFromStore = useSelector(translation_text_from_Store);
@@ -107,8 +131,7 @@ const ChangePassword = () => {
                       </div>
                       <div className="col-md-12 col-lg-9">
                         {/* <div className="password_block "> */}
-                        <Field
-                          type="Password"
+                        <TextField
                           className="form-control"
                           name="old_password"
                           onChange={handleChange}
@@ -116,6 +139,24 @@ const ChangePassword = () => {
                             translationDataFromStore?.data
                               ?.change_password_old_placeholder
                           }
+                          type={showOldPassword ? "text" : "password"}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() =>
+                                    togglePasswordVisibility("old_password")
+                                  }
+                                >
+                                  {showOldPassword ? (
+                                    <VisibilityIcon />
+                                  ) : (
+                                    <VisibilityOffIcon />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                         />
                         <br />
                         <div className="error_message">
@@ -132,8 +173,7 @@ const ChangePassword = () => {
                       </div>
                       <div className="col-md-12 col-lg-9">
                         <div className="password_block">
-                          <Field
-                            type="password"
+                          <TextField
                             className="form-control"
                             name="new_password"
                             onChange={handleChange}
@@ -141,6 +181,24 @@ const ChangePassword = () => {
                               translationDataFromStore?.data
                                 ?.change_password_new_placeholder
                             }
+                            type={showNewPassword ? "text" : "password"}
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    onClick={() =>
+                                      togglePasswordVisibility("new_password")
+                                    }
+                                  >
+                                    {showNewPassword ? (
+                                      <VisibilityIcon />
+                                    ) : (
+                                      <VisibilityOffIcon />
+                                    )}
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
                           />
                           <br />
                           <div className="error_message">
@@ -161,8 +219,7 @@ const ChangePassword = () => {
                         </div>
                       </div>
                       <div className="col-md-12 col-lg-9">
-                        <Field
-                          type="password"
+                        <TextField
                           className="form-control"
                           name="confirmPassword"
                           onChange={handleChange}
@@ -170,6 +227,24 @@ const ChangePassword = () => {
                             translationDataFromStore?.data
                               ?.change_password_confirm_placeholder
                           }
+                          type={showConfirmPassword ? "text" : "password"}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() =>
+                                    togglePasswordVisibility("confirmPassword")
+                                  }
+                                >
+                                  {showConfirmPassword ? (
+                                    <VisibilityIcon />
+                                  ) : (
+                                    <VisibilityOffIcon />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
                         />
                         <br />
                         <div className="error_message">
