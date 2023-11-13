@@ -74,7 +74,7 @@ const BuildYourBioMaster = () => {
   if (loginToken?.token?.length > 0) {
     accessToken = loginToken?.token;
   } else {
-    accessToken = signuptoken?.data?.acess_token;
+    accessToken = signuptoken?.data?.access_token;
   }
   // console.log(accessToken);
   const [LoggedIn, setLoggedIn] = useState<any>(false);
