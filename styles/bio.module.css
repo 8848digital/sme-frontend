@@ -1,9 +1,9 @@
 .bio_wrapper {
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .steps_done_wrapper{
-    margin: 250px auto;
+    margin: 50px auto;
 }
 
 .common_bio_wrapper{
@@ -19,7 +19,7 @@
     padding: 10px 0;
 }
 .profile_wrapper{
-    margin: 130px auto 30px auto;
+    margin: 50px auto 30px auto;
 }
 
 .selected_file{
@@ -37,13 +37,13 @@
 @media  (max-width:768px) {
 
     .bio_wrapper {
-        margin-top: 200px;
+        margin-top: 50px;
     }
     .steps_done_wrapper{
-        margin: 250px auto;
+        margin: 50px auto;
     }
     .profile_wrapper{
-        margin: 200px auto 30px auto;
+        margin: 50px auto 30px auto;
     }
     
 }

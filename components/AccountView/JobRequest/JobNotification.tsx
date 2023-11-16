@@ -4,19 +4,30 @@ import JobDescription from "./JobDescription";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/account.module.css";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import useJobRequest from "@/hooks/job_request_hooks/job_request_hooks";
+import { fetchJobRequest } from "@/store/slices/job_request_slice/job_request_slice";
+import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 
 const JobNotification = ({ jobRequestData }: any) => {
   console.log("job request data in render", jobRequestData);
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
+  const dispatch = useDispatch();
   const [descriptionData, setDescriptionData] = useState<any>([]);
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
     setTabs(tabs);
   };
+
+  const token = useSelector(get_access_token);
+  const viewLess = () => {
+    setTabs("table");
+    dispatch(fetchJobRequest(token?.token) as any);
+  };
+
   return (
     <div className="container ">
       <div
@@ -25,28 +36,33 @@ const JobNotification = ({ jobRequestData }: any) => {
         <div className="mb-4 row p-0">
           <div className="col-sm-6">
             {" "}
-            <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.job_request}</h1>
+            <h1 className={`${styles.header_text}`}>
+              {translationDataFromStore?.data?.job_request}
+            </h1>
           </div>
           <div className="col-sm-6 text-sm-end rtl_text_align_start">
             {tabs === "description" && (
-              <button
-                className="btn btn-later px-2"
-                onClick={() => setTabs("table")}
-              >
-             {translationDataFromStore?.data?.view_less_btn}
+              <button className="btn btn-later px-2" onClick={() => viewLess()}>
+                {translationDataFromStore?.data?.view_less_btn}
               </button>
             )}
           </div>
         </div>
         {tabs === "table" && (
           <>
-            <div className="col-12 p-0" style={{overflowX:"scroll"}}>
+            <div className="col-12 p-0" style={{ overflowX: "scroll" }}>
               <table className="table table-bordered">
                 <thead className="p-2">
                   <tr className="">
-                    <th className="text-center">{translationDataFromStore?.data?.job_request_project_id}</th>
-                    <th className="text-center">{translationDataFromStore?.data?.project_name}</th>
-                    <th className="text-center">{translationDataFromStore?.data?.action}</th>
+                    <th className="text-center">
+                      {translationDataFromStore?.data?.job_request_project_id}
+                    </th>
+                    <th className="text-center">
+                      {translationDataFromStore?.data?.project_name}
+                    </th>
+                    <th className="text-center">
+                      {translationDataFromStore?.data?.action}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

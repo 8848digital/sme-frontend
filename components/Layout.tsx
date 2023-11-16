@@ -14,9 +14,13 @@ const Layout = ({ children }: any) => {
     <>
       {isClient && (
         <>
-          <Navbar />
-          <div className="main">{children}</div>
-          <Footer />
+          <div className="d-flex flex-column min-vh-100">
+            <Navbar />
+            <main className=" flex-grow-1 flex-shrink-0 flex-basis-0">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </>
       )}
     </>

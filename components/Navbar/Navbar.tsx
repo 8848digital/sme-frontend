@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import NavbarMobile from "./NavbarMobile";
 import WebNavbar from "./WebNavbar";
 import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
+import RespNavbar from "./RespNavbar";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { translationData, translationLoading } = useTranslationText();
-
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,7 +23,12 @@ const Navbar = () => {
     };
   }, []);
 
-  return <div>{isMobile ? <NavbarMobile /> : <WebNavbar />}</div>;
+  return (
+    <div>
+      {/* {isMobile ? <NavbarMobile /> : <WebNavbar />} */}
+      <RespNavbar />
+    </div>
+  );
 };
 
 export default Navbar;

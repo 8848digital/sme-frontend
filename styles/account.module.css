@@ -1,5 +1,5 @@
 .account_wrapper {
-  margin: 150px auto 30px;
+  margin: 50px auto 30px;
   padding: 1.5rem;
   max-width: 900px;
 }
@@ -47,7 +47,7 @@
 
 @media (max-width:578px){
   .account_wrapper {
-    margin: 210px auto 30px;
+    margin: 50px auto 30px;
    
   }
 }
