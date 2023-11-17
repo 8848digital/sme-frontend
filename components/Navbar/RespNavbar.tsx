@@ -16,7 +16,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import styles from "@/styles/navbar.module.css";
 import logoImg from "../../public/assets/SG_logo.svg";
 
 const RespNavbar = () => {
@@ -77,7 +76,7 @@ const RespNavbar = () => {
   return (
     <div className="">
       {["md"].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary ">
+        <Navbar key={expand} expand={expand} className="bg-body-tertiary py-0">
           <Container
             fluid
             onClick={() => {
@@ -133,24 +132,24 @@ const RespNavbar = () => {
                         <ul className="navbar-nav main-menu p-0 d-flex align-items-center">
                           <li className="nav-item">
                             <Link
-                              className="nav-link px-3"
+                              className="nav-link px-3 py-md-4"
                               href="/account-view"
                             >
                               {translationDataFromStore?.data?.bio}
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link px-3" href="/job-request">
+                            <Link className="nav-link px-3 py-md-4" href="/job-request">
                               {translationDataFromStore?.data?.job_request}
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link px-3" href="/contract">
+                            <Link className="nav-link px-3 py-md-4" href="/contract">
                               {translationDataFromStore?.data?.contract}
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link px-3" href="/account">
+                            <Link className="nav-link px-3 py-md-4" href="/account">
                               {translationDataFromStore?.data?.account}
                             </Link>
                           </li>
@@ -180,13 +179,20 @@ const RespNavbar = () => {
                         role="switch"
                         id="flexSwitchCheckDefault"
                         checked={language_selector_from_redux?.languageToggle}
-                        onChange={HandleLangToggle}
+                        onChange={(e: any) => {
+                          HandleLangToggle(e);
+                          showOffcanvas && setShowOffcanvas(true);
+                          e.stopPropagation();
+                        }}
                       />
                     </div>
                     <Link
                       href=""
                       className={`text-center header-btn-devider language_cursor px-2`}
-                      onClick={HandleLangToggle}
+                      onClick={(e: any) => {
+                        HandleLangToggle(e);
+                        e.stopPropagation();
+                      }}
                     >
                       <span style={{ color: "#00578a" }}>
                         {!language_selector_from_redux?.languageToggle
