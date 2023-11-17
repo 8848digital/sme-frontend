@@ -9506,10 +9506,10 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 .logo-img-div{
-  width: 50%;
+  /* width: 50%; */
 }
 .logo-img-div img{
-  width: 50%;
+  width: 65%;
 }
 .offcanvas-header .btn-close{
   font-size: 15px;
@@ -9519,9 +9519,9 @@ input::-webkit-inner-spin-button {
     display: block;
   }
   .logo-img-div{
-    width: 60%;
+    width: 70%;
   }
   .logo-img-div img{
-    width: 60%;
+    /* width: 60%; */
   }
 }

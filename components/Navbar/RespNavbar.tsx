@@ -82,13 +82,13 @@ const RespNavbar = () => {
               showOffcanvas && setShowOffcanvas(false);
             }}
           >
-            <Navbar.Brand href="#" className="logo-img-div">
-              <div className="brand-logo">
+            <div className="logo-img-div">
+              <Navbar.Brand href="#" className="">
                 <Link href="/">
                   <img src={logoImg.src} alt="" className="" />
                 </Link>
-              </div>
-            </Navbar.Brand>
+              </Navbar.Brand>
+            </div>
 
             <Link
               href=""
