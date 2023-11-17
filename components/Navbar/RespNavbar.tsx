@@ -78,7 +78,6 @@ const RespNavbar = () => {
       {["md"].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary py-0">
           <Container
-            fluid
             onClick={() => {
               showOffcanvas && setShowOffcanvas(false);
             }}
@@ -139,17 +138,26 @@ const RespNavbar = () => {
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link px-3 py-md-4" href="/job-request">
+                            <Link
+                              className="nav-link px-3 py-md-4"
+                              href="/job-request"
+                            >
                               {translationDataFromStore?.data?.job_request}
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link px-3 py-md-4" href="/contract">
+                            <Link
+                              className="nav-link px-3 py-md-4"
+                              href="/contract"
+                            >
                               {translationDataFromStore?.data?.contract}
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link px-3 py-md-4" href="/account">
+                            <Link
+                              className="nav-link px-3 py-md-4"
+                              href="/account"
+                            >
                               {translationDataFromStore?.data?.account}
                             </Link>
                           </li>
