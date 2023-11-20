@@ -206,7 +206,7 @@ const LandingPage = () => {
                           style={{ fontSize: "14px", marginTop: "10px" }}
                         >
                           <Link
-                            href="https://strategicgears.com/index.php/services/strategy-management"
+                            href="https://strategicgears.com/services/strategy-management"
                             className="color"
                             target="_blank"
                           >
