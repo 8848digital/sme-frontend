@@ -67,22 +67,22 @@ const LandingPage = () => {
               </div> */}
                 <div className="col-md-12">
                   <div className="row">
-                    <div className="col-12" style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'left', padding: '20px', color: 'white' }}>
-                    <div data-aos="slide-up">
+                    <div className={`col-12 ${styles.landing_details_over_image}`}>
+                      <div data-aos="slide-up">
 
-                      <div className={`${styles.landing_details} text-center`}>
-                        <h1 className="text-white text-uppercase" style={{fontSize:'36px !important',fontWeight:'500'}}>{landingData.heading_name1}</h1>
+                        <div className={`${styles.landing_details} text-center`}>
+                          <h1 className="text-white text-uppercase" style={{ fontSize: '36px !important', fontWeight: '500' }}>{landingData.heading_name1}</h1>
+                        </div>
+                        <div className="short_desc text-center">
+                          <h6 className="color">
+                            {landingData?.short_description}
+                          </h6>
+                        </div>
                       </div>
-                      <div className="short_desc text-center">
-                        <h6 className="color">
-                          {landingData?.short_description}
-                        </h6>
-                      </div>
-                    </div>
                     </div>
                     <div className="col-12 mt-2">
                       <div className="benefits_wrapper text-center">
-                        <h4 className="color text-uppercase" style={{fontSize:'24px',fontWeight:'600'}}>{landingData?.Heading_name2}</h4>
+                        <h4 className="color text-uppercase" style={{ fontSize: '24px', fontWeight: '600' }}>{landingData?.Heading_name2}</h4>
                         <h6 className="text-dark">
                           {translationDataFromStore?.data?.landingPage_header}
                         </h6>
@@ -124,35 +124,35 @@ const LandingPage = () => {
                             </div>
                             <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center ">
                               <div className={`${styles.count_item}`}>
-                              <div className={`${styles.count_item_wrapper}`}>
-                                <div className="d-flex justify-content-center align-items-center border-bottom">
-                                  <div className={`${styles.count_container}`}>
-                                    {" "}
-                                    {/* Wrap the count in a container */}
-                                    <h3 className="d-flex">
-                                      <CountUp
-                                        start={0}
-                                        end={landingData.total_clients}
-                                        duration={4}
-                                        separator=","
-                                        useEasing={true}
-                                        useGrouping={true}
-                                      />{" "}
-                                      +
-                                    </h3>
+                                <div className={`${styles.count_item_wrapper}`}>
+                                  <div className="d-flex justify-content-center align-items-center border-bottom">
+                                    <div className={`${styles.count_container}`}>
+                                      {" "}
+                                      {/* Wrap the count in a container */}
+                                      <h3 className="d-flex">
+                                        <CountUp
+                                          start={0}
+                                          end={landingData.total_clients}
+                                          duration={4}
+                                          separator=","
+                                          useEasing={true}
+                                          useGrouping={true}
+                                        />{" "}
+                                        +
+                                      </h3>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                              <h5>
-                                {
-                                  translationDataFromStore?.data
-                                    ?.landingPage_client
-                                }
-                              </h5>
+                                <h5>
+                                  {
+                                    translationDataFromStore?.data
+                                      ?.landingPage_client
+                                  }
+                                </h5>
                               </div>
                             </div>
                             <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center ">
-                            <div className={`${styles.count_item}`}>
+                              <div className={`${styles.count_item}`}>
                                 <div className={`${styles.count_item_wrapper}`}>
                                   <div className="d-flex justify-content-center align-items-center border-bottom">
                                     <div className={`${styles.count_container}`}>
@@ -184,36 +184,36 @@ const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 mt-5"  style={{ position: 'absolute', top: '45%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'left', padding: '20px', color: 'white' }} >
+                    <div className={` col-12 mt-5 ${styles.get_started_btn_over_image}`}>
                       <div data-aos="slide-up">
 
-                      <div className={`${styles.get_started_btn}`}>
-                        {LoggedIn === "true" ? (
-                          ""
-                        ) : (
-                          <button
-                            className={`text-uppercase ${styles.btn}`}
-                            type="button"
-                            onClick={() => {
-                              router.push("/signup-start");
-                            }}
+                        <div className={`${styles.get_started_btn}`}>
+                          {LoggedIn === "true" ? (
+                            ""
+                          ) : (
+                            <button
+                              className={`text-uppercase ${styles.btn}`}
+                              type="button"
+                              onClick={() => {
+                                router.push("/signup-start");
+                              }}
+                            >
+                              {landingData?.label_for_button}
+                            </button>
+                          )}
+                          <div
+                            className="about_services"
+                            style={{ fontSize: "14px", marginTop: "10px" }}
                           >
-                            {landingData?.label_for_button}
-                          </button>
-                        )}
-                        <div
-                          className="about_services"
-                          style={{ fontSize: "14px", marginTop: "10px" }}
-                        >
-                          <Link
-                            href="https://strategicgears.com/services/strategy-management"
-                            className="color"
-                            target="_blank"
-                          >
-                            {landingData?.link_label}
-                          </Link>
+                            <Link
+                              href="https://strategicgears.com/services/strategy-management"
+                              className="color"
+                              target="_blank"
+                            >
+                              {landingData?.link_label}
+                            </Link>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     </div>
                     <div className="col-12 mt-4">
