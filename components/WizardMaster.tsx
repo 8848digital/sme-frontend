@@ -295,7 +295,7 @@ const WizardMaster = () => {
       <div className="container">
         <div className={styles.wizard_wrapper}>
           <div className="row">
-            <div className="col-md-12 col-lg-12 mt-5">
+            <div className="col-md-12 col-lg-12 ">
               <div
                 className="row "
                 style={{ maxWidth: "800px", margin: "0 auto" }}
