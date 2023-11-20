@@ -57,7 +57,11 @@ body[data-theme="light"],
   --border-color-2: #f0f0f0;
   --border-color-3: #e5e5e5;
 }
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   --bg: #fff;
   --bg-1: #f2f2f2;

@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import twitterIcon from "../../public/assets/icons8-twitter-50.png";
 import LoaderForSkills from "../LoaderForSkills";
 import OurClients from "./Clients/OurClients";
-
+import landinImage from '../../public/assets/landing_image.jpg'
 const LandingPage = () => {
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
@@ -31,106 +31,88 @@ const LandingPage = () => {
   return (
     <>
       <div className={`${styles.landing_wrapper}`}>
-        <div className={` container ${styles.landing_content}`}>
+        <div className="d-block" style={{ position: 'relative' }}>
+          <img
+            // className="d-block w-100 img-fluid"
+            src={`${landinImage?.src}`}
+            alt="Banner Images"
+            // className="img-fluid"
+            style={{ width: '100%', height: '500px', objectFit: 'cover' }}
+          />
+
+        </div>
+        <div className={` container `}>
+
           {!loading && landingData ? (
-            <div className="row">
-              <div className="col-md-12 mt-3">
+            <>
+              <div className="row">
+                {/* <div className="col-md-12 mt-3">
                 <div className={`${styles.image_section}`}>
                   <div className={`${styles.landing_image_wrapper}`}>
                     <img
-                      src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
+                      src={landinImage.src}
                       alt=""
-                      width="450px"
-                      className="img-fluid"
+                      style={{ width: '100%', height: '500px', objectFit: 'cover' }}
+                      // className="img-fluid"
                     />
                   </div>
                 </div>
-              </div>
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-12">
-                    <div className={`${styles.landing_details} text-center`}>
-                      <h1>{landingData.heading_name1}</h1>
+              </div> */}
+                <div className="col-md-12">
+                  <div className="row">
+                    <div className="col-12" style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'left', padding: '20px', color: 'white' }}>
+                      <div className={`${styles.landing_details} text-center`}>
+                        <h1 className="text-white" style={{fontSize:'36px !important'}}>{landingData.heading_name1}</h1>
+                      </div>
+                      <div className="short_desc text-center">
+                        <h6 className="color">
+                          {landingData?.short_description}
+                        </h6>
+                      </div>
                     </div>
-                    <div className="short_desc text-center">
-                      <h6 className="text-dark">
-                        {landingData?.short_description}
-                      </h6>
-                    </div>
-                  </div>
-                  <div className="col-12 mt-4">
-                    <div className="benefits_wrapper text-center">
-                      <h4 className="color">{landingData?.Heading_name2}</h4>
-                      <h6 className="text-dark">
-                        {translationDataFromStore?.data?.landingPage_header}
-                      </h6>
-                      <div className="count-circle mt-1">
-                        <div className="row">
-                          <div className="col-md-4 mt-2">
-                            <div
-                              className={`d-flex flex-column justify-content-center align-items-end ${styles.landing_item_center_center} `}
-                            >
-                              <div className={`${styles.count_item_wrapper}`}>
-                                <div
-                                  className="d-flex justify-content-center align-items-center border-bottom"
-                                  style={{ borderColor: "darkgray" }}
-                                >
-                                  <div className={`${styles.count_container}`}>
-                                    {" "}
-                                    {/* Wrap the count in a container */}
-                                    <h3 className="d-flex">
-                                      <CountUp
-                                        start={0}
-                                        end={landingData.total_projects}
-                                        duration={4}
-                                        separator=","
-                                        useEasing={true}
-                                        useGrouping={true}
-                                      />{" "}
-                                      +
-                                    </h3>
+                    <div className="col-12 mt-4">
+                      <div className="benefits_wrapper text-center">
+                        <h4 className="color">{landingData?.Heading_name2}</h4>
+                        <h6 className="text-dark">
+                          {translationDataFromStore?.data?.landingPage_header}
+                        </h6>
+                        <div className="count-circle mt-1">
+                          <div className="row">
+                            <div className="col-md-4 mt-2">
+                              <div
+                                className={`d-flex flex-column justify-content-center align-items-end ${styles.landing_item_center_center} `}
+                              >
+                                <div className={`${styles.count_item_wrapper}`}>
+                                  <div
+                                    className="d-flex justify-content-center align-items-center border-bottom"
+                                    style={{ borderColor: "darkgray" }}
+                                  >
+                                    <div className={`${styles.count_container}`}>
+                                      {" "}
+                                      {/* Wrap the count in a container */}
+                                      <h3 className="d-flex">
+                                        <CountUp
+                                          start={0}
+                                          end={landingData.total_projects}
+                                          duration={4}
+                                          separator=","
+                                          useEasing={true}
+                                          useGrouping={true}
+                                        />{" "}
+                                        +
+                                      </h3>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                              <h5>
-                                {
-                                  translationDataFromStore?.data
-                                    ?.landingPage_project
-                                }
-                              </h5>
-                            </div>
-                          </div>
-                          <div className="col-md-4 mt-2">
-                            <div className={`${styles.count_item_wrapper}`}>
-                              <div className="d-flex justify-content-center align-items-center border-bottom">
-                                <div className={`${styles.count_container}`}>
-                                  {" "}
-                                  {/* Wrap the count in a container */}
-                                  <h3 className="d-flex">
-                                    <CountUp
-                                      start={0}
-                                      end={landingData.total_clients}
-                                      duration={4}
-                                      separator=","
-                                      useEasing={true}
-                                      useGrouping={true}
-                                    />{" "}
-                                    +
-                                  </h3>
-                                </div>
+                                <h5>
+                                  {
+                                    translationDataFromStore?.data
+                                      ?.landingPage_project
+                                  }
+                                </h5>
                               </div>
                             </div>
-                            <h5>
-                              {
-                                translationDataFromStore?.data
-                                  ?.landingPage_client
-                              }
-                            </h5>
-                          </div>
-                          <div className="col-md-4 mt-2">
-                            <div
-                              className={`d-flex flex-column justify-content-center align-items-start ${styles.landing_item_center_center}`}
-                            >
+                            <div className="col-md-4 mt-2">
                               <div className={`${styles.count_item_wrapper}`}>
                                 <div className="d-flex justify-content-center align-items-center border-bottom">
                                   <div className={`${styles.count_container}`}>
@@ -139,7 +121,7 @@ const LandingPage = () => {
                                     <h3 className="d-flex">
                                       <CountUp
                                         start={0}
-                                        end={landingData.total_smes}
+                                        end={landingData.total_clients}
                                         duration={4}
                                         separator=","
                                         useEasing={true}
@@ -153,83 +135,114 @@ const LandingPage = () => {
                               <h5>
                                 {
                                   translationDataFromStore?.data
-                                    ?.landingPage_sme
+                                    ?.landingPage_client
                                 }
                               </h5>
+                            </div>
+                            <div className="col-md-4 mt-2">
+                              <div
+                                className={`d-flex flex-column justify-content-center align-items-start ${styles.landing_item_center_center}`}
+                              >
+                                <div className={`${styles.count_item_wrapper}`}>
+                                  <div className="d-flex justify-content-center align-items-center border-bottom">
+                                    <div className={`${styles.count_container}`}>
+                                      {" "}
+                                      {/* Wrap the count in a container */}
+                                      <h3 className="d-flex">
+                                        <CountUp
+                                          start={0}
+                                          end={landingData.total_smes}
+                                          duration={4}
+                                          separator=","
+                                          useEasing={true}
+                                          useGrouping={true}
+                                        />{" "}
+                                        +
+                                      </h3>
+                                    </div>
+                                  </div>
+                                </div>
+                                <h5>
+                                  {
+                                    translationDataFromStore?.data
+                                      ?.landingPage_sme
+                                  }
+                                </h5>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-12 mt-5">
-                    <div className={`${styles.get_started_btn}`}>
-                      {LoggedIn === "true" ? (
-                        ""
-                      ) : (
-                        <button
-                          className={`text-uppercase ${styles.btn}`}
-                          type="button"
-                          onClick={() => {
-                            router.push("/signup-start");
-                          }}
+                    <div className="col-12 mt-5" style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'left', padding: '20px', color: 'white' }}>
+                      <div className={`${styles.get_started_btn}`}>
+                        {LoggedIn === "true" ? (
+                          ""
+                        ) : (
+                          <button
+                            className={`text-uppercase ${styles.btn}`}
+                            type="button"
+                            onClick={() => {
+                              router.push("/signup-start");
+                            }}
+                          >
+                            {landingData?.label_for_button}
+                          </button>
+                        )}
+                        <div
+                          className="about_services"
+                          style={{ fontSize: "14px", marginTop: "10px" }}
                         >
-                          {landingData?.label_for_button}
-                        </button>
-                      )}
-                      <div
-                        className="about_services"
-                        style={{ fontSize: "14px", marginTop: "10px" }}
-                      >
-                        <Link
-                          href="https://strategicgears.com/index.php/services/strategy-management"
-                          className="color"
-                          target="_blank"
-                        >
-                          {landingData?.link_label}
-                        </Link>
+                          <Link
+                            href="https://strategicgears.com/index.php/services/strategy-management"
+                            className="color"
+                            target="_blank"
+                          >
+                            {landingData?.link_label}
+                          </Link>
+                        </div>
                       </div>
                     </div>
+                    <div className="col-12 mt-4">
+                      <OurClients landingData={landingData.clients_list} />
+                    </div>
                   </div>
-                  <div className="col-12 mt-4">
-                    <OurClients landingData={landingData.clients_list} />
+                </div>
+                <div className="">
+                  <div className={`${styles.social_link}`}>
+                    <Link
+                      href={`${landingData?.social_links?.[2]?.linkedin}`}
+                      target="_blank"
+                    >
+                      <LinkedInIcon
+                        fontSize="large"
+                        color="primary"
+                        className="mx-1"
+                      />
+                    </Link>
+                    <Link
+                      href={`${landingData?.social_links?.[0]?.twitter}`}
+                      target="_blank"
+                    >
+                      <img
+                        src={twitterIcon.src}
+                        alt=""
+                        style={{ width: "2.1875rem" }}
+                      />
+                    </Link>
+                    <Link
+                      href={`${landingData?.social_links?.[1]?.instagram}`}
+                      target="_blank"
+                    >
+                      <InstagramIcon
+                        fontSize="large"
+                        className="text-dark mx-1"
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>
-              <div className="">
-                <div className={`${styles.social_link}`}>
-                  <Link
-                    href={`${landingData?.social_links?.[2]?.linkedin}`}
-                    target="_blank"
-                  >
-                    <LinkedInIcon
-                      fontSize="large"
-                      color="primary"
-                      className="mx-1"
-                    />
-                  </Link>
-                  <Link
-                    href={`${landingData?.social_links?.[0]?.twitter}`}
-                    target="_blank"
-                  >
-                    <img
-                      src={twitterIcon.src}
-                      alt=""
-                      style={{ width: "2.1875rem" }}
-                    />
-                  </Link>
-                  <Link
-                    href={`${landingData?.social_links?.[1]?.instagram}`}
-                    target="_blank"
-                  >
-                    <InstagramIcon
-                      fontSize="large"
-                      className="text-dark mx-1"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
+            </>
           ) : (
             <>
               <div
