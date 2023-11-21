@@ -41,7 +41,7 @@ const LandingPage = () => {
         <div className="d-block" style={{ position: 'relative' }}>
           <img
             // className="d-block w-100 img-fluid"
-            src={`${landinImage?.src}`}
+            src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
             alt="Banner Images"
             // className="img-fluid"
             style={{ width: '100%', height: '450px', objectFit: 'cover' }}
@@ -67,13 +67,13 @@ const LandingPage = () => {
               </div> */}
                 <div className="col-md-12">
                   <div className="row">
-                    <div className={`col-12 ${styles.landing_details_over_image}`}>
+                    <div className={`col-5 ${styles.landing_details_over_image}`}>
                       <div data-aos="slide-up">
 
-                        <div className={`${styles.landing_details} text-center`}>
-                          <h1 className="text-white text-uppercase" style={{ fontSize: '36px !important', fontWeight: '500' }}>{landingData.heading_name1}</h1>
+                        <div className={`${styles.landing_details} `}>
+                          <h1 className="text-white" style={{ fontSize: '36px !important', fontWeight: '500' }}>{landingData.heading_name1}</h1>
                         </div>
-                        <div className="short_desc text-center">
+                        <div className="short_desc">
                           <h6 className="color">
                             {landingData?.short_description}
                           </h6>
@@ -184,10 +184,10 @@ const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className={` col-12 mt-5 ${styles.get_started_btn_over_image}`}>
+                    <div className={` col-6 mt-5  ${styles.get_started_btn_over_image}`}>
                       <div data-aos="slide-up">
 
-                        <div className={`${styles.get_started_btn}`}>
+                        <div className={`${styles.get_started_btn} `}>
                           {LoggedIn === "true" ? (
                             ""
                           ) : (
