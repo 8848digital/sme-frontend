@@ -67,11 +67,11 @@ const LandingPage = () => {
               </div> */}
                 <div className="col-md-12">
                   <div className="row">
-                    <div className={`col-5 ${styles.landing_details_over_image}`}>
+                    <div className={`col-md-5 ${styles.landing_details_over_image}`}>
                       <div data-aos="slide-up">
 
                         <div className={`${styles.landing_details} `}>
-                          <h1 className="text-white" style={{ fontSize: '36px !important', fontWeight: '500' }}>{landingData.heading_name1}</h1>
+                          <h1 className="text-white" style={{ fontSize: '36px', fontWeight: '500' }}>{landingData.heading_name1}</h1>
                         </div>
                         <div className="short_desc">
                           <h6 className="color">
@@ -80,7 +80,7 @@ const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 mt-2">
+                    <div className="col-md-12 mt-2">
                       <div className="benefits_wrapper text-center">
                         <h4 className="color text-uppercase" style={{ fontSize: '24px', fontWeight: '600' }}>{landingData?.Heading_name2}</h4>
                         <h6 className="text-dark">
@@ -184,7 +184,7 @@ const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className={` col-6 mt-5  ${styles.get_started_btn_over_image}`}>
+                    <div className={` col-md-6 mt-5  ${styles.get_started_btn_over_image}`}>
                       <div data-aos="slide-up">
 
                         <div className={`${styles.get_started_btn} `}>

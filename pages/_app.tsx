@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>SME</title>
+        <title>SME-Strategic Gears</title>
         <link rel="icon" type="image/png" href={favicon.src} />
       </Head>
       <div className={cairo.className}>
