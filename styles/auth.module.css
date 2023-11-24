@@ -10,6 +10,13 @@
     max-width: 500px;
     padding: 20px;
 }
+
+.password_wrapper{
+    margin: 120px auto;
+    max-width: 800px;
+    padding: 20px; 
+}
+
 /* media */
 
 @media (max-width: 767px) {

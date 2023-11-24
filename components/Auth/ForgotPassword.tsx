@@ -67,7 +67,7 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="container mt-5">
-        <div className={` card ${styles.auth_common_wrapper}`}>
+        <div className={` card ${styles.password_wrapper}`}>
           <div className="row">
             <div className="col-12">
               <div className="page_heading text-center">

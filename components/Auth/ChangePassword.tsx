@@ -108,7 +108,7 @@ const ChangePassword = () => {
   return (
     <>
       <div className="container">
-        <div className={` card ${styles.auth_common_wrapper}`}>
+        <div className={` card ${styles.password_wrapper}`}>
           <div className="page_heading text-center">
             <h1 className="text-uppercase">
               {translationDataFromStore?.data?.change_password_header}
