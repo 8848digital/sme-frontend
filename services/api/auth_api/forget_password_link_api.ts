@@ -22,7 +22,7 @@ const ForgetPasswordLinkAPI =async (email?:any, token?:any) => {
         .post(
             `${CONSTANTS.API_BASE_URL}${CONSTANTS.API_MANDATE_PARAMS}${params}&email=${email}&link=${link}`,undefined,config)
         .then((res) => {
-            response = res?.data?.message?.msg;
+            response = res?.data?.message;
             console.log(response, "pass reset response in api");
         })
         .catch((err) => {

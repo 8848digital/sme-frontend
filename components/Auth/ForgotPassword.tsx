@@ -32,7 +32,8 @@ const ForgotPassword = () => {
   const handlesubmit = async (values: any, action: any) => {
     console.log("values", values);
     const response = await ForgetPasswordLinkAPI(values.email, token.token);
-    if (response === "success") {
+    console.log('forget resposne',response)
+    if (response.msg === "success") {
       toast.success(
         translationDataFromStore?.data?.toast_password_reset_link_success,
         {
@@ -44,9 +45,10 @@ const ForgotPassword = () => {
       setTimeout(() => {
         router.push("/");
       }, 5000);
-    } else if (response === "error") {
+    } else if (response.msg === "error") {
       toast.error(
-        `${translationDataFromStore?.data?.toast_email_error} ${response.error}`,
+        `${translationDataFromStore?.data?.toast_email_error}`
+        ,
         {
           autoClose: 3000,
           className: "custom-toast", // Close the notification after 3 seconds
@@ -102,7 +104,9 @@ const ForgotPassword = () => {
                                 className="form-control"
                                 name="email"
                                 onChange={handleChange}
-                                placeholder="Enter Your Email Here"
+                                placeholder={
+                                  translationDataFromStore?.data?.email_placeholder
+                                }
                               />
                               <br />
                               <div className="error_message">
