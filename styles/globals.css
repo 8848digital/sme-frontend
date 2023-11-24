@@ -9421,6 +9421,8 @@ h2 {
 /* toast notification custom */
 .custom-toast {
   top: 80px;
+  right:20px;
+  font-size: 14px;
 }
 
 /* slick slider css */

@@ -92,24 +92,34 @@ const BuildYourBioMaster = () => {
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
       const response = await BuildYourBioAPI(bioData, accessToken);
       // console.log(response);
-      toast.success(
-        response.data === "Thank You for updating your profile" &&
-          translationDataFromStore?.data?.toast_update_profile_success,
-        {
-          autoClose: 5000,
-          className: "custom-toast", // Close the notification after 3 seconds
-        }
-      );
-      router.push("/profile-complete");
-      setTimeout(() => {
-        if (LoggedIn === "true") {
-          router.push("/account-view");
-          dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-        } else {
-          router.push("/login");
-          dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-        }
-      }, 5000);
+      if (response?.msg === 'success' && response?.data === "Thank You for updating your profile") {
+
+        toast.success(translationDataFromStore?.data?.toast_update_profile_success,
+          {
+            autoClose: 5000,
+            className: "custom-toast", // Close the notification after 3 seconds
+          }
+        );
+        router.push("/profile-complete");
+        setTimeout(() => {
+          if (LoggedIn === "true") {
+            router.push("/account-view");
+            dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+          } else {
+            router.push("/login");
+            dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+          }
+        }, 5000);
+      } else if(response.msg === 'error' && response.error === " ") {
+        toast.error(translationDataFromStore?.data?.bio_update_error_msg,
+          {
+            autoClose: 5000,
+            className: "custom-toast", // Close the notification after 3 seconds
+          }
+        );
+      }else {
+
+      }
 
       // You can submit the data to your API or perform other actions here
     }
