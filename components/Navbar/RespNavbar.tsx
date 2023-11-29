@@ -85,7 +85,7 @@ const RespNavbar = () => {
             <div className="logo-img-div">
               <Navbar.Brand href="#" className="">
                 <Link href="/">
-                  <img src={logoImg.src} alt="" className="" />
+                  <img src={logoImg.src} alt="" width='200px' className="" />
                 </Link>
               </Navbar.Brand>
             </div>
