@@ -1,5 +1,5 @@
-import AcademicChildTable from "@/components/AcademicChildTable";
-import ProfessionalExpericeneChildTable from "@/components/ProfessionalExpericeneChildTable";
+import AcademicChildTable from "@/components/SignUp/ProfessionalInfo/AcademicChildTable";
+import ProfessionalExpericeneChildTable from "@/components/SignUp/ProfessionalInfo/ProfessionalExpericeneChildTable";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
 import { useSelector } from "react-redux";

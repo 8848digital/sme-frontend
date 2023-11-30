@@ -9,7 +9,6 @@ import DialogContent from "@mui/material/DialogContent";
 import Link from "next/link";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import AccountUpdateModal from "./AccountUpdateModal";
 
 const AccountBio = ({ bioData, loading }: any) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -166,18 +165,6 @@ const AccountBio = ({ bioData, loading }: any) => {
           </div>
         </div>
       )}
-
-      {/* The Modal */}
-      <Dialog open={modalOpen} onClose={handleCloseModal}>
-        <DialogContent>
-          <AccountUpdateModal
-            user={AccountProfile} // Pass the user data to the modal form
-            isOpen={modalOpen}
-            onClose={handleCloseModal}
-            onUpdateUser={updateUser}
-          />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const AccountMaster = () => {
             </div>
             <div className="">
               <Link
-                href="https://strategicgears.com/index.php/contact-us"
+                href="https://strategicgears.com/contact-us"
                 legacyBehavior
               >
                 <a target="_blank" className="color  px-3">
@@ -37,7 +37,7 @@ const AccountMaster = () => {
               <EditIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
             </div>
             <div className="">
-              <Link href="/account/change-password" legacyBehavior>
+              <Link href="/change-password" legacyBehavior>
                 <a className="color px-3">
                   {translationDataFromStore?.data?.change_password}
                 </a>
@@ -49,7 +49,7 @@ const AccountMaster = () => {
               <DeleteOutlineIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
             </div>
             <div className="">
-              <Link href="/account/account-delete" legacyBehavior>
+              <Link href="/account-delete" legacyBehavior>
                 <a className="color px-3">
                   {translationDataFromStore?.data?.delete_account}
                 </a>

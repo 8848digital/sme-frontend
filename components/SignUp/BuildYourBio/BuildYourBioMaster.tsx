@@ -5,7 +5,7 @@ import {
   form_details_from_store,
   setBuildBioData,
   setResetBuildBioData,
-} from "@/store/slices/build_bio_slice";
+} from "@/store/slices/buildYourBio_slice/build_bio_slice";
 import wizardStyles from "@/styles/wizard.module.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";

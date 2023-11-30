@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Step1EnterEmail from "./SignUp/PersonalInfo/Step1EnterEmail";
-import Step2VarificationCode from "./SignUp/PersonalInfo/Step2VarificationCode";
-import Step3EnterName from "./SignUp/PersonalInfo/Step3EnterName";
+import Step1EnterEmail from "./PersonalInfo/Step1EnterEmail";
+import Step2VarificationCode from "./PersonalInfo/Step2VarificationCode";
+import Step3EnterName from "./PersonalInfo/Step3EnterName";
 // import StepWizard from "react-step-wizard";
 import useEducationLevel from "@/hooks/general_hooks/education_level-hooks";
 import usePreferences from "@/hooks/general_hooks/preferences_hook";
@@ -13,20 +13,20 @@ import {
   form_details_from_store,
   resetFormData,
   setFormData,
-} from "@/store/slices/form_slice";
+} from "@/store/slices/auth_slice/form_slice";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
-import { language_selector } from "@/store/slices/language_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 import styles from "@/styles/wizard.module.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MobileStepper from "@mui/material/MobileStepper";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import Step3of3SelectAvailability from "./SignUp/Preferences/Step6SelectAvailability";
-import Step3of3EnterRates from "./SignUp/Preferences/Step7EnterRates";
-import Step2of3UploadCv from "./SignUp/ProfessionalInfo/Step4UploadCv";
-import Step2of3ExtractedDataFromCv from "./SignUp/ProfessionalInfo/Step5ExtractedDataFromCv";
-import ButtonLoader from "./ButtonLoader";
+import Step3of3SelectAvailability from "./Preferences/Step6SelectAvailability";
+import Step3of3EnterRates from "./Preferences/Step7EnterRates";
+import Step2of3UploadCv from "./ProfessionalInfo/Step4UploadCv";
+import Step2of3ExtractedDataFromCv from "./ProfessionalInfo/Step5ExtractedDataFromCv";
+import ButtonLoader from "../ButtonLoader";
 
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(1);

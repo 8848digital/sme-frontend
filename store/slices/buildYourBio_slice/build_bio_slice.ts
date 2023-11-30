@@ -1,7 +1,7 @@
 // formSlice.ts
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../root-reducer';
+import { RootState } from '../../root-reducer';
 
 // Define the initial state interface for the form data
 interface BioFormState {

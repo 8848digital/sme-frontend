@@ -1,5 +1,5 @@
-import { landing_data_from_Store, fetchLandingPage } from "@/store/slices/landing_page_slice";
-import { language_selector } from "@/store/slices/language_slice";
+import { landing_data_from_Store, fetchLandingPage } from "@/store/slices/general_slice/landing_page_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

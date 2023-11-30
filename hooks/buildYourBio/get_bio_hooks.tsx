@@ -3,7 +3,7 @@ import {
   bio_data_store,
   fetchBio,
 } from "@/store/slices/buildYourBio_slice/bio_slice";
-import { language_selector } from "@/store/slices/language_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

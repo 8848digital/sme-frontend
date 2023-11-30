@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { RootState } from "@/store/root-reducer";
 import { useRouter } from "next/router";
-import { language_selector } from "@/store/slices/language_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 import { fetchPriceBasis, price_basis_from_store } from "@/store/slices/general_slice/price_basis_slice";
 
 const usePriceBasis = () => {

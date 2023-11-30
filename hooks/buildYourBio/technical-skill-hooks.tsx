@@ -6,7 +6,7 @@ import {
 } from "@/store/slices/buildYourBio_slice/technical_skill_slice";
 import { RootState } from "@/store/root-reducer";
 import { useRouter } from "next/router";
-import { language_selector } from "@/store/slices/language_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 
 const useFetchOurTechnicalSkills = () => {
   const dispatch = useDispatch();

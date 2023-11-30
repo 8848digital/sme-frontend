@@ -1,4 +1,4 @@
-import WizardMaster from '@/components/WizardMaster'
+import WizardMaster from '@/components/SignUp/WizardMaster'
 import React from 'react'
 
 const index = () => {

@@ -2,7 +2,7 @@ import {
   fetchLanguage,
   our_language,
 } from "@/store/slices/buildYourBio_slice/language_slice";
-import { language_selector } from "@/store/slices/language_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

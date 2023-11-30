@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { RootState } from "@/store/root-reducer";
 import { useRouter } from "next/router";
-import { language_selector } from "@/store/slices/language_slice";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 import { fetchPreferences, preferences_from_store } from "@/store/slices/general_slice/get_preferences_slice";
 
 

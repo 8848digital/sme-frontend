@@ -1,7 +1,7 @@
 import {
   languageSliceData,
   language_selector,
-} from "@/store/slices/language_slice";
+} from "@/store/slices/general_slice/language_slice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";

@@ -1,6 +1,6 @@
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { CONSTANTS } from "@/services/config/api-config";
-import { form_details_from_store } from "@/store/slices/build_bio_slice";
+import { form_details_from_store } from "@/store/slices/buildYourBio_slice/build_bio_slice";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/bio.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
