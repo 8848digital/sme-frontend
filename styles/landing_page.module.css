@@ -185,6 +185,14 @@
 }
 }
 
+[dir='rtl'] .landing_details h1{
+  text-align: right;
+}
+
+[dir='rtl'] .short_desc h6{
+  text-align: right;
+}
+
 @media (max-width: 578px) {
     [dir="rtl"] .landing_item_center_center {
       align-items: center !important;

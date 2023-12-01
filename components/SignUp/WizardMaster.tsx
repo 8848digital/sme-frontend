@@ -311,10 +311,20 @@ const WizardMaster = () => {
                 <div className="col-8 position-relative">
                   <div className={styles.progress_bar_div}>
                     <div className="" style={{ marginInline: "10px" }}>
-                      <p className="mb-4 text-white">
-                        {currentStep} {translationDataFromStore?.data?.of} 7{" "}
-                        {translationDataFromStore?.data?.completed}
+                      {
+                        document.dir === 'ltr' ?
+                         <p className="mb-4 text-white">
+                        <span className="ps-1 pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">7</span> 
+                        {translationDataFromStore?.data?.completed}</p> 
+                        : 
+                        <p className="mb-4 text-white">
+                     {/* <span className="ps-1 pe-1">{currentStep}</span> */}
+                     {translationDataFromStore?.data?.steps_bar_of_arabic}<span className="pe-1 ps-1">7</span> 
+                     {translationDataFromStore?.data?.steps_bar_arabic}<span className="ps-1 pe-1">{currentStep}</span>
+                        {translationDataFromStore?.data?.completed} 
+                        {/* {currentStep}من 7 خطوات مكتملة */}
                       </p>
+                      } 
                     </div>
 
                     <MobileStepper
@@ -392,7 +402,10 @@ const WizardMaster = () => {
                           className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
                           onClick={handlePrevious}
                         >
-                          <ArrowBackIcon />
+                          {
+                            document.dir === 'ltr' ? <ArrowBackIcon /> :  <ArrowForwardIcon /> 
+                          }
+                          
                           {translationDataFromStore?.data?.previous}
                         </button>
                       )}
@@ -402,7 +415,9 @@ const WizardMaster = () => {
                           onClick={handleNext}
                         >
                           {translationDataFromStore?.data?.next}
-                          <ArrowForwardIcon />
+                          {
+                            document.dir === 'ltr' ?  <ArrowForwardIcon /> :  <ArrowBackIcon /> 
+                          }
                         </button>
                       ) : (
                         <button className="btn btn-next" onClick={handleSubmit}>

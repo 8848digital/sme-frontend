@@ -27,6 +27,7 @@
   z-index: -1;
 }
 .progress_bar_div_tag {
+  margin-left: 8px;
 }
 @media (max-width: 578px) {
   .progress_bar_div div:nth-child(1) {

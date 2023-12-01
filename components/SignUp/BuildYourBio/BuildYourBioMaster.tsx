@@ -153,10 +153,21 @@ const BuildYourBioMaster = () => {
             <div className="col-8 position-relative">
               <div className={wizardStyles.progress_bar_div}>
                 <div className={wizardStyles.progress_bar_div_tag}>
-                  <p className="mb-4 text-white">
-                    {currentStep} {translationDataFromStore?.data?.of} 5{" "}
-                    {translationDataFromStore?.data?.completed}
-                  </p>
+                
+                  {
+                        document.dir === 'ltr' ?
+                         <p className="mb-4 text-white">
+                        <span className="ps-1 pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">5</span> 
+                        {translationDataFromStore?.data?.completed}</p> 
+                        : 
+                        <p className="mb-4 text-white">
+                     {/* <span className="ps-1 pe-1">{currentStep}</span> */}
+                     {translationDataFromStore?.data?.steps_bar_of_arabic}<span className="pe-1 ps-1">5</span> 
+                     {translationDataFromStore?.data?.steps_bar_arabic}<span className="ps-1 pe-1">{currentStep}</span>
+                        {translationDataFromStore?.data?.completed} 
+                        {/* {currentStep}من 7 خطوات مكتملة */}
+                      </p>
+                      } 
                 </div>
 
                 <MobileStepper

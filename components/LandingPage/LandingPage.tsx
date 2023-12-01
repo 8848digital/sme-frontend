@@ -73,7 +73,7 @@ const LandingPage = () => {
                         <div className={`${styles.landing_details} `}>
                           <h1 className="text-white" style={{ fontSize: '36px', fontWeight: '500' }}>{landingData.heading_name1}</h1>
                         </div>
-                        <div className="short_desc">
+                        <div className={`${styles.short_desc}`}>
                           <h6 className="color">
                             {landingData?.short_description}
                           </h6>

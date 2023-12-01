@@ -170,7 +170,7 @@ const CodingCertificationChildTable: React.FC<
                     className={`btn ${wizard_styles.btn_delete_row}`}
                     onClick={() => removeRow(index)}
                   >
-                    {translationDataFromStore?.data?.delete_btn}
+                   {translationDataFromStore?.data?.delete_row_btn}
                   </button>
                 </div>
               </div>
