@@ -35,7 +35,8 @@ const Step3EnterName = ({ formData, onFormDataChange }: any) => {
           <div className="col-12">
             <div className="text-center">
               <h1>
-                {translationDataFromStore?.data?.step} 3{" "}
+                {/* {translationDataFromStore?.data?.step} */}
+                 3{" "}
                 {translationDataFromStore?.data?.of} 7
               </h1>
               <h2>{translationDataFromStore?.data?.signup_personal}</h2>

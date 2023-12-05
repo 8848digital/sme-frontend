@@ -30,7 +30,8 @@ const Step3of3EnterRates = ({
           <div className="col-12">
             <div className="text-center">
               <h1>
-                {translationDataFromStore?.data?.step} 7{" "}
+                {/* {translationDataFromStore?.data?.step}  */}
+                7{" "}
                 {translationDataFromStore?.data?.of} 7
               </h1>
               <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
