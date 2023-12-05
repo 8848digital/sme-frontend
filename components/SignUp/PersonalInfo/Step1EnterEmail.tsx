@@ -23,7 +23,7 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
               <div className="text-center mt-5">
                 <h1>
                   {/* {translationDataFromStore?.data?.step}  */}
-                  1{" "}{translationDataFromStore?.data?.of} 7
+                  {/* 1{" "}{translationDataFromStore?.data?.of} 7 */}
                 </h1>
                 <h2>{translationDataFromStore?.data?.signup_personal}</h2>
                 <div className="mt-4 d-flex flex-column align-items-center justify-content-center">

@@ -23,8 +23,8 @@ const Step2of3ExtractedDataFromCv = ({
             <div className="text-center mt-2">
               <h1>
                 {/* {translationDataFromStore?.data?.step}  */}
-                5{" "}
-                {translationDataFromStore?.data?.of} 7
+                {/* 5{" "}
+                {translationDataFromStore?.data?.of} 7 */}
               </h1>
               <h2>{translationDataFromStore?.data?.professional_experience}</h2>
             </div>

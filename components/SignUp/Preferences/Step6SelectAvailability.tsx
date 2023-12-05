@@ -25,8 +25,8 @@ const Step3of3SelectAvailability = ({
             <div className="text-center mt-3">
               <h1>
                 {/* {translationDataFromStore?.data?.step}  */}
-                6{" "}
-                {translationDataFromStore?.data?.of} 7
+                {/* 6{" "}
+                {translationDataFromStore?.data?.of} 7 */}
               </h1>
               <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
             </div>
