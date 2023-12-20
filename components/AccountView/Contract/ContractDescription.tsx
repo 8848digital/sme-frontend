@@ -24,7 +24,8 @@ const ContractDescription = ({ data, openDescription }: any) => {
     response = await UpdateContractAPI(token?.token, approveStatus, data?.name);
     console.log("job approve", response);
     if (response[0].msg === "success") {
-      toast.success(response[0]?.data?.data, {
+      toast.success( response[0]?.data?.data === "Contract status updated to Approved" &&
+      translationDataFromStore?.data?.toast_approve_contract_request_success, {
         autoClose: 3000, // Time in milliseconds (5 seconds)
         className: "custom-toast", // Close the notification after 3 seconds
       });
@@ -91,7 +92,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
                     openDescription(tableValue);
                   }}
                 >
-                  View Less
+               {translationDataFromStore?.data?.view_less_btn}
                 </button>
               </td>
             </tr>
