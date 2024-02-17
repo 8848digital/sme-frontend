@@ -13,7 +13,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
-  console.log(jobData, "jobb");
+  console.log(jobData.name, "job cost");
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
   let approveStatus = "Approved";
@@ -23,7 +23,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
     response = await UpdateJobRequestAPI(
       token?.token,
       jobData.supplier,
-      jobData.project_id,
+      jobData.name,
       approveStatus,
       jobCost
     );
@@ -37,12 +37,12 @@ const JobDescription = ({ jobData, onclick }: any) => {
           className: "custom-toast", // Close the notification after 3 seconds
         }
       );
-      dispatch(fetchJobRequest(token?.token) as any);
-      setTimeout(() => {
-        router.push("./job-approve-thankyou");
-        dispatch(fetchJobRequest(token?.token) as any);
-      }, 3000);
     }
+    dispatch(fetchJobRequest(token?.token) as any);
+    setTimeout(() => {
+      router.push("./job-approve-thankyou");
+      dispatch(fetchJobRequest(token?.token) as any);
+    }, 3000);
     return response;
   };
   const handleRejectClick = async () => {
@@ -50,7 +50,7 @@ const JobDescription = ({ jobData, onclick }: any) => {
     response = await UpdateJobRequestAPI(
       token?.token,
       jobData.supplier,
-      jobData.project_id,
+      jobData.name,
       rejectStatus,
       jobCost
     );

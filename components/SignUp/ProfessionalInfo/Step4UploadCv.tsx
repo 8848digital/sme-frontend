@@ -81,8 +81,9 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
           <div className="col-12">
             <div className="text-center mt-5">
               <h1>
-                {translationDataFromStore?.data?.step} 4{" "}
-                {translationDataFromStore?.data?.of} 7
+                {/* {translationDataFromStore?.data?.step}  */}
+                {/* 4{" "}
+                {translationDataFromStore?.data?.of} 7 */}
               </h1>
               <h2>{translationDataFromStore?.data?.professional_experience}</h2>
             </div>

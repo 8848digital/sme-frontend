@@ -37,8 +37,9 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
           <div className="col-12">
             <div className="text-center mt-5">
               <h1>
-                {translationDataFromStore?.data?.step} 2{" "}
-                {translationDataFromStore?.data?.of} 7
+                {/* {translationDataFromStore?.data?.step}  */}
+                {/* 2{" "}
+                {translationDataFromStore?.data?.of} 7 */}
               </h1>
               <h2>{translationDataFromStore?.data?.signup_personal}</h2>
 

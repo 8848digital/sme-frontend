@@ -2,7 +2,7 @@ import { CONSTANTS } from '@/services/config/api-config';
 import axios from 'axios';
 
 
-const UpdateJobRequestAPI = async (token: any, supplier: any, project_name: any, status: any,job_cost:any) => {
+const UpdateJobRequestAPI = async (token: any, supplier: any, name: any, status: any,job_cost:any) => {
     let response: any;
     const version = CONSTANTS.VERSION;
     const method = "update_rfq_status";
@@ -21,7 +21,7 @@ const UpdateJobRequestAPI = async (token: any, supplier: any, project_name: any,
         method,
         entity,
         supplier,
-        project_name:project_name,
+        name:name,
         status,
         job_cost
     };

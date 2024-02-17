@@ -91,7 +91,7 @@ const BuildYourBioMaster = () => {
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
       const response = await BuildYourBioAPI(bioData, accessToken);
-      // console.log(response);
+  
       if (response?.msg === 'success' && response?.data === "Thank You for updating your profile") {
 
         toast.success(translationDataFromStore?.data?.toast_update_profile_success,
@@ -110,7 +110,7 @@ const BuildYourBioMaster = () => {
             dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
           }
         }, 5000);
-      } else if(response.msg === 'error' && response.error === " ") {
+      } else if(response.msg === 'error') {
         toast.error(translationDataFromStore?.data?.bio_update_error_msg,
           {
             autoClose: 5000,
