@@ -1,6 +1,7 @@
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import Image from "next/image";
 import { useSelector } from "react-redux";
-
+import logoWithWhiteText from "../../public/assets/sg_logo.webp";
 const Footer = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
@@ -9,10 +10,18 @@ const Footer = () => {
       <footer className="footer">
         <div className="container">
           <div className="row">
-            <div className="col-12 text-center">
+            <div className="col-md-6 text-center text-md-start pb-3 pb-md-0">
+              <Image
+                src={logoWithWhiteText.src}
+                alt=""
+                width={122}
+                height={33}
+                className=""
+              />
+            </div>
+            <div className="col-md-6 text-center text-md-end">
               <p
-                className="mb-0 text-white pt-2 pb-2"
-                style={{ fontSize: "14px" }}
+                className="mb-0 white"
               >
                 {translationDataFromStore?.data?.footer}
               </p>

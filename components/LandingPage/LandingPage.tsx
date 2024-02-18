@@ -15,6 +15,13 @@ import OurClients from "./Clients/OurClients";
 import landinImage from '../../public/assets/landing_image.jpg'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import projectIcon from '../../public/assets/project.png'
+import clientIcon from '../../public/assets/client.png'
+import smesIcon from '../../public/assets/smes.png'
+import tagLine from '../../public/assets/tag_line.png'
+import Image from "next/image";
+import { useMediaQuery } from '@mui/material';
+import Services from "./Services/Services";
 const LandingPage = () => {
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
@@ -34,165 +41,63 @@ const LandingPage = () => {
     AOS.init();
   }, []);
 
-
+  const imageLoader = ({ src, width, quality }: any) => {
+    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`
+  }
+  const isSmallScreen = useMediaQuery('(max-width: 768px)');
   return (
     <>
       <div className={`${styles.landing_wrapper}`}>
         <div className="d-block" style={{ position: 'relative' }}>
-          <img
-            // className="d-block w-100 img-fluid"
-            src={`${CONSTANTS.API_BASE_URL}${landingData?.image}`}
+          <div className={`${styles.overlay}`}></div>
+          <Image
+            src={`${landingData?.image}`}
             alt="Banner Images"
-            // className="img-fluid"
-            style={{ width: '100%', height: '450px', objectFit: 'cover' }}
-          />
+            width={1920}
+            height={isSmallScreen ? 595 : 840}
+            objectFit="cover"
+            quality={75} // Set the image quality to 75%
+            loader={imageLoader} // Custom loader function
 
+          />
         </div>
         <div className={` container `}>
 
           {!loading && landingData ? (
             <>
               <div className="row">
-                {/* <div className="col-md-12 mt-3">
-                <div className={`${styles.image_section}`}>
-                  <div className={`${styles.landing_image_wrapper}`}>
-                    <img
-                      src={landinImage.src}
-                      alt=""
-                      style={{ width: '100%', height: '500px', objectFit: 'cover' }}
-                      // className="img-fluid"
-                    />
-                  </div>
-                </div>
-              </div> */}
                 <div className="col-md-12">
-                  <div className="row">
-                    <div className={`col-md-5 ${styles.landing_details_over_image}`}>
+                  <div className={`row ${styles.landing_details_over_image}`} >
+                    <div className="col-md-2">
+                      <h4 style={{ fontSize: '20px', fontWeight: '500' }}>SMEAscend</h4>
+                    </div>
+                    <div className="col-md-10">
                       <div data-aos="slide-up">
 
                         <div className={`${styles.landing_details} `}>
-                          <h1 className="text-white" style={{ fontSize: '36px', fontWeight: '500' }}>{landingData.heading_name1}</h1>
-                        </div>
-                        <div className={`${styles.short_desc}`}>
-                          <h6 className="color">
-                            {landingData?.short_description}
-                          </h6>
+                          <h1>
+                            {landingData.heading_name1}
+                          </h1>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-md-12 mt-2">
-                      <div className="benefits_wrapper text-center">
-                        <h4 className="color text-uppercase" style={{ fontSize: '24px', fontWeight: '600' }}>{landingData?.Heading_name2}</h4>
-                        <h6 className="text-dark">
-                          {translationDataFromStore?.data?.landingPage_header}
-                        </h6>
-                        <div className="count-circle mt-2" data-aos="slide-up">
-                          <div className="row">
-                            <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
-                              <div
-                                className={`${styles.count_item}`}
-                              >
-                                <div className={`${styles.count_item_wrapper} `}>
-                                  <div
-                                    className="d-flex justify-content-center align-items-center border-bottom"
-                                    style={{ borderColor: "darkgray" }}
-                                  >
-                                    <div className={`${styles.count_container}`}>
-                                      {" "}
-                                      {/* Wrap the count in a container */}
-                                      <h3 className={`d-flex`}>
-                                        <CountUp
-                                          start={0}
-                                          end={landingData.total_projects}
-                                          duration={4}
-                                          separator=","
-                                          useEasing={true}
-                                          useGrouping={true}
-                                        />{" "}
-                                        +
-                                      </h3>
-                                    </div>
-                                  </div>
-                                </div>
-                                <h5>
-                                  {
-                                    translationDataFromStore?.data
-                                      ?.landingPage_project
-                                  }
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center ">
-                              <div className={`${styles.count_item}`}>
-                                <div className={`${styles.count_item_wrapper}`}>
-                                  <div className="d-flex justify-content-center align-items-center border-bottom">
-                                    <div className={`${styles.count_container}`}>
-                                      {" "}
-                                      {/* Wrap the count in a container */}
-                                      <h3 className="d-flex">
-                                        <CountUp
-                                          start={0}
-                                          end={landingData.total_clients}
-                                          duration={4}
-                                          separator=","
-                                          useEasing={true}
-                                          useGrouping={true}
-                                        />{" "}
-                                        +
-                                      </h3>
-                                    </div>
-                                  </div>
-                                </div>
-                                <h5>
-                                  {
-                                    translationDataFromStore?.data
-                                      ?.landingPage_client
-                                  }
-                                </h5>
-                              </div>
-                            </div>
-                            <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center ">
-                              <div className={`${styles.count_item}`}>
-                                <div className={`${styles.count_item_wrapper}`}>
-                                  <div className="d-flex justify-content-center align-items-center border-bottom">
-                                    <div className={`${styles.count_container}`}>
-                                      {" "}
-                                      {/* Wrap the count in a container */}
-                                      <h3 className="d-flex">
-                                        <CountUp
-                                          start={0}
-                                          end={landingData.total_smes}
-                                          duration={4}
-                                          separator=","
-                                          useEasing={true}
-                                          useGrouping={true}
-                                        />{" "}
-                                        +
-                                      </h3>
-                                    </div>
-                                  </div>
-                                </div>
-                                <h5>
-                                  {
-                                    translationDataFromStore?.data
-                                      ?.landingPage_sme
-                                  }
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
+                      <div className={` ${styles.get_started_btn_over_image}`} data-aos="slide-up">
+                        <div className="me-3">
+                          <button
+                            className={`btn ${styles.explore_service_btn} `}
+                            type="button"
+                            onClick={() => {
+                              router.push("/");
+                            }}
+                          >
+                            Explore Service
+                          </button>
                         </div>
-                      </div>
-                    </div>
-                    <div className={` col-md-6 mt-5  ${styles.get_started_btn_over_image}`}>
-                      <div data-aos="slide-up">
-
-                        <div className={`${styles.get_started_btn} `}>
+                        <div>
                           {LoggedIn === "true" ? (
                             ""
                           ) : (
                             <button
-                              className={`text-uppercase ${styles.btn}`}
+                              className={`btn ${styles.get_started_btn} `}
                               type="button"
                               onClick={() => {
                                 router.push("/signup-start");
@@ -201,59 +106,136 @@ const LandingPage = () => {
                               {landingData?.label_for_button}
                             </button>
                           )}
-                          <div
-                            className="about_services"
-                            style={{ fontSize: "14px", marginTop: "10px" }}
-                          >
-                            <Link
-                              href="https://strategicgears.com/services/strategy-management"
-                              className="color"
-                              target="_blank"
-                            >
-                              {landingData?.link_label}
-                            </Link>
+
+                        </div>
+
+                      </div>
+                      <div className={`${styles.tag_line}`}>
+                        <div>
+                          <Image
+                            src={tagLine.src}
+                            alt='tag line logo'
+                            width={isSmallScreen ? 48 : 72}
+                            height={isSmallScreen ? 48 : 72} />
+                        </div>
+                        <div className="ms-3">
+                          <p className="mb-0">Strategic Gears: Crafting success for all entities in diverse markets.</p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className={`${styles.featured_section}`}>
+                    <div className="" data-aos="slide-up">
+                      <div className="row">
+                        <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
+                          <div>
+                            <div className="featured_icon">
+
+                              <Image
+                                src={projectIcon.src}
+                                alt='Featured Project'
+                                width={48}
+                                height={48}
+                              />
+                            </div>
+                            <div className={styles.featured_text}>
+                              <h1>
+                                <CountUp
+                                  start={0}
+                                  end={landingData.total_projects}
+                                  duration={4}
+                                  separator=","
+                                  useEasing={true}
+                                  useGrouping={true}
+                                />{" "}
+                                + {
+                                  translationDataFromStore?.data
+                                    ?.landingPage_project
+                                }
+                              </h1>
+                            </div>
+                            <div className="supporting_text">
+                              <p>Strategic Gears: Elevating Your Vision, Transforming Challenges into Triumphs.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
+                          <div>
+                            <div className="featured_icon">
+                              <Image
+                                src={clientIcon.src}
+                                alt='Featured Clients'
+                                width={48}
+                                height={48}
+                              />
+                            </div>
+                            <div className={styles.featured_text}>
+                              <h1>
+                                <CountUp
+                                  start={0}
+                                  end={landingData.total_clients}
+                                  duration={4}
+                                  separator=","
+                                  useEasing={true}
+                                  useGrouping={true}
+                                />{" "}
+
+                                + {
+                                  translationDataFromStore?.data
+                                    ?.landingPage_client
+                                }
+                              </h1>
+                            </div>
+                            <div className="supporting_text">
+                              <p>Your Trusted Partner in Achieving Excellence Through Strategic Consulting.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
+                          <div>
+                            <div className="featured_icon">
+                              <Image
+                                src={smesIcon.src}
+                                alt='Featured Clients'
+                                width={48}
+                                height={48}
+                              />
+                            </div>
+                            <div className={styles.featured_text}>
+                              <h1>
+                                <CountUp
+                                  start={0}
+                                  end={landingData.total_smes}
+                                  duration={4}
+                                  separator=","
+                                  useEasing={true}
+                                  useGrouping={true}
+                                />{" "}
+
+                                + {
+                                  translationDataFromStore?.data
+                                    ?.landingPage_sme
+                                }
+                              </h1>
+                            </div>
+                            <div className="supporting_text">
+                              <p>Unleashing Potential, Driving Success with Tailored Consulting Solutions.</p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 mt-4">
-                      <OurClients landingData={landingData.clients_list} />
-                    </div>
                   </div>
                 </div>
-                {/* <div className="">
-                  <div className={`${styles.social_link}`}>
-                    <Link
-                      href={`${landingData?.social_links?.[2]?.linkedin}`}
-                      target="_blank"
-                    >
-                      <LinkedInIcon
-                        fontSize="large"
-                        color="primary"
-                        className="mx-1"
-                      />
-                    </Link>
-                    <Link
-                      href={`${landingData?.social_links?.[0]?.twitter}`}
-                      target="_blank"
-                    >
-                      <img
-                        src={twitterIcon.src}
-                        alt=""
-                        style={{ width: "2.1875rem" }}
-                      />
-                    </Link>
-                    <Link
-                      href={`${landingData?.social_links?.[1]?.instagram}`}
-                      target="_blank"
-                    >
-                      <InstagramIcon
-                        fontSize="large"
-                        className="text-dark mx-1"
-                      />
-                    </Link>
-                  </div>
-                </div> */}
+                <div className="col-md-12">
+                    <Services />
+                </div>
               </div>
             </>
           ) : (
