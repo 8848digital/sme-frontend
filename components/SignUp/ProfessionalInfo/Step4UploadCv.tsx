@@ -1,11 +1,14 @@
 import LoaderForSkills from "@/components/LoaderForSkills";
+import Logo from "@/components/Logo";
 import UploadFileApi from "@/services/api/auth_api/upload_file_api";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
 import { useFormik } from "formik";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-
+import uploadImg from "@/public/assets/upload_image.png"
+import Image from "next/image";
+import Link from "next/link";
 interface Step2Props {
   formData: any;
   onFormDataChange: (field: string, value: any) => void;
@@ -74,20 +77,26 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
   return (
     <div className="container">
       <div
-        className={`card p-4 ${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "800px", height: "300px" }}
+        className={`${styles.common_wizard_wrapper}`}
+        style={{ maxWidth: "360px", height: "315px" }}
       >
         <div className="row">
           <div className="col-12">
-            <div className="text-center mt-5">
+            <div className="">
+              <Logo />
+            </div>
+            <div className=" mt-5">
               <h1>
                 {/* {translationDataFromStore?.data?.step}  */}
                 {/* 4{" "}
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
-              <h2>{translationDataFromStore?.data?.professional_experience}</h2>
+              {/* <h2>{translationDataFromStore?.data?.professional_experience}</h2> */}
+              <h1 style={{ fontSize: '20px',lineHeight:'24px' }}>Please upload your CV</h1>
+              <p style={{lineHeight:'24px' }}>Upload your most updated resume to increase your chances of being selected.</p>
+
             </div>
-            <div className="mt-5 text-center">
+            <div className="">
               <form onSubmit={handleSubmit}>
                 <div className="row mt-3">
                   <div className="col-md-12">
@@ -116,15 +125,35 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
                         </span>
                       </div>
                     ) : (
-                      <div className="file file--upload">
+                      <div className="file file--upload"
+
+                      >
+                        <div>
+
+                        </div>
                         <label
                           htmlFor="input-file"
-                          className="upload-label label-color"
+                          className="upload-label label-color d-flex"
+                          style={{ maxWidth: "360px", width: '100%', height: "126px" }}
                         >
-                          <div className="upload-circle">
-                            <i className="fas fa-upload "></i>
+                          <div className="">
+                            <div>
+
+                              <Image
+                                src={uploadImg.src}
+                                alt="Logo"
+                                width={40}
+                                height={40}
+                              />
+                            </div>
+                            <div>
+                              <h4 className="sg_blue" style={{fontSize:'14px',fontWeight:'600',color:'#00b2d4 !important'}}>
+                                <Link className="sg_blue" href=''  style={{textDecoration:'none',color:'#00b2d4 !important'}}>Click to upload</Link>
+                              </h4>
+                              <h5 className="grey" style={{fontSize:'12px',fontWeight:'600',lineHeight:'24px'}}>SVG, PNG, JPG or GIF (max. 800x400px)</h5>
+                            </div>
                           </div>
-                          {translationDataFromStore?.data?.upload_cv}
+
                         </label>
                         <input
                           id="input-file"

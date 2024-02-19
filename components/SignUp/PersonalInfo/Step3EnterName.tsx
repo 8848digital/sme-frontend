@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
 import { ChangeEvent } from "react";
@@ -28,21 +29,29 @@ const Step3EnterName = ({ formData, onFormDataChange }: any) => {
   return (
     <div className="container">
       <div
-        className={`card p-4 ${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "800px", height: "350px" }}
+        className={`${styles.common_wizard_wrapper}`}
+        style={{ maxWidth: "360px", height: "315px" }}
       >
         <div className="row">
           <div className="col-12">
-            <div className="text-center">
+            <div className="">
+              <Logo
+              />
+            </div>
+            <div className="mt-5">
               <h1>
                 {/* {translationDataFromStore?.data?.step} */}
-                 {/* 3{" "}
+                {/* 3{" "}
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
-              <h2>{translationDataFromStore?.data?.signup_personal}</h2>
-              <div className=" d-flex align-items-center justify-content-center flex-column">
+              <h2 style={{ fontSize: '20px' }}>
+                {/* {translationDataFromStore?.data?.signup_personal} */}
+                Other Information
+                </h2>
+              <div className="form-group ">
+                <label htmlFor="email">First Name</label>
                 <input
-                  className="form-control w-75 mt-3 input-filed-height"
+                  className="form-control input-filed-height"
                   type="text"
                   placeholder={
                     translationDataFromStore?.data?.first_name_placeholder
@@ -50,30 +59,36 @@ const Step3EnterName = ({ formData, onFormDataChange }: any) => {
                   value={formData.first_name}
                   onChange={handleFirstNameChange}
                 />
-                <input
-                  className="form-control w-75 mt-3 input-filed-height"
-                  type="text"
-                  placeholder={
-                    translationDataFromStore?.data?.last_name_placeholder
-                  }
-                  value={formData.last_name}
-                  onChange={handleLastNameChange}
-                />
-
-                <input
-                  className="form-control w-75 mt-3 input-filed-height"
-                  type="number"
-                  placeholder={translationDataFromStore?.data?.phone_number}
-                  value={formData.phone_no}
-                  onChange={handlePhoneNumberChange}
-                />
-                {/* <Link href='' className='mt-3'>Verify Number</Link> */}
               </div>
+              <div className="form-group mt-3">
+              <label htmlFor="email">Last Name</label>
+              <input
+                className="form-control input-filed-height"
+                type="text"
+                placeholder={
+                  translationDataFromStore?.data?.last_name_placeholder
+                }
+                value={formData.last_name}
+                onChange={handleLastNameChange}
+              />
+              </div>
+              <div className="form-group mt-3">
+              <label htmlFor="email">Phone Number</label>
+              <input
+                className="form-control input-filed-height"
+                type="number"
+                placeholder={translationDataFromStore?.data?.phone_number}
+                value={formData.phone_no}
+                onChange={handlePhoneNumberChange}
+              />
+              </div>
+              {/* <Link href='' className='mt-3'>Verify Number</Link> */}
             </div>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 

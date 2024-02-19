@@ -1,5 +1,5 @@
 .wizard_wrapper {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 .common_wizard_wrapper {
   margin: 50px auto;
@@ -145,4 +145,48 @@
   .wizard_wrapper {
     margin-top: 50px;
   }
+}
+
+
+/* button */
+/* .button_wrapper{
+  position: absolute;
+  top: 184px;
+  right: 338px;
+ width: 360px;
+ height: 315px;
+margin: 0 auto;
+} */
+.next_button {
+  width:360px;
+  height:48px;
+  border-radius: 100px;
+  background: #00A5CD;
+  color: #ffffff;
+  margin-top: -10px;
+
+}
+.next_button:hover {
+  background:#ffffff;
+  color: #000000;
+  /* margin-top: -220px; */
+  border: 1px solid #00A5CD;
+
+}
+
+.prev_button {
+  width:360px;
+  height:48px;
+  border-radius: 100px;
+  background:  #00A5CD;
+  color: #ffffff;
+  /* margin-top: -260px; */
+
+}
+.prev_button:hover {
+  background:#ffffff;
+  color: #000000;
+  /* margin-top: -220px; */
+  border: 1px solid #00A5CD;
+
 }
