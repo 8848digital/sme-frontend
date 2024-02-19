@@ -1,63 +1,81 @@
 /* service card component css */
 .our_services_wrapper {
-    padding: 80px 0;
+  padding: 80px 0;
 }
 
 .services_heading {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .services_heading h1 {
-    font-size: 24px !important;
-    display: inline-block;
-    border-bottom: 2px solid #00a5cd;
+  font-size: 24px !important;
+  display: inline-block;
+ 
 }
 
 .services_card {
-    background-color: #F2F2F2 !important;
-    /* width: 430px; */
-    margin-right: 20px !important;
-    height: 281px;
-    position: relative; /* Added position relative for absolute positioning */
+  background-color: #f2f2f2 !important;
+  /* width: 430px; */
+  margin-right: 20px !important;
+  height: 281px;
+  position: relative; /* Added position relative for absolute positioning */
 }
 
 .service_title {
-    width: 217px;
-    height: 60px;
-    padding-top: 24px;
-    padding-left: 24px;
+  width: 217px;
+  height: 60px;
+  padding-top: 24px;
+  padding-left: 24px;
 }
 
 .service_title h1 {
-    font-size: 24px;
-    font-weight: 400;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .sliderItem {
-    margin-right: 5px; /* Add your desired margin */
-  }
+  margin-right: 5px; /* Add your desired margin */
+}
 .learn_more {
-    position: absolute;
-    bottom: 10px;
-    left: 24px; /* Adjusted padding left */
+  position: absolute;
+  bottom: 10px;
+  left: 24px; /* Adjusted padding left */
 }
 .learn_more a {
-    color:#000000;
-    font-weight: 500;
+  color: #000000;
+  font-weight: 500;
 }
 .services_image {
-    position: absolute;
-    bottom: 0; /* Adjusted bottom padding */
-    right: 5px; /* Added right padding */
+  position: absolute;
+  bottom: 0; /* Adjusted bottom padding */
+  right: 5px; /* Added right padding */
+}
+
+.arrowContainer {
+  display: flex;
+  margin-top: 150px;
 }
 
 /* media query */
 @media (max-width: 768px) {
-    .services_card {
-        background-color: #F2F2F2 !important;
-        width: 385px;
-        height: 250px;
-        position: relative; /* Added position relative for absolute positioning */
-    }
+  .services_card {
+    background-color: #f2f2f2 !important;
+    width: 385px;
+    height: 250px;
+    position: relative; /* Added position relative for absolute positioning */
+  }
+
+  .arrowContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 10px;
+
+  }
+  .services_heading h1{
+    font-size: 20px;
+    font-weight: 400;
+  }
+
 }
