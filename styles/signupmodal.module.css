@@ -1,0 +1,135 @@
+.signup_modal_wrapper {
+    text-align: center;
+}
+
+.signup_modal_wrapper h1 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+.signup_modal_wrapper h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+/* modal buttons */
+.signup_btn_wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.signup_subscribe_wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 45px;
+}
+.featured_image {
+    padding-bottom: 8px;
+}
+.start_btn {
+    background: #00a5cd;
+    width: 170px;
+    height: 44px;
+    border-radius: 100px;
+    border: 1px;
+    color: #ffffff;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+
+  }
+  .start_btn:hover {
+    background: #ffffff;
+    border: 1px solid #00A5CD;
+    color: #000000;
+
+  }
+  
+  /* explore service button */
+  .later_btn {
+    background: #ffffff;
+    width: 170px;
+    height: 44px;
+    border-radius: 100px;
+    border: 1px solid #00A5CD;
+    color: #000000;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+
+
+  }
+  .later_btn:hover {
+    background: #12a4c8;
+    color: #ffffff;
+  }
+  
+
+  .centeredText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the text takes up the full height of its parent */
+  }
+
+/* later subscribe modal */
+.subscribe_heading {
+    width: 244px;
+    margin: auto;
+}
+/* Custom CSS for centering the modal */
+.custom-modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .custom-modal-content {
+      max-width: 400px; 
+      width: 100%; 
+    border-radius: 12px;
+    height: 300px;
+  }
+
+  .custom-modal-header {
+    border: none;
+    /* padding: 0; */
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+  /* media query */
+  @media (max-width:576px) {
+    .custom-modal-content {
+    max-width: 362px; 
+    width: 100%; 
+    height: 292px;
+    border-radius: 12px;
+    }
+
+    .start_btn {
+        background: #00a5cd;
+        width: 158px;
+        height: 44px;
+        border-radius: 100px;
+        border: 1px;
+        color: #ffffff;
+        box-shadow: 0px 1px 2px 0px #1018280D;
+    
+      }
+      .later_btn {
+        background: #ffffff;
+        width: 158px;
+        height: 44px;
+        border-radius: 100px;
+        border: 1px solid #00A5CD;
+        color: #000000;
+        box-shadow: 0px 1px 2px 0px #1018280D;
+      }
+
+  }
+

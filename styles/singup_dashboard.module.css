@@ -1,0 +1,19 @@
+/* Buttons */
+.next_button {
+    width:360px;
+    height:48px;
+    border-radius: 100px;
+    background: #00A5CD;
+}
+
+.signup_form_wrapper {
+    position: absolute;
+    top: 184px;
+    right: 338px;
+   width: 360px;
+   height: 315px;
+}
+
+
+/* Enter email css */
+

@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material"; // Import Material-UI icons
@@ -30,26 +31,29 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
   return (
     <div className="container">
       <div
-        className={`card p-4 ${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "800px", height: "300px" }}
+        className={`${styles.common_wizard_wrapper}`}
+        style={{ maxWidth: "360px", height: "315px"}}
       >
         <div className="row">
           <div className="col-12">
-            <div className="text-center mt-5">
+          <div className="">
+              <Logo/>
+              </div>
+            <div className="mt-5">
               <h1>
                 {/* {translationDataFromStore?.data?.step}  */}
                 {/* 2{" "}
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
-              <h2>{translationDataFromStore?.data?.signup_personal}</h2>
+              {/* <h2>{translationDataFromStore?.data?.signup_personal}</h2> */}
 
-              <p className="mb-2 me-2">
-                {translationDataFromStore?.data?.enter_password}
-              </p>
+             
               <div>
-                <div className="d-flex align-items-center justify-content-center flex-column">
+              <h1 style={{fontSize:'20px'}}>Enter Your Password</h1>
+                <div className="form-group mt-4">
+                <label htmlFor="email">Password</label>
                   <TextField
-                    className="w-75"
+                    className="w-100"
                     type={showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={(e: any) => handleVerificationCodeChange(e)}
@@ -62,6 +66,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
                         </InputAdornment>
                       ),
                     }}
+                    style={{ height: '44px !important' }}
                   />
                 </div>
               </div>

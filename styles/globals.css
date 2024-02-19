@@ -6,6 +6,7 @@
 }
 
 body {
+  font-family: 'Euclid Circular A', sans-serif;                                               
   -webkit-text-size-adjust: none;
   overflow-x: hidden;
 }
@@ -18,11 +19,12 @@ body {
 .black {
   color: #000000;
 }
-.color {
+.sg_blue {
   color: #00b2d4;
 }
-.grye-color {
-  color: grey;
+.grey {
+  color: #787878;
+
 }
 .bg_white{
   background-color: #ffffff;
@@ -96,7 +98,7 @@ h2 {
   cursor: pointer;
   outline: 0;
   user-select: none;
-  border-color: #1292ee;
+  border-color: #00b2d4;
   border-style: solid;
   border-radius: 4px;
   border-width: 1px;
@@ -105,7 +107,7 @@ h2 {
   padding: 8px 14px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .file > label:hover {
@@ -123,13 +125,14 @@ h2 {
 .file--upload > label {
   /* color: hsl(204, 86%, 53%);
   border-color: hsl(204, 86%, 53%); */
-  color: #1292ee;
-  border-color: #1292ee;
+  color: #00b2d4;
+  border-color: #00b2d4;
+  text-align: center;
 }
 
 .file--upload > label:hover {
-  color: #1292ee;
-  border-color: #1292ee;
+  color: #00b2d4;
+  border-color: #00b2d4;
 }
 
 .file--upload > label:active {
@@ -546,3 +549,7 @@ input::-webkit-inner-spin-button {
   right: 0 !important;
   top:93% !important;
 } */
+
+.MuiOutlinedInput-root {
+  height: 44px !important;
+}

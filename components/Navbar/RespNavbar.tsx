@@ -20,11 +20,12 @@ import logoWithWhiteText from "../../public/assets/sg_logo.webp";
 import logoWithBlackText from "../../public/assets/SG_logo.svg";
 import styles from "@/styles/navbar.module.css";
 import Image from "next/image";
+import SignUpStartModal from "../SignUpModals/SignUpStartModal";
 const RespNavbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [scrolled, setScrolled] = useState(false);
-
+  const [showSignUpModal, setShowSignUpModal] = useState(false); 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -162,9 +163,10 @@ const RespNavbar = () => {
             ) : (
               <div className="d-md-none d-block">
 
-              <Link href="/signup-start" legacyBehavior>
+              <Link href="" legacyBehavior>
                 <a
                   className={`btn ${styles.btn_signup} text-uppercase `}
+                  onClick={() => setShowSignUpModal(true)}
                 >
                   {translationDataFromStore?.data?.signup}
                 </a>
@@ -317,9 +319,10 @@ const RespNavbar = () => {
                         </Link>
                       </div>
                     ) : (
-                      <Link href="/signup-start" legacyBehavior>
+                      <Link href="" legacyBehavior>
                         <a
                           className={`btn ${styles.btn_signup} text-uppercase `}
+                          onClick={() => setShowSignUpModal(true)}
                         >
                           {translationDataFromStore?.data?.signup}
                         </a>
@@ -329,6 +332,7 @@ const RespNavbar = () => {
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
+            <SignUpStartModal show={showSignUpModal} onHide={() => setShowSignUpModal(false)} /> 
           </Container>
         </Navbar>
       ))}

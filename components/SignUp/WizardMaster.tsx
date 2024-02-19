@@ -296,7 +296,7 @@ const WizardMaster = () => {
         <div className={styles.wizard_wrapper}>
           <div className="row">
             <div className="col-md-12 col-lg-12 ">
-              <div
+              {/* <div
                 className="row "
                 style={{ maxWidth: "800px", margin: "0 auto" }}
               >
@@ -318,11 +318,11 @@ const WizardMaster = () => {
                         {translationDataFromStore?.data?.completed}</p> 
                         : 
                         <p className="mb-4 text-white">
-                     {/* <span className="ps-1 pe-1">{currentStep}</span> */}
+                 
                      {translationDataFromStore?.data?.steps_bar_of_arabic}<span className="pe-1 ps-1">7</span> 
                      {translationDataFromStore?.data?.steps_bar_arabic}<span className="ps-1 pe-1">{currentStep}</span>
                         {translationDataFromStore?.data?.completed} 
-                        {/* {currentStep}من 7 خطوات مكتملة */}
+                     
                       </p>
                       } 
                     </div>
@@ -337,7 +337,7 @@ const WizardMaster = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 {currentStep === 1 && (
@@ -391,15 +391,13 @@ const WizardMaster = () => {
               </div>
 
               <div className="row">
-                <div className="col-12">
-                  <div
-                    className=" d-flex justify-content-center"
-                    style={{ marginBottom: "50px" }}
-                  >
-                    <div className="d-sm-flex d-static">
+                <div className="col-12 d-flex justify-content-center">
+                  <div className={styles.button_wrapper}>
+                    <div className="">
+                    <div>
                       {currentStep > 1 && (
                         <button
-                          className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
+                        className={`btn ${styles.prev_button}`}
                           onClick={handlePrevious}
                         >
                           {
@@ -409,9 +407,11 @@ const WizardMaster = () => {
                           {translationDataFromStore?.data?.previous}
                         </button>
                       )}
+                      </div>
+                      <div className="mt-3">
                       {currentStep < 7 ? (
                         <button
-                          className="btn btn-next d-flex align-items-center justify-content-center"
+                          className={`btn ${styles.next_button}`}
                           onClick={handleNext}
                         >
                           {translationDataFromStore?.data?.next}
@@ -424,6 +424,9 @@ const WizardMaster = () => {
                           {translationDataFromStore?.data?.submit}
                         </button>
                       )}
+                      </div>
+                      
+                      
                     </div>
                   </div>
                 </div>
