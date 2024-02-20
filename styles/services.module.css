@@ -11,17 +11,19 @@
 .services_heading h1 {
   font-size: 24px !important;
   display: inline-block;
+ 
 }
 
 .services_card {
   background-color: #f2f2f2 !important;
+  /* width: 430px; */
   margin-right: 20px !important;
   height: 281px;
-  position: relative;
+  position: relative; /* Added position relative for absolute positioning */
 }
 
 .service_title {
-  width: 100%; /* Full width for responsiveness */
+  width: 217px;
   height: 60px;
   padding-top: 24px;
   padding-left: 24px;
@@ -30,24 +32,20 @@
 .service_title h1 {
   font-size: 24px;
   font-weight: 400;
-  text-align: center; /* Center align text */
 }
 
 .sliderItem {
   margin-right: 5px; /* Add your desired margin */
 }
-
 .learn_more {
   position: absolute;
   bottom: 10px;
   left: 24px; /* Adjusted padding left */
 }
-
 .learn_more a {
   color: #000000;
   font-weight: 500;
 }
-
 .services_image {
   position: absolute;
   bottom: 0; /* Adjusted bottom padding */
@@ -66,7 +64,7 @@
     background-color: #f2f2f2 !important;
     width: 385px;
     height: 250px;
-    position: relative;
+    position: relative; /* Added position relative for absolute positioning */
   }
 
   .arrowContainer {
@@ -74,11 +72,13 @@
     justify-content: center;
     margin-top: 0px;
     margin-bottom: 10px;
+
   }
-  .services_heading h1 {
+  .services_heading h1{
     font-size: 20px;
     font-weight: 400;
   }
+
 }
 
 @media (min-width: 768px) and (max-width: 768px) {
@@ -91,12 +91,12 @@
   }
 
   .arrowContainer {
-    margin-top: 120px;
+    margin-top: 130px;
     margin-left: 8px;
   }
 
   .services_heading {
-    width: 120px;
+    width: 140px;
     font-weight: 600;
   }
 }

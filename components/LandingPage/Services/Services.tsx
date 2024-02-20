@@ -69,7 +69,7 @@ const Services = ( {serviceData , loadingService} :any) => {
         <div className={`${styles.our_services_wrapper}`} data-aos="slide-up">
             <div className="row">
                 <div className="col-md-2">
-                    <div className="row">
+                    <div className="row ">
                         <div className="col-md-12 col-6">
                             <div className={`${styles.services_heading} `}>
                                 <h1>{serviceData.heading}</h1>
