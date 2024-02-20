@@ -22,11 +22,14 @@ import tagLine from '../../public/assets/tag_line.png'
 import Image from "next/image";
 import { useMediaQuery } from '@mui/material';
 import Services from "./Services/Services";
+import useOurService from "@/hooks/general_hooks/our_service_hook";
 const LandingPage = () => {
   const [LoggedIn, setLoggedIn] = useState<any>(false);
   const router = useRouter();
   const { landingData, loading } = useLandingPage();
+  const { serviceData, loadingService } = useOurService();
   const translationDataFromStore = useSelector(translation_text_from_Store);
+
   console.log(translationDataFromStore);
   console.log(landingData);
   let isLoggedIn: any;
@@ -69,7 +72,7 @@ const LandingPage = () => {
                 <div className="col-md-12">
                   <div className={`row ${styles.landing_details_over_image}`} >
                     <div className="col-md-2">
-                      <h4 style={{ fontSize: '20px', fontWeight: '500' }}>SMEAscend</h4>
+                      <h4 style={{ fontSize: '20px', fontWeight: '500' }}>{landingData.sme_ascend}</h4>
                     </div>
                     <div className="col-md-10">
                       <div data-aos="slide-up">
@@ -86,10 +89,10 @@ const LandingPage = () => {
                             className={`btn ${styles.explore_service_btn} `}
                             type="button"
                             onClick={() => {
-                              router.push("/");
+                              window.open(`${landingData?.url_for_link_label}`, "_blank");
                             }}
                           >
-                            Explore Service
+                            {landingData.explore_services_label}
                           </button>
                         </div>
                         <div>
@@ -100,7 +103,7 @@ const LandingPage = () => {
                               className={`btn ${styles.get_started_btn} `}
                               type="button"
                               onClick={() => {
-                                router.push("/signup-start");
+                                router.push("/");
                               }}
                             >
                               {landingData?.label_for_button}
@@ -119,7 +122,7 @@ const LandingPage = () => {
                             height={isSmallScreen ? 48 : 72} />
                         </div>
                         <div className="ms-3">
-                          <p className="mb-0">Strategic Gears: Crafting success for all entities in diverse markets.</p>
+                          <p className="mb-0">{landingData?.tag_line}</p>
                         </div>
 
                       </div>
@@ -131,110 +134,56 @@ const LandingPage = () => {
                   <div className={`${styles.featured_section}`}>
                     <div className="" data-aos="slide-up">
                       <div className="row">
-                        <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
-                          <div>
-                            <div className="featured_icon">
+                        {
+                          landingData.Benefits_in_working && landingData.Benefits_in_working.map((data: any, index: any) => {
+                            return (
+                              <>
+                                <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
+                                  <div>
+                                    <div className="featured_icon">
 
-                              <Image
-                                src={projectIcon.src}
-                                alt='Featured Project'
-                                width={48}
-                                height={48}
-                              />
-                            </div>
-                            <div className={styles.featured_text}>
-                              <h1>
-                                <CountUp
-                                  start={0}
-                                  end={landingData.total_projects}
-                                  duration={4}
-                                  separator=","
-                                  useEasing={true}
-                                  useGrouping={true}
-                                />{" "}
-                                + {
+                                      <Image
+                                        src={data.image}
+                                        alt='Featured Image'
+                                        width={48}
+                                        height={48}
+                                        loader={imageLoader}
+                                      />
+                                    </div>
+                                    <div className={styles.featured_text}>
+                                      <h1>
+                                        <CountUp
+                                          start={0}
+                                          end={data.featured_total}
+                                          duration={4}
+                                          separator=","
+                                          useEasing={true}
+                                          useGrouping={true}
+                                        />{" "}
+                                        {/* + {
                                   translationDataFromStore?.data
                                     ?.landingPage_project
-                                }
-                              </h1>
-                            </div>
-                            <div className="supporting_text">
-                              <p>Strategic Gears: Elevating Your Vision, Transforming Challenges into Triumphs.</p>
-                            </div>
-                          </div>
-                        </div>
+                                } */}
+                                        + {data?.name1}
+                                      </h1>
+                                    </div>
+                                    <div className="supporting_text">
+                                      {/* <p>Strategic Gears: Elevating Your Vision, Transforming Challenges into Triumphs.</p> */}
+                                      <p>{data?.description}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )
+                          })
+                        }
 
-                        <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
-                          <div>
-                            <div className="featured_icon">
-                              <Image
-                                src={clientIcon.src}
-                                alt='Featured Clients'
-                                width={48}
-                                height={48}
-                              />
-                            </div>
-                            <div className={styles.featured_text}>
-                              <h1>
-                                <CountUp
-                                  start={0}
-                                  end={landingData.total_clients}
-                                  duration={4}
-                                  separator=","
-                                  useEasing={true}
-                                  useGrouping={true}
-                                />{" "}
-
-                                + {
-                                  translationDataFromStore?.data
-                                    ?.landingPage_client
-                                }
-                              </h1>
-                            </div>
-                            <div className="supporting_text">
-                              <p>Your Trusted Partner in Achieving Excellence Through Strategic Consulting.</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
-                          <div>
-                            <div className="featured_icon">
-                              <Image
-                                src={smesIcon.src}
-                                alt='Featured Clients'
-                                width={48}
-                                height={48}
-                              />
-                            </div>
-                            <div className={styles.featured_text}>
-                              <h1>
-                                <CountUp
-                                  start={0}
-                                  end={landingData.total_smes}
-                                  duration={4}
-                                  separator=","
-                                  useEasing={true}
-                                  useGrouping={true}
-                                />{" "}
-
-                                + {
-                                  translationDataFromStore?.data
-                                    ?.landingPage_sme
-                                }
-                              </h1>
-                            </div>
-                            <div className="supporting_text">
-                              <p>Unleashing Potential, Driving Success with Tailored Consulting Solutions.</p>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-12">
-                    <Services />
+                  <Services serviceData={serviceData} loadingService={loadingService} />
                 </div>
               </div>
             </>

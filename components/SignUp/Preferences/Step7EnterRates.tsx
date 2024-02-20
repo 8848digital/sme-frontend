@@ -1,12 +1,19 @@
+import Logo from "@/components/Logo";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
 import { useSelector } from "react-redux";
 
 const Step3of3EnterRates = ({
+  preference,
+  priceBasis,
+  preferenceLoading,
+  priceBasisLoading,
   formData,
   onFormDataChange,
-  priceBasis,
-  priceBasisLoading,
+  setInternalStep,
+  internalStep,
+  loading,
+  educationLevel
 }: any) => {
   const handleRatesChange = (event: any) => {
     const rates = event.target.value;
@@ -18,82 +25,83 @@ const Step3of3EnterRates = ({
     console.log("form rate", rates);
     onFormDataChange("price_basis", rates);
   };
+  const handleAvailabilityChange = (event: any) => {
+    const availability = event.target.value;
+    onFormDataChange("preferences", availability);
+  };
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
     <div className="container">
       <div
-        className={`card p-4 ${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "800px", height: "300px" }}
+        className={` ${styles.common_wizard_wrapper}`}
+        style={{
+          maxWidth: "360px",
+          // height: "315px" 
+        }}
       >
         <div className="row">
           <div className="col-12">
-            <div className="text-center">
-              <h1>
-                {/* {translationDataFromStore?.data?.step}  */}
-                {/* 7{" "}
-                {translationDataFromStore?.data?.of} 7 */}
-              </h1>
-              <h2>{translationDataFromStore?.data?.signup_step6_preference}</h2>
+            <div className="">
+              <Logo />
             </div>
-            <form className="">
-              <div className="row">
-                <div className="col-12 text-center mt-3">
-                  <label htmlFor="enter-rates" className="form-label mt-2 pe-2">
-                    {translationDataFromStore?.data?.signup_step7_description}
-                  </label>
-                </div>
-                <div className="col-12">
-                  <div className="row mt-3">
-                    <div className="col-md-6">
-                      <div>
-                        <select
-                          className="form-select input-filed-height"
-                          aria-label="Default select example"
-                          onChange={handleSelectPriceBasis}
-                          value={formData.price_basis}
-                        >
-                          <option>
-                            {
-                              translationDataFromStore?.data
-                                ?.signup_step7_select_placeholder
-                            }
-                          </option>
-                          {priceBasis &&
-                            priceBasis.length > 0 &&
-                            priceBasis.map((data: any, index: number) => {
-                              return (
-                                <>
-                                  <option value={data?.name}>
-                                    {data?.name}{" "}
-                                    {data?.label && (
-                                      <span>&#40;{data?.label}&#41;</span>
-                                    )}
-                                  </option>
-                                </>
-                              );
-                            })}
-                        </select>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="mb-3 d-flex justify-content-center flex-column align-items-center">
+            <div className="row">
+              <div className="col-12">
+                <div className="mt-5">
+                  <h1 style={{ fontSize: '20px' }}>Select Enters availability</h1>
+                  {preference &&
+                    preference.length > 0 &&
+                    preference.map((data: any, index: number) => (
+                      <div className={`radio-item  ${formData.preferences === data?.name ? styles.radio_border : styles.radio_btn_border} `} key={index}>
                         <input
-                          className="form-control w-100  input-filed-height"
-                          type="text"
-                          placeholder={
-                            translationDataFromStore?.data
-                              ?.signup_step7_rate_placeholder
-                          }
-                          value={formData.hourly_rates}
-                          onChange={handleRatesChange}
+                          type="radio"
+                          id={`availability_${index}`}
+                          name="availability"
+                          value={data?.name}
+                          checked={formData.preferences === data?.name}
+                          onChange={handleAvailabilityChange}
                         />
+                        <label className="ps-2" htmlFor={`availability_${index}`}>
+                          {data?.name} {data?.label && <span>&#40;{data?.label}&#41;</span>}
+                        </label>
                       </div>
-                    </div>
-                  </div>
+                    ))}
+                </div>
+
+                <div className="mt-5">
+                <h1 style={{ fontSize: '20px' }}>Select Rates preferences</h1>
+                  {priceBasis &&
+                    priceBasis.length > 0 &&
+                    priceBasis.map((data: any, index: number) => (
+                      <div className={`radio-item  ${formData.price_basis === data?.name ? styles.radio_border : styles.radio_btn_border} `} key={index}>
+                        <input
+                          type="radio"
+                          id={`price_basis_${index}`}
+                          name="price_basis"
+                          value={data?.name}
+                          checked={formData.price_basis === data?.name}
+                          onChange={handleSelectPriceBasis}
+                        />
+                        <label className="ps-2" htmlFor={`price_basis_${index}`}>
+                          {data?.name} {data?.label && <span>&#40;{data?.label}&#41;</span>}
+                        </label>
+                      </div>
+                    ))}
+                </div>
+                <div className="mt-5">
+                  <label htmlFor="rates">Enter rate preference</label>
+                  <input
+                    className="form-control w-100  input-filed-height"
+                    type="text"
+                    placeholder={
+                      translationDataFromStore?.data?.signup_step7_rate_placeholder
+                    }
+                    value={formData.hourly_rates}
+                    onChange={handleRatesChange}
+                  />
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

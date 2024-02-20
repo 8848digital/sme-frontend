@@ -12,11 +12,15 @@ import Link from "next/link";
 interface Step2Props {
   formData: any;
   onFormDataChange: (field: string, value: any) => void;
+  setInternalStep:any;
+  internalStep:number;
 }
 
 const Step2of3UploadCv: React.FC<Step2Props> = ({
   formData,
   onFormDataChange,
+  setInternalStep,
+  internalStep,
 }: Step2Props) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
