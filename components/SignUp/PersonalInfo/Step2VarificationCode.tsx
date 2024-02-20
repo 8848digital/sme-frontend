@@ -11,7 +11,8 @@ interface Step2Props {
   onFormDataChange: (field: string, value: any) => void;
 }
 
-const Step2VarificationCode = ({ formData, onFormDataChange }: any) => {
+const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
+  internalStep,}: any) => {
   const [userPassword, setUserPassword] = useState<any>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 

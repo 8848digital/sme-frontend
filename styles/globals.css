@@ -17,7 +17,8 @@ body {
   color: #ffffff;
 }
 .black {
-  color: #000000;
+  color:#23282D;
+  ;
 }
 .sg_blue {
   color: #00b2d4;
@@ -553,3 +554,22 @@ input::-webkit-inner-spin-button {
 .MuiOutlinedInput-root {
   height: 44px !important;
 }
+
+/* Preferences */
+.radio-item input[type="radio"] {
+  transform: scale(1.5); /* Adjust the scale factor as needed */
+  margin-right: 8px; /* Adjust the spacing between the radio button and label */
+}
+
+.radio-item label {
+  font-size: 14px; /* Adjust the font size of the label */
+  vertical-align: middle; /* Align the label vertically with the radio button */
+}
+
+/* .radio-item input[type="radio"]:checked {
+  background-color: #00A5CD !important;
+}
+
+.radio-item input[type='radio'] {
+  accent-color: #00A5CD;
+} */

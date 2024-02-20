@@ -9,7 +9,8 @@ interface Step3Props {
   onFormDataChange: (field: string, value: any) => void;
 }
 
-const Step3EnterName = ({ formData, onFormDataChange }: any) => {
+const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
+  internalStep, }: any) => {
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const firstName = e.target.value;
     onFormDataChange("first_name", firstName);
