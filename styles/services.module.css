@@ -11,19 +11,17 @@
 .services_heading h1 {
   font-size: 24px !important;
   display: inline-block;
- 
 }
 
 .services_card {
   background-color: #f2f2f2 !important;
-  /* width: 430px; */
   margin-right: 20px !important;
   height: 281px;
-  position: relative; /* Added position relative for absolute positioning */
+  position: relative;
 }
 
 .service_title {
-  width: 217px;
+  width: 100%; /* Full width for responsiveness */
   height: 60px;
   padding-top: 24px;
   padding-left: 24px;
@@ -32,20 +30,24 @@
 .service_title h1 {
   font-size: 24px;
   font-weight: 400;
+  text-align: center; /* Center align text */
 }
 
 .sliderItem {
   margin-right: 5px; /* Add your desired margin */
 }
+
 .learn_more {
   position: absolute;
   bottom: 10px;
   left: 24px; /* Adjusted padding left */
 }
+
 .learn_more a {
   color: #000000;
   font-weight: 500;
 }
+
 .services_image {
   position: absolute;
   bottom: 0; /* Adjusted bottom padding */
@@ -63,7 +65,7 @@
     background-color: #f2f2f2 !important;
     width: 385px;
     height: 250px;
-    position: relative; /* Added position relative for absolute positioning */
+    position: relative;
   }
 
   .arrowContainer {
@@ -71,11 +73,29 @@
     justify-content: center;
     margin-top: 0px;
     margin-bottom: 10px;
-
   }
-  .services_heading h1{
+  .services_heading h1 {
     font-size: 20px;
     font-weight: 400;
   }
+}
 
+@media (min-width: 768px) and (max-width: 768px) {
+  .services_card {
+    background-color: #f2f2f2 !important;
+    width: 500px;
+    height: 250px;
+    margin-left: 50px;
+    position: relative;
+  }
+
+  .arrowContainer {
+    margin-top: 120px;
+    margin-left: 8px;
+  }
+
+  .services_heading {
+    width: 120px;
+    font-weight: 600;
+  }
 }
