@@ -49,7 +49,8 @@
 .services_image {
   position: absolute;
   bottom: 0; /* Adjusted bottom padding */
-  right: 5px; /* Added right padding */
+  right: 60px;
+  /* left:308px */
 }
 
 .arrowContainer {

@@ -10,6 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { CONSTANTS } from '@/services/config/api-config';
 
 const sliderSettings = {
     dots: false,
@@ -43,9 +44,9 @@ const sliderSettings = {
     ],
 };
 
-const Services = () => {
+const Services = ( {serviceData , loadingService} :any) => {
     const sliderRef = useRef(null);
-
+     console.log('service',serviceData)
     useEffect(() => {
         AOS.init();
     }, []);
@@ -61,7 +62,9 @@ const Services = () => {
             sliderRef.current.slickNext();
         }
     };
-
+    const imageLoader = ({ src, width, quality }: any) => {
+        return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`
+      }
     return (
         <div className={`${styles.our_services_wrapper}`} data-aos="slide-up">
             <div className="row">
@@ -69,7 +72,7 @@ const Services = () => {
                     <div className="row ">
                         <div className="col-md-12 col-6">
                             <div className={`${styles.services_heading} `}>
-                                <h1>Our Service</h1>
+                                <h1>{serviceData.heading}</h1>
                             </div>
                         </div>
                         <div className="col-md-12 col-6">
@@ -87,23 +90,25 @@ const Services = () => {
                 </div>
                 <div className="col-md-10">
                     <Slider ref={sliderRef} {...sliderSettings}>
-                        {[1, 2, 3, 4, 5, 6].map((index) => (
+                        {serviceData.service_details && serviceData.service_details.map((data:any , index:any) => (
                             <div key={index} className={` ${styles.sliderItem}`}>
                                 <div className={`${styles.services_card}`}>
                                     <div className={`${styles.service_title}`}>
-                                        <h1>STRATEGY DEVELOPMENT</h1>
+                                        <h1>{data?.heading}</h1>
                                     </div>
                                     <div className="row">
                                         <div className="col-6">
                                             <div className={`${styles.learn_more}`}>
-                                                <Link href="/" legacyBehavior>
-                                                    Learn more
+                                                <Link href={data?.url} target='_blank' >
+                                                   {data?.url_label}
                                                 </Link>
                                             </div>
                                         </div>
                                         <div className="col-6">
                                             <div className={`${styles.services_image}`}>
-                                                <Image src={serviceImg.src} width={260} height={220} alt="Services Image" />
+                                                <img src={`${CONSTANTS.API_BASE_URL}${data?.image}`} className='img-fluid' alt="Services Image" 
+                                                // loader={imageLoader}
+                                                />
                                             </div>
                                         </div>
                                     </div>

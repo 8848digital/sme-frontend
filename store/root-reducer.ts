@@ -15,6 +15,7 @@ import HTMLLanguageSlice from "@/store/slices/general_slice/language_slice"
 import translationTextSlice from "@/store/slices/general_slice/translation_text_slice"
 import PriceBasisSlice from "@/store/slices/general_slice/price_basis_slice"
 import PreferencesSlice from "@/store/slices/general_slice/get_preferences_slice"
+import ourSerivceSlice from "@/store/slices/general_slice/our_service_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -32,6 +33,7 @@ const appReducer = combineReducers({
   translationText:translationTextSlice,
   priceBasis:PriceBasisSlice,
   preferences:PreferencesSlice,
+  ourService:ourSerivceSlice
 });
 
 const rootReducer = (state: any, action: any) => {
