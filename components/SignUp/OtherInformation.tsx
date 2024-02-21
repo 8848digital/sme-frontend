@@ -33,7 +33,7 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
                     onFormDataChange={onFormDataChange}
                 />
             )}
-            <div className={styles.button_wrapper}>
+            <div className={styles.button_wrapper} style={{marginTop:'150px'}}>
                 <div className="text-center">
                     
                     <div className="mb-5 text-center">

@@ -58,13 +58,9 @@ const WizardMaster = () => {
   });
 
   const steps: string[] = [
-    "Enter Email",
-    "Verification Code",
-    "Enter Name",
-    "Upload CV",
-    "Extracted Data",
-    "Select Availability",
-    "Enter Rates",
+    "Personal Information",
+    "Other Information",
+    "Preferences",
   ];
 
   const { educationLevel, loading } = useEducationLevel();
@@ -399,7 +395,7 @@ const WizardMaster = () => {
               <div className={styles.stepper_content}>
                 <h4>
                 <span className="pe-1">{translationDataFromStore?.data?.step}</span>
-                <span className="pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">6</span>
+                <span className="pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
                 </h4>
                 <h5>Organize detailed information for future work</h5>
               </div>

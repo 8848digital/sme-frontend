@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import * as Yup from 'yup';
-import { toast } from 'react-toastify';
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
-import useTranslationText from '@/hooks/general_hooks/transaltion_text_hook';
-import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 interface ProfessionalExperience {
   title: string;
@@ -15,8 +15,8 @@ interface ProfessionalExperience {
 }
 
 interface ProfessionalExperienceChildTableProps {
-  formData: any; // Replace 'any' with your specific form data type
-  onFormDataChange: (fieldName: string, value: any) => void; // Replace 'any' with the type of form data
+  formData: any;
+  onFormDataChange: (fieldName: string, value: any) => void;
 }
 
 const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTableProps> = ({ formData, onFormDataChange }) => {
@@ -70,88 +70,80 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
     notifyError('Professional Experience data deleted successfully');
     onFormDataChange('professional_experience', updatedProfessionalExp);
   };
-  const translationDataFromStore = useSelector(translation_text_from_Store)
 
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-12 text-center">
-          <h2>{translationDataFromStore?.data?.professional_experience}</h2>
+        <div className="col-12 p-0">
+          <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>{translationDataFromStore?.data?.professional_experience}</h1>
         </div>
       </div>
-      <div className="row">
-        <div className="col-12">
-          <form className="border p-3 rounded">
-            <div className="row">
-              <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{translationDataFromStore?.data?.title}</strong>
-              </div>
-              <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{translationDataFromStore?.data?.year}</strong>
-              </div>
-              <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                <strong>{translationDataFromStore?.data?.company}</strong>
-              </div>
-              <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}></div>
-            </div>
+      <div className={`row ${styles.other_info}`}>
+        <div className="col-12 p-0">
+          <form className=" p-3 rounded">
             {professionalExp.map((exp, index) => (
               <div className="row mb-3" key={index}>
-                <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                  <input
-                    type="text"
-                    name={`title[${index}]`}
-                    placeholder={translationDataFromStore?.data?.title}
-                    value={exp.title}
-                    onChange={(e) => handleProfessionalExpChange(index, 'title', e.target.value)}
-                    className={`${styles.input_custom_class}`}
-                  />
-                  <div className="error_message">
-                    {/* Display error message here */}
+                <div className="col-10">
+                  <div className="row">
+                    <div className="col-12 p-0">
+                      <div className="d-flex flex-column me-3">
+                        <label htmlFor={`title_${index}`} className={`form-label mb-1 ${styles.label_color}`}>Title</label>
+                        <input
+                          type="text"
+                          name={`title[${index}]`}
+                          id={`title_${index}`}
+                          placeholder="Title"
+                          value={exp.title}
+                          onChange={(e) => handleProfessionalExpChange(index, 'title', e.target.value)}
+                          className={` form-control w-100 ${styles.label_color}`}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-6 p-0">
+                      <div className="d-flex flex-column mt-3 me-3" >
+                        <label htmlFor={`year_${index}`} className={`form-label mb-1 ${styles.label_color}`}>Year</label>
+                        <DatePicker
+                          selected={exp.year ? new Date(exp.year) : null}
+                          id={`year_${index}`}
+                          onChange={(date: Date | null) => handleProfessionalExpChange(index, 'year', date)}
+                          showYearPicker
+                          dateFormat="yyyy"
+                          className={` form-control w-100 ${styles.label_color}`}
+                          placeholderText={
+                            translationDataFromStore?.data?.year_placeholder
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div className="col-6 p-0">
+                      <div className="d-flex flex-column mt-3 me-3">
+                        <label htmlFor={`company_${index}`} className={`form-label mb-1 ${styles.label_color}`}>Company</label>
+                        <input
+                          type="text"
+                          name={`company[${index}]`}
+                          id={`company_${index}`}
+                          placeholder="Company"
+                          value={exp.company}
+                          onChange={(e) => handleProfessionalExpChange(index, 'company', e.target.value)}
+                          className={` form-control w-100 ${styles.label_color}`}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                  <DatePicker
-                    selected={exp.year ? new Date(exp.year) : null}
-                    placeholderText={translationDataFromStore?.data?.year_placeholder}
-                    onChange={(date: Date | null) => handleProfessionalExpChange(index, 'year', date)}
-                    showYearPicker
-                    dateFormat="yyyy"
-                    className={`${styles.input_custom_class}`}
-                  />
-                </div>
-                <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                  <input
-                    type="text"
-                    name={`company[${index}]`}
-                    placeholder={translationDataFromStore?.data?.company}
-                    value={exp.company}
-                    onChange={(e) => handleProfessionalExpChange(index, 'company', e.target.value)}
-                    className={`${styles.input_custom_class}`}
-                  />
-                  <div className="error_message">
-                    {/* Display error message here */}
+                <div className="col-2">
+                  <div className="" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', height: '100%' }}>
+                    {/* Disable delete button when index is 0 */}
+                    {index !== 0 && (
+                      <DeleteIcon onClick={() => removeRow(index)} style={{ cursor: 'pointer', color: '#00A5CD' }} />
+                    )}
+                    <AddIcon onClick={addRow} style={{ cursor: 'pointer', color: '#00A5CD', marginLeft: '5px' }} />
                   </div>
-                </div>
-                <div className={`col-md-3 border ${styles.wizard_childtable_responsive_class}`}>
-                  <button type="button" className={`btn ${styles.btn_delete_row}`}  onClick={() => removeRow(index)}>
-                    {translationDataFromStore?.data?.delete_row_btn}
-                  </button>
                 </div>
               </div>
             ))}
-            <div className="row">
-              <div className="col-md-9"></div>
-              <div className={`col-md-3 pt-1 pb-1 ${styles.wizard_childtable_responsive_class}`}>
-                <button
-                  type="button"
-                  className={`btn ${styles.btn_add_row}`}
-                  onClick={addRow}
-                >
-                  {translationDataFromStore?.data?.add_row_btn}
-                </button>
-              </div>
-            </div>
           </form>
         </div>
       </div>

@@ -13,130 +13,9 @@
   right: 5rem;
 }
 
-.wizard_childtable_responsive_class {
-  display: flex;
-  /* justify-content:center ; */
-  align-items: center;
-  flex-direction: column;
-  padding: 10px 0;
-}
-.progress_bar_div {
-  position: absolute !important;
-  background-color: transparent !important;
-  width: 100%;
-  z-index: -1;
-}
-.progress_bar_div_tag {
-  margin-left: 8px;
-}
-@media (max-width: 578px) {
-  .progress_bar_div div:nth-child(1) {
-    /* margin-left: 45px !important; */
-  }
-}
-.progress_bar {
-  position: absolute !important;
-  background-color: transparent !important;
-  display: flex;
-  justify-content: end;
-}
-.progress_bar span {
-  height: 15px;
-  border-radius: 25px;
-  width: 80%;
-  background-color: white;
-  border: 1px solid rgb(214, 214, 214);
-}
-.progress_bar span span {
-  width: 100%;
-  background-color: #00578a;
-  border: none;
-}
-.step_hr {
-  height: 5px;
-  width: 5rem;
-  background-color: #ffffff;
-  opacity: 1;
-  border-radius: 5px;
-  margin-block: 5px;
-}
-.wizard_cont .MuiStep-roo.MuiStep-vertica.css-8wcvy5-MuiStep-root {
-  fill: #00578a !important;
-}
 
-.btn_add_row {
-  background-color: #00578a;
-  color: #ffffff;
-  border-radius: 3px;
-  font-size: 13px;
-  font-weight: 700;
-  height: 40px;
-  min-width: 130px;
-  line-height: 28px;
-  padding: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn_add_row:hover {
-  background-color: #ffffff;
-  color: #00578a;
-  border: 0.5px solid #00578a;
-  border-radius: 3px;
-  font-size: 13px;
-  font-weight: 700;
-  height: 40px;
-  min-width: 130px;
-  line-height: 28px;
-  padding: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.btn_delete_row {
-  background-color: #ffffff;
-  color: #00578a;
-  border: 0.5px solid #00578a;
-  border-radius: 3px;
-  font-size: 13px;
-  font-weight: 700;
-  height: 40px;
-  min-width: 130px;
-  line-height: 28px;
-  padding: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn_delete_row:hover {
-  background-color: #00578a;
-  color: #ffffff;
-  border-radius: 3px;
-  font-size: 13px;
-  font-weight: 700;
-  height: 40px;
-  min-width: 130px;
-  line-height: 28px;
-  padding: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.input_custom_class_academic {
-  border: 0.5px solid #000000;
-  width: 100px;
-  height: 32px;
-  border-radius: 2px;
-  padding-left: 5px;
-}
-.input_custom_class {
-  border: 0.5px solid #000000;
-  width: 170px;
-  height: 32px;
-  border-radius: 2px;
-  padding-left: 5px;
-}
+
 .cross_class {
   font-size: 24px;
   color: red;
@@ -146,7 +25,18 @@
     margin-top: 50px;
   }
 }
+/* new css */
 
+.other_info input[type="text"] {
+  height: 44px; /* Set the desired height for input fields of type text */
+}
+.other_info select {
+  height: 44px; /* Set the desired height for input fields of type text and select elements */
+}
+
+.label_color {
+ color: rgba(120, 120, 120, 1)
+}
 
 /* button */
 /* .button_wrapper{

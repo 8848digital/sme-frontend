@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import AcademicChildTable from "@/components/SignUp/ProfessionalInfo/AcademicChildTable";
 import ProfessionalExpericeneChildTable from "@/components/SignUp/ProfessionalInfo/ProfessionalExpericeneChildTable";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
@@ -15,20 +16,26 @@ const Step2of3ExtractedDataFromCv = ({
   return (
     <div className="container">
       <div
-        className={`card p-4 ${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "900px" }}
+           className={`${styles.common_wizard_wrapper}`}
+           style={{ maxWidth: "360px", 
+          //  height: "315px" 
+          }}
       >
         <div className="row">
           <div className="col-12">
-            <div className="text-center mt-2">
+          <div className="">
+                <Logo />
+              </div>
+            <div className="text-center mt-5">
               <h1>
                 {/* {translationDataFromStore?.data?.step}  */}
                 {/* 5{" "}
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
-              <h2>{translationDataFromStore?.data?.professional_experience}</h2>
+              {/* <h2>{translationDataFromStore?.data?.professional_experience}</h2> */}
             </div>
           </div>
+          
           <div className="col-12">
             <AcademicChildTable
               formData={formData}
@@ -37,7 +44,7 @@ const Step2of3ExtractedDataFromCv = ({
               loading={loading}
             />
           </div>
-          <div className="col-12 mt-5">
+          <div className="col-12">
             <ProfessionalExpericeneChildTable
               formData={formData}
               onFormDataChange={onFormDataChange}
