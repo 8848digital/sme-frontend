@@ -6,7 +6,12 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 import styles from "@/styles/wizard.module.css";
 
-const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel, setStep , setInternalStep ,internalStep}: any) => {
+const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
+    setStep, setInternalStep, internalStep,
+    industryList, industryListLoading, regionList, regionListLoading,
+    serviceList, serviceListLoading, yearOfExpList, yearOfExpListLoading
+
+}: any) => {
     const translationDataFromStore = useSelector(translation_text_from_Store);
     const [currentStep, setCurrentStep] = useState(1);
 
@@ -24,19 +29,30 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
     };
 
     return (
-        <div className="container">
-            {currentStep === 1 && (
-                <Step2of3ExtractedDataFromCv
-                    educationLevel={educationLevel}
-                    loading={loading}
-                    formData={formData}
-                    onFormDataChange={onFormDataChange}
-                />
-            )}
-            <div className={styles.button_wrapper} style={{marginTop:'150px'}}>
-                <div className="text-center">
-                    
-                    <div className="mb-5 text-center">
+        <div >
+            
+            <div >
+                {currentStep === 1 && (
+                    <Step2of3ExtractedDataFromCv
+                        educationLevel={educationLevel}
+                        loading={loading}
+                        formData={formData}
+                        onFormDataChange={onFormDataChange}
+                        industryList={industryList}
+                        industryListLoading={industryListLoading}
+                        regionList={regionList}
+                        regionListLoading={regionListLoading}
+                        serviceList={serviceList}
+                        serviceListLoading={serviceListLoading}
+                        yearOfExpList={yearOfExpList}
+                        yearOfExpListLoading={yearOfExpListLoading}
+                    />
+                )}
+            </div>
+            <div >
+                <div className={`${styles.common_wizard_btn}`}>
+
+                    <div className="mb-3 ">
                         {currentStep === 1 ? (
                             <button
                                 className={`btn ${styles.next_button}`}
@@ -54,7 +70,7 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
                     <div>
                         {currentStep === 1 && (
                             <button
-                                className={`btn ${styles.prev_button}`}
+                                className={`btn mb-3 ${styles.prev_button}`}
                                 onClick={handlePrev}
                             >
                                 {document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />}

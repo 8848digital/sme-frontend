@@ -82,7 +82,7 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
     <div className="container">
       <div
         className={`${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "360px", height: "315px" }}
+       
       >
         <div className="row">
           <div className="col-12">
@@ -97,7 +97,7 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
               </h1>
               {/* <h2>{translationDataFromStore?.data?.professional_experience}</h2> */}
               <h1 style={{ fontSize: '20px',lineHeight:'24px' }}>Please upload your CV</h1>
-              <p style={{lineHeight:'24px' }}>Upload your most updated resume to increase your chances of being selected.</p>
+              <p className="grey" style={{lineHeight:'24px' }}>Upload your most updated resume to increase your chances of being selected.</p>
 
             </div>
             <div className="">

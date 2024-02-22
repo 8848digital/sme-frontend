@@ -28,10 +28,9 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
-    <div className="container">
+    <div >
       <div
         className={`${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "360px", height: "315px" }}
       >
         <div className="row">
           <div className="col-12">
@@ -50,7 +49,7 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
                 Other Information
                 </h2>
               <div className="form-group ">
-                <label htmlFor="email">First Name</label>
+                <label className="grey" htmlFor="email">First Name</label>
                 <input
                   className="form-control input-filed-height"
                   type="text"
@@ -62,7 +61,7 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
                 />
               </div>
               <div className="form-group mt-3">
-              <label htmlFor="email">Last Name</label>
+              <label className="grey" htmlFor="email">Last Name</label>
               <input
                 className="form-control input-filed-height"
                 type="text"
@@ -74,7 +73,7 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
               />
               </div>
               <div className="form-group mt-3">
-              <label htmlFor="email">Phone Number</label>
+              <label className="grey" htmlFor="email">Phone Number</label>
               <input
                 className="form-control input-filed-height"
                 type="number"

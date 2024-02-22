@@ -573,3 +573,22 @@ input::-webkit-inner-spin-button {
 .radio-item input[type='radio'] {
   accent-color: #00A5CD;
 } */
+
+/* mui stepper css */
+.stepper_css .MuiStepIcon-root {
+  width: 36px; /* Set the width of the circle */
+  height: 36px; /* Set the height of the circle */
+  color: #ffffff !important; /* Set the color of the circle */
+}
+
+.stepper_css .MuiStepConnector-root {
+  margin-left: 18px;
+}
+.stepper_css .MuiStepIcon-text {
+  font-size: 13px !important; /* Set the font size of the number inside the circle */
+ fill: #00b2d4 !important;
+}
+
+.MuiStepLabel-label {
+  color: #ffffff !important;
+}

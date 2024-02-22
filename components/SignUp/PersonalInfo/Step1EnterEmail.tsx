@@ -15,10 +15,10 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
 
   return (
     <>
-      <div className="container">
+      <div>
         <div
           className={`${styles.common_wizard_wrapper}`}
-          style={{ maxWidth: "360px", height: "315px" }}
+         
         >
           <div className="row">
             <div className="col-12">
@@ -31,11 +31,11 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
                   {/* 1{" "}{translationDataFromStore?.data?.of} 7 */}
                 </h1>
                 {/* <h2>{translationDataFromStore?.data?.signup_personal}</h2> */}
-                <h1 style={{ fontSize: '20px' }}>Enter Your Email</h1>
+                <h1 className="" style={{ fontSize: '20px' }}>Enter Your Email</h1>
                 <div className="form-group mt-4">
-                  <label htmlFor="email">Email</label>
+                  <label className="grey" htmlFor="email">Email</label>
                   <input
-                    className=" form-control"
+                    className=" form-control grey"
                     type="email"
                     placeholder={
                       translationDataFromStore?.data?.email_placeholder
@@ -43,6 +43,7 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
                     value={formData.usr}
                     onChange={handleEmailChange}
                     style={{ height: '44px' }}
+                    
                   />
                 </div>
               </div>

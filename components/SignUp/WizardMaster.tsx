@@ -31,7 +31,13 @@ import ButtonLoader from "../ButtonLoader";
 import PersonalInformation from "./PersonalInformation";
 import OtherInformation from "./OtherInformation";
 import Preferences from "./Preferences";
-
+import useIndustryList from "@/hooks/general_hooks/Industry_list_hook";
+import useRegionList from "@/hooks/general_hooks/region_list_hook";
+import useServiceList from "@/hooks/general_hooks/service_list_hook";
+import useYearOfExpList from "@/hooks/general_hooks/year_of_exp_list_hook";
+import Image from "next/image";
+import { useMediaQuery } from '@mui/material';
+import tagLine from '../../public/assets/tag_line.png'
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(0);
   const [internalStep, setInternalStep] = useState<any>(1);
@@ -55,6 +61,7 @@ const WizardMaster = () => {
     price_basis: "",
     academic_background: [],
     professional_experience: [],
+    candidate_details: []
   });
 
   const steps: string[] = [
@@ -69,7 +76,11 @@ const WizardMaster = () => {
   console.log("form price basis", priceBasis);
   const { preference, preferenceLoading } = usePreferences();
   console.log("form preference", preference);
-
+  const { industryList, industryListLoading } = useIndustryList();
+  const { regionList, regionListLoading } = useRegionList();
+  const { serviceList, serviceListLoading } = useServiceList();
+  const { yearOfExpList, yearOfExpListLoading } = useYearOfExpList();
+  console.log("list", industryList, regionList, serviceList, yearOfExpList);
   const validateEmail = (email: any) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
@@ -243,7 +254,7 @@ const WizardMaster = () => {
   console.log("form Data values", formDataFromStore);
 
   const handleFormDataChange = (field: string, value: any) => {
-    if (field === "certification_level") {
+    if (field === "certification") {
       // If the field is 'certification_level', update it with the provided value
       setStepFormData({
         ...stepFormData,
@@ -254,6 +265,12 @@ const WizardMaster = () => {
       setStepFormData({
         ...stepFormData,
         professionalexp: value.professional_exp,
+      });
+    } else if (field === "industryExpericene") {
+      // If the field is 'professionalexp', update it with the provided value
+      setStepFormData({
+        ...stepFormData,
+        professionalexp: value.industryExpericene,
       });
     } else {
       // For other fields, update the stepFormData object as usual
@@ -301,15 +318,15 @@ const WizardMaster = () => {
       }
     }
   };
-
+  const isSmallScreen = useMediaQuery('(max-width: 768px)');
   return (
     <>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-md-9 col-lg-9 ">
+          <div className="col-md-8 col-lg-8 ">
             <div className={styles.wizard_wrapper}>
               <div>
-                {currentStep === 0  && (
+                {currentStep === 0 && (
                   <PersonalInformation
                     formData={stepFormData}
                     onFormDataChange={handleFormDataChange}
@@ -319,7 +336,7 @@ const WizardMaster = () => {
 
                   />
                 )}
-                
+
                 {currentStep === 1 && (
                   <OtherInformation
                     educationLevel={educationLevel?.data}
@@ -329,6 +346,14 @@ const WizardMaster = () => {
                     setStep={setCurrentStep}
                     setInternalStep={setInternalStep}
                     internalStep={internalStep}
+                    industryList={industryList}
+                    industryListLoading={industryListLoading}
+                    regionList={regionList}
+                    regionListLoading={regionListLoading}
+                    serviceList={serviceList}
+                    serviceListLoading={serviceListLoading}
+                    yearOfExpList={yearOfExpList}
+                    yearOfExpListLoading={yearOfExpListLoading}
                   />
                 )}
                 {currentStep === 2 && (
@@ -345,7 +370,7 @@ const WizardMaster = () => {
                   />
                 )}
               </div>
-{/* 
+              {/* 
               <div className="row">
                 <div className="col-12 d-flex justify-content-center">
                   <div className={styles.button_wrapper}>
@@ -389,29 +414,47 @@ const WizardMaster = () => {
               </div> */}
             </div>
           </div>
-          <div className="col-md-3 col-lg-3">
-            
-            <div className={styles.stepper_wrapper}>
-              <div className={styles.stepper_content}>
-                <h4>
-                <span className="pe-1">{translationDataFromStore?.data?.step}</span>
-                <span className="pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
-                </h4>
-                <h5>Organize detailed information for future work</h5>
-              </div>
+          <div className={`col-md-4 col-lg-4 stepper_css ${styles.stepper_bg}`}>
+            <div>
 
-              <Stepper
-                activeStep={currentStep}
-                orientation="vertical"
-                style={{ height: "100%" }}
-              >
-                {steps.map((label: any, index: any) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
+              <div className={styles.stepper_wrapper} >
+                <div className={styles.stepper_content}>
+                  <h4>
+                    <span className="pe-1">{translationDataFromStore?.data?.step}</span>
+                    <span className="pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
+                  </h4>
+                  <h4>Organize detailed information for future work</h4>
+                </div>
+                <div>
+                  <Stepper
+                    activeStep={currentStep}
+                    orientation="vertical"
+                    style={{ height: "100%" }}
+                    className=""
+                  >
+                    {steps.map((label: any, index: any) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                </div>
+                <div className={styles.tagline_content}>
+
+                <div >
+                  <Image
+                    src={tagLine.src}
+                    alt='tag line logo'
+                    width={isSmallScreen ? 48 : 72}
+                    height={isSmallScreen ? 48 : 72} />
+                </div>
+                <div className="ms-3">
+                  <p className="mb-0">Strategic Gears: Crafting success for all entities in diverse markets.</p>
+                </div>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>

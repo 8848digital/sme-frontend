@@ -1,5 +1,6 @@
+import Logo from '@/components/Logo';
 import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
-import styles from "@/styles/bio.module.css";
+import styles from "@/styles/wizard.module.css";
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
@@ -8,16 +9,49 @@ const StepsDone = () => {
 
   return (
     <div className="container">
-      <div className={`card p-4 ${styles.steps_done_wrapper}`} style={{ maxWidth: '800px', height: '300px' }}>
+      <div >
         <div className="row">
           <div className="col-12">
-            <div className="text-center mt-4">
-              <h1>{translationDataFromStore?.data?.done}</h1>
-              <h2>{translationDataFromStore?.data?.signup_complete_description}</h2>
-            </div>
-            <div className='text-center mt-5'>
-              <Link href='/build-your-bio' className='btn btn-signup mx-2'>{translationDataFromStore?.data?.build_your_bio_btn}</Link>
-              <Link href='/thank-you' className='btn btn-later  mx-2'>{translationDataFromStore?.data?.later}</Link>
+            <div className={`${styles.common_wizard_wrapper}`}>
+
+              <div>
+                <Logo />
+              </div>
+              <div className="mt-5">
+                <h1 style={{fontSize:'24px'}}>{translationDataFromStore?.data?.done}!</h1>
+                <p className='grey'>Our team will review your profile and get back to you soon.</p>
+              </div>
+              <div className={`${styles.common_wizard_btn}`}>
+                <div className={styles.button_wrapper}>
+
+                  <div className="mb-3 ">
+
+                    <button
+                      className={`btn ${styles.next_button}`}
+
+                    >
+                      {/* {translationDataFromStore?.data?.next} */}
+                      Confirm
+
+                    </button>
+
+                  </div>
+                  <div>
+
+                    <button
+                      className={`btn ${styles.later_button }`}
+
+                    >
+
+                      Later
+                      {/* {translationDataFromStore?.data?.previous} */}
+                    </button>
+
+                  </div>
+
+
+                </div>
+              </div>
             </div>
           </div>
         </div>

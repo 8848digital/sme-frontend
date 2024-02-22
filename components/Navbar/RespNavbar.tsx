@@ -95,7 +95,7 @@ const RespNavbar = () => {
   return (
     <div className="">
       {["md"].map((expand) => (
-        <Navbar key={expand} expand={expand} className={`${styles.navbar_web} py-0 ${router.pathname !== '/' ? `${styles.nav_border_bottom}` : 'white'} ${scrolled ? styles.scrolled : ''}`}>
+        <Navbar key={expand} expand={expand} className={`${styles.navbar_web} py-0 ${router.pathname !== '/' ? ` bg_white ${styles.nav_border_bottom}` : 'white'} ${scrolled ? styles.scrolled : ''}`}>
           <Container
             onClick={() => {
               if (showOffcanvas) {
@@ -123,7 +123,7 @@ const RespNavbar = () => {
               className={`text-center header-btn-devider language_cursor px-2 toggle-navbar`}
               onClick={HandleLangToggle}
             >
-              <span className={` ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}>
+              <span className={` ${router.pathname !== '/' ? 'black ' : 'white'} ${scrolled ? 'black' : 'white'}`}>
                 {!language_selector_from_redux?.languageToggle
                   ? "عربي"
                   : "English"}

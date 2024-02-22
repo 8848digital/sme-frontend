@@ -8,7 +8,7 @@ import { translation_text_from_Store } from '@/store/slices/general_slice/transl
 import { useSelector } from 'react-redux';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-const PersonalInformation = ({ formData, onFormDataChange, setStep ,setInternalStep ,internalStep }: any) => {
+const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalStep, internalStep }: any) => {
     const translationDataFromStore = useSelector(translation_text_from_Store);
     const [currentStep, setCurrentStep] = useState(1);
 
@@ -21,81 +21,82 @@ const PersonalInformation = ({ formData, onFormDataChange, setStep ,setInternalS
     };
 
     return (
-        <div className="container">
-            <div>
-                {internalStep === 1 && (
-                    <Step1EnterEmail
-                        formData={formData}
-                        onFormDataChange={onFormDataChange}
-                        setInternalStep={setInternalStep}
+
+        <div>
+            {internalStep === 1 && (
+                <Step1EnterEmail
+                    formData={formData}
+                    onFormDataChange={onFormDataChange}
+                    setInternalStep={setInternalStep}
                     internalStep={internalStep}
-                    />
-                )}
-                {internalStep === 2 && (
-                    <Step2VarificationCode
-                        formData={formData}
-                        onFormDataChange={onFormDataChange}
-                        setInternalStep={setInternalStep}
-                        internalStep={internalStep}
-                    />
-                )}
-                {internalStep === 3 && (
-                    <Step3EnterName
-                        formData={formData}
-                        onFormDataChange={onFormDataChange}
-                        setInternalStep={setInternalStep}
-                        internalStep={internalStep}
-                    />
-                )}
-                {internalStep === 4 && (
-                    <Step2of3UploadCv
-                        formData={formData}
-                        onFormDataChange={onFormDataChange}
-                        setInternalStep={setInternalStep}
-                        internalStep={internalStep}
-                    />
-                )}
-        
+                />
+            )}
+            {internalStep === 2 && (
+                <Step2VarificationCode
+                    formData={formData}
+                    onFormDataChange={onFormDataChange}
+                    setInternalStep={setInternalStep}
+                    internalStep={internalStep}
+                />
+            )}
+            {internalStep === 3 && (
+                <Step3EnterName
+                    formData={formData}
+                    onFormDataChange={onFormDataChange}
+                    setInternalStep={setInternalStep}
+                    internalStep={internalStep}
+                />
+            )}
+            {internalStep === 4 && (
+                <Step2of3UploadCv
+                    formData={formData}
+                    onFormDataChange={onFormDataChange}
+                    setInternalStep={setInternalStep}
+                    internalStep={internalStep}
+                />
+            )}
+
+            <div className={`${styles.common_wizard_btn}`}>
                 <div className={styles.button_wrapper}>
-                    <div className="text-center">
-                      
-                        <div className="mb-5 text-center">
-                            {internalStep !== 4 ? (
-                                <button
-                                    className={`btn ${styles.next_button}`}
-                                    onClick={handleNext}
-                                >
-                                    {translationDataFromStore?.data?.next}
-                                    {
-                                        document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />
-                                    }
-                                </button>
-                            ) : (
-                                <button className={`btn ${styles.next_button}`} onClick={() => { setStep(1) }}>
-                                    {translationDataFromStore?.data?.next}
-                                </button>
-                            )}
-                        </div>
-                        <div>
-                            {internalStep !== 1 && (
-                                <button
-                                    className={`btn ${styles.prev_button}`}
-                                    onClick={handlePrev}
-                                >
-                                    {
-                                        document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />
-                                    }
 
-                                    {translationDataFromStore?.data?.previous}
-                                </button>
-                            )}
-                        </div>
-
-
+                    <div className="mb-3 ">
+                        {internalStep !== 4 ? (
+                            <button
+                                className={`btn ${styles.next_button}`}
+                                onClick={handleNext}
+                            >
+                                {translationDataFromStore?.data?.next}
+                                {
+                                    document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />
+                                }
+                            </button>
+                        ) : (
+                            <button className={`btn ${styles.next_button}`} onClick={() => { setStep(1) }}>
+                                {translationDataFromStore?.data?.next}
+                                {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />}
+                            </button>
+                        )}
                     </div>
+                    <div>
+                        {internalStep !== 1 && (
+                            <button
+                                className={`btn ${styles.prev_button}`}
+                                onClick={handlePrev}
+                            >
+                                {
+                                    document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />
+                                }
+
+                                {translationDataFromStore?.data?.previous}
+                            </button>
+                        )}
+                    </div>
+
+
                 </div>
             </div>
         </div>
+
     );
 };
 

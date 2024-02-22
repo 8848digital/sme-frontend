@@ -32,13 +32,9 @@ const Step3of3EnterRates = ({
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
-    <div className="container">
+    <div>
       <div
         className={` ${styles.common_wizard_wrapper}`}
-        style={{
-          maxWidth: "360px",
-          // height: "315px" 
-        }}
       >
         <div className="row">
           <div className="col-12">
@@ -46,6 +42,7 @@ const Step3of3EnterRates = ({
               <Logo />
             </div>
             <div className="row">
+              <div className={styles.wizard_content}>
               <div className="col-12">
                 <div className="mt-5">
                   <h1 style={{ fontSize: '20px' }}>Select Enters availability</h1>
@@ -89,7 +86,7 @@ const Step3of3EnterRates = ({
                     ))}
                 </div>
                 <div className="mt-5">
-                  <label htmlFor="rates">Enter rate preference</label>
+                  <label className="grey" htmlFor="rates">Enter rate preference</label>
                   <input
                     className="form-control w-100  input-filed-height"
                     type="text"
@@ -100,6 +97,7 @@ const Step3of3EnterRates = ({
                     onChange={handleRatesChange}
                   />
                 </div>
+              </div>
               </div>
             </div>
           </div>

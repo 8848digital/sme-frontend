@@ -16,6 +16,10 @@ import translationTextSlice from "@/store/slices/general_slice/translation_text_
 import PriceBasisSlice from "@/store/slices/general_slice/price_basis_slice"
 import PreferencesSlice from "@/store/slices/general_slice/get_preferences_slice"
 import ourSerivceSlice from "@/store/slices/general_slice/our_service_slice"
+import industryListSlice from "@/store/slices/general_slice/industry_list_slice"
+import regionListSlice from "@/store/slices/general_slice/region_list_slice"
+import serviceListSlice from "@/store/slices/general_slice/service_list_slice"
+import yearOfExpListSlice from "@/store/slices/general_slice/year_of_exp_list_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -33,7 +37,11 @@ const appReducer = combineReducers({
   translationText:translationTextSlice,
   priceBasis:PriceBasisSlice,
   preferences:PreferencesSlice,
-  ourService:ourSerivceSlice
+  ourService:ourSerivceSlice,
+  industryList:industryListSlice,
+  regionList:regionListSlice,
+  serviceList:serviceListSlice,
+  yearOfExpList:yearOfExpListSlice,
 });
 
 const rootReducer = (state: any, action: any) => {

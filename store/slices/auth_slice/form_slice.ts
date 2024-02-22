@@ -15,7 +15,9 @@ interface FormState {
   hourly_rates:any,
   price_basis:any,
   academic_background:any
-  professional_experience:any
+  professional_experience:any,
+  candidate_details:any,
+
   
 }
 
@@ -31,6 +33,7 @@ const initialState: FormState = {
   price_basis:'',
   academic_background:[],
   professional_experience:[],
+  candidate_details:[]
 };
 
 // Create a form slice with reducers

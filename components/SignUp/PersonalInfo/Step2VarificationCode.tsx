@@ -30,10 +30,10 @@ const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
-    <div className="container">
+    <div >
       <div
         className={`${styles.common_wizard_wrapper}`}
-        style={{ maxWidth: "360px", height: "315px"}}
+     
       >
         <div className="row">
           <div className="col-12">
@@ -52,7 +52,7 @@ const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
               <div>
               <h1 style={{fontSize:'20px'}}>Enter Your Password</h1>
                 <div className="form-group mt-4">
-                <label htmlFor="email">Password</label>
+                <label className="grey" htmlFor="email">Password</label>
                   <TextField
                     className="w-100"
                     type={showPassword ? "text" : "password"}
@@ -71,7 +71,6 @@ const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
                   />
                 </div>
               </div>
-              {/* <p className='mt-2'>Not received? <Link href=''>Re-send</Link></p> */}
             </div>
           </div>
         </div>
