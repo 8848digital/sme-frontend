@@ -1,11 +1,11 @@
 import { CONSTANTS } from "@/services/config/api-config";
 import axios from "axios";
 
-const GetProfileAPI = async (token?: any, language?: any) => {
+const GetContactSupportAPI = async (token?: any, language?: any) => {
   let response: any;
   const version = CONSTANTS.VERSION;
-  const method = "get_profile";
-  const entity = "profile";
+  const method = "get_contact_support";
+  const entity = "services";
 
   const params = `?version=${version}&method=${method}&entity=${entity}&language=${language}`;
   const config = {
@@ -20,7 +20,7 @@ const GetProfileAPI = async (token?: any, language?: any) => {
       timeout: 15000,
     })
     .then((res) => {
-      response = res?.data?.message?.data;
+      response = res?.data?.message;
       console.log(response, "profile response in api");
     })
     .catch((err) => {
@@ -29,4 +29,4 @@ const GetProfileAPI = async (token?: any, language?: any) => {
   return response;
 };
 
-export default GetProfileAPI;
+export default GetContactSupportAPI;

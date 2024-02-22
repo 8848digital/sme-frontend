@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -6,35 +5,164 @@
 }
 
 body {
-  font-family: "Euclid Circular A";                                           
+  font-family: "Euclid Circular A";
   -webkit-text-size-adjust: none;
   overflow-x: hidden;
 }
 
-
 /* colors  */
-.white{
+.white {
   color: #ffffff;
 }
 .black {
-  color:#23282D;
-  ;
+  color: #23282d;
 }
 .sg_blue {
   color: #00b2d4;
 }
 .grey {
   color: #787878;
-
 }
-.bg_white{
+.bg_white {
   background-color: #ffffff;
 }
 .background {
   background-color: #00578a;
 }
-
-
+.dark-blue {
+  color: #005587;
+}
+.nav-underline .nav-link.active,
+.nav-underline .show > .nav_link {
+  font-weight: 700;
+  color: #005587 !important;
+  border-bottom-color: currentcolor;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+.nav-underline {
+  --bs-nav-underline-link-active-color: #005587 !important;
+}
+.nav_link {
+  color: #787878 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+.nav_link:hover {
+  color: #787878 !important;
+}
+.fs-16 {
+  font-size: 16px;
+  line-height: 24px;
+}
+.btn_blue {
+  background-color: #00a5cd;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+  color: white;
+}
+.btn_blue:hover {
+  background-color: #00578a;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+  color: white;
+}
+.btn_blue_border {
+  background-color: white;
+  color: #00578a !important;
+  border: 1px solid #00578a;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+}
+.btn_blue_border:hover {
+  background-color: white;
+  color: #00578a !important;
+  border: 1px solid #00578a;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+}
+.btn_grey_border {
+  background-color: white;
+  color: #787878 !important;
+  border: 1px solid #787878;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+}
+.btn_red {
+  background-color: #e90000;
+  color: white !important;
+  border: 1px solid #e90000;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+}
+.btn_red:hover {
+  background-color: #e90000;
+  color: white !important;
+  border: 1px solid #e90000;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+}
+.btn_grey_border:hover {
+  background-color: white !important;
+  color: #787878 !important;
+  border: 1px solid #787878 !important;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+}
+.text-blue {
+  color: #00578a !important;
+}
+.text-white {
+  color: white;
+}
+.modal-content {
+  width: 400px;
+  padding: 48px 24px 24px 24px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+.fw-400 {
+  font-weight: 400;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.lh-24 {
+  line-height: 24px;
+}
+.modal-header .btn-close {
+  margin-top: -40px;
+}
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: none !important;
+  border-color: none !important;
+}
+.btn-primary {
+  --bs-btn-color: none;
+  --bs-btn-bg: none;
+  --bs-btn-border-color: none;
+  --bs-btn-hover-color: none;
+  --bs-btn-hover-bg: none;
+  --bs-btn-hover-border-color: none;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: none;
+  --bs-btn-active-bg: none;
+  --bs-btn-active-border-color: none;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: none;
+  --bs-btn-disabled-bg: none;
+  --bs-btn-disabled-border-color: none;
+}
 /* 
 h1 {
   color: #00b2d4 !important;
@@ -196,7 +324,6 @@ h2 {
   pointer-events: none;
 }
 
-
 .circle-icon {
   display: inline-flex;
   align-items: center;
@@ -208,7 +335,6 @@ h2 {
   color: white; /* White icon color */
   font-size: 14px; /* Adjust the font size as needed */
 }
-
 
 /* Sign Up Master CSS */
 
@@ -226,8 +352,6 @@ h2 {
 .signup-wrapper .signup_intro p {
   font-size: 24px !important;
 }
-
-
 
 .btn-later {
   /* background-color: #00578A !important; */
@@ -415,7 +539,6 @@ h2 {
   font-size: 14px;
 }
 
-
 .Toastify__toast-container--top-right {
   right: 0 !important;
 }
@@ -509,7 +632,6 @@ input::-webkit-inner-spin-button {
   .toggle-navbar {
     display: block;
   }
-
 }
 
 /* slick css */
@@ -552,9 +674,14 @@ input::-webkit-inner-spin-button {
 } */
 
 .MuiOutlinedInput-root {
-  height: 44px !important;
+  height: 40px !important;
 }
-
+.modal-footer {
+  border-top: none;
+}
+.modal-header {
+  border-bottom: none;
+}
 /* Preferences */
 .radio-item input[type="radio"] {
   transform: scale(1.5); /* Adjust the scale factor as needed */

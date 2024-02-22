@@ -20,7 +20,7 @@ const useLoginTheme = () => {
 
   useEffect(() => {
     getLoginThemeData();
-  }, [loginThemeData]);
+  }, [language_abbr]);
 
   return {
     loginThemeData,

@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store/root-reducer";
 import GetProfileAPI from "@/services/api/profile_api/profile_api";
-
+import { language_selector } from "../general_slice/language_slice";
+import { useSelector } from "react-redux";
 
 // Define an initial state for your slice
 const initialState: {
@@ -41,7 +42,7 @@ const profileSlice = createSlice({
       .addCase(fetchProfile.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
-        console.log('profile data in slice', state.data);
+        console.log("profile data in slice", state.data);
         state.error = null;
       })
       .addCase(fetchProfile.rejected, (state, action) => {

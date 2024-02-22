@@ -236,7 +236,7 @@ const LogIn = () => {
                       >
                         <button
                           type="submit"
-                          className={` btn btn-signup ${styles.btn_log_in}`}
+                          className={` btn ${styles.btn_log_in}`}
                         >
                           {/* <LockOutlinedIcon />{" "} */}
                           {translationDataFromStore?.data?.login}
@@ -275,13 +275,13 @@ const LogIn = () => {
             <div className={styles.img_content}>
               <p className={styles.img_heading}>{loginThemeData?.heading}</p>
               <div className="row">
-                <div className="col-lg-2">
+                <div className="col-xxl-2 col-xl-3 col-lg-4">
                   <img
                     src={`${CONSTANTS.API_BASE_URL}${loginThemeData?.logo_image}`}
-                    style={{ height: "72px", width: "72px" }}
+                    className={styles.logo_circle_img}
                   />
                 </div>
-                <div className="col-lg-4 p-0">
+                <div className="col-xxl-4 col-xl-5 col-lg-5 p-0">
                   <span className={styles.log_content}>
                     {loginThemeData?.tag_line}
                   </span>

@@ -32,6 +32,13 @@
   padding: 12 20px !important;
   color: white;
 }
+.btn_log_in:hover {
+  background-color: #00578a;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+  color: white;
+}
 .password_wrapper {
   margin: 120px auto;
   max-width: 800px;
@@ -71,6 +78,15 @@
   /* padding-left: 217px; */
   display: flex;
   justify-content: center;
+}
+.logo_circle_img {
+  height: 72px !important;
+  width: 72px !important;
+}
+.password_heading {
+  font-size: 20px;
+  font-size: 400;
+  line-height: 24px;
 }
 /* media */
 
