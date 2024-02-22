@@ -8,6 +8,7 @@ import styles from "@/styles/bio.module.css";
 import { useFormik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import uploadImage from "../../../public/assets/photo_upload_image.png";
 
 const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -79,80 +80,59 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div className="container">
-      <div
-        className={`card p-4 ${styles.common_bio_wrapper}`}
-        style={{ maxWidth: "800px" }}
-      >
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center mt-2">
-              <h1>
-                {translationDataFromStore?.data?.build_your_bio_step1_header}
-              </h1>
-              <h2>
-                {
-                  translationDataFromStore?.data
-                    ?.build_your_bio_step1_description
-                }
-              </h2>
-            </div>
-            <div className="mt-5 text-center">
-              <form onSubmit={handleSubmit}>
-                <div className="row mt-3">
-                  <div className="col-md-12">
-                    {loading ? (
-                      <LoaderForSkills />
-                    ) : selectedFile ? (
-                      <div className={`${styles.selected_file}`}>
-                        <span>
-                          <img
-                            src={`${CONSTANTS.API_BASE_URL}${selectedFile}`}
-                            alt="Selected File"
-                            style={{ width: "120px" }}
-                          />
-                        </span>
-                        <span
-                          className="delete-file"
-                          onClick={handleDeleteFile}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <i
-                            className={`fas fa-times-circle ${styles.cross_class}`}
-                          ></i>
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="file file--upload">
-                        <label
-                          htmlFor="input-file"
-                          className="upload-label label-color"
-                        >
-                          <div className="upload-circle">
-                            <i className="fas fa-upload "></i>
-                          </div>
-                          {translationDataFromStore?.data?.upload_photo}
-                        </label>
-                        <input
-                          id="input-file"
-                          type="file"
-                          ref={fileInputRef}
-                          onChange={(e) => {
-                            handleFileChange(e);
-                            const fileName = e.target.files?.[0]?.name;
-                            const filePath = `/files/${fileName}`;
-                            setFieldValue("logo", filePath); // Set the file path as value
-                          }}
-                        />
-                      </div>
-                    )}
+    <div className="">
+      <div className="mt-5 text-center">
+        <form onSubmit={handleSubmit}>
+          <div className="row mt-3">
+            <div className="col-md-12">
+              {loading ? (
+                <LoaderForSkills />
+              ) : (
+                <div className={`${styles.selected_file}`}>
+                  <div className="position-relative">
+                    <img
+                      src={
+                        selectedFile !== null && selectedFile !== undefined
+                          ? `${CONSTANTS.API_BASE_URL}${selectedFile}`
+                          : uploadImage.src
+                      }
+                      alt="Selected File"
+                      style={{ width: "120px" }}
+                    />
+                    <span className={`${styles.camera_icon} `}>
+                      <i
+                        className={`fas fa-camera ${styles.camera_icon}`}
+                        style={{ fontSize: "30px" }}
+                      ></i>
+                      <input
+                        className={`${styles.camera_icon} `}
+                        id="input-file"
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={(e) => {
+                          handleFileChange(e);
+                          const fileName = e.target.files?.[0]?.name;
+                          const filePath = `/files/${fileName}`;
+                          setFieldValue("logo", filePath); // Set the file path as value
+                        }}
+                        style={{ opacity: "0" }}
+                      />
+                    </span>
                   </div>
+                  {/* <span
+                    className="delete-file"
+                    onClick={handleDeleteFile}
+                    style={{ cursor: "pointer" }}
+                  ></span> */}
                 </div>
-              </form>
+              )}
             </div>
           </div>
-        </div>
+        </form>
       </div>
+      <h6 className="text-center mt-3">
+        {translationDataFromStore?.data?.build_your_bio_step1_description}
+      </h6>
     </div>
   );
 };

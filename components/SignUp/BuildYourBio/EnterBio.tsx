@@ -9,33 +9,38 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
     const bio = event.target.value;
     onFormDataChange("bio", bio);
   };
-
   return (
-    <div className="container">
-      <div
-        className={`card p-4 ${styles.common_bio_wrapper}`}
-        style={{ maxWidth: "800px", minHeight: "300px" }}
-      >
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center">
-              <h1>
-                {translationDataFromStore?.data?.build_your_bio_step2_header}
-              </h1>
-              <h3></h3>
+    <div className={styles.enter_bio_wrapper}>
+      <div className=" p-4">
+        <div className="col-12">
+          <div className="">
+            <h5>
+              {translationDataFromStore?.data?.build_your_bio_step2_header}
+            </h5>
+            <p className="m-0">
+              {translationDataFromStore?.data?.forget_description}
+            </p>
+          </div>
+          <div className="mt-3">
+            <div className="mb-3">
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows={6}
+                value={bioData?.bio}
+                onChange={handleBioChange}
+                style={{ resize: "none" }}
+                placeholder={translationDataFromStore?.data?.forget_description}
+                maxLength={500}
+              ></textarea>
+              <p>{500 - bioData?.bio?.length} characters left</p>
             </div>
-            <div className="mt-5">
-              <div className="mb-3">
-                <textarea
-                  className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows={6}
-                  value={bioData?.bio}
-                  onChange={handleBioChange}
-                  style={{ resize: "none" }}
-                ></textarea>
-              </div>
-            </div>
+          </div>
+          <div className="mt-4">
+            <button className={styles.AI_text_button}>
+              <i className="fas fa-star pe-2 sg_blue"></i>
+              Add AI Generation Summary
+            </button>
           </div>
         </div>
       </div>

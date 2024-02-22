@@ -1,5 +1,6 @@
 .bio_wrapper {
-    margin-top: 50px;
+    margin-top: 120px;
+    padding: 0px 144px ;
 }
 
 .steps_done_wrapper{
@@ -46,4 +47,76 @@
         margin: 50px auto 30px auto;
     }
     
+}
+.upload_photo_wrapper{
+    top: 150px;
+    margin-left: 619px;
+    margin-right: 619px;
+    width: 180px;
+    height: 550px;
+}
+.step_change_button{
+width: 259px;
+height: 48px;
+border: 1px solid #00A5CD;
+border-radius: 100px;
+padding: 12px 20px;
+}
+/* .step_change_button:hover{
+border: 1px solid #00A5CD;
+background-color: #00A5CD;
+color: #FFF;
+} */
+.camera_icon{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color: grey;
+}
+.enter_bio_wrapper{
+    width:556px;
+    height: 550px;
+    margin-top: 50px;
+    margin-left: 421px;
+}
+.AI_text_button{
+    width: 290px;
+height: 48px;
+border: 1px solid #00A5CD;
+border-radius: 100px;
+padding: 12px 20px;
+background: #FFF;
+}
+.common_step_wrapper{
+    width:360px;
+    height: 550px;
+    margin-top: 50px;
+    margin-left: 540px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.common_input_field{
+    width: 360px;
+    min-height: 44px;
+    border:1px solid #a8a4a4;
+    border-radius: 10px;
+    padding: 5px 8px;
+}
+.delete_icon{
+    position: absolute;
+    top: 25%;
+    right:5%; 
+    color: grey;
+}
+.border{
+    border:1px solid #a8a4a4;
+}
+.add_button{
+    width: 360px;
+    min-height: 44px;
+    border:1px solid #00A5CD;
+    border-radius: 100px;
+    padding: 5px 8px;
+    background: #FFF;
 }
