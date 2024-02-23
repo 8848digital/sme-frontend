@@ -1,11 +1,12 @@
+import { CONSTANTS } from '@/services/config/api-config';
 import axios from 'axios';
-import { CONSTANTS } from '../../config/app-config';
+
 
 const SendEmailOTP = async (email: any) => {
     let response: any;
     const version = CONSTANTS.VERSION;
-    const method = 'send_otp';
-    const entity = 'otp';
+    const method = 'send_email_otp';
+    const entity = 'emailVerification';
 
     const config = {
         headers: {

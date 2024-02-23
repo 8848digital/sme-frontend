@@ -175,3 +175,8 @@ line-height: 45px;
   margin-bottom: 12px;
 }
 
+/* verify email */
+.flexContainer {
+  display: flex;
+  align-items: center;
+}

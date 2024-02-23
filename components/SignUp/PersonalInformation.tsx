@@ -8,17 +8,38 @@ import { translation_text_from_Store } from '@/store/slices/general_slice/transl
 import { useSelector } from 'react-redux';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import EmailOtpCode from './PersonalInfo/EmailOtpCode';
+import SendEmailOTP from '@/services/api/auth_api/get_email_otp_for_registration_api';
+import { toast } from "react-toastify";
 const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalStep, internalStep }: any) => {
     const translationDataFromStore = useSelector(translation_text_from_Store);
     const [currentStep, setCurrentStep] = useState(1);
-
-    const handleNext = () => {
-        setInternalStep(internalStep + 1);
+    
+    const handleSendEmailOtp = async () => {
+        const verifyEmail = await SendEmailOTP(formData.usr);
+        console.log('email verify',verifyEmail);
+        if (verifyEmail?.data?.message?.msg === 'success') {
+            toast.success("Otp sent on you email", {
+                autoClose: 3000,
+                className: "custom-toast", // Close the notification after 3 seconds
+              })
+              setTimeout(()=>{})
+        }else {
+            console.log('email success')
+        }
+    }
+    console.log('verify',formData.usr)
+    const handleNext = async () => {
+        handleSendEmailOtp();
+        setTimeout(()=>{
+            setInternalStep(internalStep + 1);
+        },5000);
     };
 
     const handlePrev = () => {
         setInternalStep(internalStep - 1);
     };
+
 
     return (
 
@@ -32,12 +53,13 @@ const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalS
                 />
             )}
             {internalStep === 2 && (
-                <Step2VarificationCode
-                    formData={formData}
-                    onFormDataChange={onFormDataChange}
-                    setInternalStep={setInternalStep}
-                    internalStep={internalStep}
-                />
+                // <Step2VarificationCode
+                //     formData={formData}
+                //     onFormDataChange={onFormDataChange}
+                //     setInternalStep={setInternalStep}
+                //     internalStep={internalStep}
+                // />
+                <EmailOtpCode/>
             )}
             {internalStep === 3 && (
                 <Step3EnterName
