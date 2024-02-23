@@ -10,22 +10,17 @@ const SelectTechnicalSkills = ({
   bioData,
   onFormDataChange,
   ourSkill,
+  ourLanguage,
   loading,
+  technical,
+  setTechnical,
+  selectedLanguages,
+  setSelectedLanguages,
 }: any) => {
-  const [technical, setTechnical] = useState<any>([
-    {
-      technical_skills: "",
-    },
-  ]);
   const [initialized, setInitialized] = useState(false);
   const [selectedDropdownValue, setSelectedDropdownValue] = useState();
   const [selectDropDownReset, setSelectDropDownReset] = useState(false);
-  const [skillCount, setSkillCount] = useState([1]);
-  const [selectedLanguages, setSelectedLanguages] = useState<any>([
-    {
-      language: "",
-    },
-  ]);
+
   const [initializedLang, setInitializedLang] = useState(false);
   // const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const translationDataFromStore = useSelector(translation_text_from_Store);
@@ -57,33 +52,42 @@ const SelectTechnicalSkills = ({
   }, []);
   // Update the bioData prop when technical change
   useEffect(() => {
-    onFormDataChange(
-      "technical_skills",
-      technical?.map((technical_skills: any) => ({ technical_skills }))
-    );
+    onFormDataChange("technical_skills", technical);
   }, [technical]);
 
   const handleOtherTechSkills = (e: any) => {
     const otherTechSkills = e.target.value;
     onFormDataChange("other_technical_skills", otherTechSkills);
   };
-  const removeRow = (index: number) => {
+  const removeTechnicalRow = (index: number) => {
     const updatedSkill = [...technical];
     updatedSkill.splice(index, 1);
     setTechnical(updatedSkill);
     onFormDataChange("other_technical_skills", updatedSkill);
   };
+  const removeLanguageRow = (index: number) => {
+    const updatedSkill = [...selectedLanguages];
+    updatedSkill.splice(index, 1);
+    setSelectedLanguages(updatedSkill);
+    onFormDataChange("other_languages", updatedSkill);
+  };
   const AddTechnicalSkillRow = () => {
-    setSkillCount([...skillCount, skillCount[skillCount.length - 1] + 1]);
+    const newRow = { technical_skills: "" };
+    setTechnical((prevTechnical: any) => [...prevTechnical, newRow]);
     setSelectDropDownReset(true);
   };
-  console.log(ourSkill, "our skill");
-  useEffect(() => {
-    if (!initializedLang && bioData && bioData.language) {
-      setSelectedLanguages(bioData.language.map((lang: any) => lang.language));
-      setInitializedLang(true);
-    }
-  }, [initialized, bioData]);
+  const AddLangSkillRow = () => {
+    const newRow = { language: "" };
+    setSelectedLanguages((prevTechnical: any) => [...prevTechnical, newRow]);
+    setSelectDropDownReset(true);
+  };
+
+  // useEffect(() => {
+  //   if (!initializedLang && bioData && bioData.language) {
+  //     setSelectedLanguages(bioData.language.map((lang: any) => lang.language));
+  //     setInitializedLang(true);
+  //   }
+  // }, [initialized, bioData]);
   const handleCheckboxChangeLang = useCallback((language: string) => {
     setSelectedLanguages((prevSelectedLanguages: any) => {
       if (prevSelectedLanguages.includes(language)) {
@@ -95,10 +99,7 @@ const SelectTechnicalSkills = ({
   }, []);
   // Update the bioData prop when selectedLanguages change
   useEffect(() => {
-    onFormDataChange(
-      "language",
-      selectedLanguages.map((language: any) => ({ language }))
-    );
+    onFormDataChange("language", selectedLanguages);
   }, [selectedLanguages]);
 
   const handleOtherLanguages = (e: any) => {
@@ -114,33 +115,31 @@ const SelectTechnicalSkills = ({
         </>
       ) : (
         <>
-          <div className={`  ${styles.common_step_wrapper}`}>
+          <div className={` pt-4 ${styles.common_step_wrapper}`}>
             <div className="text-start ">
-              <h5>
-                {translationDataFromStore?.data?.build_your_bio_step3_header}
-              </h5>
-              {ourSkill &&
-                technical?.map((skills: any, index: any) => (
-                  <div key={index}>
-                    <SearchSelectInputField
-                      SkillList={ourSkill}
-                      defaultValue={skills.name}
-                      selectedDropdownValue={selectedDropdownValue}
-                      setSelectedDropdownValue={setSelectedDropdownValue}
-                      placeholder={
-                        translationDataFromStore?.data
-                          ?.build_your_bio_step3_header
-                      }
-                      selectDropDownReset={selectDropDownReset}
-                      setSelectDropDownReset={setSelectDropDownReset}
-                      // handleFieldChange={handleCheckboxChange}
-                      setTechnical={setTechnical}
-                      technical={technical}
-                      removeRow={removeRow}
-                      index={index}
-                    />
-                  </div>
-                ))}
+              <h5>{translationDataFromStore?.data?.bio_skills}</h5>
+              {technical?.map((skills: any, index: any) => (
+                <div key={index}>
+                  <SearchSelectInputField
+                    SkillList={ourSkill}
+                    defaultValue={skills.technical_skills}
+                    selectedDropdownValue={selectedDropdownValue}
+                    setSelectedDropdownValue={setSelectedDropdownValue}
+                    placeholder={
+                      translationDataFromStore?.data
+                        ?.build_your_bio_step3_header
+                    }
+                    selectDropDownReset={selectDropDownReset}
+                    setSelectDropDownReset={setSelectDropDownReset}
+                    // handleFieldChange={handleCheckboxChange}
+                    setTechnical={setTechnical}
+                    technical={technical}
+                    removeRow={removeTechnicalRow}
+                    index={index}
+                    name="technical_skills"
+                  />
+                </div>
+              ))}
             </div>
 
             <div className="">
@@ -154,33 +153,32 @@ const SelectTechnicalSkills = ({
               <h5 className="mt-3">
                 {translationDataFromStore?.data?.build_your_bio_step4_header}
               </h5>
-              {ourSkill &&
-                selectedLanguages.map((skills: any, index: any) => (
-                  <div key={index}>
-                    <SearchSelectInputField
-                      SkillList={selectedLanguages}
-                      defaultValue={skills.name}
-                      selectedDropdownValue={selectedDropdownValue}
-                      setSelectedDropdownValue={setSelectedDropdownValue}
-                      placeholder={
-                        translationDataFromStore?.data
-                          ?.build_your_bio_step4_header
-                      }
-                      selectDropDownReset={selectDropDownReset}
-                      setSelectDropDownReset={setSelectDropDownReset}
-                      handleFieldChange={handleCheckboxChangeLang}
-                      setTechnical={setTechnical}
-                      removeRow={removeRow}
-                      index={index}
-                    />
-                  </div>
-                ))}
+              {selectedLanguages.map((languages: any, index: any) => (
+                <div key={index}>
+                  <SearchSelectInputField
+                    SkillList={ourLanguage}
+                    defaultValue={languages?.language}
+                    selectedDropdownValue={selectedDropdownValue}
+                    setSelectedDropdownValue={setSelectedDropdownValue}
+                    placeholder={
+                      translationDataFromStore?.data
+                        ?.build_your_bio_step4_header
+                    }
+                    selectDropDownReset={selectDropDownReset}
+                    setSelectDropDownReset={setSelectDropDownReset}
+                    setTechnical={setSelectedLanguages}
+                    removeRow={removeLanguageRow}
+                    index={index}
+                    name="language"
+                  />
+                </div>
+              ))}
             </div>
 
             <div className="">
               <AddButton
                 translationDataFromStore={translationDataFromStore}
-                onClick={AddTechnicalSkillRow}
+                onClick={AddLangSkillRow}
               />
             </div>
           </div>

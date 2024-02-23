@@ -96,21 +96,30 @@ const SearchSelectInputField = ({
   };
 
   const handleSelectedOption = (data: any, i: any) => {
+    console.log(data, "selected languages");
     setSelectedDropdownValue(data?.name);
     setShowDropdown(false);
     setSelectedIndex(i !== undefined ? i : -1);
 
-    setTechnical((prevtechnical: any) => {
-      prevtechnical.map((skills: any, id: any) => {
-        if (id === index) {
-          if (skills.includes(data?.name)) {
-            return prevtechnical.filter((lang: any) => lang !== data?.name);
-          } else {
+    setTechnical((prevTechnical: any) => {
+      return prevTechnical.map((skills: any, i: any) => {
+        if (
+          skills?.technical_skills !== data.name ||
+          skills?.language !== data.name
+        ) {
+          if (i === index && name === "technical_skills") {
             return {
               ...skills,
               technical_skills: data?.name,
             };
           }
+          if (i === index && name === "language") {
+            return {
+              ...skills,
+              language: data?.name,
+            };
+          }
+          return skills;
         }
       });
     });
@@ -150,7 +159,7 @@ const SearchSelectInputField = ({
       handleSelectedOption(filterDropdownList[selectedIndex], selectedIndex);
     }
   };
-  const handleFieldChange = (e: any) => {
+  const handleFieldChange = (e: any, index: any) => {
     setShowDropdown(true);
     setSelectedDropdownValue(e.target.value);
     const query = e.target.value;
@@ -160,24 +169,30 @@ const SearchSelectInputField = ({
         return item.name?.toLowerCase()?.indexOf(query?.toLowerCase()) !== -1;
       });
 
-    console.log("updated list after search", updatedFilterList);
-
     setFilterDropdownList(updatedFilterList);
-    setNoRecordsFound(true);
-    setTechnical((prevtechnical: any) => {
-      prevtechnical.map((skills: any, id: any) => {
-        if (id === index) {
-          if (prevtechnical.includes(e.target.value)) {
-            return prevtechnical.filter((lang: any) => lang !== e.target.value);
-          } else {
+    setTechnical((prevTechnical: any) => {
+      return prevTechnical.map((skills: any, i: any) => {
+        if (
+          skills?.technical_skills !== e.target.value ||
+          skills?.language !== e.target.value
+        ) {
+          if (i === index && name === "technical_skills") {
             return {
               ...skills,
               technical_skills: e.target.value,
             };
           }
+          if (i === index && name === "language") {
+            return {
+              ...skills,
+              language: e.target.value,
+            };
+          }
+          return skills;
         }
       });
     });
+
     console.log(technical, "technical in field change");
     handleKeyDown(e);
   };
@@ -201,10 +216,10 @@ const SearchSelectInputField = ({
         className={styles.common_input_field}
         placeholder={placeholder}
         onBlur={HandleClientBlur}
-        onChange={(e) => handleFieldChange(e)}
+        onChange={(e) => handleFieldChange(e, index)}
         onClick={handleDocumentClick}
         onMouseDown={handleShowDropdown}
-        value={selectedDropdownValue}
+        value={defaultValue}
         defaultValue={defaultValue}
         onKeyDown={handleKeyDown}
         autoComplete="off"

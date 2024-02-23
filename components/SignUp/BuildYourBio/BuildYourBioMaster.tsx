@@ -35,6 +35,16 @@ const BuildYourBioMaster = () => {
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
   const translationDataFromStore = useSelector(translation_text_from_Store);
+  const [technical, setTechnical] = useState<any>([
+    {
+      technical_skills: "",
+    },
+  ]);
+  const [selectedLanguages, setSelectedLanguages] = useState<any>([
+    {
+      language: "",
+    },
+  ]);
 
   // console.log(BuildYourBioData);
   const router = useRouter();
@@ -89,11 +99,13 @@ const BuildYourBioMaster = () => {
       setLoggedIn(isLoggedIn);
     }
   }, [router]);
+  const token = "token ce3ae32d700a263:b925e6f7e407c7b";
   const handleSubmit = async () => {
-    if (currentStep === 5) {
+    console.log(bioData, "inside submit");
+    if (currentStep === 3) {
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
-      const response = await BuildYourBioAPI(bioData, accessToken);
+      const response = await BuildYourBioAPI(bioData, token);
 
       if (
         response?.msg === "success" &&
@@ -107,15 +119,15 @@ const BuildYourBioMaster = () => {
           }
         );
         router.push("/profile-complete");
-        setTimeout(() => {
-          if (LoggedIn === "true") {
-            router.push("/account-view");
-            dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-          } else {
-            router.push("/login");
-            dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-          }
-        }, 5000);
+        // setTimeout(() => {
+        //   if (LoggedIn === "true") {
+        //     router.push("/account-view");
+        //     dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+        //   } else {
+        //     router.push("/login");
+        //     dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+        //   }
+        // }, 5000);
       } else if (response.msg === "error") {
         toast.error(translationDataFromStore?.data?.bio_update_error_msg, {
           autoClose: 5000,
@@ -265,7 +277,7 @@ const BuildYourBioMaster = () => {
           <HorizontalLinearStepper activeStep={currentStep} />
         </div>
 
-        <div className="col-12">
+        <div className="col-12 d-flex justify-content-center">
           {currentStep === 0 && (
             <div className={styles.upload_photo_wrapper}>
               <UploadPhoto
@@ -283,9 +295,14 @@ const BuildYourBioMaster = () => {
           {currentStep === 2 && (
             <SelectTechnicalSkills
               ourSkill={ourSkill?.data}
+              ourLanguage={ourLanguage?.data}
               loading={loading}
               bioData={bioData}
               onFormDataChange={handleBioDataChange}
+              technical={technical}
+              setTechnical={setTechnical}
+              selectedLanguages={selectedLanguages}
+              setSelectedLanguages={setSelectedLanguages}
             />
           )}
 
@@ -312,7 +329,7 @@ const BuildYourBioMaster = () => {
                 <button
                   className={` ${styles.step_change_button} bg_blue`}
                   style={{ color: "white" }}
-                  onClick={() => handleSubmit}
+                  onClick={handleSubmit}
                 >
                   {translationDataFromStore?.data?.submit}
                 </button>

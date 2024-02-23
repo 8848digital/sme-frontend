@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import uploadImage from "../../../public/assets/photo_upload_image.png";
+import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 
 const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -48,11 +49,11 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
     setSelectedFile(null);
     onFormDataChange("photo_url", null);
   };
-
+  const token = "token ce3ae32d700a263:b925e6f7e407c7b";
   const uploadFile = async (file: File | null) => {
     if (file) {
       try {
-        const response = await BioUploadFileAPI({ file }, accessToken);
+        const response = await BioUploadFileAPI({ file }, token);
         console.log("Upload Response:", response.file_url);
 
         // Use the upload response as needed (e.g., store it in your form data)
@@ -80,7 +81,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div className="">
+    <div className="container">
       <div className="mt-5 text-center">
         <form onSubmit={handleSubmit}>
           <div className="row mt-3">
@@ -89,7 +90,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                 <LoaderForSkills />
               ) : (
                 <div className={`${styles.selected_file}`}>
-                  <div className="position-relative">
+                  <div className={`${styles.circular_image} position-relative`}>
                     <img
                       src={
                         selectedFile !== null && selectedFile !== undefined
@@ -97,13 +98,22 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                           : uploadImage.src
                       }
                       alt="Selected File"
-                      style={{ width: "120px" }}
+                      style={{ width: "180px" }}
                     />
-                    <span className={`${styles.camera_icon} `}>
-                      <i
-                        className={`fas fa-camera ${styles.camera_icon}`}
-                        style={{ fontSize: "30px" }}
-                      ></i>
+                    <span>
+                      {selectedFile ? (
+                        <span className={styles.edit_icon_wrapper}>
+                          <i
+                            className={`fas fa-edit ${styles.edit_icon}`}
+                            style={{ fontSize: "15px" }}
+                          ></i>
+                        </span>
+                      ) : (
+                        <i
+                          className={`fas fa-camera ${styles.camera_icon}`}
+                          style={{ fontSize: "30px" }}
+                        ></i>
+                      )}
                       <input
                         className={`${styles.camera_icon} `}
                         id="input-file"
