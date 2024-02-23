@@ -259,13 +259,14 @@ const ChangePassword = () => {
                             className="text-blue"
                             style={{ textDecoration: "none" }}
                           >
-                            {translationDataFromStore?.data?.back}
+                            {translationDataFromStore?.data?.cancel}
                           </Link>
                         </button>
                       </div>
                       <div className="col-lg-6 col-md-4">
                         <button type="submit" className="btn btn_blue">
-                          {translationDataFromStore?.data?.change_password_btn}
+                          {translationDataFromStore?.data?.Save}
+                          {/* Save */}
                         </button>
                       </div>
                     </div>

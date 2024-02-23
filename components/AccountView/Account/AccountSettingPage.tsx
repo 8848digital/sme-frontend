@@ -34,6 +34,7 @@ const AccountSettingPage = () => {
   const handleEdit = () => {
     setEditMode(true);
   };
+
   const handleSubmit = async (values: any) => {
     try {
       // Call API to update profile data
@@ -60,14 +61,46 @@ const AccountSettingPage = () => {
         setEditMode(false);
         toast.success(response);
       } else {
-        console.error("Empty response received from API");
-        toast.error("User Does Not Exist.");
+        // console.error("Empty response received from API");
+        // toast.error("User Does Not Exist.");
       }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
-
+  const handleSave = async (values: any) => {
+    try {
+      // Call API to update profile data
+      const response = await UpdateProfileAPI(token.token, {
+        version: "v1",
+        method: "update_profile",
+        entity: "profile",
+        first_name: values.first_name,
+        last_name: values.last_name,
+        email: values.email,
+        phone_no: values.phone_no,
+      });
+      // Handle response
+      console.log(response, "edit");
+      if (response) {
+        // Update profile data in component state
+        setProfileData({
+          first_name: values.first_name,
+          last_name: values.last_name,
+          email: values.email,
+          phone_no: values.phone_no,
+        });
+        // Disable edit mode
+        setEditMode(false);
+        toast.success(response);
+      } else {
+        console.error("Empty response received from API");
+        // toast.error("User Does Not Exist.");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
+  };
   return (
     <div className={`col-md-3 col-lg-5 col-xl-4 mt-4`}>
       {/* <div className="mb-4">
@@ -81,9 +114,7 @@ const AccountSettingPage = () => {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="firstName" className="form-label grey">
-                      {translationDataFromStore?.data?.first_name_placeholder
-                        .split("Enter ")
-                        .pop()}
+                      {translationDataFromStore?.data?.first_name}
                     </label>
                     {editMode ? (
                       <Field
@@ -111,9 +142,7 @@ const AccountSettingPage = () => {
                 <div className="col-md-6">
                   <div className="mb-3">
                     <label htmlFor="lastName" className="form-label grey">
-                      {translationDataFromStore?.data?.last_name_placeholder
-                        .split("Enter ")
-                        .pop()}
+                      {translationDataFromStore?.data?.last_name}
                     </label>
                     {editMode ? (
                       <Field
@@ -201,9 +230,10 @@ const AccountSettingPage = () => {
                   <button
                     className="btn btn_blue"
                     type="submit"
-                    onSubmit={handleSubmit}
+                    // onSubmit={handleSubmit}
+                    onClick={handleSave}
                   >
-                    Save
+                    {translationDataFromStore?.data?.Save}
                   </button>
                 ) : (
                   <button
@@ -211,15 +241,11 @@ const AccountSettingPage = () => {
                     type="button"
                     onClick={handleEdit}
                   >
-                    Edit
+                    {translationDataFromStore?.data?.edit}
                   </button>
                 )}
               </div>
-              <div className="mt-3">
-                {/* <Link href="/account-delete" legacyBehavior> */}
-                <AccounDeletePage />
-                {/* </Link> */}
-              </div>
+              <div className="mt-3">{/* <AccounDeletePage /> */}</div>
             </Form>
           )}
         </Formik>

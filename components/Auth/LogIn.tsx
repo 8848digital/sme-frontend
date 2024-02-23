@@ -104,9 +104,9 @@ const LogIn = () => {
   const { loginThemeData }: any = useLoginTheme();
   console.log("loginThemeData from", loginThemeData);
   return (
-    <div className="container-fuild mt-5 pt-5">
+    <div className="container-fuild ">
       <div className="row">
-        <div className={`col-lg-7 ${styles.main_container}`}>
+        <div className={` col-lg-7 ${styles.main_container}`}>
           <Formik
             initialValues={{
               usr: "",
@@ -127,16 +127,18 @@ const LogIn = () => {
 
                       <div className="col-lg-12 p-0">
                         <p className={styles.login_header}>
-                          {translationDataFromStore?.data?.login_header}
-                          {/* {loginThemeData?.heading} */}
+                          {translationDataFromStore?.data?.log_in}
                         </p>
-                        {/* <p>{loginThemeData?.tag_line}</p> */}
+                        <p className="fs-16 grey fw-400">
+                          {translationDataFromStore?.data?.welcome_back}
+                          {/* Welcome back! Please enter your details. */}
+                        </p>
                       </div>
                       <div className="col-lg-12 p-0">
                         <Form.Group controlId="formName">
-                          <div className="row mt-3">
+                          <div className="row mt-1">
                             <div className="col-md-12">
-                              <label>
+                              <label className="mb-1 grey">
                                 {translationDataFromStore?.data?.email}
                               </label>
                               <TextField
@@ -165,13 +167,10 @@ const LogIn = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formPassword">
-                          <div className="row mt-4">
+                          <div className="row mt-3">
                             <div className="col-md-12">
-                              <label>
-                                {/* Password */}
-                                {translationDataFromStore?.data?.change_password
-                                  .split(" ")
-                                  .pop()}
+                              <label className="mb-1 grey">
+                                {translationDataFromStore?.data?.password}
                               </label>
                               <TextField
                                 onChange={handleChange}
@@ -213,7 +212,7 @@ const LogIn = () => {
                           </div>
                         </Form.Group>
 
-                        <div className="text-end">
+                        <div className="text-end mt-1">
                           <span className="label-color">
                             {/* {translationDataFromStore?.data?.login_forget_text}{" "} */}
                             <Link href="/forget-password" legacyBehavior>
@@ -230,9 +229,9 @@ const LogIn = () => {
                       </div>
 
                       <div
-                        className={`${
+                        className={`mt-5 pt-2 ${
                           isAlertVisible === true ? "login_btn" : ""
-                        } mt-4 mb-3 text-center p-0 `}
+                        } mt-3 mb-3 text-center p-0 `}
                       >
                         <button
                           type="submit"
@@ -246,7 +245,12 @@ const LogIn = () => {
 
                       <div className="text-center">
                         <p>
-                          Dont't have an account?{" "}
+                          <span className="grey fs-16 fw-400 lh-24">
+                            {
+                              translationDataFromStore?.data
+                                ?.donot_have_an_account
+                            }
+                          </span>{" "}
                           <span className={styles.forget_password}>
                             {translationDataFromStore?.data?.signup}
                           </span>
@@ -267,13 +271,21 @@ const LogIn = () => {
           </Formik>
         </div>
 
-        <div className={`col-lg-5 ${styles.img_main_wrapper}`}>
+        <div className={`col-lg-5 p-0 ${styles.img_main_wrapper}`}>
           <div className={styles.img_container}>
             <img
+              className={styles.img_banner}
               src={`${CONSTANTS.API_BASE_URL}${loginThemeData?.main_image}`}
             />
             <div className={styles.img_content}>
-              <p className={styles.img_heading}>{loginThemeData?.heading}</p>
+              <div className="row">
+                <div className="col-xxl-9 col-lg-12 col-md-12">
+                  <p className={styles.img_heading}>
+                    {loginThemeData?.heading}.
+                  </p>
+                </div>
+              </div>
+
               <div className="row">
                 <div className="col-xxl-2 col-xl-3 col-lg-4">
                   <img
