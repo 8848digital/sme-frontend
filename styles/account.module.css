@@ -1,7 +1,14 @@
 .account_wrapper {
-  margin: 50px auto 30px;
-  padding: 1.5rem;
-  max-width: 900px;
+  /* margin: 50px auto 30px; */
+  /* padding: 1.5rem; */
+  /* max-width: 900px; */
+  /* border: 2px solid red; */
+  margin-top: 120px;
+  margin-bottom: 80px;
+}
+
+.tab_wrapper {
+  border-bottom: 1px solid #eaecf0;
 }
 .account_minwrapper {
   margin: 150px auto;
@@ -13,13 +20,13 @@
   justify-content: space-evenly;
 }
 .header_text {
-  position: relative;
-  width: fit-content;
-  font-size: xx-large;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 .header_text::before {
-  position: absolute;
+  /* position: absolute; */
   content: "";
   background: #00b2d4;
   width: 100%;
@@ -41,13 +48,26 @@
   color: #00b2d4;
 }
 
-.li_marker::marker{
+.li_marker::marker {
   color: #00b2d4;
 }
-
-@media (max-width:578px){
+.modal_wrapper {
+  /* width: 400px !important; */
+  /* height: 324px !important; */
+}
+.delete_heading {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.delete_para {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+@media (max-width: 578px) {
   .account_wrapper {
-    margin: 50px auto 30px;
-   
+    /* margin: 50px auto 30px; */
+    margin-top: 102px;
   }
 }

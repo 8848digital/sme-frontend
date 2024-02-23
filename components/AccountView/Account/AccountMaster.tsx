@@ -1,62 +1,66 @@
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/account.module.css";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import Link from "next/link";
+import { useState } from "react";
+import { Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import AccountSettingPage from "./AccountSettingPage";
+import AccountPasswordPage from "./AccountPasswordPage";
+import AccounDeletePage from "./AccountDeletePage";
+import AccountContactUsPage from "./AccountContactUsPage";
 const AccountMaster = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
+  const [activeTab, setActiveTab] = useState("settings");
+
+  const handleSelect = (selectedKey: any) => {
+    setActiveTab(selectedKey);
+  };
 
   return (
     <div className="container">
-      <div className={`card ${styles.account_wrapper} `}>
-        <div className={`mb-4`}>
+      <div className={` ${styles.account_wrapper} `}>
+        <div className={`mb-3`}>
           <h1 className={`${styles.header_text}`}>
             {translationDataFromStore?.data?.account}
           </h1>
         </div>
-        <div className="row justify-content-evenly my-4 mx-2">
-          <div className={`col-md-3 text-center ${styles.account_card}`}>
-            <div className="mb-4">
-              <SupportAgentIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
-            </div>
-            <div className="">
-              <Link
-                href="https://strategicgears.com/contact-us"
-                legacyBehavior
+        <div className={styles.tab_wrapper}>
+          <Nav
+            variant="underline"
+            defaultActiveKey="settings"
+            onSelect={handleSelect}
+          >
+            <Nav.Item className="pe-4">
+              <Nav.Link
+                eventKey="settings"
+                className={`text-capitalize nav_link `}
               >
-                <a target="_blank" className="color  px-3">
-                  {translationDataFromStore?.data?.contact_support}
-                </a>
-              </Link>
-            </div>
-          </div>
-          <div className={`col-md-3 text-center ${styles.account_card} `}>
-            <div className="mb-4">
-              <EditIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
-            </div>
-            <div className="">
-              <Link href="/change-password" legacyBehavior>
-                <a className="color px-3">
-                  {translationDataFromStore?.data?.change_password}
-                </a>
-              </Link>
-            </div>
-          </div>
-          <div className={`col-md-3 text-center ${styles.account_card}`}>
-            <div className="mb-4">
-              <DeleteOutlineIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
-            </div>
-            <div className="">
-              <Link href="/account-delete" legacyBehavior>
-                <a className="color px-3">
-                  {translationDataFromStore?.data?.delete_account}
-                </a>
-              </Link>
-            </div>
-          </div>
+                settings
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="pe-4">
+              <Nav.Link
+                eventKey="password"
+                className={`text-capitalize nav_link `}
+              >
+                {translationDataFromStore?.data?.change_password
+                  ?.split(" ")
+                  ?.pop()}
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                eventKey="contact_support"
+                className={`text-capitalize nav_link `}
+              >
+                {translationDataFromStore?.data?.contact_support}
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
         </div>
+
+        {activeTab === "settings" && <AccountSettingPage />}
+        {activeTab === "password" && <AccountPasswordPage />}
+        {activeTab === "contact_support" && <AccountContactUsPage />}
       </div>
     </div>
   );

@@ -1,39 +1,113 @@
-
-.auth_common_wrapper{
-    margin: 50px auto;
-    max-width: 800px;
-    padding: 20px;
+.auth_common_wrapper {
+  margin: 50px auto;
+  max-width: 800px;
+  padding: 20px;
 }
 
-.login_wrapper{
-    margin: 120px auto;
-    max-width: 500px;
-    padding: 20px;
+.login_wrapper {
+  width: 361px;
+  /* padding: 20px; */
+  /* border: 2px solid green; */
+  height: 573px;
+  /* margin: auto; */
+  margin-top: 120px !important;
 }
-
-.password_wrapper{
-    margin: 120px auto;
-    max-width: 800px;
-    padding: 20px; 
+.login_header {
+  /* border: 2px solid red; */
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-top: 45px;
 }
+.forget_password {
+  color: #005587;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+.btn_log_in {
+  background-color: #00a5cd;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+  color: white;
+}
+.btn_log_in:hover {
+  background-color: #00578a;
+  width: 100%;
+  border-radius: 100px !important;
+  padding: 12 20px !important;
+  color: white;
+}
+.password_wrapper {
+  margin: 120px auto;
+  max-width: 800px;
+  padding: 20px;
+}
+.img_container img {
+  height: 100vh;
+  width: 100%;
+}
+.img_container {
+  position: relative;
+}
+.img_content {
+  position: absolute;
+  padding: 45px;
+  bottom: 0;
 
+  /* padding-bottom: 20px; */
+}
+.img_heading {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 45.65px;
+
+  color: white;
+
+  /* padding-bottom: 20px; */
+}
+.log_content {
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  /* padding-left: 10px; */
+}
+.main_container {
+  /* padding-left: 217px; */
+  display: flex;
+  justify-content: center;
+}
+.logo_circle_img {
+  height: 72px !important;
+  width: 72px !important;
+}
+.password_heading {
+  font-size: 20px;
+  font-size: 400;
+  line-height: 24px;
+}
 /* media */
 
 @media (max-width: 767px) {
-    .auth_common_wrapper {
-        margin: 50px auto;
-    }
-    .login_wrapper{
-        margin: 100px auto;
-    }
-    .custom_btn{
-        display: flex;
-        flex-direction: column;
-
-    }
-    .custom_btn .common_btn{
-       
-        margin: 20px 0 !important;
-        
-    }
+  .auth_common_wrapper {
+    margin: 50px auto;
+  }
+  .login_wrapper {
+    margin: 100px auto;
+  }
+  .custom_btn {
+    display: flex;
+    flex-direction: column;
+  }
+  .custom_btn .common_btn {
+    margin: 20px 0 !important;
+  }
+  .img_main_wrapper {
+    display: none !important;
+  }
+  .login_wrapper {
+    margin-top: 10px !important;
+  }
 }
