@@ -66,8 +66,8 @@ color: #FFF;
 }
 .edit_icon_wrapper {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 20px;
+    right: 10px;
     width: 30px;
     height: 30px;
     background-color: white;

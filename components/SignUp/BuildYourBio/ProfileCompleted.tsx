@@ -134,11 +134,11 @@ const ProfileCompleted = () => {
                 />
               )}
             </div>
-            <div className="mt-4 p-2">
+            {/* <div className="mt-4 p-2">
               <button className={styles.update_button}>
                 {translationDataFromStore?.data?.update}
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* <div className="text-center pt-3 pb-3">
