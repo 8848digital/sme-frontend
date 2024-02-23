@@ -156,7 +156,7 @@ const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalS
                                 }}
                             >
                                 {/* {translationDataFromStore?.data?.next} */}
-                               {internalStep === 2 ? 'Vefiry':'Next'} 
+                               {internalStep === 2 ? 'Verify':'Next'} 
                                 {
                                     document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />
                                 }
