@@ -1,5 +1,6 @@
 .bio_wrapper {
-    margin-top: 50px;
+    margin-top: 110px;
+    padding: 0px 144px ;
 }
 
 .steps_done_wrapper{
@@ -19,7 +20,10 @@
     padding: 10px 0;
 }
 .profile_wrapper{
-    margin: 50px auto 30px auto;
+    width:498px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
 }
 
 .selected_file{
@@ -34,16 +38,151 @@
 }
 /* media */
 
-@media  (max-width:768px) {
+
+.upload_photo_wrapper{
+    top: 150px;
+    width: 200px;
+    height: 500px;
+}
+.step_change_button{
+width: 259px;
+height: 48px;
+border: 1px solid #00A5CD;
+border-radius: 100px;
+padding: 12px 20px;
+margin-bottom: 10px;
+}
+/* .step_change_button:hover{
+border: 1px solid #00A5CD;
+background-color: #00A5CD;
+color: #FFF;
+} */
+.camera_icon{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color: grey;
+}
+.edit_icon_wrapper {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .edit_icon {
+    font-size: 10px;
+    color: #333; /* Change the color of the edit icon as needed */
+  }
+.enter_bio_wrapper{
+    width:556px;
+    height: 500px;
+    /* margin-top: 50px; */
+}
+.AI_text_button{
+    width: 290px;
+height: 48px;
+border: 1px solid #00A5CD;
+border-radius: 100px;
+padding: 12px 20px;
+background: #FFF;
+}
+.common_step_wrapper{
+    width:360px;
+    height: 500px;
+    /* margin-top: 50px; */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.common_input_field{
+    width: 360px;
+    min-height: 44px;
+    border:1px solid #a8a4a4;
+    border-radius: 10px;
+    padding: 5px 8px;
+}
+.delete_icon{
+    position: absolute;
+    top: 25%;
+    right:5%; 
+    color: grey;
+}
+.border{
+    border:1px solid #a8a4a4;
+}
+.add_button{
+    width: 360px;
+    min-height: 44px;
+    border:1px solid #00A5CD;
+    border-radius: 100px;
+    padding: 5px 8px;
+    background: #FFF;
+}
+.circular_image {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 180px;
+    height: 180px;
+}
+  
+.circular_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile_completed_input{
+    width: 498px;   
+    margin-top: 10px;
+    line-height: 24px;
+    background-color: #FFF;
+}
+.update_button{
+    width: 498px;
+    height: 48px;
+    background-color: #00A5CD;
+    color: #FFF;
+    border: 1px solid #00A5CD;
+    border-radius: 100px;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    }
+@media  (max-width:576px) {
 
     .bio_wrapper {
-        margin-top: 50px;
+        margin-top: 120px;
+        padding: 0px 20px ;
     }
-    .steps_done_wrapper{
-        margin: 50px auto;
+    .upload_photo_wrapper{
+        height: 410px;
     }
-    .profile_wrapper{
-        margin: 50px auto 30px auto;
+    .step_change_button{
+        width: 360px;
+        margin-bottom: 10px;
+    }
+    .common_step_wrapper{
+        height: 410px;
     }
     
+    
+}
+@media(max-width:320px){
+    .step_change_button{
+        width: 300px;
+        margin-bottom: 10px;
+    }
+    .add_button{
+        width: 296px;       
+    }
+    .common_input_field{
+        width: 296px;
+        
+    }
 }

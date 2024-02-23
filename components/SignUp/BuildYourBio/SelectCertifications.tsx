@@ -7,26 +7,19 @@ const SelectCertifications = ({ bioData, onFormDataChange }: any) => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
-    <div className="container">
-      <div
-        className={`card p-4 ${styles.common_bio_wrapper}`}
-        style={{ maxWidth: "900px" }}
-      >
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center mt-4 mb-3">
-              <h1>
-                {
-                  translationDataFromStore?.data
-                    ?.build_your_bio_step5_certification_name
-                }
-              </h1>
-            </div>
-            <CodingCertificationChildTable
-              bioData={bioData}
-              onFormDataChange={onFormDataChange}
-            />
-          </div>
+    <div className={styles.common_step_wrapper}>
+      <div className="col-12 p-0">
+        <div className=" mt-4 mb-3 text-start">
+          <h5>
+            {
+              translationDataFromStore?.data
+                ?.build_your_bio_step5_certification_name
+            }
+          </h5>
+          <CodingCertificationChildTable
+            bioData={bioData}
+            onFormDataChange={onFormDataChange}
+          />
         </div>
       </div>
     </div>
