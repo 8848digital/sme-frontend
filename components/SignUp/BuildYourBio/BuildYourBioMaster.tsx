@@ -119,15 +119,15 @@ const BuildYourBioMaster = () => {
           }
         );
         router.push("/profile-complete");
-        // setTimeout(() => {
-        //   if (LoggedIn === "true") {
-        //     router.push("/account-view");
-        //     dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-        //   } else {
-        //     router.push("/login");
-        //     dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-        //   }
-        // }, 5000);
+        setTimeout(() => {
+          if (LoggedIn === "true") {
+            router.push("/account-view");
+            dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+          } else {
+            router.push("/login");
+            dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
+          }
+        }, 5000);
       } else if (response.msg === "error") {
         toast.error(translationDataFromStore?.data?.bio_update_error_msg, {
           autoClose: 5000,
