@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import styles from "@/styles/account.module.css";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
@@ -9,6 +9,7 @@ import useProfile from "@/hooks/profile_hooks/profile_hooks";
 import AccounDeletePage from "./AccountDeletePage";
 import UpdateProfileAPI from "@/services/api/account_api/update_profile_api";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
+import { toast } from "react-toastify";
 
 const AccountSettingPage = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
@@ -19,9 +20,15 @@ const AccountSettingPage = () => {
     email: "",
   };
   const { profileData }: any = useProfile();
+  const [profileDatas, setProfileData] = useState(null);
+  useEffect(() => {
+    if (profileData) {
+      setProfileData(profileData);
+    }
+  }, [profileData]);
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
-  console.log("profileData", profileData);
+  console.log("profileData", profileDatas);
   const [editMode, setEditMode] = useState(false);
 
   const handleEdit = () => {
@@ -30,19 +37,32 @@ const AccountSettingPage = () => {
   const handleSubmit = async (values: any) => {
     try {
       // Call API to update profile data
-      const response = await UpdateProfileAPI(token, {
+      const response = await UpdateProfileAPI(token.token, {
         version: "v1",
         method: "update_profile",
         entity: "profile",
-        email: values.email_id,
         first_name: values.first_name,
         last_name: values.last_name,
+        email: values.email,
         phone_no: values.phone_no,
       });
       // Handle response
       console.log(response, "edit");
-      // Disable edit mode
-      setEditMode(false);
+      if (response) {
+        // Update profile data in component state
+        setProfileData({
+          first_name: values.first_name,
+          last_name: values.last_name,
+          email: values.email,
+          phone_no: values.phone_no,
+        });
+        // Disable edit mode
+        setEditMode(false);
+        toast.success(response);
+      } else {
+        console.error("Empty response received from API");
+        toast.error("User Does Not Exist.");
+      }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
@@ -78,8 +98,7 @@ const AccountSettingPage = () => {
                         className="form-control"
                         id="firstName"
                         name="first_name"
-                        value={profileData?.first_name}
-                        disabled
+                        value={profileDatas?.first_name}
                       />
                     )}
                     {/* <ErrorMessage
@@ -109,8 +128,7 @@ const AccountSettingPage = () => {
                         className="form-control"
                         id="lastName"
                         name="last_name"
-                        value={profileData?.last_name}
-                        disabled
+                        value={profileDatas?.last_name}
                       />
                     )}
 
@@ -140,8 +158,7 @@ const AccountSettingPage = () => {
                     className="form-control"
                     id="phoneNumber"
                     name="phone_no"
-                    value={profileData?.phone_no}
-                    disabled
+                    value={profileDatas?.phone_no}
                   />
                 )}
                 {/* <ErrorMessage
@@ -159,16 +176,15 @@ const AccountSettingPage = () => {
                     type="email"
                     className="form-control"
                     id="email"
-                    name="email_id"
+                    name="email"
                   />
                 ) : (
                   <input
                     type="email"
                     className="form-control"
                     id="email"
-                    name="email_id"
-                    value={profileData?.email_id}
-                    disabled
+                    name="email"
+                    value={profileDatas?.email_id || profileDatas?.email}
                   />
                 )}
                 {/* <ErrorMessage
@@ -181,26 +197,23 @@ const AccountSettingPage = () => {
                 Submit
               </button> */}
               <div className="pt-3">
-                {!editMode ? ( // Show edit button only when not in edit mode
+                {editMode ? ( // Show "Save" button when in edit mode
                   <button
-                    className="btn  btn_blue "
+                    className="btn btn_blue"
+                    type="submit"
+                    onSubmit={handleSubmit}
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn_blue"
                     type="button"
                     onClick={handleEdit}
                   >
                     Edit
                   </button>
-                ) : (
-                  <button className="btn  btn_blue " type="submit">
-                    Save
-                  </button>
                 )}
-                {/* <button
-                  className="btn  btn_blue "
-                  type="submit"
-                  onClick={handleEdit}
-                >
-                  Edit
-                </button> */}
               </div>
               <div className="mt-3">
                 {/* <Link href="/account-delete" legacyBehavior> */}
