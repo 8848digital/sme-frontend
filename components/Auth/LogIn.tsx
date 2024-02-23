@@ -251,8 +251,10 @@ const LogIn = () => {
                                 ?.donot_have_an_account
                             }
                           </span>{" "}
-                          <span className={styles.forget_password}>
+                          <span>
+                            <Link href='/wizard-master'  className={styles.forget_password}>
                             {translationDataFromStore?.data?.signup}
+                            </Link>
                           </span>
                         </p>
                       </div>

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import styles from "@/styles/signupmodal.module.css"
 import featuedIconImg from "@/public/assets/modal_first_icon.png"
 import SignUpLaterModal from './SignUpLaterModal';
+import { useRouter } from 'next/router';
 const SignUpStartModal = ({ show, onHide }: any) => {
     const [showLaterModal, setShowLaterModal] = useState(false); // State to manage visibility of SignUpLaterModal
     const translationDataFromStore = useSelector(translation_text_from_Store);
@@ -15,6 +16,11 @@ const SignUpStartModal = ({ show, onHide }: any) => {
         setShowLaterModal(true); // Show SignUpLaterModal when "Later" button is clicked
         onHide();
     };
+    const router = useRouter();
+    const handleStart = () => {
+        router.push('/wizard-master')
+        onHide();
+    }
     return (
         <div>
             <Modal show={show} dialogClassName={styles['custom-modal-dialog']} contentClassName={styles['custom-modal-content']} onHide={onHide}>
@@ -46,7 +52,7 @@ const SignUpStartModal = ({ show, onHide }: any) => {
                             </div>
                             <div>
 
-                                <Link href="/wizard-master" className={`btn ${styles.start_btn}`}>
+                                <Link href="/wizard-master" className={`btn ${styles.start_btn}`} onClick={handleStart}>
                                     <span className={styles.centeredText}>{translationDataFromStore?.data?.start}</span>
                                 </Link>
                             </div>

@@ -103,7 +103,7 @@ const LandingPage = () => {
                               className={`btn ${styles.get_started_btn} `}
                               type="button"
                               onClick={() => {
-                                router.push("/");
+                                router.push("/wizard-master");
                               }}
                             >
                               {landingData?.label_for_button}
