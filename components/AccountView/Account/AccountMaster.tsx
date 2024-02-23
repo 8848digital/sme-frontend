@@ -34,7 +34,7 @@ const AccountMaster = () => {
                 eventKey="settings"
                 className={`text-capitalize nav_link `}
               >
-                settings
+                {translationDataFromStore?.data?.settings}
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className="pe-4">
@@ -42,9 +42,7 @@ const AccountMaster = () => {
                 eventKey="password"
                 className={`text-capitalize nav_link `}
               >
-                {translationDataFromStore?.data?.change_password
-                  ?.split(" ")
-                  ?.pop()}
+                {translationDataFromStore?.data?.password}
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>

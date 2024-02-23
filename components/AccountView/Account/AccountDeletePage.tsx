@@ -58,7 +58,8 @@ const AccounDeletePage = () => {
             </div>
             <div className="col-md-6">
               <button onClick={handleClose} className="btn btn_red">
-                {translationDataFromStore?.data?.delete_row_btn.split(" ")[0]}
+                {/* {translationDataFromStore?.data?.delete_row_btn.split(" ")[0]} */}
+                Delete
               </button>
             </div>
           </div>

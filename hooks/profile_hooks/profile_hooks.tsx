@@ -43,6 +43,10 @@ const useProfile = () => {
     getProfileData();
   }, [language_abbr]);
 
+  useEffect(() => {
+    getProfileData();
+  }, []);
+
   return { profileData, loading: profileFromStore?.loading };
 };
 

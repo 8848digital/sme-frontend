@@ -10,20 +10,21 @@
   /* border: 2px solid green; */
   height: 573px;
   /* margin: auto; */
-  margin-top: 120px !important;
+  margin-top: 180px !important;
 }
 .login_header {
   /* border: 2px solid red; */
   font-size: 32px;
   font-weight: 600;
   line-height: 24px;
-  margin-top: 45px;
+  margin-top: 55px;
 }
 .forget_password {
   color: #005587;
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
+  cursor: pointer;
 }
 .btn_log_in {
   background-color: #00a5cd;
@@ -44,9 +45,11 @@
   max-width: 800px;
   padding: 20px;
 }
-.img_container img {
-  height: 100vh;
+.img_container .img_banner {
+  height: 110vh;
+  /* width: 655px !important; */
   width: 100%;
+  text-align: end;
 }
 .img_container {
   position: relative;
@@ -59,7 +62,7 @@
   /* padding-bottom: 20px; */
 }
 .img_heading {
-  font-size: 36px;
+  font-size: 33px;
   font-weight: 500;
   line-height: 45.65px;
 
@@ -95,7 +98,7 @@
     margin: 50px auto;
   }
   .login_wrapper {
-    margin: 100px auto;
+    margin-top: 120px;
   }
   .custom_btn {
     display: flex;

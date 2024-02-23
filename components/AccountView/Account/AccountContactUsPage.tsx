@@ -27,22 +27,20 @@ const AccountContactUsPage = () => {
                   <div>
                     <div>
                       <span className="text-capitalize">
-                        {
-                          translationDataFromStore?.data?.phone_number.split(
-                            " "
-                          )[0]
-                        }
-                        :
+                        {translationDataFromStore?.data?.phone}
                       </span>
                       <span className="ps-2 grey">{ele?.Phone}</span>
                     </div>
                     <div>
-                      <span className="text-capitalize">careers:</span>{" "}
+                      <span className="text-capitalize">
+                        {" "}
+                        {translationDataFromStore?.data?.careers}:
+                      </span>{" "}
                       <span className="ps-2 grey">{ele?.careers_mail_id}</span>
                     </div>
                     <div>
                       <span className="text-capitalize">
-                        business enquiries:
+                        {translationDataFromStore?.data?.business_enquiries}:
                       </span>
                       <span className="ps-2 grey">
                         {ele?.business_enquiries_mail_id}
@@ -54,7 +52,10 @@ const AccountContactUsPage = () => {
             })}
           </div>
           <div className="col-lg-2 col-md-4">
-            <p className="text-capitalize fs-20 lh-24 fw-400">Get in touch:</p>
+            <p className="text-capitalize fs-20 lh-24 fw-400">
+              {" "}
+              {translationDataFromStore?.data?.get_in_touch}:
+            </p>
             <div className="btn btn_blue">
               <Link href="https://strategicgears.com/contact-us" legacyBehavior>
                 <a target="_blank" className="text-white text-decoration-none">

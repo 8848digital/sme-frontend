@@ -24,6 +24,10 @@ const useContactSupport = () => {
     getcontactSupportData();
   }, [language_abbr]);
 
+  useEffect(() => {
+    getcontactSupportData();
+  }, []);
+
   return {
     contactSupport,
   };
