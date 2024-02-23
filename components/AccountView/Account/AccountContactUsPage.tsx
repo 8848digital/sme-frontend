@@ -51,7 +51,7 @@ const AccountContactUsPage = () => {
               );
             })}
           </div>
-          <div className="col-lg-2 col-md-4">
+          <div className={`col-lg-2 col-md-4 ${styles.get_in_touch_wrapper}`}>
             <p className="text-capitalize fs-20 lh-24 fw-400">
               {" "}
               {translationDataFromStore?.data?.get_in_touch}:

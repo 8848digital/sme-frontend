@@ -264,7 +264,10 @@ const ChangePassword = () => {
                         </button>
                       </div>
                       <div className="col-lg-6 col-md-4">
-                        <button type="submit" className="btn btn_blue">
+                        <button
+                          type="submit"
+                          className="btn btn_blue btn_blue_mob"
+                        >
                           {translationDataFromStore?.data?.Save}
                           {/* Save */}
                         </button>

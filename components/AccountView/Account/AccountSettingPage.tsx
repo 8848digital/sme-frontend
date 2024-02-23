@@ -13,17 +13,19 @@ import { toast } from "react-toastify";
 
 const AccountSettingPage = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
-  const initialValues = {
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    email: "",
-  };
+
   const { profileData }: any = useProfile();
-  const [profileDatas, setProfileData] = useState(null);
+  const [profileDatas, setProfileDatas] = useState<any>(null);
+  const initialValues = {
+    first_name: profileData?.first_name,
+    last_name: profileData?.last_name,
+    email: profileData?.email,
+    phone_no: profileData?.phone_no,
+  };
+
   useEffect(() => {
     if (profileData) {
-      setProfileData(profileData);
+      setProfileDatas(profileData);
     }
   }, [profileData]);
   const token = useSelector(get_access_token);
@@ -34,78 +36,54 @@ const AccountSettingPage = () => {
   const handleEdit = () => {
     setEditMode(true);
   };
-
-  const handleSubmit = async (values: any) => {
-    try {
-      // Call API to update profile data
-      const response = await UpdateProfileAPI(token.token, {
-        version: "v1",
-        method: "update_profile",
-        entity: "profile",
-        first_name: values.first_name,
-        last_name: values.last_name,
-        email: values.email,
-        phone_no: values.phone_no,
-      });
-      // Handle response
-      console.log(response, "edit");
-      if (response) {
-        // Update profile data in component state
-        setProfileData({
-          first_name: values.first_name,
-          last_name: values.last_name,
-          email: values.email,
-          phone_no: values.phone_no,
-        });
-        // Disable edit mode
-        setEditMode(false);
-        toast.success(response);
-      } else {
-        // console.error("Empty response received from API");
-        // toast.error("User Does Not Exist.");
-      }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProfileDatas({
+      ...profileDatas,
+      [name]: e.target.value,
+    });
   };
+  const handleSubmit = async (values: any) => {};
+
   const handleSave = async (values: any) => {
     try {
-      // Call API to update profile data
       const response = await UpdateProfileAPI(token.token, {
         version: "v1",
         method: "update_profile",
         entity: "profile",
-        first_name: values.first_name,
-        last_name: values.last_name,
-        email: values.email,
-        phone_no: values.phone_no,
+        first_name: profileDatas?.first_name,
+        last_name: profileDatas?.last_name,
+        email: profileDatas?.email_id || profileDatas?.email,
+        phone_no: profileDatas?.phone_no,
       });
-      // Handle response
+
       console.log(response, "edit");
       if (response) {
         // Update profile data in component state
-        setProfileData({
-          first_name: values.first_name,
-          last_name: values.last_name,
-          email: values.email,
-          phone_no: values.phone_no,
+        setProfileDatas({
+          first_name: profileDatas?.first_name,
+          last_name: profileDatas?.last_name,
+          email: profileDatas?.email_id || profileDatas?.email,
+          phone_no: profileDatas?.phone_no,
         });
+
         // Disable edit mode
         setEditMode(false);
         toast.success(response);
       } else {
         console.error("Empty response received from API");
-        // toast.error("User Does Not Exist.");
+        toast.error("User Does Not Exist.");
       }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
+
   return (
     <div className={`col-md-3 col-lg-5 col-xl-4 mt-4`}>
-      {/* <div className="mb-4">
-        <DeleteOutlineIcon sx={{ fontSize: "45px", color: "#00b2d4" }} />
-      </div> */}
+      <p className="fs-20 fw-400 lh-24">
+        {translationDataFromStore?.data?.additional_information}:
+      </p>
       <div>
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
           {({ errors, touched }) => (
@@ -122,6 +100,8 @@ const AccountSettingPage = () => {
                         className="form-control"
                         id="firstName"
                         name="first_name"
+                        onChange={handleChange}
+                        value={profileDatas?.first_name}
                       />
                     ) : (
                       <input
@@ -150,6 +130,8 @@ const AccountSettingPage = () => {
                         className="form-control"
                         id="lastName"
                         name="last_name"
+                        onChange={handleChange}
+                        value={profileDatas?.last_name}
                       />
                     ) : (
                       <input
@@ -180,6 +162,8 @@ const AccountSettingPage = () => {
                     className="form-control"
                     id="phoneNumber"
                     name="phone_no"
+                    onChange={handleChange}
+                    value={profileDatas?.phone_no}
                   />
                 ) : (
                   <input
@@ -206,6 +190,8 @@ const AccountSettingPage = () => {
                     className="form-control"
                     id="email"
                     name="email"
+                    onChange={handleChange}
+                    value={profileDatas?.email_id || profileDatas?.email}
                   />
                 ) : (
                   <input
@@ -230,7 +216,6 @@ const AccountSettingPage = () => {
                   <button
                     className="btn btn_blue"
                     type="submit"
-                    // onSubmit={handleSubmit}
                     onClick={handleSave}
                   >
                     {translationDataFromStore?.data?.Save}
