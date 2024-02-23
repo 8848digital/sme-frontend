@@ -283,8 +283,6 @@ const WizardMaster = () => {
 
   console.log("signup form data", stepFormData);
   const handleSubmit = async () => {
-    if (validateStep7()) {
-      if (currentStep === 7) {
         dispatch(setFormData(stepFormData) as any);
         // You can submit the data to your API or perform other actions here
         try {
@@ -315,8 +313,7 @@ const WizardMaster = () => {
           // Handle any unexpected errors
           console.error("API request error:", error);
         }
-      }
-    }
+
   };
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
   return (
@@ -367,6 +364,7 @@ const WizardMaster = () => {
                     setStep={setCurrentStep}
                     setInternalStep={setInternalStep}
                     internalStep={internalStep}
+                    handleSubmit={handleSubmit}
                   />
                 )}
               </div>

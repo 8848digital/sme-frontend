@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Step3of3EnterRates from './Preferences/Step7EnterRates';
 const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
   setStep, setInternalStep, internalStep, preference, preferenceLoading,
-  priceBasisLoading, priceBasis }: any) => {
+  priceBasisLoading, priceBasis ,handleSubmit }: any) => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
   const [currentStep, setCurrentStep] = useState(1);
   const router = useRouter();
@@ -25,7 +25,8 @@ const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
   };
 
   const handleStepSubmit = () => {
-    router.push("/steps-done");
+    // router.push("/steps-done");
+    handleSubmit();
   };
 
   return (
@@ -57,7 +58,7 @@ const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
             {currentStep === 1 ? (
               <button
                 className={`btn ${styles.next_button}`}
-                onClick={handleNext}
+                onClick={handleStepSubmit}
               >
                 {translationDataFromStore?.data?.next}
                 {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />}

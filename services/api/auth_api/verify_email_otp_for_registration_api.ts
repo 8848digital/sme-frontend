@@ -1,11 +1,12 @@
+import { CONSTANTS } from '@/services/config/api-config';
 import axios from 'axios';
-import { CONSTANTS } from '../../config/app-config';
 
-const SendEmailVerifyOTP = async (otp:number,email: any) => {
+
+const VerifyEmailOTP = async (otp:number,email: any) => {
     let response: any;
     const version = CONSTANTS.VERSION;
     const method = 'verify_otp';
-    const entity = 'otp';
+    const entity = 'emailVerification';
 
     const config = {
         headers: {
@@ -45,7 +46,7 @@ const SendEmailVerifyOTP = async (otp:number,email: any) => {
 };
 
 
-export default SendEmailVerifyOTP;
+export default VerifyEmailOTP;
 
 
 

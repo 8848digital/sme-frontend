@@ -28,7 +28,8 @@ const SmeRegistrationApi = async (request:any) => {
         hourly_rates:request.hourly_rates,
         price_basis:request.price_basis,
         academic_background:request.academic_background,
-        professional_experience:request.professional_experience
+        professional_experience:request.professional_experience,
+        candidate_details:request.candidate_details
       };
 
       await axios

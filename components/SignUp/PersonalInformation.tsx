@@ -11,33 +11,81 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EmailOtpCode from './PersonalInfo/EmailOtpCode';
 import SendEmailOTP from '@/services/api/auth_api/get_email_otp_for_registration_api';
 import { toast } from "react-toastify";
+import VerifyEmailOTP from '@/services/api/auth_api/verify_email_otp_for_registration_api';
 const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalStep, internalStep }: any) => {
     const translationDataFromStore = useSelector(translation_text_from_Store);
     const [currentStep, setCurrentStep] = useState(1);
-    
+     
     const handleSendEmailOtp = async () => {
         const verifyEmail = await SendEmailOTP(formData.usr);
-        console.log('email verify',verifyEmail);
+        console.log('email verify', verifyEmail);
         if (verifyEmail?.data?.message?.msg === 'success') {
             toast.success("Otp sent on you email", {
                 autoClose: 3000,
                 className: "custom-toast", // Close the notification after 3 seconds
-              })
-              setTimeout(()=>{})
-        }else {
+            })
+            setTimeout(()=>{
+                setInternalStep(internalStep + 1);
+            },5000)
+        } else {
             console.log('email success')
         }
     }
-    console.log('verify',formData.usr)
+
+    const [otpValues, setOtpValues] = useState<any>(['', '', '', '', '', '']);
+
+    const handleChange = (index: number, event: any) => {
+        const value = event.target.value;
+        if (!isNaN(Number(value)) && value.length <= 1) {
+            const updatedOtpValues = [...otpValues];
+            updatedOtpValues[index] = value;
+            setOtpValues(updatedOtpValues);
+            if (index < 5 && value !== '') {
+                const nextInput = document.getElementById(`otp-input-${index + 1}`) as HTMLInputElement;
+                if (nextInput) nextInput.focus();
+            }
+        }
+    };
+    const handleVerifyEmailOtp = async () => {
+        const otpString = otpValues.join('');
+        const verifyEmail = await VerifyEmailOTP(otpString, formData.usr);
+        console.log('email verify', verifyEmail);
+        // setInternalStep(internalStep + 1);
+        if (verifyEmail?.data?.message?.msg === 'success') {
+            toast.success("Otp verified", {
+                autoClose: 3000,
+                className: "custom-toast",
+            })
+            setTimeout(() => {
+                setInternalStep(internalStep + 1);
+             },5000)
+        } else if (verifyEmail?.data?.message?.msg === 'error') {
+            console.log('otp error')
+        }else {
+            console.log('otp error else')
+        }
+    }
+
+    console.log('verify', formData.usr)
     const handleNext = async () => {
-        handleSendEmailOtp();
-        setTimeout(()=>{
-            setInternalStep(internalStep + 1);
-        },5000);
+        setInternalStep(internalStep + 1);
+        // if(internalStep === 1) {
+        //     handleSendEmailOtp();
+        //     setTimeout(() => {
+        //         setInternalStep(internalStep + 1);
+        //     }, 5000);
+        // } {
+        //     setInternalStep(internalStep + 1);
+        // }
     };
 
     const handlePrev = () => {
-        setInternalStep(internalStep - 1);
+        if (internalStep === 3){
+            setInternalStep(internalStep - 2);
+        }else {
+            setInternalStep(internalStep - 1);
+        }
+            
     };
 
 
@@ -53,16 +101,16 @@ const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalS
                 />
             )}
             {internalStep === 2 && (
-                // <Step2VarificationCode
-                //     formData={formData}
-                //     onFormDataChange={onFormDataChange}
-                //     setInternalStep={setInternalStep}
-                //     internalStep={internalStep}
-                // />
-                <EmailOtpCode/>
+
+                <EmailOtpCode
+                    setOtpValues={setOtpValues}
+                    otpValues={otpValues}
+                    handleChange={handleChange}
+                    handleSendEmailOtp={handleSendEmailOtp}
+                />
             )}
             {internalStep === 3 && (
-                <Step3EnterName
+                <Step2VarificationCode
                     formData={formData}
                     onFormDataChange={onFormDataChange}
                     setInternalStep={setInternalStep}
@@ -70,6 +118,14 @@ const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalS
                 />
             )}
             {internalStep === 4 && (
+                <Step3EnterName
+                    formData={formData}
+                    onFormDataChange={onFormDataChange}
+                    setInternalStep={setInternalStep}
+                    internalStep={internalStep}
+                />
+            )}
+            {internalStep === 5 && (
                 <Step2of3UploadCv
                     formData={formData}
                     onFormDataChange={onFormDataChange}
@@ -82,12 +138,25 @@ const PersonalInformation = ({ formData, onFormDataChange, setStep, setInternalS
                 <div className={styles.button_wrapper}>
 
                     <div className="mb-3 ">
-                        {internalStep !== 4 ? (
+                        {internalStep !== 5 ? (
+
                             <button
                                 className={`btn ${styles.next_button}`}
-                                onClick={handleNext}
+                                onClick={() => {
+                                    if(internalStep === 1)
+                                    {
+                                        handleSendEmailOtp();
+                                    }
+                                    else if (internalStep === 2) {
+                                        handleVerifyEmailOtp();
+                                    } else {
+                                        
+                                        handleNext();
+                                    }
+                                }}
                             >
-                                {translationDataFromStore?.data?.next}
+                                {/* {translationDataFromStore?.data?.next} */}
+                               {internalStep === 2 ? 'Vefiry':'Next'} 
                                 {
                                     document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />
                                 }
