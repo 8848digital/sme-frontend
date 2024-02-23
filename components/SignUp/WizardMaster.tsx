@@ -283,36 +283,36 @@ const WizardMaster = () => {
 
   console.log("signup form data", stepFormData);
   const handleSubmit = async () => {
-        dispatch(setFormData(stepFormData) as any);
-        // You can submit the data to your API or perform other actions here
-        try {
-          const response = await SmeRegistrationApi(stepFormData);
-          console.log("form Data values in render file api res", response);
-          dispatch(setSignUpUserAccessToken(response));
-          if (response.msg === "success") {
-            setLoginbtnLoader(true);
-            // Handle the success response, e.g., show a success message or redirect the user
-            console.log("API Response:", response);
-            toast.success(`${response.data}`, {
-              autoClose: 5000, // Time in milliseconds (5 seconds)
-              className: "custom-toast", // Close the notification after 3 seconds
-            });
-            router.push("/steps-done");
-            dispatch(resetFormData());
-          } else if (response.msg === "error") {
-            setLoginbtnLoader(false);
+    dispatch(setFormData(stepFormData) as any);
+    // You can submit the data to your API or perform other actions here
+    try {
+      const response = await SmeRegistrationApi(stepFormData);
+      console.log("form Data values in render file api res", response);
+      dispatch(setSignUpUserAccessToken(response));
+      if (response.msg === "success") {
+        setLoginbtnLoader(true);
+        // Handle the success response, e.g., show a success message or redirect the user
+        console.log("API Response:", response);
+        toast.success(`${response.data}`, {
+          autoClose: 5000, // Time in milliseconds (5 seconds)
+          className: "custom-toast", // Close the notification after 3 seconds
+        });
+        router.push("/steps-done");
+        dispatch(resetFormData());
+      } else if (response.msg === "error") {
+        setLoginbtnLoader(false);
 
-            // Handle the failure or error case, e.g., show an error message to the user
-            toast.error(`${response.error}`, {
-              autoClose: 5000, // Time in milliseconds (5 seconds)
-              className: "custom-toast", // Close the notification after 3 seconds
-            });
-            console.error("API request failed");
-          }
-        } catch (error) {
-          // Handle any unexpected errors
-          console.error("API request error:", error);
-        }
+        // Handle the failure or error case, e.g., show an error message to the user
+        toast.error(`${response.error}`, {
+          autoClose: 5000, // Time in milliseconds (5 seconds)
+          className: "custom-toast", // Close the notification after 3 seconds
+        });
+        console.error("API request failed");
+      }
+    } catch (error) {
+      // Handle any unexpected errors
+      console.error("API request error:", error);
+    }
 
   };
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
@@ -368,48 +368,6 @@ const WizardMaster = () => {
                   />
                 )}
               </div>
-              {/* 
-              <div className="row">
-                <div className="col-12 d-flex justify-content-center">
-                  <div className={styles.button_wrapper}>
-                    <div className="">
-                      <div>
-                        {currentStep > 0 && (
-                          <button
-                            className={`btn ${styles.prev_button}`}
-                            onClick={handlePrevious}
-                          >
-                            {
-                              document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />
-                            }
-
-                            {translationDataFromStore?.data?.previous}
-                          </button>
-                        )}
-                      </div>
-                      <div className="mt-3">
-                        {currentStep < 6 ? (
-                          <button
-                            className={`btn ${styles.next_button}`}
-                            onClick={handleNext}
-                          >
-                            {translationDataFromStore?.data?.next}
-                            {
-                              document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />
-                            }
-                          </button>
-                        ) : (
-                          <button className="btn btn-next" onClick={handleSubmit}>
-                            {translationDataFromStore?.data?.submit}
-                          </button>
-                        )}
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
           <div className={`col-md-4 col-lg-4 stepper_css ${styles.stepper_bg}`}>
@@ -439,16 +397,16 @@ const WizardMaster = () => {
                 </div>
                 <div className={styles.tagline_content}>
 
-                <div >
-                  <Image
-                    src={tagLine.src}
-                    alt='tag line logo'
-                    width={isSmallScreen ? 48 : 72}
-                    height={isSmallScreen ? 48 : 72} />
-                </div>
-                <div className="ms-3">
-                  <p className="mb-0">Strategic Gears: Crafting success for all entities in diverse markets.</p>
-                </div>
+                  <div >
+                    <Image
+                      src={tagLine.src}
+                      alt='tag line logo'
+                      width={isSmallScreen ? 48 : 72}
+                      height={isSmallScreen ? 48 : 72} />
+                  </div>
+                  <div className="ms-3">
+                    <p className="mb-0">Strategic Gears: Crafting success for all entities in diverse markets.</p>
+                  </div>
                 </div>
               </div>
             </div>
