@@ -51,10 +51,7 @@ body {
 .nav_link:hover {
   color: #787878 !important;
 }
-.fs-16 {
-  font-size: 16px;
-  line-height: 24px;
-}
+
 .btn_blue {
   background-color: #00a5cd;
   width: 100%;
@@ -136,8 +133,26 @@ body {
 .fw-500 {
   font-weight: 500;
 }
+.fw-600 {
+  font-weight: 600;
+}
 .lh-24 {
   line-height: 24px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-32 {
+  font-size: 32px;
+  line-height: 24px;
+}
+
+/* margins */
+.mt-8 {
+  margin-top: 8px;
 }
 /* .modal-header .btn-close {
   margin-top: -40px;
