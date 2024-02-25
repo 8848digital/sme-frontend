@@ -97,7 +97,7 @@ const AcademicChildTable: React.FC<{
         <div className="col-12 p-0">
           <form className=" p-3 rounded">
 
-            {certifications.map((cert, index) => (
+            {certifications.map((cert:any, index:number) => (
               <div className="row mb-3" key={index}>
                 <div className="col-10">
                   <div className="row">
@@ -106,7 +106,7 @@ const AcademicChildTable: React.FC<{
                       <div className="d-flex flex-column me-3">
                         <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>  {translationDataFromStore?.data?.signup_step5_level}</label>
                         <select
-                          name={`certification_level[${index}]`}
+                          name={`education_level[${index}]`}
                           value={cert.education_level}
                           onChange={(e) =>
                             handleCertificationChange(

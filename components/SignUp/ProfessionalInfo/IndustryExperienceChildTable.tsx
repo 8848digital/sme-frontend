@@ -1,6 +1,6 @@
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
@@ -25,18 +25,19 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
   serviceList, serviceListLoading, yearOfExpList, yearOfExpListLoading
 
 }: any) => {
-  const [industryExpericene, setIndustryExpericene] = useState<IndustryExpericene[]>(
-    formData.professional_experience && formData.professional_experience.length > 0
-      ? formData.professional_experience
+  const initialIndustryExp: IndustryExpericene[] =
+    formData.candidate_details && formData.candidate_details.length > 0
+      ? formData.candidate_details
       : [
         {
-          industry: '',
-          service_line: '', // Change the initial year value to an empty string
-          region: '',
-          year_of_experience: ''
+          industry: "",
+          service_line: "", // Change the initial year value to an empty string
+          region: "",
+          year_of_experience: ""
         },
       ]
-  );
+
+  const [industryExperience, setIndustryExperience] = useState<IndustryExpericene[]>(initialIndustryExp);
 
   const notifySuccess = (message: string) => {
     toast.success(message);
@@ -47,36 +48,39 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
   };
 
   const handleIndustryExpChange = (index: number, field: keyof IndustryExpericene, value: any) => {
-    // if (field === 'year' && value instanceof Date) {
-    //   // Convert the Date object to a string containing only the year
-    //   value = value.getFullYear().toString();
-    // }
-
-    const updatedIndustryExp = industryExpericene.map((exp: any, expIndex: number) => {
+    const updatedIndustryExp = industryExperience.map((experience: any, expIndex: number) => {
       if (index === expIndex) {
-        // Create a copy of the professional experience object and update the field
-        return { ...exp, [field]: value };
+
+        return { ...experience, [field]: value };
       }
-      return exp;
+      return experience;
     });
 
-    setIndustryExpericene(updatedIndustryExp);
+    setIndustryExperience(updatedIndustryExp);
     onFormDataChange('candidate_details', updatedIndustryExp);
   };
 
   const addRow = () => {
-    setIndustryExpericene([...industryExpericene, { industry: '', service_line: '', region: '', year_of_experience:'' }]);
+    setIndustryExperience([...industryExperience, { industry: "", service_line: "", region: "", year_of_experience: "" }]);
   };
 
   const removeRow = (index: number) => {
-    const updatedIndustryExp = [...industryExpericene];
+    const updatedIndustryExp = [...industryExperience];
     updatedIndustryExp.splice(index, 1);
 
-    setIndustryExpericene(updatedIndustryExp);
+    setIndustryExperience(updatedIndustryExp);
     notifyError('Industry Experience data deleted successfully');
     onFormDataChange('candidate_details', updatedIndustryExp);
   };
 
+  // useEffect(() => {
+  //   setIndustryExperience(
+  //     formData.candidate_details && formData.candidate_details.length > 0
+  //       ? formData.candidate_details
+  //       : [{ industry: "", service_line: "", region: "", year_of_experience: "" }]
+  //   );
+  // }, [formData.candidate_details]);
+  
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
@@ -91,7 +95,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
       <div className={`row ${styles.other_info}`}>
         <div className="col-12 p-0">
           <form className=" p-3 rounded">
-            {industryExpericene.map((exp: any, index: number) => (
+            {industryExperience.map((exp: any, index: number) => (
               <div className="row mb-3" key={index}>
                 <div className="col-10">
                   <div className="row">
@@ -100,7 +104,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
                       <div className="d-flex flex-column me-3">
                         <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.industry}</label>
                         <select
-
+                          name={`industry-${index}`}
                           value={exp.industry}
                           onChange={(e) =>
                             handleIndustryExpChange(
@@ -119,7 +123,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
                             industryList.map((data: any, index: any) => {
                               return (
                                 <>
-                                  <option value={data?.name}>
+                                  <option key={index} value={data?.name}>
                                     {data?.name}{" "}
                                     {data?.label && (
                                       <span>&#40;{data?.label}&#41;</span>
@@ -135,7 +139,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
                       <div className="d-flex flex-column me-3">
                         <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}> {translationDataFromStore?.data?.service_line}</label>
                         <select
-
+                          name={`service_line-${index}`}
                           value={exp.service_line}
                           onChange={(e) =>
                             handleIndustryExpChange(
@@ -170,7 +174,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
                       <div className="d-flex flex-column mt-3 me-3">
                         <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.region}</label>
                         <select
-
+                          name={`region-${index}`}
                           value={exp.region}
                           onChange={(e) =>
                             handleIndustryExpChange(
@@ -205,7 +209,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
                       <div className="d-flex flex-column mt-3 me-3">
                         <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>Year of Exp</label>
                         <select
-
+                          name={`year_of_experience-${index}`}
                           value={exp.year_of_experience}
                           onChange={(e) =>
                             handleIndustryExpChange(

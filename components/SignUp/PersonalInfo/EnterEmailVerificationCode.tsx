@@ -50,8 +50,8 @@ const EnterEmailVerificationCode = ({ handleChange, setOtpValues, otpValues ,for
                                             maxLength={1}
                                             value={value}
                                             onChange={(event) => handleChange(index, event)}
-                                            className='form-control'
-                                            style={{ width: '61px', height: '60px', marginRight: '5px', textAlign: 'center', fontSize: '40px' }}
+                                            className={`form-control ${styles.otp_input}`}
+                                          
                                         />
                                     ))}
                                 </div>

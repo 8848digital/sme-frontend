@@ -79,7 +79,7 @@ const PreferencesMaster = ({ formData, onFormDataChange, loading, educationLevel
                 className={`btn ${styles.next_button}`}
                 onClick={handleStepSubmit}
               >
-                {translationDataFromStore?.data?.next}
+                {translationDataFromStore?.data?.confirm}
                 {/* {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />} */}
               </button>
             ) : (

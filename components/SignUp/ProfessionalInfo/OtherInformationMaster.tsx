@@ -92,7 +92,7 @@ const OtherInformationMaster = ({ formData, onFormDataChange, loading, education
                                 className={`btn ${styles.next_button}`}
                                 onClick={handleNext}
                             >
-                                {translationDataFromStore?.data?.next}
+                                {translationDataFromStore?.data?.confirm}
                                 {/* {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />} */}
                             </button>
                         ) : (

@@ -30,7 +30,6 @@ import PreferencesMaster from "./Preferences/PreferencesMaster";
 const WizardMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(0);
   const [internalStep, setInternalStep] = useState<any>(1);
-
   const dispatch = useDispatch();
   const router = useRouter();
   const translationDataFromStore = useSelector(translation_text_from_Store);
@@ -70,35 +69,15 @@ const WizardMaster = () => {
   const { serviceList, serviceListLoading } = useServiceList();
   const { yearOfExpList, yearOfExpListLoading } = useYearOfExpList();
   console.log("list", industryList, regionList, serviceList, yearOfExpList);
-  
 
+  console.log('form',stepFormData)
 
   const handleFormDataChange = (field: string, value: any) => {
-    if (field === "certification") {
-      // If the field is 'certification_level', update it with the provided value
-      setStepFormData({
-        ...stepFormData,
-        certification_level: value.certifications,
-      });
-    } else if (field === "professionalexp") {
-      // If the field is 'professionalexp', update it with the provided value
-      setStepFormData({
-        ...stepFormData,
-        professionalexp: value.professional_exp,
-      });
-    } else if (field === "industryExpericene") {
-      // If the field is 'professionalexp', update it with the provided value
-      setStepFormData({
-        ...stepFormData,
-        professionalexp: value.industryExpericene,
-      });
-    } else {
-      // For other fields, update the stepFormData object as usual
       setStepFormData({
         ...stepFormData,
         [field]: value,
       });
-    }
+    
   };
 
   const handleSubmit = async () => {
@@ -134,12 +113,12 @@ const WizardMaster = () => {
     }
 
   };
-  const isSmallScreen = useMediaQuery('(max-width: 768px)');
+  const isSmallScreen = useMediaQuery('(max-width: 576px)');
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-8 col-lg-8 ">
+        <div className="row" >
+          <div className={`col-md-8 col-lg-8 ${isSmallScreen ? 'order-1' : ''}`}>
             <div className={styles.wizard_wrapper}>
               <div>
                 {currentStep === 0 && (
@@ -188,51 +167,90 @@ const WizardMaster = () => {
               </div>
             </div>
           </div>
-          <div className={`col-md-4 col-lg-4 stepper_css ${styles.stepper_bg}`}>
-            <div>
+         
+            {isSmallScreen ? (<div className={`col-md-4 col-lg-4 stepper_css ${styles.stepper_bg}`}>
+              <div>
 
-              <div className={styles.stepper_wrapper} >
-                <div className={styles.stepper_content}>
-                  <h4>
-                    <span className="pe-1 ps-1">{translationDataFromStore?.data?.step}</span>
-                    <span className="pe-1 ps-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
-                  </h4>
-                  <h4>{translationDataFromStore?.data?.singup_stepper_heading}</h4>
-                </div>
-                <div>
-                  <Stepper
-                    activeStep={currentStep}
-                    orientation="vertical"
-                    style={{ height: "100%" }}
-                    className=""
-                  >
-                    {steps.map((label: any, index: any) => (
-                      <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </div>
-                <div className={styles.tagline_content}>
-
-                  <div >
-                    <Image
-                      src={tagLine.src}
-                      alt='tag line logo'
-                      width={isSmallScreen ? 48 : 72}
-                      height={isSmallScreen ? 48 : 72} />
+                <div className={styles.stepper_wrapper} >
+                  <div className={styles.stepper_content}>
+                    <h4>
+                      <span className="pe-1 ps-1">{translationDataFromStore?.data?.step}</span>
+                      <span className="pe-1 ps-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
+                      
+                    </h4>
+                    <h4>
+                    <span>{currentStep === 0 ? `${translationDataFromStore?.data?.signup_step_personal_information}`:''}</span>
+                      <span>{currentStep === 1 ? `${translationDataFromStore?.data?.signup_step_other_information}`:''}</span>
+                      <span>{currentStep === 2 ? `${translationDataFromStore?.data?.signup_step_preferences}`:''}</span>
+                    </h4>
                   </div>
-                  <div className="ms-3">
-                    <p className="mb-0">
-                    {translationDataFromStore?.data?.signup_stepper_tag_line}
-                      </p>
+                  <div>
+                    <Stepper
+                      activeStep={currentStep}
+                      orientation="horizontal"
+                      style={{ height: "100%" }}
+                      className=""
+                    >
+                      {steps.map((label: any, index: any) => (
+                        <Step key={label}>
+                          <StepLabel></StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
                   </div>
+                 
                 </div>
               </div>
-            </div>
 
+            </div>) : (
+              <div className={`col-md-4 col-lg-4 stepper_css ${styles.stepper_bg}`}>
+                <div>
+
+                  <div className={styles.stepper_wrapper} >
+                    <div className={styles.stepper_content}>
+                      <h4>
+                        <span className="pe-1 ps-1">{translationDataFromStore?.data?.step}</span>
+                        <span className="pe-1 ps-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
+                      </h4>
+                      <h4>{translationDataFromStore?.data?.singup_stepper_heading}</h4>
+                    </div>
+                    <div>
+                      <Stepper
+                        activeStep={currentStep}
+                        orientation="vertical"
+                        style={{ height: "100%" }}
+                        className=""
+                      >
+                        {steps.map((label: any, index: any) => (
+                          <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                          </Step>
+                        ))}
+                      </Stepper>
+                    </div>
+                    <div className={styles.tagline_content}>
+
+                      <div >
+                        <Image
+                          src={tagLine.src}
+                          alt='tag line logo'
+                          width={isSmallScreen ? 48 : 72}
+                          height={isSmallScreen ? 48 : 72} />
+                      </div>
+                      <div className="ms-3">
+                        <p className="mb-0">
+                          {translationDataFromStore?.data?.signup_stepper_tag_line}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            )}
           </div>
-        </div>
+
+     
       </div>
     </>
   );
