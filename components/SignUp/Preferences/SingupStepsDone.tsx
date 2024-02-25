@@ -4,7 +4,7 @@ import styles from "@/styles/wizard.module.css";
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
-const StepsDone = () => {
+const SingupStepsDone = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store)
 
   return (
@@ -19,7 +19,7 @@ const StepsDone = () => {
               </div>
               <div className="mt-5">
                 <h1 style={{fontSize:'24px'}}>{translationDataFromStore?.data?.done}!</h1>
-                <p className='grey'>Our team will review your profile and get back to you soon.</p>
+                <p className='grey'>{translationDataFromStore?.data?.signup_complete_description}</p>
               </div>
               <div className={`${styles.common_wizard_btn}`}>
                 <div className={styles.button_wrapper}>
@@ -30,8 +30,7 @@ const StepsDone = () => {
                       className={`btn ${styles.next_button}`}
 
                     >
-                      {/* {translationDataFromStore?.data?.next} */}
-                      Confirm
+                      {translationDataFromStore?.data?.confirm}
 
                     </button>
 
@@ -42,9 +41,7 @@ const StepsDone = () => {
                       className={`btn ${styles.later_button }`}
 
                     >
-
-                      Later
-                      {/* {translationDataFromStore?.data?.previous} */}
+                      {translationDataFromStore?.data?.later}
                     </button>
 
                   </div>
@@ -60,4 +57,4 @@ const StepsDone = () => {
   );
 }
 
-export default StepsDone;
+export default SingupStepsDone;

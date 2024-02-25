@@ -3,7 +3,7 @@ import { translation_text_from_Store } from "@/store/slices/general_slice/transl
 import styles from "@/styles/wizard.module.css";
 import { useSelector } from "react-redux";
 
-const Step3of3EnterRates = ({
+const PreferencesInfo = ({
   preference,
   priceBasis,
   preferenceLoading,
@@ -45,7 +45,8 @@ const Step3of3EnterRates = ({
               <div className={styles.wizard_content}>
               <div className="col-12">
                 <div className="mt-5">
-                  <h1 style={{ fontSize: '20px' }}>Select Enters availability</h1>
+                  <h1 style={{ fontSize: '20px' }}> 
+                  {translationDataFromStore?.data?.select_availability}</h1>
                   {preference &&
                     preference.length > 0 &&
                     preference.map((data: any, index: number) => (
@@ -66,7 +67,8 @@ const Step3of3EnterRates = ({
                 </div>
 
                 <div className="mt-5">
-                <h1 style={{ fontSize: '20px' }}>Select Rates preferences</h1>
+                <h1 style={{ fontSize: '20px' }}>                <h1 style={{ fontSize: '20px' }}>{translationDataFromStore?.data?.select_rates_preferences}</h1>
+</h1>
                   {priceBasis &&
                     priceBasis.length > 0 &&
                     priceBasis.map((data: any, index: number) => (
@@ -86,7 +88,7 @@ const Step3of3EnterRates = ({
                     ))}
                 </div>
                 <div className="mt-5">
-                  <label className="grey" htmlFor="rates">Enter rate preference</label>
+                  <label className="grey" htmlFor="rates">{translationDataFromStore?.data?.enter_rates_preferences}</label>
                   <input
                     className="form-control w-100  input-filed-height"
                     type="text"
@@ -107,4 +109,4 @@ const Step3of3EnterRates = ({
   );
 };
 
-export default Step3of3EnterRates;
+export default PreferencesInfo;

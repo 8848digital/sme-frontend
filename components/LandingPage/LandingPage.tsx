@@ -2,22 +2,14 @@ import useLandingPage from "@/hooks/general_hooks/landingpage_hook";
 import { CONSTANTS } from "@/services/config/api-config";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/landing_page.module.css";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { useSelector } from "react-redux";
-import twitterIcon from "../../public/assets/icons8-twitter-50.png";
 import LoaderForSkills from "../LoaderForSkills";
-import OurClients from "./Clients/OurClients";
 import landinImage from '../../public/assets/landing_image.jpg'
 import AOS from "aos";
 import "aos/dist/aos.css";
-import projectIcon from '../../public/assets/project.png'
-import clientIcon from '../../public/assets/client.png'
-import smesIcon from '../../public/assets/smes.png'
 import tagLine from '../../public/assets/tag_line.png'
 import Image from "next/image";
 import { useMediaQuery } from '@mui/material';

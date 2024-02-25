@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Step2of3ExtractedDataFromCv from './ProfessionalInfo/Step5ExtractedDataFromCv';
 import { useSelector } from 'react-redux';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 import styles from "@/styles/wizard.module.css";
-
-const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
+import { toast } from "react-toastify";
+import OtherProfessionalExperienceInfo from './OtherProfessionalExperienceInfo';
+const OtherInformationMaster = ({ formData, onFormDataChange, loading, educationLevel,
     setStep, setInternalStep, internalStep,
     industryList, industryListLoading, regionList, regionListLoading,
     serviceList, serviceListLoading, yearOfExpList, yearOfExpListLoading
@@ -14,9 +14,43 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
 }: any) => {
     const translationDataFromStore = useSelector(translation_text_from_Store);
     const [currentStep, setCurrentStep] = useState(1);
+    const handleValidateOtherInfo = () => {
+        if (formData.academic_background.length === 0) {
+            toast.error(
+                translationDataFromStore?.data?.toast_academic_information_error,
+                {
+                    autoClose: 3000,
+                    className: "custom-toast", // Close the notification after 3 seconds
+                }
+            );
+        } else if (formData.professional_experience.length === 0) {
+            toast.error(
+                translationDataFromStore?.data?.toast_professional_experience_error,
+                {
+                    autoClose: 3000,
+                    className: "custom-toast", // Close the notification after 3 seconds
+                }
+            );
 
+        } else if (formData.candidate_details.length === 0) {
+            toast.error(
+                  translationDataFromStore?.data?.toast_notify_industry_exp
+                ,
+                {
+                    autoClose: 3000,
+                    className: "custom-toast", // Close the notification after 3 seconds
+                }
+            );
+
+        } else {
+            setStep(2)
+        }
+    };
     const handleNext = () => {
-        setStep(2)
+        if (currentStep === 1) {
+
+            handleValidateOtherInfo()
+        }
     };
 
     const handlePrev = () => {
@@ -30,10 +64,10 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
 
     return (
         <div >
-            
+
             <div >
                 {currentStep === 1 && (
-                    <Step2of3ExtractedDataFromCv
+                    <OtherProfessionalExperienceInfo
                         educationLevel={educationLevel}
                         loading={loading}
                         formData={formData}
@@ -59,7 +93,7 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
                                 onClick={handleNext}
                             >
                                 {translationDataFromStore?.data?.next}
-                                {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />}
+                                {/* {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />} */}
                             </button>
                         ) : (
                             <button className={`btn ${styles.next_button}`} onClick={handleStepSubmit}>
@@ -73,7 +107,7 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
                                 className={`btn mb-3 ${styles.prev_button}`}
                                 onClick={handlePrev}
                             >
-                                {document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />}
+                                {/* {document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />} */}
                                 {translationDataFromStore?.data?.previous}
                             </button>
                         )}
@@ -84,4 +118,4 @@ const OtherInformation = ({ formData, onFormDataChange, loading, educationLevel,
     );
 };
 
-export default OtherInformation;
+export default OtherInformationMaster;

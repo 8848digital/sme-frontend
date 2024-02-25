@@ -4,11 +4,23 @@ import { useSelector } from 'react-redux';
 import styles from "@/styles/wizard.module.css";
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import SendEmailOTP from '@/services/api/auth_api/get_email_otp_for_registration_api';
+import { toast } from "react-toastify";
 
-
-const EmailOtpCode = ({ handleChange, setOtpValues, otpValues ,handleSendEmailOtp }: any) => {
+const EnterEmailVerificationCode = ({ handleChange, setOtpValues, otpValues ,formData,handleSendEmailOtp }: any) => {
     const translationDataFromStore = useSelector(translation_text_from_Store);
-
+    const handleResendEmailOtp = async () => {
+        const verifyEmail = await SendEmailOTP(formData.usr);
+        console.log('email verify', verifyEmail);
+        if (verifyEmail?.data?.message?.msg === 'success') {
+            toast.success(translationDataFromStore?.data?.toast_notify_enter_otp_to_verify_email, {
+                autoClose: 3000,
+                className: "custom-toast", // Close the notification after 3 seconds
+            })
+        } else {
+            console.log('email success')
+        }
+    }
 
     console.log('otp', otpValues)
     return (
@@ -23,8 +35,12 @@ const EmailOtpCode = ({ handleChange, setOtpValues, otpValues ,handleSendEmailOt
                                 <Logo />
                             </div>
                             <div className=" mt-5">
-                                <h1 className="" style={{ fontSize: '20px' }}>Enter Verification Code</h1>
-                                <label className="grey mt-4" htmlFor="email">Secure</label>
+                                <h1 className="" style={{ fontSize: '20px' }}>
+                                    {translationDataFromStore?.data?.enter_emai_verification_code}
+                                    </h1>
+                                <label className="grey mt-4" htmlFor="email">
+                                {translationDataFromStore?.data?.secure}
+                                    </label>
                                 <div className={`${styles.flexContainer} form-group`}>
                                     {otpValues.map((value: any, index: number) => (
                                         <input
@@ -40,7 +56,7 @@ const EmailOtpCode = ({ handleChange, setOtpValues, otpValues ,handleSendEmailOt
                                     ))}
                                 </div>
 
-                                <p className='grey mb-0 mt-2' onClick={handleSendEmailOtp}>No Received? <Link href="">Resend</Link></p>
+                                <p className='grey mb-0 mt-2' onClick={handleSendEmailOtp}>{translationDataFromStore?.data?.no_received}? <Link href="">{translationDataFromStore?.data?.resend}</Link></p>
 
                             </div>
                         </div>
@@ -51,4 +67,4 @@ const EmailOtpCode = ({ handleChange, setOtpValues, otpValues ,handleSendEmailOt
     );
 };
 
-export default EmailOtpCode;
+export default EnterEmailVerificationCode;

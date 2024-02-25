@@ -77,7 +77,8 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 p-0">
-          <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>{translationDataFromStore?.data?.professional_experience}</h1>
+          <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>
+            {translationDataFromStore?.data?.professional_experience}</h1>
         </div>
       </div>
       <div className={`row ${styles.other_info}`}>
@@ -89,12 +90,12 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                   <div className="row">
                     <div className="col-12 p-0">
                       <div className="d-flex flex-column me-3">
-                        <label htmlFor={`title_${index}`} className={`form-label mb-1 ${styles.label_color}`}>Title</label>
+                        <label htmlFor={`title_${index}`} className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.title}</label>
                         <input
                           type="text"
                           name={`title[${index}]`}
                           id={`title_${index}`}
-                          placeholder="Title"
+                          placeholder={`${translationDataFromStore?.data?.title}`}
                           value={exp.title}
                           onChange={(e) => handleProfessionalExpChange(index, 'title', e.target.value)}
                           className={` form-control w-100 ${styles.label_color}`}
@@ -103,7 +104,9 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                     </div>
                     <div className="col-6 p-0">
                       <div className="d-flex flex-column mt-3 me-3" >
-                        <label htmlFor={`year_${index}`} className={`form-label mb-1 ${styles.label_color}`}>Year</label>
+                        <label htmlFor={`year_${index}`} className={`form-label mb-1 ${styles.label_color}`}>
+                        {translationDataFromStore?.data?.year}
+                          </label>
                         <DatePicker
                           selected={exp.year ? new Date(exp.year) : null}
                           id={`year_${index}`}
@@ -119,15 +122,17 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                     </div>
                     <div className="col-6 p-0">
                       <div className="d-flex flex-column mt-3 me-3">
-                        <label htmlFor={`company_${index}`} className={`form-label mb-1 ${styles.label_color}`}>Company</label>
+                        <label htmlFor={`company_${index}`} className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.company}
+                        </label>
                         <input
                           type="text"
                           name={`company[${index}]`}
                           id={`company_${index}`}
-                          placeholder="Company"
+                          placeholder={`${translationDataFromStore?.data?.company}`}
                           value={exp.company}
                           onChange={(e) => handleProfessionalExpChange(index, 'company', e.target.value)}
                           className={` form-control w-100 ${styles.label_color}`}
+                          
                         />
                       </div>
                     </div>

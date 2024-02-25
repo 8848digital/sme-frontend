@@ -29,7 +29,6 @@
   background: #555; /* Set color of the scrollbar thumb on hover */
 }
 
-
 .common_wizard_btn {
   margin: 50px auto;
   max-width: 360px;
@@ -60,7 +59,7 @@
 }
 
 .label_color {
- color: rgba(120, 120, 120, 1)
+  color: rgba(120, 120, 120, 1);
 }
 
 /* button */
@@ -73,82 +72,85 @@
 margin: 0 auto;
 } */
 .next_button {
-  width:360px;
-  height:48px;
+  width: 360px;
+  height: 48px;
   border-radius: 100px;
-  background: #00A5CD;
+  background: #00a5cd;
   color: #ffffff;
   margin-top: -10px;
-
 }
 .next_button:hover {
-  background:#ffffff;
+  background: #ffffff;
   color: #000000;
   /* margin-top: -220px; */
-  border: 1px solid #00A5CD;
-
+  border: 1px solid #00a5cd;
 }
 
 .prev_button {
-  width:360px;
-  height:48px;
+  width: 360px;
+  height: 48px;
   border-radius: 100px;
-  background:  #00A5CD;
+  background: #00a5cd;
   color: #ffffff;
   /* margin-top: -260px; */
-
 }
 .prev_button:hover {
-  background:#ffffff;
+  background: #ffffff;
   color: #000000;
   /* margin-top: -220px; */
-  border: 1px solid #00A5CD;
-
+  border: 1px solid #00a5cd;
 }
 
 .later_button {
-  width:360px;
-  height:48px;
+  width: 360px;
+  height: 48px;
   border-radius: 100px;
   /* background:  #00A5CD; */
-  border:1px solid #00A5CD;
+  border: 1px solid #00a5cd;
   color: #000000;
   /* margin-top: -260px; */
-
 }
 .later_button:hover {
-  background:#00A5CD;
+  background: #00a5cd;
   color: #ffffff;
   /* margin-top: -220px; */
-  border: 1px solid #00A5CD;
-
+  border: 1px solid #00a5cd;
 }
 /* Stepper secrtopn*/
 .stepper_bg {
-  background-color: #00A5CD;
-  color:#ffffff;
+  background-color: #00a5cd;
+  color: #ffffff;
   height: 100vh;
+
   position: relative;
 }
 
- .tagline_content {
+.tagline_content {
   position: absolute;
-  top:650px;
+  /* top:650px; */
+  bottom: 0;
+  padding-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  /* width: 350px; */
 }
-.stepper_bg .MuiStep-root {
-  font-size: 30px !important;
-} 
+.tagline_content p{
+ font-size: 16px;
+ line-height: 24px;
+ font-weight: 400;
+}
+
+[dir="rtl"] .tagline_content p {
+  margin-right: 24px;
+}
+
 .stepper_wrapper {
   /* margin-top: 100px; */
   padding-top: 120px;
   padding-left: 60px;
   /* width: 300px
    */
-
 }
 
 .stepper_content {
@@ -157,20 +159,19 @@ margin: 0 auto;
 .stepper_content h4 {
   font-size: 36px;
   font-weight: 500;
-line-height: 45px;
+  line-height: 45px;
 }
-
 
 /* Prefrences  */
 .radio_border {
-  border: 1px solid #00A5CD;
-  border-radius:8px ;
+  border: 1px solid #00a5cd;
+  border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
 }
 .radio_btn_border {
   border: 1px solid rgba(200, 197, 198, 1);
-  border-radius:8px ;
+  border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
 }

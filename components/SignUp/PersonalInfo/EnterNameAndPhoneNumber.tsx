@@ -9,7 +9,7 @@ interface Step3Props {
   onFormDataChange: (field: string, value: any) => void;
 }
 
-const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
+const EnterNameAndPhoneNumber = ({ formData, onFormDataChange ,  setInternalStep,
   internalStep, }: any) => {
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const firstName = e.target.value;
@@ -45,11 +45,12 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
               <h2 style={{ fontSize: '20px' }}>
-                {/* {translationDataFromStore?.data?.signup_personal} */}
-                Other Information
+              {translationDataFromStore?.data?.other_information}
                 </h2>
               <div className="form-group ">
-                <label className="grey" htmlFor="email">First Name</label>
+                <label className="grey" htmlFor="fname">
+                {translationDataFromStore?.data?.first_name}
+                  </label>
                 <input
                   className="form-control input-filed-height"
                   type="text"
@@ -61,7 +62,7 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
                 />
               </div>
               <div className="form-group mt-3">
-              <label className="grey" htmlFor="email">Last Name</label>
+              <label className="grey" htmlFor="lname">{translationDataFromStore?.data?.last_name}</label>
               <input
                 className="form-control input-filed-height"
                 type="text"
@@ -73,7 +74,7 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
               />
               </div>
               <div className="form-group mt-3">
-              <label className="grey" htmlFor="email">Phone Number</label>
+              <label className="grey" htmlFor="phone_number">{translationDataFromStore?.data?.phone_number}</label>
               <input
                 className="form-control input-filed-height"
                 type="number"
@@ -92,4 +93,4 @@ const Step3EnterName = ({ formData, onFormDataChange ,  setInternalStep,
   );
 };
 
-export default Step3EnterName;
+export default EnterNameAndPhoneNumber;

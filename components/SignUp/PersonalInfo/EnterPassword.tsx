@@ -11,7 +11,7 @@ interface Step2Props {
   onFormDataChange: (field: string, value: any) => void;
 }
 
-const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
+const EnterPassword = ({ formData, onFormDataChange , setInternalStep,
   internalStep,}: any) => {
   const [userPassword, setUserPassword] = useState<any>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -50,9 +50,14 @@ const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
 
              
               <div>
-              <h1 style={{fontSize:'20px'}}>Enter Your Password</h1>
+              <h1 style={{fontSize:'20px'}}>
+              {translationDataFromStore?.data?.enter_your_password}
+              {/* {translationDataFromStore?.data?.confirm_password} */}
+                </h1>
                 <div className="form-group mt-4">
-                <label className="grey" htmlFor="email">Password</label>
+                <label className="grey" htmlFor="email">
+                {translationDataFromStore?.data?.password}
+                  </label>
                   <TextField
                     className="w-100"
                     type={showPassword ? "text" : "password"}
@@ -79,4 +84,4 @@ const Step2VarificationCode = ({ formData, onFormDataChange , setInternalStep,
   );
 };
 
-export default Step2VarificationCode;
+export default EnterPassword;

@@ -700,13 +700,6 @@ input::-webkit-inner-spin-button {
   vertical-align: middle; /* Align the label vertically with the radio button */
 }
 
-/* .radio-item input[type="radio"]:checked {
-  background-color: #00A5CD !important;
-}
-
-.radio-item input[type='radio'] {
-  accent-color: #00A5CD;
-} */
 
 /* mui stepper css */
 .stepper_css .MuiStepIcon-root {
@@ -729,7 +722,17 @@ input::-webkit-inner-spin-button {
 .dropdown-ul-list {
   z-index: 1700 !important;
 }
-
+[dir="rtl"] .MuiStepLabel-root {
+  text-align: right !important;
+}
+[dir="rtl"] .MuiStepConnector-root {
+  display: flex;
+  margin-right: 24px;
+}
+[dir="rtl"] .MuiStepLabel-label {
+ margin-right: 8px;
+}
+/* Bio select languages/skills css */
 .dropdown-ul-list {
   position: absolute;
   max-height: 170px;

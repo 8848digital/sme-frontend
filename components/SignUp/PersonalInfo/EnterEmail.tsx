@@ -3,7 +3,7 @@ import { translation_text_from_Store } from "@/store/slices/general_slice/transl
 import styles from "@/styles/wizard.module.css";
 import { Height } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
+const EnterEmail = ({ formData, onFormDataChange }: any) => {
   // Handle the form field change
   const handleEmailChange = (e: any) => {
     const email = e.target.value;
@@ -31,9 +31,12 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
                   {/* 1{" "}{translationDataFromStore?.data?.of} 7 */}
                 </h1>
                 {/* <h2>{translationDataFromStore?.data?.signup_personal}</h2> */}
-                <h1 className="" style={{ fontSize: '20px' }}>Enter Your Email</h1>
+                <h1 className="" style={{ fontSize: '20px' }}>{
+                                  translationDataFromStore?.data
+                                    ?.email_placeholder
+                                }</h1>
                 <div className="form-group mt-4">
-                  <label className="grey" htmlFor="email">Email</label>
+                  <label className="grey" htmlFor="email"> {translationDataFromStore?.data?.email}</label>
                   <input
                     className=" form-control grey"
                     type="email"
@@ -55,4 +58,4 @@ const Step1EnterEmail = ({ formData, onFormDataChange }: any) => {
   );
 };
 
-export default Step1EnterEmail;
+export default EnterEmail;

@@ -20,7 +20,7 @@ interface IndustryExpericeneChildTableProps {
   onFormDataChange: (fieldName: string, value: any) => void;
 }
 
-const IndustryExpericeneChildTable = ({ formData, onFormDataChange
+const IndustryExperienceChildTable = ({ formData, onFormDataChange
   , industryList, industryListLoading, regionList, regionListLoading,
   serviceList, serviceListLoading, yearOfExpList, yearOfExpListLoading
 
@@ -84,8 +84,7 @@ const IndustryExpericeneChildTable = ({ formData, onFormDataChange
       <div className="row justify-content-center">
         <div className="col-12 p-0">
           <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>
-            {/* {translationDataFromStore?.data?.professional_experience} */}
-            Industry Experience
+            {translationDataFromStore?.data?.industry_exp}
           </h1>
         </div>
       </div>
@@ -99,7 +98,7 @@ const IndustryExpericeneChildTable = ({ formData, onFormDataChange
 
                     <div className="col-6 p-0">
                       <div className="d-flex flex-column me-3">
-                        <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>Industry</label>
+                        <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.industry}</label>
                         <select
 
                           value={exp.industry}
@@ -134,7 +133,7 @@ const IndustryExpericeneChildTable = ({ formData, onFormDataChange
                     </div>
                     <div className="col-6 p-0">
                       <div className="d-flex flex-column me-3">
-                        <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>Service Line</label>
+                        <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}> {translationDataFromStore?.data?.service_line}</label>
                         <select
 
                           value={exp.service_line}
@@ -169,7 +168,7 @@ const IndustryExpericeneChildTable = ({ formData, onFormDataChange
                     </div>
                     <div className="col-6 p-0">
                       <div className="d-flex flex-column mt-3 me-3">
-                        <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>Region</label>
+                        <label htmlFor="edu_label" className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.region}</label>
                         <select
 
                           value={exp.region}
@@ -259,4 +258,4 @@ const IndustryExpericeneChildTable = ({ formData, onFormDataChange
   );
 };
 
-export default IndustryExpericeneChildTable;
+export default IndustryExperienceChildTable;

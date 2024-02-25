@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { CONSTANTS } from '@/services/config/api-config';
+import Loaders from '@/components/Loaders';
 
 const sliderSettings = {
     dots: false,
@@ -66,7 +67,10 @@ const Services = ( {serviceData , loadingService} :any) => {
         return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`
       }
     return (
-        <div className={`${styles.our_services_wrapper}`} data-aos="slide-up">
+        <>
+        {
+            !loadingService ? (
+                <div className={`${styles.our_services_wrapper}`} data-aos="slide-up">
             <div className="row">
                 <div className="col-md-2">
                     <div className="row ">
@@ -119,6 +123,12 @@ const Services = ( {serviceData , loadingService} :any) => {
                 </div>
             </div>
         </div>
+            ):(
+                <Loaders/>
+            )
+        }
+        </>
+        
     );
 };
 

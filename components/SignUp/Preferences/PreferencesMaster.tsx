@@ -1,32 +1,51 @@
-
 import React, { useState } from 'react';
-import Step2of3ExtractedDataFromCv from './ProfessionalInfo/Step5ExtractedDataFromCv';
 import { useSelector } from 'react-redux';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { translation_text_from_Store } from '@/store/slices/general_slice/translation_text_slice';
 import styles from "@/styles/wizard.module.css";
-import Step3of3SelectAvailability from './Preferences/Step6SelectAvailability';
 import { useRouter } from 'next/router';
-import Step3of3EnterRates from './Preferences/Step7EnterRates';
-const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
+import { toast } from "react-toastify";
+import PreferencesInfo from './PreferencesInfo';
+const PreferencesMaster = ({ formData, onFormDataChange, loading, educationLevel,
   setStep, setInternalStep, internalStep, preference, preferenceLoading,
   priceBasisLoading, priceBasis ,handleSubmit }: any) => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
   const [currentStep, setCurrentStep] = useState(1);
   const router = useRouter();
-  const handleNext = () => {
-    router.push("/steps-done");
-  };
 
+   const handleValidatePreference = () => {
+    if (formData.preferences === "") {
+      toast.error(translationDataFromStore?.data?.toast_select_error, {
+        autoClose: 3000,
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
+
+    }else if (formData.hourly_rates === "") {
+      toast.error(translationDataFromStore?.data?.toast_rates_error, {
+        autoClose: 3000,
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
+    }else if (formData.price_basis === "") {
+      toast.error(translationDataFromStore?.data?.toast_price_error, {
+        autoClose: 3000,
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
+    }else {
+      handleSubmit();
+    }
+   }
+ 
   const handlePrev = () => {
     // setCurrentStep(currentStep - 1);
     setStep(1)
   };
 
   const handleStepSubmit = () => {
-    // router.push("/steps-done");
-    handleSubmit();
+    if ( currentStep == 1) {
+      handleValidatePreference();
+    }
+   
   };
 
   return (
@@ -35,7 +54,7 @@ const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
       {
         currentStep === 1 && (
 
-          <Step3of3EnterRates
+          <PreferencesInfo
             preference={preference}
             priceBasis={priceBasis}
             preferenceLoading={preferenceLoading}
@@ -61,7 +80,7 @@ const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
                 onClick={handleStepSubmit}
               >
                 {translationDataFromStore?.data?.next}
-                {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />}
+                {/* {document.dir === 'ltr' ? <ArrowForwardIcon /> : <ArrowBackIcon />} */}
               </button>
             ) : (
               <button className={`btn ${styles.next_button}`} onClick={handleStepSubmit}>
@@ -75,7 +94,7 @@ const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
                 className={`btn mb-3 ${styles.prev_button}`}
                 onClick={handlePrev}
               >
-                {document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />}
+                {/* {document.dir === 'ltr' ? <ArrowBackIcon /> : <ArrowForwardIcon />} */}
                 {translationDataFromStore?.data?.previous}
               </button>
             )}
@@ -86,4 +105,4 @@ const Preferences = ({ formData, onFormDataChange, loading, educationLevel,
   )
 }
 
-export default Preferences
+export default PreferencesMaster;

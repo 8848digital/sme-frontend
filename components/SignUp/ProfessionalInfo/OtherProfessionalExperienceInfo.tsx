@@ -1,12 +1,13 @@
 import Logo from "@/components/Logo";
 import AcademicChildTable from "@/components/SignUp/ProfessionalInfo/AcademicChildTable";
-import ProfessionalExpericeneChildTable from "@/components/SignUp/ProfessionalInfo/ProfessionalExpericeneChildTable";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import styles from "@/styles/wizard.module.css";
 import { useSelector } from "react-redux";
-import IndustryExpericeneChildTable from "./IndustryExpericeneChildTable";
+import ProfessionalExperienceChildTable from "./ProfessionalExperienceChildTable";
+import IndustryExperienceChildTable from "./IndustryExperienceChildTable";
 
-const Step2of3ExtractedDataFromCv = ({
+
+const OtherProfessionalExperienceInfo = ({
   formData,
   onFormDataChange,
   educationLevel,
@@ -45,13 +46,13 @@ const Step2of3ExtractedDataFromCv = ({
               />
             </div>
             <div className="col-12">
-              <ProfessionalExpericeneChildTable
+              <ProfessionalExperienceChildTable
                 formData={formData}
                 onFormDataChange={onFormDataChange}
               />
             </div>
             <div className="col-12">
-              <IndustryExpericeneChildTable
+              <IndustryExperienceChildTable
                 formData={formData}
                 onFormDataChange={onFormDataChange}
                 industryList={industryList}
@@ -71,4 +72,4 @@ const Step2of3ExtractedDataFromCv = ({
   );
 };
 
-export default Step2of3ExtractedDataFromCv;
+export default OtherProfessionalExperienceInfo;

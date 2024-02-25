@@ -16,7 +16,7 @@ interface Step2Props {
   internalStep:number;
 }
 
-const Step2of3UploadCv: React.FC<Step2Props> = ({
+const UploadCv: React.FC<Step2Props> = ({
   formData,
   onFormDataChange,
   setInternalStep,
@@ -96,8 +96,8 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
               {/* <h2>{translationDataFromStore?.data?.professional_experience}</h2> */}
-              <h1 style={{ fontSize: '20px',lineHeight:'24px' }}>Please upload your CV</h1>
-              <p className="grey" style={{lineHeight:'24px' }}>Upload your most updated resume to increase your chances of being selected.</p>
+              <h1 style={{ fontSize: '20px',lineHeight:'24px' }}>{translationDataFromStore?.data?.upload_cv_heading}</h1>
+              <p className="grey" style={{lineHeight:'24px' }}>{translationDataFromStore?.data?.upload_cv_sub_heading}</p>
 
             </div>
             <div className="">
@@ -152,9 +152,11 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
                             </div>
                             <div>
                               <h4 className="sg_blue" style={{fontSize:'14px',fontWeight:'600',color:'#00b2d4 !important'}}>
-                                <Link className="sg_blue" href=''  style={{textDecoration:'none',color:'#00b2d4 !important'}}>Click to upload</Link>
+                                <Link className="sg_blue" href=''  style={{textDecoration:'none',color:'#00b2d4 !important'}}>{translationDataFromStore?.data?.upload_btn_label}</Link>
                               </h4>
-                              <h5 className="grey" style={{fontSize:'12px',fontWeight:'600',lineHeight:'24px'}}>SVG, PNG, JPG or GIF (max. 800x400px)</h5>
+                              <h5 className="grey" style={{fontSize:'12px',fontWeight:'600',lineHeight:'24px'}}>
+                              {translationDataFromStore?.data?.file_supporting_text}
+                                </h5>
                             </div>
                           </div>
 
@@ -183,16 +185,5 @@ const Step2of3UploadCv: React.FC<Step2Props> = ({
   );
 };
 
-export default Step2of3UploadCv;
+export default UploadCv;
 
-// const signuptoken: any = useSelector(SignUpUserAccessToken_from_store);
-// console.log(signuptoken);
-// const loginToken: any = useSelector(get_access_token);
-// console.log(loginToken);
-// let accessToken: any;
-// if (loginToken?.data?.length > 0) {
-//   accessToken = loginToken?.data;
-// } else {
-//   accessToken = signuptoken?.data?.acess_token;
-// }
-// console.log(accessToken);
