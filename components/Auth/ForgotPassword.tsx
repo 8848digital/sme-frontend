@@ -32,7 +32,7 @@ const ForgotPassword = () => {
   const handlesubmit = async (values: any, action: any) => {
     console.log("values", values);
     const response = await ForgetPasswordLinkAPI(values.email, token.token);
-    console.log('forget resposne',response)
+    console.log("forget resposne", response);
     if (response.msg === "success") {
       toast.success(
         translationDataFromStore?.data?.toast_password_reset_link_success,
@@ -46,14 +46,10 @@ const ForgotPassword = () => {
         router.push("/");
       }, 5000);
     } else if (response.msg === "error") {
-      toast.error(
-        `${translationDataFromStore?.data?.toast_email_error}`
-        ,
-        {
-          autoClose: 3000,
-          className: "custom-toast", // Close the notification after 3 seconds
-        }
-      );
+      toast.error(`${translationDataFromStore?.data?.toast_email_error}`, {
+        autoClose: 3000,
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
     } else {
       toast.error(
         `${translationDataFromStore?.data?.toast_email_error} ${response.error}`,
@@ -67,7 +63,7 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="container mt-5">
-        <div className={` card ${styles.password_wrapper}`}>
+        <div className={`  ${styles.password_wrapper}`}>
           <div className="row">
             <div className="col-12">
               <div className="page_heading text-center">
@@ -105,7 +101,8 @@ const ForgotPassword = () => {
                                 name="email"
                                 onChange={handleChange}
                                 placeholder={
-                                  translationDataFromStore?.data?.email_placeholder
+                                  translationDataFromStore?.data
+                                    ?.email_placeholder
                                 }
                               />
                               <br />

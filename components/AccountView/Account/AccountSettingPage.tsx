@@ -110,6 +110,7 @@ const AccountSettingPage = () => {
                         id="firstName"
                         name="first_name"
                         value={profileDatas?.first_name}
+                        disabled
                       />
                     )}
                     {/* <ErrorMessage
@@ -140,6 +141,7 @@ const AccountSettingPage = () => {
                         id="lastName"
                         name="last_name"
                         value={profileDatas?.last_name}
+                        disabled
                       />
                     )}
 
@@ -172,6 +174,7 @@ const AccountSettingPage = () => {
                     id="phoneNumber"
                     name="phone_no"
                     value={profileDatas?.phone_no}
+                    disabled
                   />
                 )}
                 {/* <ErrorMessage
@@ -200,6 +203,7 @@ const AccountSettingPage = () => {
                     id="email"
                     name="email"
                     value={profileDatas?.email_id || profileDatas?.email}
+                    disabled
                   />
                 )}
                 {/* <ErrorMessage
