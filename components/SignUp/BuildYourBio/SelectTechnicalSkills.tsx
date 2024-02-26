@@ -17,28 +17,10 @@ const SelectTechnicalSkills = ({
   selectedLanguages,
   setSelectedLanguages,
 }: any) => {
-  const [initialized, setInitialized] = useState(false);
   const [selectedDropdownValue, setSelectedDropdownValue] = useState();
   const [selectDropDownReset, setSelectDropDownReset] = useState(false);
 
-  const [initializedLang, setInitializedLang] = useState(false);
-  // const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const translationDataFromStore = useSelector(translation_text_from_Store);
-
-  // useEffect(() => {
-  //   if (!initialized && bioData && bioData.technical_skills) {
-  //     setTechnical(
-  //       bioData.technical_skills.map((lang: any) => lang.technical_skills)
-  //     );
-  //     setInitialized(true);
-  //   }
-  // }, [initialized, bioData]);
-  // useEffect(() => {
-  //   if (!initializedLang && bioData && bioData.language) {
-  //     setTechnical(bioData.language.map((lang: any) => lang.language));
-  //     setInitializedLang(true);
-  //   }
-  // }, [initializedLang, bioData]);
 
   const handleCheckboxChange = useCallback((technical_skills: string) => {
     console.log(technical, "technical");
@@ -60,16 +42,20 @@ const SelectTechnicalSkills = ({
     onFormDataChange("other_technical_skills", otherTechSkills);
   };
   const removeTechnicalRow = (index: number) => {
-    const updatedSkill = [...technical];
-    updatedSkill.splice(index, 1);
-    setTechnical(updatedSkill);
-    onFormDataChange("other_technical_skills", updatedSkill);
+    if (technical?.length > 1) {
+      const updatedSkill = [...technical];
+      updatedSkill.splice(index, 1);
+      setTechnical(updatedSkill);
+      onFormDataChange("technical_skills", updatedSkill);
+    }
   };
   const removeLanguageRow = (index: number) => {
-    const updatedSkill = [...selectedLanguages];
-    updatedSkill.splice(index, 1);
-    setSelectedLanguages(updatedSkill);
-    onFormDataChange("other_languages", updatedSkill);
+    if (selectedLanguages?.length > 1) {
+      const updatedSkill = [...selectedLanguages];
+      updatedSkill.splice(index, 1);
+      setSelectedLanguages(updatedSkill);
+      onFormDataChange("languages", updatedSkill);
+    }
   };
   const AddTechnicalSkillRow = () => {
     const newRow = { technical_skills: "" };
@@ -82,12 +68,6 @@ const SelectTechnicalSkills = ({
     setSelectDropDownReset(true);
   };
 
-  // useEffect(() => {
-  //   if (!initializedLang && bioData && bioData.language) {
-  //     setSelectedLanguages(bioData.language.map((lang: any) => lang.language));
-  //     setInitializedLang(true);
-  //   }
-  // }, [initialized, bioData]);
   const handleCheckboxChangeLang = useCallback((language: string) => {
     setSelectedLanguages((prevSelectedLanguages: any) => {
       if (prevSelectedLanguages.includes(language)) {
@@ -106,7 +86,7 @@ const SelectTechnicalSkills = ({
     const otherLanguages = e.target.value;
     onFormDataChange("other_languages", otherLanguages);
   };
-  console.log(bioData, "selected languages");
+  console.log(technical, "selected languages");
   return (
     <div className="">
       {loading ? (
@@ -118,28 +98,30 @@ const SelectTechnicalSkills = ({
           <div className={` pt-4 ${styles.common_step_wrapper}`}>
             <div className="text-start ">
               <h5>{translationDataFromStore?.data?.bio_skills}</h5>
-              {technical?.map((skills: any, index: any) => (
-                <div key={index}>
-                  <SearchSelectInputField
-                    SkillList={ourSkill}
-                    defaultValue={skills.technical_skills}
-                    selectedDropdownValue={selectedDropdownValue}
-                    setSelectedDropdownValue={setSelectedDropdownValue}
-                    placeholder={
-                      translationDataFromStore?.data
-                        ?.build_your_bio_step3_header
-                    }
-                    selectDropDownReset={selectDropDownReset}
-                    setSelectDropDownReset={setSelectDropDownReset}
-                    // handleFieldChange={handleCheckboxChange}
-                    setTechnical={setTechnical}
-                    technical={technical}
-                    removeRow={removeTechnicalRow}
-                    index={index}
-                    name="technical_skills"
-                  />
-                </div>
-              ))}
+              {technical !== null &&
+                technical?.length > 0 &&
+                technical?.map((skills: any, index: any) => (
+                  <div key={index}>
+                    <SearchSelectInputField
+                      SkillList={ourSkill}
+                      defaultValue={skills.technical_skills}
+                      selectedDropdownValue={selectedDropdownValue}
+                      setSelectedDropdownValue={setSelectedDropdownValue}
+                      placeholder={
+                        translationDataFromStore?.data
+                          ?.build_your_bio_step3_header
+                      }
+                      selectDropDownReset={selectDropDownReset}
+                      setSelectDropDownReset={setSelectDropDownReset}
+                      // handleFieldChange={handleCheckboxChange}
+                      setTechnical={setTechnical}
+                      technical={technical}
+                      removeRow={removeTechnicalRow}
+                      index={index}
+                      name="technical_skills"
+                    />
+                  </div>
+                ))}
             </div>
 
             <div className="">
@@ -184,48 +166,6 @@ const SelectTechnicalSkills = ({
           </div>
         </>
       )}
-      {/* <div className="col-12 px-4 mt-3">
-                <div>
-                  <div className="form-group">
-                    <div className="row">
-                      <div className="col-md-4 ">
-                        <div className="text-md-end text-center mt-1 rtl_text_align_start">
-                          <label htmlFor="exampleFormControlInput1">
-                            {
-                              translationDataFromStore?.data
-                                ?.build_your_bio_step3_input_label
-                            }
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-8">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="other_tech_skills"
-                          placeholder={
-                            translationDataFromStore?.data
-                              ?.build_your_bio_step3_input_placeholder
-                          }
-                          onChange={(e: any) => {
-                            handleOtherTechSkills(e);
-                          }}
-                          value={bioData?.other_technical_skills}
-                        />
-                        <div
-                          className="pb-3"
-                          style={{ color: "grey", fontSize: "12px" }}
-                        >
-                          {
-                            translationDataFromStore?.data
-                              ?.build_your_bio_step3_input_tag
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
     </div>
   );
 };

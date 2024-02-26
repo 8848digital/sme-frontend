@@ -35,17 +35,6 @@ const BuildYourBioMaster = () => {
   const { ourSkill, loading } = useFetchOurTechnicalSkills();
   const { ourLanguage, loadingLanguage } = useFetchOurLanguage();
   const translationDataFromStore = useSelector(translation_text_from_Store);
-  const [technical, setTechnical] = useState<any>([
-    {
-      technical_skills: "",
-    },
-  ]);
-  const [selectedLanguages, setSelectedLanguages] = useState<any>([
-    {
-      language: "",
-    },
-  ]);
-
   // console.log(BuildYourBioData);
   const router = useRouter();
   const [bioData, setBioData] = useState<any>({
@@ -58,6 +47,20 @@ const BuildYourBioMaster = () => {
     certifications: [],
   });
 
+  const initialTechnical =
+    getBioData?.data?.technical_skills?.length > 0
+      ? getBioData?.data?.technical_skills
+      : [{ technical_skills: "" }];
+
+  const [technical, setTechnical] = useState<any>(initialTechnical);
+  const initialLanguage =
+    getBioData?.data?.language?.length > 0
+      ? getBioData?.data?.language
+      : [{ language: "" }];
+  const [selectedLanguages, setSelectedLanguages] =
+    useState<any>(initialLanguage);
+
+  console.log(getBioData.data, "technical skills");
   const handleNext = () => {
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
@@ -99,13 +102,13 @@ const BuildYourBioMaster = () => {
       setLoggedIn(isLoggedIn);
     }
   }, [router]);
-  const token = "token ce3ae32d700a263:b925e6f7e407c7b";
+
   const handleSubmit = async () => {
     console.log(bioData, "inside submit");
     if (currentStep === 3) {
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
       dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
-      const response = await BuildYourBioAPI(bioData, token);
+      const response = await BuildYourBioAPI(bioData, accessToken);
 
       if (
         response?.msg === "success" &&
@@ -142,6 +145,7 @@ const BuildYourBioMaster = () => {
 
   const handleBioData = () => {
     setBioData(getBioData.data);
+
     dispatch(setBuildBioData(getBioData.data));
   };
 
@@ -324,7 +328,7 @@ const BuildYourBioMaster = () => {
                 {translationDataFromStore?.data?.previous}
               </button>
             </div>
-            <div className="mx-2">
+            <div className="">
               {currentStep === 3 ? (
                 <button
                   className={` ${styles.step_change_button} bg_blue`}
