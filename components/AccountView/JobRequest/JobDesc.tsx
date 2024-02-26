@@ -10,9 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styles from "@/styles/job_request.module.css";
 import useJobDescription from '@/hooks/job_request_hooks/job_description_hooks';
+import Loaders from '@/components/Loaders';
+import JobRequestActionModal from './JobRequestActionModal';
 const JobDesc = () => {
 
     const [jobCost, setJobCost] = useState<number>();
+    const [showModal, setShowModal] = useState(false);
     console.log("job cost", jobCost);
     const router = useRouter();
     const dispatch = useDispatch();
@@ -44,6 +47,10 @@ const JobDesc = () => {
                     className: "custom-toast",
                 }
             );
+            setShowModal(true);
+            setTimeout(() => {
+                setShowModal(false);
+            }, 10000)
         }
         dispatch(fetchJobRequest(token?.token) as any);
         setTimeout(() => {
@@ -63,138 +70,146 @@ const JobDesc = () => {
 
     const translationDataFromStore = useSelector(translation_text_from_Store);
     // Function to convert date format
-    const formatDate = (dateString:any) => {
+    const formatDate = (dateString: any) => {
         const [year, month, day] = dateString.split('-');
         return `${day}-${month}-${year}`;
     }
+
     return (
         <>
             <div className="container">
-                <div className={styles.job_request_wrapper}>
-                    {
-                        jobDescriptionData?.map((data: any, index: any) => {
-                            return (
-                                <>
-                                    <div className="row">
-                                        <div className="col-6">
-                                            {
-                                                data?.job_title !== "" ?
-                                                    <div>
-                                                        <h1 className='fs-32  fw-600'>{data?.job_title}</h1>
-                                                    </div> : ''
-                                            }
+                {
+                    !loading ? (
+                        <div className={styles.job_request_wrapper}>
+                            {
+                                jobDescriptionData?.map((data: any, index: any) => {
+                                    return (
+                                        <>
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    {
+                                                        data?.job_title !== "" ?
+                                                            <div>
+                                                                <h1 className='fs-32  fw-600'>{data?.job_title}</h1>
+                                                            </div> : ''
+                                                    }
 
-                                        </div>
-                                        <div className="col-6">
-                                            <div className='text-end'>
-                                                <button type='button' className={styles.btn_view_contract}
-                                                    onClick={() => {
-                                                        window.open(`${data?.rfq_pdf_url}`, '_blank');
-                                                    }}>{translationDataFromStore?.data?.view_full_contract}</button>
-                                            </div>
-                                        </div>
-                                        <div className="col-12">
-                                            {
-                                                data?.client_name !== "" ?
-                                                    <div>
-
-                                                        <p><span className='pe-1'>{translationDataFromStore?.data?.client}:</span>{data?.client_name}</p>
+                                                </div>
+                                                <div className="col-6">
+                                                    <div className='text-end'>
+                                                        <button type='button' className={styles.btn_view_contract}
+                                                            onClick={() => {
+                                                                window.open(`${data?.rfq_pdf_url}`, '_blank');
+                                                            }}>{translationDataFromStore?.data?.view_full_contract}</button>
                                                     </div>
-                                                    : ''
-                                            }
-
-                                            <div>
-                                                <p><span className='pe-1'>{translationDataFromStore?.data?.duration}:</span>{formatDate(data?.from_date)} {translationDataFromStore?.data?.to} {formatDate(data?.to_date)}</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-12">
-                                            <div>
-                                                {data?.skills?.length > 0 ? (
-                                                    <h2 className='fs-16'>{translationDataFromStore?.data?.skills}</h2>
-                                                ) : (
-                                                    ''
-                                                )}
-
-                                            </div>
-                                            <div>
-                                                <ul>
+                                                </div>
+                                                <div className="col-12">
                                                     {
-                                                        data?.skills?.map((skills: any, index: any) => {
-                                                            return (
-                                                                <>
-                                                                    <li>{skills?.skill}</li>
-                                                                </>
-                                                            )
-                                                        })
+                                                        data?.client_name !== "" ?
+                                                            <div>
+
+                                                                <p><span className='pe-1'>{translationDataFromStore?.data?.client}:</span>{data?.client_name}</p>
+                                                            </div>
+                                                            : ''
                                                     }
 
+                                                    <div>
+                                                        <p><span className='pe-1'>{translationDataFromStore?.data?.duration}:</span>{formatDate(data?.from_date)} {translationDataFromStore?.data?.to} {formatDate(data?.to_date)}</p>
+                                                    </div>
+                                                </div>
 
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="col-12">
-                                            <div>
-                                                {data?.experience?.length > 0 ? (
-                                                    <h2 className='fs-16'>{translationDataFromStore?.data?.requirements}</h2>
-                                                ) : (
-                                                    ''
-                                                )}
+                                                <div className="col-12">
+                                                    <div>
+                                                        {data?.skills?.length > 0 ? (
+                                                            <h2 className='fs-16'>{translationDataFromStore?.data?.skills}</h2>
+                                                        ) : (
+                                                            ''
+                                                        )}
 
-                                            </div>
-                                            <div>
-                                                <ul>
-                                                    {
-                                                        data?.experience?.map((exp: any, index: number) => {
-                                                            return (
-                                                                <>
-                                                                    <li>{exp?.experience}</li>
-                                                                </>
-                                                            )
-                                                        }
-                                                        )
-                                                    }
+                                                    </div>
+                                                    <div>
+                                                        <ul>
+                                                            {
+                                                                data?.skills?.map((skills: any, index: any) => {
+                                                                    return (
+                                                                        <>
+                                                                            <li>{skills?.skill}</li>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
 
 
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="col-12">
-                                            <div>
-                                                <label htmlFor='job_cost'>{translationDataFromStore?.data?.job_request_cost}</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control w-25"
-                                                    onChange={(e: any) => {
-                                                        setJobCost(e.target.value);
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className='mt-3'>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div>
+                                                        {data?.experience?.length > 0 ? (
+                                                            <h2 className='fs-16'>{translationDataFromStore?.data?.requirements}</h2>
+                                                        ) : (
+                                                            ''
+                                                        )}
 
-                                                <div className="col-md-4">
-                                                    <button
-                                                        className={`${styles.btn_view_contract} ${data.status === "Approved" || data.status === "Rejected" ? styles.btn_disabled_approved : ''}`}
+                                                    </div>
+                                                    <div>
+                                                        <ul>
+                                                            {
+                                                                data?.experience?.map((exp: any, index: number) => {
+                                                                    return (
+                                                                        <>
+                                                                            <li>{exp?.experience}</li>
+                                                                        </>
+                                                                    )
+                                                                }
+                                                                )
+                                                            }
 
-                                                        onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
-                                                        disabled={
-                                                            data.status === "Approved" || data.status === "Rejected"
-                                                        }
-                                                    >
-                                                        {data.status === "Pending"
-                                                            ? `${translationDataFromStore?.data?.approve}`
-                                                            : `${translationDataFromStore?.data?.approved}`}
-                                                    </button>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div>
+                                                        <label htmlFor='job_cost'>{translationDataFromStore?.data?.job_request_cost}</label>
+                                                        <input
+                                                            type="text"
+                                                            className="form-control w-25"
+                                                            onChange={(e: any) => {
+                                                                setJobCost(e.target.value);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className='mt-3'>
+
+                                                        <div className="col-md-4">
+                                                            <button
+                                                                className={`${styles.btn_view_contract} ${data.status === "Approved" || data.status === "Rejected" ? styles.btn_disabled_approved : ''}`}
+
+                                                                onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
+                                                                disabled={
+                                                                    data.status === "Approved" || data.status === "Rejected"
+                                                                }
+                                                            >
+                                                                {data.status === "Pending"
+                                                                    ? `${translationDataFromStore?.data?.approve}`
+                                                                    : `${translationDataFromStore?.data?.approved}`}
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </>
-                            )
-                        })
-                    }
+                                        </>
+                                    )
+                                })
+                            }
 
-                </div>
+                        </div>
+                    ) : (
+                        <Loaders />
+                    )
+                }
+                <JobRequestActionModal show={showModal} onHide={() => { setShowModal(false) }} />
             </div>
         </>
     )

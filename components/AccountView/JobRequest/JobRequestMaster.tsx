@@ -8,7 +8,7 @@ const JobRequestMaster = () => {
   return (
     <>
       {/* <JobNotification jobRequestData={jobRequestData} /> */}
-      <JobRequestList jobRequestData={jobRequestData}/>
+      <JobRequestList jobRequestData={jobRequestData} loading={loading}/>
       {/* <JobDesc/> */}
     </>
   );
