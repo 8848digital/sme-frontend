@@ -729,7 +729,7 @@ input::-webkit-inner-spin-button {
 .dropdown-ul-list {
   z-index: 1700 !important;
 }
-
+/* Dropdown CSS */
 .dropdown-ul-list {
   position: absolute;
   max-height: 170px;
@@ -744,15 +744,26 @@ input::-webkit-inner-spin-button {
   padding: 2px 4px;
   font-size: 0.9rem;
 }
-
 .dropdown-ul-list li:hover {
-  background-color: #a9b6ca;
+  background-color: #787878;
   color: white;
-  font-size: 20px !important;
+  font-size: 18px !important;
 }
-
 .selected {
   background-color: #96aac9 !important;
   color: white;
   font-size: 1rem !important;
 }
+.dropdown-ul-list::-webkit-scrollbar {
+  width: 6px; /* adjust as needed */
+}
+
+.dropdown-ul-list::-webkit-scrollbar-thumb {
+  background-color: #e2d8d8f6; /* color of the thumb */
+  border-radius: 3px;
+}
+
+.dropdown-ul-list::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* color of the track */
+}
+/* Dropdown CSS */
