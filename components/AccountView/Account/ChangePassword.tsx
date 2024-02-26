@@ -256,8 +256,7 @@ const ChangePassword = () => {
                         >
                           <Link
                             href="/"
-                            className="text-blue"
-                            style={{ textDecoration: "none" }}
+                            className="text-blue text-decoration-none"
                           >
                             {translationDataFromStore?.data?.cancel}
                           </Link>

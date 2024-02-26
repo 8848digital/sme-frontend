@@ -107,89 +107,45 @@ const AuthChangePassword = () => {
 
   return (
     <>
-      <div className="">
-        <h1 className={`text-capitalize ${styles.password_heading} mb-3`}>
-          {/* {translationDataFromStore?.data?.change_password_header} */}
-          {translationDataFromStore?.data?.enter_password.split(" ").pop()}:
-        </h1>
-      </div>
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={Resetpassword_Validation}
-        onSubmit={(values, action) => handlesubmit(values, action)}
-      >
-        {({ handleChange }) => (
-          <FormikForm className="">
-            <div className=" ">
-              <div className="container-fuild">
-                <div className="mb-2 form-group">
-                  <label htmlFor="" className="mb-1 grey fs-16">
-                    {translationDataFromStore?.data?.change_password_old}
-                  </label>
+      <div className={`  ${styles.password_wrapper} `}>
+        <p className={`text-capitalize fs-32 fw-500 text-center p-0 m-0 lh-24`}>
+          {translationDataFromStore?.data?.change_password}
+        </p>
 
-                  <div className="col-md-12 col-xl-4 col-lg-5 ">
-                    {/* <div className="password_block "> */}
-                    <TextField
-                      className="form-control"
-                      name="old_password"
-                      onChange={handleChange}
-                      placeholder={
-                        translationDataFromStore?.data
-                          ?.change_password_old_placeholder
-                      }
-                      required
-                      type={showOldPassword ? "text" : "password"}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              onClick={() =>
-                                togglePasswordVisibility("old_password")
-                              }
-                            >
-                              {showOldPassword ? (
-                                <VisibilityIcon />
-                              ) : (
-                                <VisibilityOffIcon />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <br />
-                    <div className="error_message">
-                      <ErrorMessage name="old_password" />
-                    </div>
-                    {/* </div> */}
-                  </div>
-                </div>
-                <div className="row mb-2 form-group">
-                  <label htmlFor="" className="mb-1 grey fs-16">
-                    {translationDataFromStore?.data?.change_password_new}
-                  </label>
+        <Formik
+          initialValues={initialValues}
+          // validationSchema={Resetpassword_Validation}
+          onSubmit={(values, action) => handlesubmit(values, action)}
+        >
+          {({ handleChange }) => (
+            <FormikForm>
+              <div className="d-flex justify-content-center mt-4  ">
+                <div className="container-fuild ">
+                  <div className="mb-2 form-group">
+                    <label htmlFor="" className="mb-1 grey fs-16">
+                      {translationDataFromStore?.data?.change_password_old}
+                    </label>
 
-                  <div className="col-md-12 col-xl-4 col-lg-5">
-                    <div className="password_block">
+                    <div className="col-12 ">
                       <TextField
                         className="form-control"
-                        name="new_password"
+                        name="old_password"
                         onChange={handleChange}
                         placeholder={
                           translationDataFromStore?.data
-                            ?.change_password_new_placeholder
+                            ?.change_password_old_placeholder
                         }
                         required
-                        type={showNewPassword ? "text" : "password"}
+                        type={showOldPassword ? "text" : "password"}
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
                               <IconButton
                                 onClick={() =>
-                                  togglePasswordVisibility("new_password")
+                                  togglePasswordVisibility("old_password")
                                 }
                               >
-                                {showNewPassword ? (
+                                {showOldPassword ? (
                                   <VisibilityIcon />
                                 ) : (
                                   <VisibilityOffIcon />
@@ -201,85 +157,126 @@ const AuthChangePassword = () => {
                       />
                       <br />
                       <div className="error_message">
-                        <ErrorMessage name="new_password" />
+                        <ErrorMessage name="old_password" />
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="row mb-2 form-group">
-                  <label htmlFor="" className="mb-1 grey fs-16">
-                    {translationDataFromStore?.data?.change_password_confirm}
-                  </label>
+                  <div className="row mb-2 form-group">
+                    <label htmlFor="" className="mb-1 grey fs-16">
+                      {translationDataFromStore?.data?.change_password_new}
+                    </label>
 
-                  <div className="col-md-12 col-xl-4 col-lg-5">
-                    <TextField
-                      className="form-control"
-                      name="confirmPassword"
-                      onChange={handleChange}
-                      placeholder={
-                        translationDataFromStore?.data
-                          ?.change_password_confirm_placeholder
-                      }
-                      required
-                      type={showConfirmPassword ? "text" : "password"}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              onClick={() =>
-                                togglePasswordVisibility("confirmPassword")
-                              }
-                            >
-                              {showConfirmPassword ? (
-                                <VisibilityIcon />
-                              ) : (
-                                <VisibilityOffIcon />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <br />
-                    <div className="error_message">
-                      <ErrorMessage name="confirmPassword" />
+                    <div className="col-12">
+                      <div className="password_block">
+                        <TextField
+                          className="form-control"
+                          name="new_password"
+                          onChange={handleChange}
+                          placeholder={
+                            translationDataFromStore?.data
+                              ?.change_password_new_placeholder
+                          }
+                          required
+                          type={showNewPassword ? "text" : "password"}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={() =>
+                                    togglePasswordVisibility("new_password")
+                                  }
+                                >
+                                  {showNewPassword ? (
+                                    <VisibilityIcon />
+                                  ) : (
+                                    <VisibilityOffIcon />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                        <br />
+                        <div className="error_message">
+                          <ErrorMessage name="new_password" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={`row ${styles.custom_btn} mt-4`}>
-                  <div className="col-xl-4 col-lg-5 col-md-12">
-                    <div className="row">
-                      <div className="col-lg-6 col-md-4">
-                        <button
-                          type="button"
-                          className={`btn btn_blue_border `}
-                        >
-                          <Link
-                            href="/"
-                            className="text-blue"
-                            style={{ textDecoration: "none" }}
-                          >
-                            {translationDataFromStore?.data?.cancel}
-                          </Link>
-                        </button>
+                  <div className="row mb-2 form-group">
+                    <label htmlFor="" className="mb-1 grey fs-16">
+                      {translationDataFromStore?.data?.change_password_confirm}
+                    </label>
+
+                    <div className="col-12">
+                      <TextField
+                        className="form-control"
+                        name="confirmPassword"
+                        onChange={handleChange}
+                        placeholder={
+                          translationDataFromStore?.data
+                            ?.change_password_confirm_placeholder
+                        }
+                        required
+                        type={showConfirmPassword ? "text" : "password"}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                onClick={() =>
+                                  togglePasswordVisibility("confirmPassword")
+                                }
+                              >
+                                {showConfirmPassword ? (
+                                  <VisibilityIcon />
+                                ) : (
+                                  <VisibilityOffIcon />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                      <br />
+                      <div className="error_message">
+                        <ErrorMessage name="confirmPassword" />
                       </div>
-                      <div className="col-lg-6 col-md-4">
-                        <button
-                          type="submit"
-                          className="btn btn_blue btn_blue_mob"
-                        >
-                          {translationDataFromStore?.data?.Save}
-                          {/* Save */}
-                        </button>
+                    </div>
+                  </div>
+                  <div className={`row ${styles.custom_btn} mt-4`}>
+                    <div className=" col-12">
+                      <div className="row">
+                        <div className="col-lg-6 col-md-4">
+                          <button
+                            type="button"
+                            className={`btn btn_blue_border `}
+                          >
+                            <Link
+                              href="/"
+                              className="text-blue"
+                              style={{ textDecoration: "none" }}
+                            >
+                              {translationDataFromStore?.data?.cancel}
+                            </Link>
+                          </button>
+                        </div>
+                        <div className="col-lg-6 col-md-4">
+                          <button
+                            type="submit"
+                            className="btn btn_blue btn_blue_mob"
+                          >
+                            {translationDataFromStore?.data?.Save}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </FormikForm>
-        )}
-      </Formik>
+            </FormikForm>
+          )}
+        </Formik>
+      </div>
     </>
   );
 };
