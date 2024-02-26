@@ -64,7 +64,7 @@ body {
   width: 100%;
   border-radius: 100px !important;
   padding: 12 20px !important;
-  color: white;
+  color: white !important;
 }
 .btn_blue_border {
   background-color: white;
@@ -145,6 +145,9 @@ body {
 .fs-16 {
   font-size: 16px;
 }
+.fs-18 {
+  font-size: 18px;
+}
 .fs-32 {
   font-size: 32px;
   line-height: 24px;
@@ -178,8 +181,8 @@ body {
   --bs-btn-disabled-bg: none;
   --bs-btn-disabled-border-color: none;
 }
-.bg_blue{
-  background-color:#00b2d4 ;
+.bg_blue {
+  background-color: #00b2d4;
 }
 
 /* 
@@ -715,7 +718,6 @@ input::-webkit-inner-spin-button {
   vertical-align: middle; /* Align the label vertically with the radio button */
 }
 
-
 /* mui stepper css */
 .stepper_css .MuiStepIcon-root {
   width: 36px; /* Set the width of the circle */
@@ -745,7 +747,7 @@ input::-webkit-inner-spin-button {
   margin-right: 24px;
 }
 [dir="rtl"] .MuiStepLabel-label {
- margin-right: 8px;
+  margin-right: 8px;
 }
 /* Bio select languages/skills css */
 .dropdown-ul-list {

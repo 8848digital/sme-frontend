@@ -105,7 +105,7 @@ const LogIn = () => {
   console.log("loginThemeData from", loginThemeData);
   return (
     <div className="container-fuild ">
-      <div className="row">
+      <div className="row m-0">
         <div className={` col-lg-7 ${styles.main_container}`}>
           <Formik
             initialValues={{
@@ -252,8 +252,11 @@ const LogIn = () => {
                             }
                           </span>{" "}
                           <span>
-                            <Link href='/wizard-master'  className={styles.forget_password}>
-                            {translationDataFromStore?.data?.signup}
+                            <Link
+                              href="/wizard-master"
+                              className={styles.forget_password}
+                            >
+                              {translationDataFromStore?.data?.signup}
                             </Link>
                           </span>
                         </p>

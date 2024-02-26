@@ -1,12 +1,12 @@
-import Pagenotfound from '@/components/404page'
-import React from 'react'
+import PageNotFound from "@/components/pageNotFound";
+import React from "react";
 
 const index = () => {
   return (
     <>
-    <Pagenotfound/>
+      <PageNotFound />
     </>
-  )
-}
+  );
+};
 
-export default index
+export default index;

@@ -110,7 +110,7 @@ const ChangePassword = () => {
       <div className="">
         <h1 className={`text-capitalize ${styles.password_heading} mb-3`}>
           {/* {translationDataFromStore?.data?.change_password_header} */}
-          {translationDataFromStore?.data?.enter_password.split(" ").pop()}:
+          {translationDataFromStore?.data?.password}:
         </h1>
       </div>
       <Formik
@@ -256,8 +256,7 @@ const ChangePassword = () => {
                         >
                           <Link
                             href="/"
-                            className="text-blue"
-                            style={{ textDecoration: "none" }}
+                            className="text-blue text-decoration-none"
                           >
                             {translationDataFromStore?.data?.cancel}
                           </Link>

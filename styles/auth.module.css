@@ -10,7 +10,7 @@
   /* border: 2px solid green; */
   height: 573px;
   /* margin: auto; */
-  margin-top: 180px !important;
+  margin-top: 140px !important;
 }
 .login_header {
   /* border: 2px solid red; */
@@ -48,6 +48,7 @@
 .img_container .img_banner {
   height: 110vh;
   /* width: 655px !important; */
+  margin-top: 79px;
   width: 100%;
   text-align: end;
 }
@@ -92,7 +93,11 @@
   line-height: 24px;
 }
 /* media */
-
+@media (max-width: 900px) {
+  .img_main_wrapper {
+    display: none !important;
+  }
+}
 @media (max-width: 767px) {
   .auth_common_wrapper {
     margin: 50px auto;

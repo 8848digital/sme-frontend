@@ -6,17 +6,20 @@ import { useSelector } from "react-redux";
 const useContactSupport = () => {
   const [contactSupport, setContactSupport] = useState([]);
   const { languageToggle, language_abbr } = useSelector(language_selector);
+  const language_selector_from_redux: any = useSelector(language_selector);
   console.log("language_abbr", language_abbr);
 
   const getcontactSupportData = async () => {
-    const fetchcontactSupportData: any = await GetContactSupportAPI(
-      language_abbr
-    );
+    if (language_abbr !== undefined) {
+      const fetchcontactSupportData: any = await GetContactSupportAPI(
+        language_abbr
+      );
 
-    if (fetchcontactSupportData?.msg === "success") {
-      setContactSupport(fetchcontactSupportData?.data);
-    } else {
-      setContactSupport([]);
+      if (fetchcontactSupportData?.msg === "success") {
+        setContactSupport(fetchcontactSupportData?.data);
+      } else {
+        setContactSupport([]);
+      }
     }
   };
 
@@ -24,9 +27,9 @@ const useContactSupport = () => {
     getcontactSupportData();
   }, [language_abbr]);
 
-  useEffect(() => {
-    getcontactSupportData();
-  }, []);
+  // useEffect(() => {
+  //   getcontactSupportData();
+  // }, []);
 
   return {
     contactSupport,

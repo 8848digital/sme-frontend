@@ -110,6 +110,7 @@ const AccountSettingPage = () => {
                         id="firstName"
                         name="first_name"
                         value={profileDatas?.first_name}
+                        disabled
                       />
                     )}
                     {/* <ErrorMessage
@@ -140,6 +141,7 @@ const AccountSettingPage = () => {
                         id="lastName"
                         name="last_name"
                         value={profileDatas?.last_name}
+                        disabled
                       />
                     )}
 
@@ -172,6 +174,7 @@ const AccountSettingPage = () => {
                     id="phoneNumber"
                     name="phone_no"
                     value={profileDatas?.phone_no}
+                    disabled
                   />
                 )}
                 {/* <ErrorMessage
@@ -200,6 +203,7 @@ const AccountSettingPage = () => {
                     id="email"
                     name="email"
                     value={profileDatas?.email_id || profileDatas?.email}
+                    disabled
                   />
                 )}
                 {/* <ErrorMessage
@@ -211,26 +215,44 @@ const AccountSettingPage = () => {
               {/* <button type="submit" className="btn btn-primary">
                 Submit
               </button> */}
-              <div className="pt-3">
-                {editMode ? ( // Show "Save" button when in edit mode
+              <div className="row">
+                <div className="col-lg-6 col-md-4">
                   <button
-                    className="btn btn_blue"
-                    type="submit"
-                    onClick={handleSave}
-                  >
-                    {translationDataFromStore?.data?.Save}
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn_blue"
+                    className="btn btn_blue_border  mt-3"
                     type="button"
                     onClick={handleEdit}
                   >
-                    {translationDataFromStore?.data?.edit}
+                    <Link href="/" className="text-blue text-decoration-none">
+                      {translationDataFromStore?.data?.cancel}
+                    </Link>
                   </button>
-                )}
+                </div>
+                <div className="col-lg-6 col-md-4">
+                  <div className="pt-3">
+                    {editMode ? ( // Show "Save" button when in edit mode
+                      <button
+                        className="btn btn_blue"
+                        type="submit"
+                        onClick={handleSave}
+                      >
+                        {translationDataFromStore?.data?.Save}
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn_blue"
+                        type="button"
+                        onClick={handleEdit}
+                      >
+                        {translationDataFromStore?.data?.edit}
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className="mt-3">{/* <AccounDeletePage /> */}</div>
+              {/* 
+              <div className="mt-3">
+                <AccounDeletePage />
+              </div> */}
             </Form>
           )}
         </Formik>
