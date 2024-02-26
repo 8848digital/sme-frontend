@@ -1,41 +1,58 @@
 import ActiveContractCard from "@/cards/ActiveContractCard";
 import InactiveContractCard from "@/cards/InactiveContractCard";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
-import styles from "@/styles/account.module.css";
+import styles from "@/styles/contract.module.css";
 import { Nav, Tab } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-
-
-const  ContractNavbars = ({filteredContractsActiveUnsigned , filteredContractsInactive}:any) => {
-  const translationDataFromStore = useSelector(translation_text_from_Store)
-
+const ContractNavbars = ({
+  filteredContractsActiveUnsigned,
+  filteredContractsInactive,
+}: any) => {
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   return (
     <>
       <div className="container">
-        <div className={`row card  ${styles.account_wrapper}`}>
-          <div className="p-0">
-            <h1 className={`${styles.header_text}`}>{translationDataFromStore?.data?.contract}</h1>
+        <div className={`row   ${styles.contract_wrapper}`}>
+          <div className="p-0 ">
+            <p className={`${styles.header_text} fs-32 lh-24 fw-500`}>
+              {translationDataFromStore?.data?.contract}
+            </p>
           </div>
-          <div className="mt-5 p-0">
+          <div className="mt-2 p-0">
             <Tab.Container id="tabs-example" defaultActiveKey="tab1">
-              <Nav variant="tabs">
-                <Nav.Item>
-                  <Nav.Link eventKey="tab1">{translationDataFromStore?.data?.contract_active}</Nav.Link>
+              <Nav variant="underline">
+                <Nav.Item className={`pe-4 ${styles.nav_item}`}>
+                  <Nav.Link
+                    eventKey="tab1"
+                    className="fs-16 lh-24 fw-500 nav_link text-center"
+                  >
+                    {translationDataFromStore?.data?.contract_active}
+                  </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="tab2">{translationDataFromStore?.data?.contract_history}</Nav.Link>
+                <Nav.Item className={`pe-4 ${styles.nav_item}`}>
+                  <Nav.Link
+                    eventKey="tab2"
+                    className="fs-16 lh-24 fw-500 nav_link text-center"
+                  >
+                    {translationDataFromStore?.data?.contract_history}
+                  </Nav.Link>
                 </Nav.Item>
               </Nav>
 
-              <Tab.Content style={{overflowX:"scroll"}}>
+              <Tab.Content>
                 <Tab.Pane eventKey="tab1">
-                  
-                  <ActiveContractCard filteredContractsActiveUnsigned={filteredContractsActiveUnsigned}/>
+                  <ActiveContractCard
+                    filteredContractsActiveUnsigned={
+                      filteredContractsActiveUnsigned
+                    }
+                  />
                 </Tab.Pane>
                 <Tab.Pane eventKey="tab2">
-                <InactiveContractCard filteredContractsInactive={filteredContractsInactive}/>
+                  <InactiveContractCard
+                    filteredContractsInactive={filteredContractsInactive}
+                  />
                 </Tab.Pane>
               </Tab.Content>
             </Tab.Container>
@@ -44,7 +61,6 @@ const  ContractNavbars = ({filteredContractsActiveUnsigned , filteredContractsIn
       </div>
     </>
   );
-}
+};
 
-
-  export default ContractNavbars;
+export default ContractNavbars;
