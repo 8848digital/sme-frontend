@@ -49,11 +49,11 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
     setSelectedFile(null);
     onFormDataChange("photo_url", null);
   };
-  const token = "token ce3ae32d700a263:b925e6f7e407c7b";
+
   const uploadFile = async (file: File | null) => {
     if (file) {
       try {
-        const response = await BioUploadFileAPI({ file }, token);
+        const response = await BioUploadFileAPI({ file }, accessToken);
         console.log("Upload Response:", response.file_url);
 
         // Use the upload response as needed (e.g., store it in your form data)
@@ -99,12 +99,13 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                       }
                       alt="Selected File"
                       style={{ width: "180px" }}
+                      className="cursor"
                     />
                     <span>
                       {selectedFile ? (
                         <span className={styles.edit_icon_wrapper}>
                           <i
-                            className={`fas fa-edit ${styles.edit_icon}`}
+                            className={`fas fa-edit ${styles.edit_icon} cursor`}
                             style={{ fontSize: "15px" }}
                           ></i>
                         </span>
@@ -115,7 +116,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                         ></i>
                       )}
                       <input
-                        className={`${styles.camera_icon} `}
+                        className={`${styles.camera_icon} cursor `}
                         id="input-file"
                         type="file"
                         ref={fileInputRef}

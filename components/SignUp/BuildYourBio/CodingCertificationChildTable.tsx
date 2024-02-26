@@ -60,10 +60,12 @@ const CodingCertificationChildTable: React.FC<
   };
 
   const removeRow = (index: number) => {
-    const updatedCertifications = [...certifications];
-    updatedCertifications.splice(index, 1);
-    setCertifications(updatedCertifications);
-    onFormDataChange("certifications", updatedCertifications);
+    if (certifications?.length > 1) {
+      const updatedCertifications = [...certifications];
+      updatedCertifications.splice(index, 1);
+      setCertifications(updatedCertifications);
+      onFormDataChange("certifications", updatedCertifications);
+    }
   };
 
   return (
@@ -76,7 +78,7 @@ const CodingCertificationChildTable: React.FC<
       <div className="row">
         <div className="col-12 p-0">
           {certifications?.map((cert, index) => (
-            <div className="row mb-3" key={index}>
+            <div className="row mb-3 p-0" key={index}>
               <CommonInputField
                 placeholder={`${translationDataFromStore?.data?.build_your_bio_step5_certification_name}`}
                 onChange={handleCertificationChange}
@@ -119,53 +121,6 @@ const CodingCertificationChildTable: React.FC<
                   }
                 />
               </div>
-
-              {/* <div
-                className={`col-md-1 border ${styles.bio_childtable_responsive_class}`}
-              >
-                <input
-                  type="text"
-                  placeholder={
-                    translationDataFromStore?.data
-                      ?.build_your_bio_step5_organization
-                  }
-                  value={cert.issuing_organization}
-                  onChange={(e) =>
-                    handleCertificationChange(
-                      index,
-                      "issuing_organization",
-                      e.target.value
-                    )
-                  }
-                />
-              </div>
-              <div
-                className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-              >
-                <input
-                  type="date"
-                  placeholder="Issue Date"
-                  value={cert.issue_date}
-                  onChange={(e) =>
-                    handleCertificationChange(
-                      index,
-                      "issue_date",
-                      e.target.value
-                    )
-                  }
-                />
-              </div>
-              <div
-                className={`col-md-3 border ${styles.bio_childtable_responsive_class}`}
-              >
-                <button
-                  type="button"
-                  className={`btn ${wizard_styles.btn_delete_row}`}
-                  onClick={() => removeRow(index)}
-                >
-                  {translationDataFromStore?.data?.delete_row_btn}
-                </button>
-              </div> */}
             </div>
           ))}
           <AddButton

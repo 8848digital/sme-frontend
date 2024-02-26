@@ -17,9 +17,9 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
             <h5>
               {translationDataFromStore?.data?.build_your_bio_step2_header}
             </h5>
-            <p className="m-0">
+            {/* <p className="m-0">
               {translationDataFromStore?.data?.ai_option_text}
-            </p>
+            </p> */}
           </div>
           <div className="mt-3">
             <div className="mb-3">
@@ -39,12 +39,12 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
               </p>
             </div>
           </div>
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <button className={styles.AI_text_button}>
               <i className="fas fa-star pe-2 sg_blue"></i>
               {translationDataFromStore?.data?.ai_button_text}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
