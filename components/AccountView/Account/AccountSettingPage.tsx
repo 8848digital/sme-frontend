@@ -218,7 +218,7 @@ const AccountSettingPage = () => {
               <div className="row">
                 <div className="col-lg-6 col-md-4">
                   <button
-                    className="btn btn_grey_border  mt-3"
+                    className="btn btn_blue_border  mt-3"
                     type="button"
                     onClick={handleEdit}
                   >
