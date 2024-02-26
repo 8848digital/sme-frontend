@@ -219,7 +219,7 @@ const RespNavbar = () => {
                           <li className="nav-item">
                             <Link
                               className={`nav-link px-3 white ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}
-                              href="/job-request"
+                              href="/job-request-list"
                             >
                               {translationDataFromStore?.data?.job_request}
                             </Link>
