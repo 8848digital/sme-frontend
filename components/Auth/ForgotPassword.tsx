@@ -139,14 +139,7 @@ const ForgotPassword = () => {
                           >
                             {translationDataFromStore?.data?.send}
                           </button>
-                          <div className="text-end mt-1 pe-2">
-                            <Link
-                              href="/change-password"
-                              className={`text-decoration-none fs-16 ${styles.forget_password}`}
-                            >
-                              {translationDataFromStore?.data?.change_password}
-                            </Link>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
