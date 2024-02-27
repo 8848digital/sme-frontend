@@ -16,7 +16,7 @@ const ContractNavbars = ({
   return (
     <>
       <div className="container">
-        <div className={`row   ${styles.contract_wrapper}`}>
+        <div className={`row  `}>
           <div className="p-0 ">
             <p className={`${styles.header_text} fs-32 lh-24 fw-500`}>
               {translationDataFromStore?.data?.contract}

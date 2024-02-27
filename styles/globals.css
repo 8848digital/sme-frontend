@@ -5,32 +5,29 @@
 }
 
 @font-face {
-  font-family: 'Euclid Circular A';
-  src: url('/fonts/Euclid Circular A Regular.ttf'); 
+  font-family: "Euclid Circular A";
+  src: url("/fonts/Euclid Circular A Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Euclid Circular A Medium';
-  src: url('/fonts/Euclid Circular A Medium.ttf'); 
+  font-family: "Euclid Circular A Medium";
+  src: url("/fonts/Euclid Circular A Medium.ttf");
 }
 
 @font-face {
-  font-family: 'Euclid Circular A Bold';
-  src: url('/fonts/Euclid Circular A Bold.ttf'); 
+  font-family: "Euclid Circular A Bold";
+  src: url("/fonts/Euclid Circular A Bold.ttf");
 }
 @font-face {
-  font-family: 'Euclid Circular A Light';
-  src: url('/fonts/Euclid Circular A Light.ttf');
+  font-family: "Euclid Circular A Light";
+  src: url("/fonts/Euclid Circular A Light.ttf");
 }
-
-
 
 body {
   font-family: "Euclid Circular A";
   -webkit-text-size-adjust: none;
   overflow-x: hidden;
 }
-
 
 /* colors  */
 .white {
@@ -151,7 +148,9 @@ body {
 .text-white {
   color: white;
 }
-
+.white_text_hover:hover {
+  color: #00a5cd !important;
+}
 /* ---------------------------------------------------------- */
 
 .fs-20 {
@@ -197,7 +196,6 @@ body {
 .bg_blue {
   background-color: #00b2d4;
 }
-
 
 .cursor {
   cursor: pointer;
