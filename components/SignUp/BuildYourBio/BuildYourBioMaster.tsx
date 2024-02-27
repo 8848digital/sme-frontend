@@ -6,27 +6,20 @@ import {
   setBuildBioData,
   setResetBuildBioData,
 } from "@/store/slices/buildYourBio_slice/build_bio_slice";
-import wizardStyles from "@/styles/wizard.module.css";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { MobileStepper } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import EnterBio from "./EnterBio";
 import SelectCertifications from "./SelectCertifications";
-import SelectLanguageSkills from "./SelectLanguageSkills";
 import SelectTechnicalSkills from "./SelectTechnicalSkills";
 import UploadPhoto from "./UploadPhoto";
 import styles from "@/styles/bio.module.css";
 import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
 import useFetchOurTechnicalSkills from "@/hooks/buildYourBio/technical-skill-hooks";
 import useFetchOurLanguage from "@/hooks/buildYourBio/language-hooks";
-import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import HorizontalLinearStepper from "./BioStepper";
-import StepChangeButtons from "./StepChangeButtons";
 const BuildYourBioMaster = () => {
   const [currentStep, setCurrentStep] = useState<any>(0);
   const dispatch = useDispatch();
@@ -158,123 +151,7 @@ const BuildYourBioMaster = () => {
   console.log(translationDataFromStore, "translation text");
 
   return (
-    // <>
-    //   <div className="container-fluid">
-    //     <div className={styles.bio_wrapper}>
-    //       <div className="row " style={{ maxWidth: "800px", margin: "0 auto" }}>
-    //         <div className="col-4 ">
-    //           <div className="">
-    //             <h2 className="fs-3 text-white">
-    //               {translationDataFromStore?.data?.step} {currentStep}
-    //             </h2>
-    //             <hr className={wizardStyles.step_hr} />
-    //           </div>
-    //         </div>
-    //         <div className="col-8 position-relative">
-    //           <div className={wizardStyles.progress_bar_div}>
-    //             <div className={wizardStyles.progress_bar_div_tag}>
-
-    //               {
-    //                     document.dir === 'ltr' ?
-    //                      <p className="mb-4 text-white">
-    //                     <span className="ps-1 pe-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">5</span>
-    //                     {translationDataFromStore?.data?.completed}</p>
-    //                     :
-    //                     <p className="mb-4 text-white">
-    //                  {/* <span className="ps-1 pe-1">{currentStep}</span> */}
-    //                  {translationDataFromStore?.data?.steps_bar_of_arabic}<span className="pe-1 ps-1">5</span>
-    //                  {translationDataFromStore?.data?.steps_bar_arabic}<span className="ps-1 pe-1">{currentStep}</span>
-    //                     {translationDataFromStore?.data?.completed}
-    //                     {/* {currentStep}من 7 خطوات مكتملة */}
-    //                   </p>
-    //                   }
-    //             </div>
-
-    //             <MobileStepper
-    //               variant="progress"
-    //               steps={6}
-    //               backButton={<></>}
-    //               nextButton={<></>}
-    //               activeStep={currentStep}
-    //               className={wizardStyles.progress_bar}
-    //             />
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className="row">
-    //         <div className="col-12">
-    //           {currentStep === 1 && (
-    //             <UploadPhoto
-    //               bioData={bioData}
-    //               onFormDataChange={handleBioDataChange}
-    //             />
-    //           )}
-    //           {currentStep === 2 && (
-    //             <EnterBio
-    //               bioData={bioData}
-    //               onFormDataChange={handleBioDataChange}
-    //             />
-    //           )}
-    //           {currentStep === 3 && (
-    //             <SelectTechnicalSkills
-    //               ourSkill={ourSkill?.data}
-    //               loading={loading}
-    //               bioData={bioData}
-    //               onFormDataChange={handleBioDataChange}
-    //             />
-    //           )}
-    //           {currentStep === 4 && (
-    //             <SelectLanguageSkills
-    //               ourLanguage={ourLanguage?.data}
-    //               loading={loadingLanguage}
-    //               bioData={bioData}
-    //               onFormDataChange={handleBioDataChange}
-    //             />
-    //           )}
-
-    //           {currentStep === 5 && (
-    //             <SelectCertifications
-    //               bioData={bioData}
-    //               onFormDataChange={handleBioDataChange}
-    //             />
-    //           )}
-    //         </div>
-
-    //         <div className="col-12">
-    //           <div
-    //             className=" d-flex justify-content-center"
-    //             style={{ marginTop: "50px", marginBottom: "20px" }}
-    //           >
-    //             <div className="d-sm-flex d-static">
-    //               {currentStep > 1 && (
-    //                 <button
-    //                   className="btn btn-prev me-3 d-flex align-items-center justify-content-center"
-    //                   onClick={handlePrevious}
-    //                 >
-    //                   <ArrowBackIcon />
-    //                   {translationDataFromStore?.data?.previous}
-    //                 </button>
-    //               )}
-    //               {currentStep < 5 ? (
-    //                 <button
-    //                   className="btn btn-next d-flex align-items-center justify-content-center"
-    //                   onClick={handleNext}
-    //                 >
-    //                   {translationDataFromStore?.data?.next}
-    //                   <ArrowForwardIcon />
-    //                 </button>
-    //               ) : (
-    //                 <button className="btn btn-next" onClick={handleSubmit}>
-    //                   {translationDataFromStore?.data?.submit}
-    //                 </button>
-    //               )}
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
+  
     <>
       <div className="container-fluid">
         <div className={styles.bio_wrapper}>

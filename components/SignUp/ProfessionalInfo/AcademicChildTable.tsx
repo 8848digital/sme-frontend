@@ -90,7 +90,7 @@ const AcademicChildTable: React.FC<{
       <div className="row justify-content-center">
         <div className="col-12 p-0">
           {/* <h2>{translationDataFromStore?.data?.signup_step5_academic}</h2> */}
-          <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>{translationDataFromStore?.data?.other_information}</h1>
+          <h1 className={`fs-20 ${styles.label_color}`}>{translationDataFromStore?.data?.other_information}</h1>
         </div>
       </div>
       <div className={`row ${styles.other_info}`}>

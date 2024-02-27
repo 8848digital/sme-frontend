@@ -39,12 +39,7 @@ const EnterNameAndPhoneNumber = ({ formData, onFormDataChange ,  setInternalStep
               />
             </div>
             <div className="mt-5">
-              <h1>
-                {/* {translationDataFromStore?.data?.step} */}
-                {/* 3{" "}
-                {translationDataFromStore?.data?.of} 7 */}
-              </h1>
-              <h2 style={{ fontSize: '20px' }}>
+              <h2 className="fs-20">
               {translationDataFromStore?.data?.other_information}
                 </h2>
               <div className="form-group ">

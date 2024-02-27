@@ -77,7 +77,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 p-0">
-          <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>
+          <h1 className={`fs-20 ${styles.label_color}`}>
             {translationDataFromStore?.data?.professional_experience}</h1>
         </div>
       </div>

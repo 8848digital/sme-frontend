@@ -96,8 +96,8 @@ const UploadCv: React.FC<Step2Props> = ({
                 {translationDataFromStore?.data?.of} 7 */}
               </h1>
               {/* <h2>{translationDataFromStore?.data?.professional_experience}</h2> */}
-              <h1 style={{ fontSize: '20px',lineHeight:'24px' }}>{translationDataFromStore?.data?.upload_cv_heading}</h1>
-              <p className="grey" style={{lineHeight:'24px' }}>{translationDataFromStore?.data?.upload_cv_sub_heading}</p>
+              <h1 className="fs-20 lh-24">{translationDataFromStore?.data?.upload_cv_heading}</h1>
+              <p className="grey lh-20">{translationDataFromStore?.data?.upload_cv_sub_heading}</p>
 
             </div>
             <div className="">

@@ -1,4 +1,3 @@
-// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { CONSTANTS } from "@/services/config/api-config";
 import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { form_details_from_store } from "@/store/slices/buildYourBio_slice/build_bio_slice";
@@ -30,11 +29,6 @@ const ProfileCompleted = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   console.log(userData, "user data");
-  // const shareProfile = () => {
-  //   const shareUrl = "https://example.com/user-profile"; // Replace with the actual profile URL
-  //   window.open(`https://twitter.com/intent/tweet?url=${shareUrl}`);
-  // };
-
   return (
     <div className="container d-flex justify-content-center">
       <div className={` p-4 ${styles.profile_wrapper}`}>

@@ -31,7 +31,7 @@ const EnterEmail = ({ formData, onFormDataChange }: any) => {
                   {/* 1{" "}{translationDataFromStore?.data?.of} 7 */}
                 </h1>
                 {/* <h2>{translationDataFromStore?.data?.signup_personal}</h2> */}
-                <h1 className="" style={{ fontSize: '20px' }}>{
+                <h1 className="fs-20">{
                                   translationDataFromStore?.data
                                     ?.email_placeholder
                                 }</h1>
