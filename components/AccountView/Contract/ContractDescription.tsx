@@ -59,13 +59,13 @@ const ContractDescription = ({ data }: any) => {
         ) : (
           <>
             {data?.status !== "Active" && (
-              <Button
-                className={` ${styles.btn_decline}`}
+              <button
+                className={` ${styles.btn_sign}`}
                 onClick={handleApproveClick}
                 disabled={data.status === "Active"}
               >
                 {translationDataFromStore?.data?.sign}
-              </Button>
+              </button>
             )}
             <ContractApproveModal
               show={modalShow}

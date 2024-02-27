@@ -21,7 +21,7 @@
   padding-top: 8px;
   color: #787878;
 }
-.btn_decline {
+.btn_sign {
   background-color: #ffffff;
   width: 103px;
   height: 36px;
@@ -30,8 +30,9 @@
   box-shadow: 0px 1px 2px 0px #1018280d;
   margin: 10px 8px;
   overflow: none;
+  color:#23282d;
 }
-.btn_decline:hover {
+.btn_sign:hover {
   background: #00a5cd;
   width: 103px;
   height: 36px;
@@ -93,7 +94,7 @@
   .label_mob {
     display: inline;
   }
-  .btn_decline {
+  .btn_sign {
     width: 100% !important;
   }
   .btn_view {
@@ -102,7 +103,7 @@
   .button_wrapper {
     width: 100% !important;
   }
-  .btn_decline {
+  .btn_sign {
     margin: 0px;
     margin-top: 10px;
   }
