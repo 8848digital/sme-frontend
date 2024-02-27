@@ -135,7 +135,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
 
                         <div className="col-md-4 border-bottom">
                           <div className="row">
-                            <div className="col-md-2 col-lg-4 col-xl-6"></div>
+                            <div className="col-md-2 col-lg-4 col-xl-5 col-xxl-6"></div>
                             <ContractDescription
                               openDescription={setTabs}
                               data={data}

@@ -23,7 +23,7 @@
 }
 .btn_decline {
   background-color: #ffffff;
-  width: 75px;
+  width: 103px;
   height: 36px;
   border-radius: 100px;
   border: 1px solid #23282d;
@@ -33,7 +33,7 @@
 }
 .btn_decline:hover {
   background: #00a5cd;
-  width: 75px;
+  width: 103px;
   height: 36px;
   border-radius: 100px;
   border: 1px solid #23282d;
@@ -68,6 +68,9 @@
 .Unsigned {
   color: orange;
 }
+.unactive {
+  color: red;
+}
 .label_mob {
   display: none;
 }
@@ -91,10 +94,10 @@
     display: inline;
   }
   .btn_decline {
-    width: 40% !important;
+    width: 100% !important;
   }
   .btn_view {
-    width: 40% !important;
+    width: 100% !important;
   }
   .button_wrapper {
     width: 100% !important;

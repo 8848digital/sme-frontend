@@ -54,19 +54,23 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                     <div className="row">
                       <div className="col-md-4 border-bottom">
                         <div className={styles.job_request_content}>
-                          <h2 className="fs-16">{data?.custom_project_name}</h2>
+                          <h2 className="fs-16 ">
+                            {data?.custom_project_name}
+                          </h2>
                         </div>
                       </div>
 
                       <div className="col-md-4 border-bottom">
                         <div className={styles.job_request_content}>
-                          <h2 className="fs-14 grey">{data?.status}</h2>
+                          <h2 className={`fs-14 ${styles.unactive}`}>
+                            {data?.status}
+                          </h2>
                         </div>
                       </div>
 
                       <div className="col-md-4 border-bottom">
                         <div className="row">
-                          <div className="col-md-2 col-lg-4 col-xl-6"></div>
+                          <div className="col-md-2 col-lg-4 col-xl-5 col-xxl-6"></div>
 
                           <ContractDescription
                             openDescription={setTabs}

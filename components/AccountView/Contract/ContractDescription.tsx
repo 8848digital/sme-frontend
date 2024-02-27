@@ -9,12 +9,17 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styles from "../../../styles/contract.module.css";
+import { useEffect, useState } from "react";
+import ContractThankyou from "./ContractThankyou";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const ContractDescription = ({ data, openDescription }: any) => {
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
   const translationDataFromStore = useSelector(translation_text_from_Store);
+  const [modalShow, setModalShow] = useState(false);
 
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
@@ -23,23 +28,20 @@ const ContractDescription = ({ data, openDescription }: any) => {
   let tableValue = "table";
   const handleApproveClick = async () => {
     console.log("approve button clicked");
+    console.log(data?.name, " data?.name");
     response = await UpdateContractAPI(token?.token, approveStatus, data?.name);
     console.log("job approve", response);
-    if (response.msg === "success") {
-      toast.success(
-        response[0]?.data?.data === "Contract status updated to Approved" &&
-          translationDataFromStore?.data
-            ?.toast_approve_contract_request_success,
-        {
-          autoClose: 3000, // Time in milliseconds (5 seconds)
-          className: "custom-toast", // Close the notification after 3 seconds
-        }
-      );
+    if (response[0]?.msg === "success") {
+      toast.success(response[0]?.data?.data);
       dispatch(fetchJobRequest(token?.token) as any);
+      setModalShow(true);
       setTimeout(() => {
-        router.push("./contract-approved-thankyou");
+        // router.push("./contract-approved-thankyou");
+
         dispatch(fetchContractList(token?.token) as any);
       }, 5000);
+    } else {
+      toast.error(response.error);
     }
     return response;
   };
@@ -67,32 +69,46 @@ const ContractDescription = ({ data, openDescription }: any) => {
   const isDisabledButton = (status: string) => {
     return status === "Received" || status === "Rejected";
   };
+
+  useEffect(() => {
+    if (modalShow) {
+      const timer = setTimeout(() => {
+        setModalShow(false); // Close the modal after 5000ms
+      }, 5000);
+
+      // Clear the timeout if the modal is closed before 5000ms
+      return () => clearTimeout(timer);
+    }
+  }, [modalShow]);
+
   return (
     <>
-      <div className={`col-md-5 col-lg-4 col-xl-3 `}>
+      <div className={`col-md-5 col-lg-4 col-xl-4 col-xxl-3 text-start`}>
         {data?.status === "Inactive" ? (
           ""
         ) : (
           <>
             {data?.status !== "Active" && (
-              <button
+              <Button
                 className={` ${styles.btn_decline}`}
                 onClick={handleApproveClick}
-                disabled={
-                  data.status === "Active" || data.status === "Rejected"
-                }
+                disabled={data.status === "Active"}
               >
                 {/* {data.status ===
           `${translationDataFromStore?.data?.contract_active}`
             ? `${translationDataFromStore?.data?.contract_active}`
             : `${translationDataFromStore?.data?.sign}`} */}
                 {translationDataFromStore?.data?.sign}
-              </button>
+              </Button>
             )}
+            <ContractThankyou
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
           </>
         )}
       </div>
-      <div className={`col-md-5 col-lg-4 col-xl-3 `}>
+      <div className={`col-md-5 col-lg-4 col-xl-3 col-xxl-3 text-end `}>
         <Link href={data?.contract_pdf_url} target="_blank">
           <button
             className={`btn ${styles.btn_view} `}
