@@ -109,16 +109,16 @@
 }
 
 /* disabled btn */
-.btn_disabled_approved {
+/* .btn_disabled_approved {
   background-color: #ffffff;
   color: #000000;
   width: 211px;
   height: 48px;
   border-radius: 100px;
   border: 1px solid #787878;
-}
+} */
 
-.btn_disabled_decline {
+.btn_disabled {
   background-color: #ffffff;
   width: 103px;
   height: 36px;

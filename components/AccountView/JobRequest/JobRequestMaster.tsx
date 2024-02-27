@@ -1,5 +1,4 @@
 import useJobRequest from "@/hooks/job_request_hooks/job_request_hooks";
-import JobNotification from "./JobNotification";
 import JobRequestList from "./JobRequestList";
 import JobDesc from "./JobDesc";
 const JobRequestMaster = () => {

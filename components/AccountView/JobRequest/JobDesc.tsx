@@ -12,18 +12,22 @@ import styles from "@/styles/job_request.module.css";
 import useJobDescription from '@/hooks/job_request_hooks/job_description_hooks';
 import Loaders from '@/components/Loaders';
 import JobRequestActionModal from './JobRequestActionModal';
+import { fetchJobDescription } from '@/store/slices/job_request_slice/job_description_slice';
 const JobDesc = () => {
 
     const [jobCost, setJobCost] = useState<number>();
     const [showModal, setShowModal] = useState(false);
     console.log("job cost", jobCost);
     const router = useRouter();
+    const { query } = useRouter();
+    const name = query.id;
     const dispatch = useDispatch();
     let response: any;
     // console.log(jobData.name, "job cost");
     const token = useSelector(get_access_token);
     const jobRequestFromStore = useSelector(job_request_data_from_Store);
     const { jobDescriptionData, loading } = useJobDescription();
+    const translationDataFromStore = useSelector(translation_text_from_Store);
     console.log('job request data', jobRequestFromStore)
     console.log('job desc data', jobDescriptionData)
     console.log("profile token", token.token);
@@ -51,25 +55,10 @@ const JobDesc = () => {
             setTimeout(() => {
                 setShowModal(false);
             }, 10000)
+            dispatch(fetchJobDescription({ token: token?.token, name }) as any);
         }
-        dispatch(fetchJobRequest(token?.token) as any);
-        setTimeout(() => {
-            // router.push("./job-approve-thankyou");
-            dispatch(fetchJobRequest(token?.token) as any);
-        }, 3000);
         return response;
     };
-
-    // const handleReadContractClick = () => {
-    //   console.log("approve button clicked");
-    //   router.push("/");
-    // };
-    // const isDisabledButton = (status: string) => {
-    //     return status === "Received" || status === "Rejected";
-    // };
-
-    const translationDataFromStore = useSelector(translation_text_from_Store);
-    // Function to convert date format
     const formatDate = (dateString: any) => {
         const [year, month, day] = dateString.split('-');
         return `${day}-${month}-${year}`;
@@ -170,31 +159,75 @@ const JobDesc = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
-                                                    <div>
-                                                        <label htmlFor='job_cost'>{translationDataFromStore?.data?.job_request_cost}</label>
-                                                        <input
-                                                            type="text"
-                                                            className="form-control w-25"
-                                                            onChange={(e: any) => {
-                                                                setJobCost(e.target.value);
-                                                            }}
-                                                        />
-                                                    </div>
+                                                    {
+                                                        data.status === "Approved" || data.status === "Rejected" ? (
+                                                            ''
+                                                        ) : (
+
+                                                            <div>
+                                                                <label htmlFor='job_cost'>{translationDataFromStore?.data?.job_request_cost}</label>
+                                                                <input
+                                                                    type="text"
+                                                                    className="form-control w-25"
+                                                                    onChange={(e: any) => {
+                                                                        setJobCost(e.target.value);
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                        )
+                                                    }
                                                     <div className='mt-3'>
 
                                                         <div className="col-md-4">
-                                                            <button
-                                                                className={`${styles.btn_view_contract} ${data.status === "Approved" || data.status === "Rejected" ? styles.btn_disabled_approved : ''}`}
+                                                            {
+                                                                data.status === "Pending" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_view_contract}`}
 
-                                                                onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
-                                                                disabled={
-                                                                    data.status === "Approved" || data.status === "Rejected"
-                                                                }
-                                                            >
-                                                                {data.status === "Pending"
-                                                                    ? `${translationDataFromStore?.data?.approve}`
-                                                                    : `${translationDataFromStore?.data?.approved}`}
-                                                            </button>
+                                                                        onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
+                                                                        disabled={
+                                                                            data.status === "Approved" || data.status === "Rejected"
+                                                                        }
+                                                                    >
+                                                                        {data.status === "Pending"
+                                                                            ? `${translationDataFromStore?.data?.approve}`
+                                                                            : `${translationDataFromStore?.data?.approved}`}
+                                                                    </button>
+                                                                ) : ('')
+                                                            }
+                                                            {
+                                                                data.status === "Rejected" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_disabled} `}
+
+                                                                        // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                                                        disabled={
+                                                                            data.status === "Approved" || data.status === "Rejected"
+                                                                        }
+                                                                    >
+                                                                        {translationDataFromStore?.data?.declined}
+                                                                    </button>
+
+                                                                ) : ('')
+                                                            }
+
+                                                            {
+                                                                data.status === "Approved" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_disabled} `}
+
+                                                                        // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                                                        disabled={
+                                                                            data.status === "Approved" || data.status === "Rejected"
+                                                                        }
+                                                                    >
+                                                                        {translationDataFromStore?.data?.approved}
+                                                                    </button>
+
+                                                                ) : ('')
+                                                            }
+
+
                                                         </div>
                                                     </div>
                                                 </div>

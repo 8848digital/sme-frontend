@@ -96,19 +96,51 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                                                     <div className="col-md-4 border-bottom">
                                                         <div className={` ${styles.job_request_action}`}>
 
-                                                            
-                                                            <button
-                                                                className={` ${styles.btn_decline} ${data.status === "Approved" || data.status === "Rejected" ? styles.btn_disabled_decline : ''} `}
+                                                            {
+                                                                data.status === "Pending" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_decline} `}
+                                                                        onClick={() => { handleRejectClick(data.supplier, data.name) }}
 
-                                                                onClick={() => { handleRejectClick(data.supplier, data.name) }}
-                                                                disabled={
-                                                                    data.status === "Approved" || data.status === "Rejected"
-                                                                }
-                                                            >
-                                                                {data.status === "Pending"
-                                                                    ? `${translationDataFromStore?.data?.decline}`
-                                                                    : `${translationDataFromStore?.data?.declined}`}
-                                                            </button>
+                                                                    >
+
+                                                                        {translationDataFromStore?.data?.decline}
+
+                                                                    </button>
+
+                                                                ) : ('')
+                                                            }
+                                                            {
+                                                                data.status === "Rejected" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_disabled} `}
+
+                                                                        // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                                                        disabled={
+                                                                            data.status === "Approved" || data.status === "Rejected"
+                                                                        }
+                                                                    >
+                                                                        {translationDataFromStore?.data?.declined}
+                                                                    </button>
+
+                                                                ) : ('')
+                                                            }
+
+                                                            {
+                                                                data.status === "Approved" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_disabled} `}
+
+                                                                        // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                                                        disabled={
+                                                                            data.status === "Approved" || data.status === "Rejected"
+                                                                        }
+                                                                    >
+                                                                        {translationDataFromStore?.data?.approved}
+                                                                    </button>
+
+                                                                ) : ('')
+                                                            }
 
                                                             <button className={styles.btn_view} type='button'
                                                                 onClick={() => { router.push(`${data.url}`) }}
