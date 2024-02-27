@@ -46,7 +46,7 @@ const sliderSettings = {
 };
 
 const Services = ( {serviceData , loadingService} :any) => {
-    const sliderRef = useRef(null);
+    const sliderRef = useRef<Slider>(null);
      console.log('service',serviceData)
     useEffect(() => {
         AOS.init();
