@@ -8,11 +8,18 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import styles from "../../../styles/contract.module.css";
+import { useEffect, useState } from "react";
+import ContractThankyou from "./ContractThankyou";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 const ContractDescription = ({ data, openDescription }: any) => {
   const router = useRouter();
   const dispatch = useDispatch();
   let response: any;
   const translationDataFromStore = useSelector(translation_text_from_Store);
+  const [modalShow, setModalShow] = useState(false);
 
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
@@ -21,19 +28,20 @@ const ContractDescription = ({ data, openDescription }: any) => {
   let tableValue = "table";
   const handleApproveClick = async () => {
     console.log("approve button clicked");
+    console.log(data?.name, " data?.name");
     response = await UpdateContractAPI(token?.token, approveStatus, data?.name);
     console.log("job approve", response);
-    if (response[0].msg === "success") {
-      toast.success( response[0]?.data?.data === "Contract status updated to Approved" &&
-      translationDataFromStore?.data?.toast_approve_contract_request_success, {
-        autoClose: 3000, // Time in milliseconds (5 seconds)
-        className: "custom-toast", // Close the notification after 3 seconds
-      });
+    if (response[0]?.msg === "success") {
+      toast.success(response[0]?.data?.data);
       dispatch(fetchJobRequest(token?.token) as any);
+      setModalShow(true);
       setTimeout(() => {
-        router.push("./contract-approved-thankyou");
+        // router.push("./contract-approved-thankyou");
+
         dispatch(fetchContractList(token?.token) as any);
       }, 5000);
+    } else {
+      toast.error(response.error);
     }
     return response;
   };
@@ -42,7 +50,7 @@ const ContractDescription = ({ data, openDescription }: any) => {
     response = await UpdateContractAPI(token?.token, rejectStatus, data?.name);
     console.log("job reject", response);
     console.log("job approve", response);
-    if (response[0].msg === "success") {
+    if (response.msg === "success") {
       toast.success(response[0]?.data?.data, {
         autoClose: 3000, // Time in milliseconds (5 seconds)
         className: "custom-toast", // Close the notification after 3 seconds
@@ -61,76 +69,57 @@ const ContractDescription = ({ data, openDescription }: any) => {
   const isDisabledButton = (status: string) => {
     return status === "Received" || status === "Rejected";
   };
-  return (
-    <div className="container">
-      <div className="row">
-        <table className="table table-bordered">
-          <thead className="p-2">
-            <tr className="">
-              <th>{translationDataFromStore?.data?.project_name}</th>
-              <th className="text-center">
-                {translationDataFromStore?.data?.status}
-              </th>
-              <th className="text-center">
-                {translationDataFromStore?.data?.action}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <h2>{data?.custom_project_name}</h2>
-              </td>
-              <td className="text-center">
-                <h2>{data?.status}</h2>
-              </td>
-              <td className="text-center">
-                <button
-                  className="btn btn-later"
-                  style={{ width: "auto", padding: "10px", margin: "0" }}
-                  onClick={() => {
-                    openDescription(tableValue);
-                  }}
-                >
-               {translationDataFromStore?.data?.view_less_btn}
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="col-12 text-center p-2">
-          <div className="row">
-            <div className="col-md-6">
-              <Link href={data?.contract_pdf_url} target="_blank">
-                <button
-                  className="btn btn-later"
-                  style={{ width: "auto" }}
-                  // onClick={handleReadContractClick}
-                >
-                  {translationDataFromStore?.data?.read_full_contract}
-                </button>
-              </Link>
-            </div>
 
-            <div className="col-md-6">
-              <button
-                className="btn btn-later"
-                style={{ width: "auto" }}
+  useEffect(() => {
+    if (modalShow) {
+      const timer = setTimeout(() => {
+        setModalShow(false); // Close the modal after 5000ms
+      }, 5000);
+
+      // Clear the timeout if the modal is closed before 5000ms
+      return () => clearTimeout(timer);
+    }
+  }, [modalShow]);
+
+  return (
+    <>
+      <div className={`col-md-5 col-lg-4 col-xl-4 col-xxl-3 text-start`}>
+        {data?.status === "Inactive" ? (
+          ""
+        ) : (
+          <>
+            {data?.status !== "Active" && (
+              <Button
+                className={` ${styles.btn_decline}`}
                 onClick={handleApproveClick}
-                disabled={
-                  data.status === "Active" || data.status === "Rejected"
-                }
+                disabled={data.status === "Active"}
               >
-                {data.status ===
-                `${translationDataFromStore?.data?.contract_active}`
-                  ? `${translationDataFromStore?.data?.contract_active}`
-                  : `${translationDataFromStore?.data?.sign}`}
-              </button>
-            </div>
-          </div>
-        </div>
+                {/* {data.status ===
+          `${translationDataFromStore?.data?.contract_active}`
+            ? `${translationDataFromStore?.data?.contract_active}`
+            : `${translationDataFromStore?.data?.sign}`} */}
+                {translationDataFromStore?.data?.sign}
+              </Button>
+            )}
+            <ContractThankyou
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
+          </>
+        )}
       </div>
-    </div>
+      <div className={`col-md-5 col-lg-4 col-xl-3 col-xxl-3 text-end `}>
+        <Link href={data?.contract_pdf_url} target="_blank">
+          <button
+            className={`btn ${styles.btn_view} `}
+
+            // onClick={handleReadContractClick}
+          >
+            {translationDataFromStore?.data?.view}
+          </button>
+        </Link>
+      </div>
+    </>
   );
 };
 

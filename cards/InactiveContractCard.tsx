@@ -3,71 +3,41 @@ import useTranslationText from "@/hooks/general_hooks/transaltion_text_hook";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import styles from "../styles/contract.module.css";
+
 const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   console.log("job contract inactive in card", filteredContractsInactive);
   console.log("job contract active in card", filteredContractsInactive);
   const [tabs, setTabs] = useState<any>("table");
   const router = useRouter();
   const [descriptionData, setDescriptionData] = useState<any>([]);
-  const translationDataFromStore = useSelector(translation_text_from_Store)
+  const translationDataFromStore = useSelector(translation_text_from_Store);
 
   const openDescription = (e: any, tabs: string) => {
     setDescriptionData(e);
     setTabs(tabs);
   };
   return (
-    <>
-     <div className="row">
-      {tabs === "table" && (
-        <div className="col-12">
-          <table className="table table-bordered">
-            <thead className="p-2">
-              <tr className="">
-                <th>{translationDataFromStore?.data?.project_name}</th>
-                <th className="text-center">{translationDataFromStore?.data?.status}</th>
-                <th className="text-center">{translationDataFromStore?.data?.action}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredContractsInactive &&
-                filteredContractsInactive.length > 0 && (
-                  <>
-                    {filteredContractsInactive.map(
-                      (data: any, index: any) => {
-                        return (
-                      
-                            <tr key={index}>
-                              <td>
-                                <h2>{data?.custom_project_name}</h2>
-                              </td>
-                              <td className="text-center">
-                                <h2>{data?.status}</h2>
-                              </td>
-                              <td className="text-center">
-                                <button
-                                  className="btn btn-later mt-0"
-                                  style={{ width: "auto",padding:'10px' }}
-                                  onClick={() =>
-                                    openDescription(data, "description")
-                                  }
-                                >
-                                 {translationDataFromStore?.data?.view_full_btn}
-                                </button>
-                                {/* <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link> */}
-                              </td>
-                            </tr>
-                          
-                        );
-                      }
-                    )}
-                  </>
-                )}
-            </tbody>
-          </table>
-          {filteredContractsInactive &&
-          filteredContractsInactive.length >0 ? (
+    <div className="container">
+      <div className="row border rounded">
+        {/* {tabs === "table" && ( */}
+        <div className={`col-12 ${styles.contract_content_heading}`}>
+          <div className="row">
+            <div className="col-md-4 border-bottom">
+              <h2>{translationDataFromStore?.data?.project_name}</h2>
+            </div>
+            <div className="col-md-4 border-bottom">
+              <h2 className="">{translationDataFromStore?.data?.status}</h2>
+            </div>
+            <div className="col-md-4 border-bottom">
+              <h2 className="text-end ">
+                {translationDataFromStore?.data?.action}
+              </h2>
+            </div>
+          </div>
+          {filteredContractsInactive && filteredContractsInactive.length > 0 ? (
             <></>
           ) : (
             <div className="text-center">
@@ -75,17 +45,57 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
             </div>
           )}
         </div>
-      )}
-      {tabs === "description" && (
-        <div>
-          <ContractDescription
-            openDescription={setTabs}
-            data={descriptionData}
-          />
+        <div className="col-12">
+          {filteredContractsInactive &&
+            filteredContractsInactive.length > 0 && (
+              <>
+                {filteredContractsInactive.map((data: any, index: any) => {
+                  return (
+                    <div className="row">
+                      <div className="col-md-4 border-bottom">
+                        <div className={styles.job_request_content}>
+                          <h2 className="fs-16 ">
+                            {data?.custom_project_name}
+                          </h2>
+                        </div>
+                      </div>
+
+                      <div className="col-md-4 border-bottom">
+                        <div className={styles.job_request_content}>
+                          <h2 className={`fs-14 ${styles.unactive}`}>
+                            {data?.status}
+                          </h2>
+                        </div>
+                      </div>
+
+                      <div className="col-md-4 border-bottom">
+                        <div className="row">
+                          <div className="col-md-2 col-lg-4 col-xl-5 col-xxl-6"></div>
+
+                          <ContractDescription
+                            openDescription={setTabs}
+                            data={data}
+                          />
+                          {/* <Link className='color' href={data?.contract_pdf_url} target='_blank'> </Link> */}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
         </div>
-      )}
+        {/* )} */}
+        {/* {tabs === "description" && ( */}
+        {/* <div>
+            <ContractDescription
+              // openDescription={setTabs}
+              data={descriptionData}
+            />
+          </div> */}
+        {/* )} */}
+      </div>
     </div>
-    </>
   );
 };
 export default InactiveContractCard;
