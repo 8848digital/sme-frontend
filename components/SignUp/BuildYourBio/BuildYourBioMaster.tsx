@@ -107,7 +107,7 @@ const BuildYourBioMaster = () => {
     console.log(bioData, "inside submit");
     if (currentStep === 3) {
       // dispatch(setResetBuildBioData() as any); // Dispatch action to store form data
-      dispatch(setBuildBioData(bioData)); // Dispatch action to store form data
+      dispatch(setBuildBioData(bioData)); // Dispatch action to store form
       const response = await BuildYourBioAPI(bioData, accessToken);
 
       if (

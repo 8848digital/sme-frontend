@@ -7,9 +7,26 @@ import styles from "@/styles/bio.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Certificate } from "crypto";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const ProfileCompleted = () => {
-  const userData = useSelector(bio_data_store);
+  const router = useRouter();
+  const query = router.asPath.split("/");
+  console.log(query, "query");
+  let prevUserData = useSelector(form_details_from_store);
+  const [userData, setUserData] = useState<any>(prevUserData || "");
+  let apiUserdata = useSelector(bio_data_store);
+  console.log(prevUserData, "user data profile");
+
+  const userDataFun = () => {
+    if (query[1] === "account-view") {
+      setUserData(apiUserdata?.data);
+    }
+  };
+  useEffect(() => {
+    userDataFun();
+  }, [apiUserdata, prevUserData]);
+
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
   console.log(userData, "user data");
@@ -17,10 +34,6 @@ const ProfileCompleted = () => {
   //   const shareUrl = "https://example.com/user-profile"; // Replace with the actual profile URL
   //   window.open(`https://twitter.com/intent/tweet?url=${shareUrl}`);
   // };
-
-  const router = useRouter();
-  const query = router.asPath.split("/");
-  console.log(query, "query");
 
   return (
     <div className="container d-flex justify-content-center">
@@ -30,13 +43,13 @@ const ProfileCompleted = () => {
             <div className="d-flex justify-content-center">
               <div style={{ width: "180px" }}>
                 <div className={`${styles.circular_image}  `}>
-                  {userData && userData?.data?.photo_url === null ? (
+                  {userData && userData?.photo_url === null ? (
                     <AccountCircleIcon
                       sx={{ fontSize: "180px", color: "#00B2D4" }}
                     />
                   ) : (
                     <img
-                      src={`${CONSTANTS.API_BASE_URL}${userData?.data?.photo_url}`}
+                      src={`${CONSTANTS.API_BASE_URL}${userData?.photo_url}`}
                       width="180px"
                     />
                   )}
@@ -49,11 +62,11 @@ const ProfileCompleted = () => {
             <div className="p-2">
               <h5 className="my-2">{`${translationDataFromStore?.data?.bio}:`}</h5>
               <textarea
-                aria-rowspan={10}
+                aria-rowspan={3}
                 className={`${styles.profile_completed_input} form-control `}
                 value={
-                  userData?.data?.bio !== ""
-                    ? userData?.data?.bio
+                  userData?.bio !== ""
+                    ? userData?.bio
                     : translationDataFromStore?.data
                         ?.bio_profile_complete_language_tag
                 }
@@ -61,14 +74,14 @@ const ProfileCompleted = () => {
                 readOnly
               />
               {/* <p className="text-secondary">
-                {500 - userData?.data?.bio?.length}{" "}
+                {500 - userData?.bio?.length}{" "}
                 {translationDataFromStore?.data?.characters_left}
               </p> */}
             </div>
             <div className="p-2">
               <h5 className="my-2">{`${translationDataFromStore?.data?.bio_skills}:`}</h5>
-              {userData?.data?.technical_skills?.length !== 0 ? (
-                userData?.data?.technical_skills?.map((skills: any) => (
+              {userData?.technical_skills?.length !== 0 ? (
+                userData?.technical_skills?.map((skills: any) => (
                   <input
                     type="text"
                     className={`${styles.profile_completed_input} form-control`}
@@ -91,8 +104,8 @@ const ProfileCompleted = () => {
             <div className="p-2">
               <h5 className="my-2">{`${translationDataFromStore?.data?.build_your_bio_step4_header}:`}</h5>
 
-              {userData?.data?.language?.length !== 0 ? (
-                userData?.data?.language?.map((language: any) => (
+              {userData?.language?.length !== 0 ? (
+                userData?.language?.map((language: any) => (
                   <input
                     type="text"
                     className={`${styles.profile_completed_input} form-control`}
@@ -114,8 +127,8 @@ const ProfileCompleted = () => {
             </div>
             <div className="p-2">
               <h5 className="my-2">{`${translationDataFromStore?.data?.bio_certification}:`}</h5>
-              {userData?.data?.certifications?.length !== 0 ? (
-                userData?.data?.certifications?.map((Certificate: any) => (
+              {userData?.certifications?.length !== 0 ? (
+                userData?.certifications?.map((Certificate: any) => (
                   <input
                     type="text"
                     className={`${styles.profile_completed_input} form-control`}

@@ -79,7 +79,12 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const { handleSubmit, setFieldValue } = formik;
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
+  const handleDivClick = () => {
+    // Trigger click event on the hidden file input
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
   return (
     <div className="container">
       <div className="mt-5 text-center">
@@ -90,7 +95,10 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                 <LoaderForSkills />
               ) : (
                 <div className={`${styles.selected_file}`}>
-                  <div className={`${styles.circular_image} position-relative`}>
+                  <div
+                    className={`${styles.circular_image} position-relative`}
+                    onClick={handleDivClick}
+                  >
                     <img
                       src={
                         selectedFile !== null && selectedFile !== undefined
@@ -111,7 +119,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                         </span>
                       ) : (
                         <i
-                          className={`fas fa-camera ${styles.camera_icon}`}
+                          className={`fas fa-camera ${styles.camera_icon} cursor`}
                           style={{ fontSize: "30px" }}
                         ></i>
                       )}
@@ -126,7 +134,7 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
                           const filePath = `/files/${fileName}`;
                           setFieldValue("logo", filePath); // Set the file path as value
                         }}
-                        style={{ opacity: "0" }}
+                        style={{ display: "none" }}
                       />
                     </span>
                   </div>
