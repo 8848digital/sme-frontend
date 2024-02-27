@@ -11,12 +11,7 @@ import { Inter } from "next/font/google";
 import { Cairo } from "next/font/google";
 import favicon from "../public/favicon.png";
 import Head from "next/head";
-// import ConnectionStatus from "@/components/ConnectionStatus";
-const inter = Cairo({ subsets: ["latin"] });
-const cairo = Cairo({
-  weight: "400",
-  subsets: ["latin"],
-});
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -24,13 +19,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>SME-SG</title>
         <link rel="icon" type="image/png" href={favicon.src} />
       </Head>
-      <div className={cairo.className}>
+      <div>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             {() => (
               <div>
                 <ToastContainer />
-                {/* <ConnectionStatus/> */}
                 <Layout>
                   <Component {...pageProps} />
                 </Layout>

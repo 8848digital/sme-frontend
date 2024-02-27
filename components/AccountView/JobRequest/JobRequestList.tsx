@@ -54,7 +54,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
             <div className={styles.job_request_heading}>
               <h1>{translationDataFromStore?.data?.job_request}</h1>
             </div>
-            <div className="row border rounded">
+            <div className="row border rounded m-0 p-0">
               <div className={`col-12 ${styles.job_request_content_heading}`}>
                 <div className="row">
                   <div className="col-sm-4 border-bottom">
