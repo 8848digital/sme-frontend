@@ -9,7 +9,8 @@ import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import UpdateJobRequestAPI from "@/services/api/job_request_api/update_Job_request_api";
 import { toast } from "react-toastify";
 import Link from "next/link";
-const JobRequestList = ({ jobRequestData }: any) => {
+import Loaders from "@/components/Loaders";
+const JobRequestList = ({ jobRequestData, loading }: any) => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
   let rejectStatus = "Rejected";
   let response: any;
@@ -48,87 +49,113 @@ const JobRequestList = ({ jobRequestData }: any) => {
   return (
     <>
       <div className="container">
-        <div className={styles.job_request_wrapper}>
-          <div className={styles.job_request_heading}>
-            <h1>{translationDataFromStore?.data?.job_request}</h1>
-          </div>
-          <div className="row border rounded">
-            <div className={`col-12 ${styles.job_request_content_heading}`}>
-              <div className="row">
-                <div className="col-md-4 border-bottom">
-                  <div>
-                    <h2>
-                      {translationDataFromStore?.data?.job_request_project_id}
-                    </h2>
+        {!loading ? (
+          <div className={styles.job_request_wrapper}>
+            <div className={styles.job_request_heading}>
+              <h1>{translationDataFromStore?.data?.job_request}</h1>
+            </div>
+            <div className="row border rounded">
+              <div className={`col-12 ${styles.job_request_content_heading}`}>
+                <div className="row">
+                  <div className="col-md-4 border-bottom">
+                    <div>
+                      <h2>
+                        {translationDataFromStore?.data?.job_request_project_id}
+                      </h2>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-4 border-bottom">
-                  <div>
-                    <h2>{translationDataFromStore?.data?.project_name}</h2>
+                  <div className="col-md-4 border-bottom">
+                    <div>
+                      <h2>{translationDataFromStore?.data?.project_name}</h2>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-4 border-bottom">
-                  <div className="text-end">
-                    <h2>{translationDataFromStore?.data?.action}</h2>
+                  <div className="col-md-4 border-bottom">
+                    <div className="text-end">
+                      <h2>{translationDataFromStore?.data?.action}</h2>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-12">
-              {jobRequestData &&
-                jobRequestData.length > 0 &&
-                jobRequestData.map((data: any, index: number) => {
-                  return (
-                    <div className="row">
-                      <div className="col-md-4 border-bottom">
-                        <div className={styles.job_request_content}>
-                          <h2 className="fs-16 fw-500 ">{data.project_id}</h2>
+              <div className="col-12">
+                {jobRequestData &&
+                  jobRequestData.length > 0 &&
+                  jobRequestData.map((data: any, index: number) => {
+                    return (
+                      <div className="row">
+                        <div className="col-md-4 border-bottom">
+                          <div className={styles.job_request_content}>
+                            <h2 className="fs-16 fw-500 ">{data.project_id}</h2>
+                          </div>
                         </div>
-                      </div>
-                      <div className="col-md-4 border-bottom">
-                        <div className={styles.job_request_content}>
-                          <h2 className="fs-14 grey">{data.project_name}</h2>
+                        <div className="col-md-4 border-bottom">
+                          <div className={styles.job_request_content}>
+                            <h2 className="fs-14 grey">{data.project_name}</h2>
+                          </div>
                         </div>
-                      </div>
-                      <div className="col-md-4 border-bottom">
-                        <div className="text-end">
-                          <button
-                            className={` ${styles.btn_decline} ${
-                              data.status === "Approved" ||
-                              data.status === "Rejected"
-                                ? styles.btn_disabled_decline
-                                : ""
-                            } `}
-                            onClick={() => {
-                              handleRejectClick(data.supplier, data.name);
-                            }}
-                            disabled={
-                              data.status === "Approved" ||
-                              data.status === "Rejected"
-                            }
-                          >
-                            {data.status === "Pending"
-                              ? `${translationDataFromStore?.data?.decline}`
-                              : `${translationDataFromStore?.data?.declined}`}
-                          </button>
+                        <div className="col-md-4 border-bottom">
+                          <div className={` ${styles.job_request_action}`}>
+                            {data.status === "Pending" ? (
+                              <button
+                                className={`${styles.btn_decline} `}
+                                onClick={() => {
+                                  handleRejectClick(data.supplier, data.name);
+                                }}
+                              >
+                                {translationDataFromStore?.data?.decline}
+                              </button>
+                            ) : (
+                              ""
+                            )}
+                            {data.status === "Rejected" ? (
+                              <button
+                                className={`${styles.btn_disabled} `}
+                                // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                disabled={
+                                  data.status === "Approved" ||
+                                  data.status === "Rejected"
+                                }
+                              >
+                                {translationDataFromStore?.data?.declined}
+                              </button>
+                            ) : (
+                              ""
+                            )}
 
-                          <button
-                            className={styles.btn_view}
-                            type="button"
-                            onClick={() => {
-                              router.push(`${data.url}`);
-                            }}
-                          >
-                            {translationDataFromStore?.data?.view}
-                          </button>
+                            {data.status === "Approved" ? (
+                              <button
+                                className={`${styles.btn_disabled} `}
+                                // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                disabled={
+                                  data.status === "Approved" ||
+                                  data.status === "Rejected"
+                                }
+                              >
+                                {translationDataFromStore?.data?.approved}
+                              </button>
+                            ) : (
+                              ""
+                            )}
+
+                            <button
+                              className={styles.btn_view}
+                              type="button"
+                              onClick={() => {
+                                router.push(`${data.url}`);
+                              }}
+                            >
+                              {translationDataFromStore?.data?.view}
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <Loaders />
+        )}
       </div>
     </>
   );

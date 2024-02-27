@@ -13,7 +13,7 @@ const Loaders = () => {
           margin: "150px 0",
         }}
       >
-        <HashLoader color="white" />
+        <HashLoader color="#00A5CD" />
       </div>
       
     </>
