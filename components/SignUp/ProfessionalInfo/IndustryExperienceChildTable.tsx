@@ -87,7 +87,7 @@ const IndustryExperienceChildTable = ({ formData, onFormDataChange
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 p-0">
-          <h1 className={`${styles.label_color}`} style={{ fontSize: '20px' }}>
+          <h1 className={`fs-20 ${styles.label_color}`}>
             {translationDataFromStore?.data?.industry_exp}
           </h1>
         </div>

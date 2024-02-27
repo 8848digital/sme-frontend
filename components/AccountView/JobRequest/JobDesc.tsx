@@ -75,35 +75,39 @@ const JobDesc = () => {
                                     return (
                                         <>
                                             <div className="row">
-                                                <div className="col-6">
-                                                    {
-                                                        data?.job_title !== "" ?
-                                                            <div>
-                                                                <h1 className='fs-32  fw-600'>{data?.job_title}</h1>
-                                                            </div> : ''
-                                                    }
+                                                <div className="col-md-6">
+                                                    <div>
+
+                                                        {
+                                                            data?.job_title !== "" ?
+                                                                <div>
+                                                                    <h1 className='fs-32  fw-600'>{data?.job_title}</h1>
+                                                                </div> : ''
+                                                        }
+                                                    </div>
+
+                                                    <div className='mt-5'>
+                                                        {
+                                                            data?.client_name !== "" ?
+                                                                <div>
+
+                                                                    <p><span className='pe-1'>{translationDataFromStore?.data?.client}:</span>{data?.client_name}</p>
+                                                                </div>
+                                                                : ''
+                                                        }
+
+                                                        <div>
+                                                            <p><span className='pe-1'>{translationDataFromStore?.data?.duration}:</span>{formatDate(data?.from_date)} {translationDataFromStore?.data?.to} {formatDate(data?.to_date)}</p>
+                                                        </div>
+                                                    </div>
 
                                                 </div>
-                                                <div className="col-6">
-                                                    <div className='text-end'>
+                                                <div className="col-md-6">
+                                                    <div className='text-md-end text-center'>
                                                         <button type='button' className={styles.btn_view_contract}
                                                             onClick={() => {
                                                                 window.open(`${data?.rfq_pdf_url}`, '_blank');
                                                             }}>{translationDataFromStore?.data?.view_full_contract}</button>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    {
-                                                        data?.client_name !== "" ?
-                                                            <div>
-
-                                                                <p><span className='pe-1'>{translationDataFromStore?.data?.client}:</span>{data?.client_name}</p>
-                                                            </div>
-                                                            : ''
-                                                    }
-
-                                                    <div>
-                                                        <p><span className='pe-1'>{translationDataFromStore?.data?.duration}:</span>{formatDate(data?.from_date)} {translationDataFromStore?.data?.to} {formatDate(data?.to_date)}</p>
                                                     </div>
                                                 </div>
 

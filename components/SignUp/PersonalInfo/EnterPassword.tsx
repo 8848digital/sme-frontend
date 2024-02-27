@@ -41,16 +41,9 @@ const EnterPassword = ({ formData, onFormDataChange , setInternalStep,
               <Logo/>
               </div>
             <div className="mt-5">
-              <h1>
-                {/* {translationDataFromStore?.data?.step}  */}
-                {/* 2{" "}
-                {translationDataFromStore?.data?.of} 7 */}
-              </h1>
-              {/* <h2>{translationDataFromStore?.data?.signup_personal}</h2> */}
-
-             
+            
               <div>
-              <h1 style={{fontSize:'20px'}}>
+              <h1 className="fs-20">
               {translationDataFromStore?.data?.enter_your_password}
               {/* {translationDataFromStore?.data?.confirm_password} */}
                 </h1>

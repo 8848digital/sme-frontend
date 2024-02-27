@@ -45,7 +45,7 @@ const PreferencesInfo = ({
               <div className={styles.wizard_content}>
               <div className="col-12">
                 <div className="mt-5">
-                  <h1 style={{ fontSize: '20px' }}> 
+                  <h1 className="fs-20"> 
                   {translationDataFromStore?.data?.select_availability}</h1>
                   {preference &&
                     preference.length > 0 &&

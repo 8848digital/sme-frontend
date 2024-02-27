@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import uploadImage from "../../../public/assets/photo_upload_image.png";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 
-const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
+const UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
@@ -156,4 +156,4 @@ const Step2of3UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   );
 };
 
-export default Step2of3UploadPhoto;
+export default UploadPhoto;

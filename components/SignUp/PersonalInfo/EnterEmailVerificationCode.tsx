@@ -35,7 +35,7 @@ const EnterEmailVerificationCode = ({ handleChange, setOtpValues, otpValues ,for
                                 <Logo />
                             </div>
                             <div className=" mt-5">
-                                <h1 className="" style={{ fontSize: '20px' }}>
+                                <h1 className="fs-20">
                                     {translationDataFromStore?.data?.enter_emai_verification_code}
                                     </h1>
                                 <label className="grey mt-4" htmlFor="email">
