@@ -18,14 +18,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import logoWithWhiteText from "../../public/assets/sg_logo.webp";
 import logoWithBlackText from "../../public/assets/SG_logo.svg";
+import logo from "../../public/assets/Logo.png";
 import styles from "@/styles/navbar.module.css";
 import Image from "next/image";
 import SignUpStartModal from "../SignUpModals/SignUpStartModal";
+import { useMediaQuery } from "@mui/material";
 const RespNavbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [scrolled, setScrolled] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false); 
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -41,7 +43,7 @@ const RespNavbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [])
+  }, []);
   const [LoggedIn, setLoggedIn] = useState<any>(false);
 
   let isLoggedIn: any;
@@ -92,10 +94,20 @@ const RespNavbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [showOffcanvas]);
+
+  const isSmallScreen = useMediaQuery("(max-width: 576px)");
   return (
     <div className="">
       {["md"].map((expand) => (
-        <Navbar key={expand} expand={expand} className={`${styles.navbar_web} py-0 ${router.pathname !== '/' ? ` bg_white ${styles.nav_border_bottom}` : 'white'} ${scrolled ? styles.scrolled : ''}`}>
+        <Navbar
+          key={expand}
+          expand={expand}
+          className={`${styles.navbar_web}  py-0 ${
+            router.pathname !== "/"
+              ? ` bg_white ${styles.nav_border_bottom}`
+              : `white ${styles.white_text_hover} white_text_hover`
+          } ${scrolled ? styles.scrolled : ""}`}
+        >
           <Container
             onClick={() => {
               if (showOffcanvas) {
@@ -105,30 +117,49 @@ const RespNavbar = () => {
           >
             <div className="logo-img-div">
               <Navbar.Brand href="" className="cursor">
-                <Link href='/' legacyBehavior>
-                <Image
-                  src={router.pathname === '/' ? (scrolled ? logoWithBlackText.src : logoWithWhiteText.src) : logoWithBlackText.src}
-                  alt=""
-                  width={122}
-                  height={32}
-                  className="img-fluid"
-                />
+                <Link href="/" legacyBehavior>
+                  {isSmallScreen ? (
+                    <Image
+                      src={logo.src}
+                      alt=""
+                      width={122}
+                      height={32}
+                      className=""
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        router.pathname === "/"
+                          ? scrolled
+                            ? logoWithBlackText.src
+                            : logoWithWhiteText.src
+                          : logoWithBlackText.src
+                      }
+                      alt=""
+                      width={122}
+                      height={32}
+                      className="img-fluid"
+                    />
+                  )}
                 </Link>
               </Navbar.Brand>
             </div>
             <div>
-
-            <Link
-              href=""
-              className={`text-center header-btn-devider language_cursor px-2 toggle-navbar`}
-              onClick={HandleLangToggle}
-            >
-              <span className={` ${router.pathname !== '/' ? 'black ' : 'white'} ${scrolled ? 'black' : 'white'}`}>
-                {!language_selector_from_redux?.languageToggle
-                  ? "عربي"
-                  : "English"}
-              </span>
-            </Link>
+              <Link
+                href=""
+                className={`text-center header-btn-devider language_cursor px-2 toggle-navbar`}
+                onClick={HandleLangToggle}
+              >
+                <span
+                  className={` ${
+                    router.pathname !== "/" ? "black " : "white"
+                  } ${scrolled ? "black" : "white"}`}
+                >
+                  {!language_selector_from_redux?.languageToggle
+                    ? "عربي"
+                    : "English"}
+                </span>
+              </Link>
             </div>
             <div className="header-btns header-btn-devider d-md-none d-block">
               {LoggedIn === "true" ? (
@@ -136,7 +167,11 @@ const RespNavbar = () => {
               ) : (
                 <div className="px-3 cursor">
                   <Link href="/login" legacyBehavior>
-                    <span className={`${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}>
+                    <span
+                      className={`${
+                        router.pathname !== "/" ? "black" : "white"
+                      } ${scrolled ? "black" : "white"}`}
+                    >
                       {translationDataFromStore?.data?.login}
                     </span>
                   </Link>
@@ -162,55 +197,80 @@ const RespNavbar = () => {
               </div>
             ) : (
               <div className="d-md-none d-block">
-
-              <Link href="" legacyBehavior>
-                <a
-                  className={`btn ${styles.btn_signup} text-uppercase `}
-                  onClick={() => setShowSignUpModal(true)}
-                >
-                  {translationDataFromStore?.data?.signup}
-                </a>
-              </Link>
+                <Link href="" legacyBehavior>
+                  <a
+                    className={`btn ${styles.btn_signup} text-uppercase `}
+                    onClick={() => setShowSignUpModal(true)}
+                  >
+                    {translationDataFromStore?.data?.signup}
+                  </a>
+                </Link>
               </div>
             )}
             <Navbar.Toggle
               aria-controls={`offcanvasNavbar-expand-${expand}`}
               onClick={() => setShowOffcanvas(!showOffcanvas)}
-              style={{ border: "none", fontSize: "15px" }}
-              className="p-0"
+              style={{
+                border: "none",
+                fontSize: "15px",
+              }}
+              className={`p-0 m-0 ${styles.hamburger}`}
             />
             <Navbar.Offcanvas
               show={showOffcanvas}
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               onClick={() => setShowOffcanvas(false)}
-              placement={`${language_selector_from_redux?.language_abbr === "ar"
-                ? "end"
-                : "start"
-                }`}
-
-                className={`${styles.offcanvas_dialog_bg}`}
+              placement={`${
+                language_selector_from_redux?.language_abbr === "ar"
+                  ? "end"
+                  : "start"
+              }`}
+              className={`${styles.offcanvas_dialog_bg} w-100`}
             >
-              <Offcanvas.Header closeButton className={`${styles.offcanvas_header}`}>
+              <Offcanvas.Header
+                closeButton
+                className={`${styles.offcanvas_header}`}
+              >
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  <Image
-                    src={logoWithBlackText.src}
-                    alt=""
-                    width={122}
-                    height={32}
-                    className=""
-                  />
+                  {isSmallScreen ? (
+                    <Image
+                      src={logo.src}
+                      alt=""
+                      width={122}
+                      height={32}
+                      className=""
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        router.pathname === "/"
+                          ? scrolled
+                            ? logoWithBlackText.src
+                            : logoWithWhiteText.src
+                          : logoWithBlackText.src
+                      }
+                      alt=""
+                      width={122}
+                      height={32}
+                      className="img-fluid"
+                    />
+                  )}
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 align-items-center">
+              <Offcanvas.Body className="text-end w-100">
+                <Nav className=" justify-content-end flex-grow-1 align-items-center ">
                   <div className="text-center ">
                     {LoggedIn === "true" ? (
                       <div className="navbar-nav-wrapper">
                         <ul className="navbar-nav main-menu p-0 d-flex align-items-center">
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}
+                              className={`nav-link px-3 white ${
+                                router.pathname !== "/"
+                                  ? "black"
+                                  : "white white_text_hover"
+                              } ${scrolled ? "black" : "white"}`}
                               href="/account-view"
                             >
                               {translationDataFromStore?.data?.bio}
@@ -218,7 +278,11 @@ const RespNavbar = () => {
                           </li>
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}
+                              className={`nav-link px-3 white ${
+                                router.pathname !== "/"
+                                  ? "black"
+                                  : "white white_text_hover"
+                              } ${scrolled ? "black" : "white"}`}
                               href="/job-request-list"
                             >
                               {translationDataFromStore?.data?.job_request}
@@ -226,7 +290,11 @@ const RespNavbar = () => {
                           </li>
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}
+                              className={`nav-link px-3 white ${
+                                router.pathname !== "/"
+                                  ? "black"
+                                  : "white white_text_hover"
+                              } ${scrolled ? "black" : "white"}`}
                               href="/contract"
                             >
                               {translationDataFromStore?.data?.contract}
@@ -234,7 +302,11 @@ const RespNavbar = () => {
                           </li>
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}
+                              className={`nav-link px-3 white ${
+                                router.pathname !== "/"
+                                  ? "black"
+                                  : "white white_text_hover"
+                              } ${scrolled ? "black" : "white"}`}
                               href="/account"
                             >
                               {translationDataFromStore?.data?.account}
@@ -247,17 +319,21 @@ const RespNavbar = () => {
                     )}
                   </div>
                   <div className="d-sm-inline-flex align-items-center text-center">
-                    <div className="px-3 cursor">
+                    <div className={`px-3 ${styles.margin_offcanvas}`}>
                       <Link href="/" legacyBehavior className="d-block ">
-                        <span className={` ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}>
+                        <span
+                          className={` ${
+                            router.pathname !== "/"
+                              ? "black "
+                              : "white white_text_hover"
+                          } ${scrolled ? "black" : "white"}`}
+                        >
                           {translationDataFromStore?.data?.home_btn}
                         </span>
                       </Link>
                     </div>
-                    <div className="px-3">
-                      <div
-                        className="form-switch fs-6 rtl-toggle-section"
-                      >
+                    <div className={`px-3 ${styles.margin_offcanvas}`}>
+                      <div className="form-switch fs-6 rtl-toggle-section">
                         <input
                           className="form-check-input cursor"
                           type="checkbox"
@@ -272,7 +348,7 @@ const RespNavbar = () => {
                         />
                       </div>
                     </div>
-                    <div className="px-3">
+                    <div className={`px-3 ${styles.margin_offcanvas}`}>
                       <Link
                         href=""
                         className={`text-center header-btn-devider `}
@@ -281,20 +357,32 @@ const RespNavbar = () => {
                           e.stopPropagation();
                         }}
                       >
-                        <span className={`${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}>
+                        <span
+                          className={`${
+                            router.pathname !== "/" ? "black" : "white"
+                          } ${scrolled ? "black" : "white"} ${
+                            styles.margin_offcanvas
+                          }`}
+                        >
                           {!language_selector_from_redux?.languageToggle
                             ? "عربي"
                             : "English"}
                         </span>
                       </Link>
                     </div>
-                    <div className="header-btns header-btn-devider">
+                    <div
+                      className={`header-btns header-btn-devider ${styles.header_btn_logout_wrapper}`}
+                    >
                       {LoggedIn === "true" ? (
                         ""
                       ) : (
-                        <div className="px-3 cursor">
+                        <div className="px-3 cursor ">
                           <Link href="/login" legacyBehavior>
-                            <span className={` ${router.pathname !== '/' ? 'black' : 'white'} ${scrolled ? 'black' : 'white'}`}>
+                            <span
+                              className={` ${
+                                router.pathname !== "/" ? "black" : "white"
+                              } ${scrolled ? "black" : "white"}`}
+                            >
                               {translationDataFromStore?.data?.login}
                             </span>
                           </Link>
@@ -307,21 +395,20 @@ const RespNavbar = () => {
                         <Link href="" legacyBehavior>
                           <a
                             onClick={handleLogOut}
-                            className={`btn ${styles.btn_signup} text-uppercase `}
+                            className={`btn ${styles.btn_signup} ${styles.btn_signup_canvas} text-uppercase `}
                           >
                             {/* <LogoutIcon
                               style={{ color: "#00578a", fontSize: "18px" }}
                             />{" "} */}
-                            <span className="text-white">
-                              {translationDataFromStore?.data?.log_out}
-                            </span>
+
+                            {translationDataFromStore?.data?.log_out}
                           </a>
                         </Link>
                       </div>
                     ) : (
                       <Link href="" legacyBehavior>
                         <a
-                          className={`btn ${styles.btn_signup} text-uppercase `}
+                          className={`btn ${styles.btn_signup} ${styles.btn_signup_canvas}  text-uppercase `}
                           onClick={() => setShowSignUpModal(true)}
                         >
                           {translationDataFromStore?.data?.signup}
@@ -332,10 +419,13 @@ const RespNavbar = () => {
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
-            <SignUpStartModal show={showSignUpModal} onHide={() => setShowSignUpModal(false)} /> 
           </Container>
         </Navbar>
       ))}
+      <SignUpStartModal
+        show={showSignUpModal}
+        onHide={() => setShowSignUpModal(false)}
+      />
     </div>
   );
 };
