@@ -21,7 +21,7 @@ const useContractList = () => {
 
   useEffect(() => {
     dispatch(fetchContractList(token?.token) as any);
-  }, [dispatch, token]);
+  }, [dispatch, token, contractData]);
 
   useEffect(() => {
     if (contractFromStore.data) {
