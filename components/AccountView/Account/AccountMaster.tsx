@@ -5,8 +5,8 @@ import { Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import AccountSettingPage from "./AccountSettingPage";
 import AccountPasswordPage from "./AccountPasswordPage";
-import AccounDeletePage from "./AccountDeletePage";
 import AccountContactUsPage from "./AccountContactUsPage";
+
 const AccountMaster = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
   const [activeTab, setActiveTab] = useState("settings");

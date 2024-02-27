@@ -1,12 +1,12 @@
-import ContractThankyou from '@/components/AccountView/Contract/ContractThankyou'
-import React from 'react'
+import ContractThankyou from "@/components/AccountView/Contract/ContractApproveModal";
+import React from "react";
 
 const index = () => {
   return (
-   <>
-   <ContractThankyou/>
-   </>
-  )
-}
+    <>
+      <ContractThankyou />
+    </>
+  );
+};
 
-export default index
+export default index;

@@ -19,6 +19,7 @@ const ContractMaster = () => {
       <ContractNavbars
         filteredContractsActiveUnsigned={filteredContracts}
         filteredContractsInactive={filteredContractsInactive}
+        loading={loading}
       />
     </>
   );

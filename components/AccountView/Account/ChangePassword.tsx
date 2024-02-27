@@ -5,7 +5,7 @@ import styles from "@/styles/auth.module.css";
 import { ErrorMessage, Field, Formik, Form as FormikForm } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -13,7 +13,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
-// import { RootState } from "../store/root_reducer";
 
 interface FormValues {
   old_password: any;
@@ -22,7 +21,6 @@ interface FormValues {
 }
 
 const ChangePassword = () => {
-  const dispatch = useDispatch<any>();
   const token = useSelector(get_access_token);
   const router = useRouter();
   const initialValues: FormValues = {
@@ -109,13 +107,11 @@ const ChangePassword = () => {
     <>
       <div className="">
         <h1 className={`text-capitalize ${styles.password_heading} mb-3`}>
-          {/* {translationDataFromStore?.data?.change_password_header} */}
           {translationDataFromStore?.data?.password}:
         </h1>
       </div>
       <Formik
         initialValues={initialValues}
-        // validationSchema={Resetpassword_Validation}
         onSubmit={(values, action) => handlesubmit(values, action)}
       >
         {({ handleChange }) => (
@@ -128,7 +124,6 @@ const ChangePassword = () => {
                   </label>
 
                   <div className="col-md-12 col-xl-4 col-lg-5">
-                    {/* <div className="password_block "> */}
                     <TextField
                       className="form-control"
                       name="old_password"
@@ -161,7 +156,6 @@ const ChangePassword = () => {
                     <div className="error_message">
                       <ErrorMessage name="old_password" />
                     </div>
-                    {/* </div> */}
                   </div>
                 </div>
                 <div className="row mb-2 form-group">
@@ -268,7 +262,6 @@ const ChangePassword = () => {
                           className="btn btn_blue btn_blue_mob"
                         >
                           {translationDataFromStore?.data?.Save}
-                          {/* Save */}
                         </button>
                       </div>
                     </div>

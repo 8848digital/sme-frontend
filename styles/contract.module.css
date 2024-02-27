@@ -102,4 +102,11 @@
   .button_wrapper {
     width: 100% !important;
   }
+  .btn_decline {
+    margin: 0px;
+    margin-top: 10px;
+  }
+  .tab_content_wrapper {
+    margin-top: 20px;
+  }
 }

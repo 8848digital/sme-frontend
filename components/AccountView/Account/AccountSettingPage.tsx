@@ -10,11 +10,12 @@ import AccounDeletePage from "./AccountDeletePage";
 import UpdateProfileAPI from "@/services/api/account_api/update_profile_api";
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { toast } from "react-toastify";
+import Loaders from "@/components/Loaders";
 
 const AccountSettingPage = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
-  const { profileData }: any = useProfile();
+  const { profileData, loading }: any = useProfile();
   const [profileDatas, setProfileDatas] = useState<any>(null);
   const initialValues = {
     first_name: profileData?.first_name,
@@ -79,185 +80,201 @@ const AccountSettingPage = () => {
     }
   };
 
+  const handleCancel = () => {
+    // Reset profileDatas to initial values
+    setProfileDatas({
+      first_name: initialValues.first_name,
+      last_name: initialValues.last_name,
+      email: profileDatas?.email_id || profileDatas?.email,
+      phone_no: initialValues.phone_no,
+    });
+    // Disable edit mode
+    setEditMode(false);
+  };
+
   return (
-    <div className={`col-md-3 col-lg-5 col-xl-4 mt-4`}>
-      <p className="fs-20 fw-400 lh-24">
-        {translationDataFromStore?.data?.additional_information}:
-      </p>
-      <div>
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          {({ errors, touched }) => (
-            <Form>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="mb-3">
-                    <label htmlFor="firstName" className="form-label grey">
-                      {translationDataFromStore?.data?.first_name}
-                    </label>
-                    {editMode ? (
-                      <Field
-                        type="text"
-                        className="form-control"
-                        id="firstName"
-                        name="first_name"
-                        onChange={handleChange}
-                        value={profileDatas?.first_name}
-                      />
-                    ) : (
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="firstName"
-                        name="first_name"
-                        value={profileDatas?.first_name}
-                        disabled
-                      />
-                    )}
-                    {/* <ErrorMessage
+    <>
+      {!loading ? (
+        <div className={`col-md-3 col-lg-5 col-xl-4 mt-4`}>
+          <p className="fs-20 fw-400 lh-24">
+            {translationDataFromStore?.data?.additional_information}:
+          </p>
+          <div>
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+              {({ errors, touched }) => (
+                <Form>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="mb-3">
+                        <label htmlFor="firstName" className="form-label grey">
+                          {translationDataFromStore?.data?.first_name}
+                        </label>
+                        {editMode ? (
+                          <Field
+                            type="text"
+                            className="form-control"
+                            id="firstName"
+                            name="first_name"
+                            onChange={handleChange}
+                            value={profileDatas?.first_name}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="firstName"
+                            name="first_name"
+                            value={profileDatas?.first_name}
+                            disabled
+                          />
+                        )}
+                        {/* <ErrorMessage
                   name="firstName"
                   component="div"
                   className="error_message"
                 /> */}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="mb-3">
+                        <label htmlFor="lastName" className="form-label grey">
+                          {translationDataFromStore?.data?.last_name}
+                        </label>
+                        {editMode ? (
+                          <Field
+                            type="text"
+                            className="form-control"
+                            id="lastName"
+                            name="last_name"
+                            onChange={handleChange}
+                            value={profileDatas?.last_name}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="lastName"
+                            name="last_name"
+                            value={profileDatas?.last_name}
+                            disabled
+                          />
+                        )}
+
+                        {/* <ErrorMessage
+                  name="lastName"
+                  component="div"
+                  className="error_message"
+                /> */}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-6">
+
                   <div className="mb-3">
-                    <label htmlFor="lastName" className="form-label grey">
-                      {translationDataFromStore?.data?.last_name}
+                    <label htmlFor="phoneNumber" className="form-label grey">
+                      {translationDataFromStore?.data?.phone_number}
                     </label>
                     {editMode ? (
                       <Field
                         type="text"
                         className="form-control"
-                        id="lastName"
-                        name="last_name"
+                        id="phoneNumber"
+                        name="phone_no"
                         onChange={handleChange}
-                        value={profileDatas?.last_name}
+                        value={profileDatas?.phone_no}
                       />
                     ) : (
                       <input
                         type="text"
                         className="form-control"
-                        id="lastName"
-                        name="last_name"
-                        value={profileDatas?.last_name}
+                        id="phoneNumber"
+                        name="phone_no"
+                        value={profileDatas?.phone_no}
                         disabled
                       />
                     )}
-
                     {/* <ErrorMessage
-                  name="lastName"
-                  component="div"
-                  className="error_message"
-                /> */}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="phoneNumber" className="form-label grey">
-                  {translationDataFromStore?.data?.phone_number}
-                </label>
-                {editMode ? (
-                  <Field
-                    type="text"
-                    className="form-control"
-                    id="phoneNumber"
-                    name="phone_no"
-                    onChange={handleChange}
-                    value={profileDatas?.phone_no}
-                  />
-                ) : (
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="phoneNumber"
-                    name="phone_no"
-                    value={profileDatas?.phone_no}
-                    disabled
-                  />
-                )}
-                {/* <ErrorMessage
                   name="phoneNumber"
                   component="div"
                   className="error_message"
                 /> */}
-              </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label grey">
-                  {translationDataFromStore?.data?.email}
-                </label>
-                {editMode ? (
-                  <Field
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    onChange={handleChange}
-                    value={profileDatas?.email_id || profileDatas?.email}
-                  />
-                ) : (
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={profileDatas?.email_id || profileDatas?.email}
-                    disabled
-                  />
-                )}
-                {/* <ErrorMessage
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label grey">
+                      {translationDataFromStore?.data?.email}
+                    </label>
+                    {editMode ? (
+                      <Field
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        name="email"
+                        onChange={handleChange}
+                        value={profileDatas?.email_id || profileDatas?.email}
+                      />
+                    ) : (
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        name="email"
+                        value={profileDatas?.email_id || profileDatas?.email}
+                        disabled
+                      />
+                    )}
+                    {/* <ErrorMessage
                   name="email"
                   component="div"
                   className="error_message"
                 /> */}
-              </div>
-              {/* <button type="submit" className="btn btn-primary">
+                  </div>
+                  {/* <button type="submit" className="btn btn-primary">
                 Submit
               </button> */}
-              <div className="row">
-                <div className="col-lg-6 col-md-4">
-                  <button
-                    className="btn btn_blue_border  mt-3"
-                    type="button"
-                    onClick={handleEdit}
-                  >
-                    <Link href="/" className="text-blue text-decoration-none">
-                      {translationDataFromStore?.data?.cancel}
-                    </Link>
-                  </button>
-                </div>
-                <div className="col-lg-6 col-md-4">
-                  <div className="pt-3">
-                    {editMode ? ( // Show "Save" button when in edit mode
+                  <div className="row">
+                    <div className="col-lg-6 col-md-4">
                       <button
-                        className="btn btn_blue"
-                        type="submit"
-                        onClick={handleSave}
-                      >
-                        {translationDataFromStore?.data?.Save}
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn_blue"
+                        className="btn btn_blue_border  mt-3"
                         type="button"
-                        onClick={handleEdit}
+                        onClick={handleCancel}
                       >
-                        {translationDataFromStore?.data?.edit}
+                        {translationDataFromStore?.data?.cancel}
                       </button>
-                    )}
+                    </div>
+                    <div className="col-lg-6 col-md-4">
+                      <div className="pt-3">
+                        {editMode ? ( // Show "Save" button when in edit mode
+                          <button
+                            className="btn btn_blue"
+                            type="submit"
+                            onClick={handleSave}
+                          >
+                            {translationDataFromStore?.data?.Save}
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn_blue"
+                            type="button"
+                            onClick={handleEdit}
+                          >
+                            {translationDataFromStore?.data?.edit}
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              {/* 
+                  {/* 
               <div className="mt-3">
                 <AccounDeletePage />
               </div> */}
-            </Form>
-          )}
-        </Formik>
-      </div>
-    </div>
+                </Form>
+              )}
+            </Formik>
+          </div>
+        </div>
+      ) : (
+        <Loaders />
+      )}
+    </>
   );
 };
 

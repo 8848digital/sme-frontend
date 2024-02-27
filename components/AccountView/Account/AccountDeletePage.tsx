@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
-import featured_icon from "../../../public/assets/Featured_icon.png";
 
 const AccounDeletePage = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
