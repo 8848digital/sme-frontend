@@ -1,13 +1,13 @@
+import AccountMaster from '@/components/AccountView/Account/AccountMaster'
+import React from 'react'
 
-import AccountMaster from "@/components/AccountView/Account/AccountMaster";
-import React from "react";
-
-const account = () => {
+const index = () => {
   return (
-    <>
+    <div>
       <AccountMaster/>
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default account;
+export default index
+

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+
 const JobDescription = ({ jobData, onclick }: any) => {
   const [jobCost, setJobCost] = useState<number>();
   console.log("job cost", jobCost);

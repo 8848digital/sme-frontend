@@ -32,7 +32,7 @@ const ForgotPassword = () => {
   const handlesubmit = async (values: any, action: any) => {
     console.log("values", values);
     const response = await ForgetPasswordLinkAPI(values.email, token.token);
-    console.log('forget resposne',response)
+    console.log("forget resposne", response);
     if (response.msg === "success") {
       toast.success(
         translationDataFromStore?.data?.toast_password_reset_link_success,
@@ -46,14 +46,10 @@ const ForgotPassword = () => {
         router.push("/");
       }, 5000);
     } else if (response.msg === "error") {
-      toast.error(
-        `${translationDataFromStore?.data?.toast_email_error}`
-        ,
-        {
-          autoClose: 3000,
-          className: "custom-toast", // Close the notification after 3 seconds
-        }
-      );
+      toast.error(`${translationDataFromStore?.data?.toast_email_error}`, {
+        autoClose: 3000,
+        className: "custom-toast", // Close the notification after 3 seconds
+      });
     } else {
       toast.error(
         `${translationDataFromStore?.data?.toast_email_error} ${response.error}`,
@@ -67,18 +63,19 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="container mt-5">
-        <div className={` card ${styles.password_wrapper}`}>
+        <div className={`  ${styles.password_wrapper}`}>
           <div className="row">
             <div className="col-12">
               <div className="page_heading text-center">
-                <h1 className="text-uppercase">
-                  {translationDataFromStore?.data?.forget_header}
-                </h1>
-                <p className="mt-4 ms-2">
+                <p className="text-capitalize fs-32 fw-500 lh-24">
+                  {translationDataFromStore?.data?.forget_password}
+                </p>
+                <p className="mt-4 ms-2 fs-16 fw-400 fs-14 ">
                   {translationDataFromStore?.data?.forget_description}
                 </p>
               </div>
             </div>
+
             <div className={`col-lg-6 col-sm-9 col-12 mx-auto form_wrap`}>
               <Formik
                 initialValues={initialValues}
@@ -90,13 +87,6 @@ const ForgotPassword = () => {
                     <div className=" text-center mt-2">
                       <div className="container">
                         <div className="row">
-                          {/* <div className="col-md-3 ">
-                        <div className="label text-end">
-                          <label htmlFor="" className="forgotpassword_label">
-                            Email ID:
-                          </label>
-                        </div>
-                      </div> */}
                           <div className="col-md-12">
                             <div className="email_block form-group">
                               <Field
@@ -105,7 +95,8 @@ const ForgotPassword = () => {
                                 name="email"
                                 onChange={handleChange}
                                 placeholder={
-                                  translationDataFromStore?.data?.email_placeholder
+                                  translationDataFromStore?.data
+                                    ?.email_placeholder
                                 }
                               />
                               <br />
@@ -130,27 +121,25 @@ const ForgotPassword = () => {
                           </div>
                         </div>
 
-                        <div className={`${styles.custom_btn}`}>
-                          <button
+                        <div className="col-md-12">
+                          {/* <button
                             type="button"
-                            className={`btn btn-signup ${styles.common_btn} `}
-                            style={{ fontWeight: "600" }}
+                            className={`btn btn-signup fw-600 btn_grey_border `}
                           >
                             <Link
                               href="/login"
-                              className="text-white"
-                              style={{ textDecoration: "none" }}
+                              className="text-white text-decoration-none"
                             >
                               {translationDataFromStore?.data?.back}
                             </Link>
-                          </button>
+                          </button> */}
                           <button
                             type="submit"
-                            className="btn btn-signup mx-2"
-                            style={{ fontWeight: "600" }}
+                            className="btn btn_blue  fw-600"
                           >
                             {translationDataFromStore?.data?.send}
                           </button>
+                          
                         </div>
                       </div>
                     </div>

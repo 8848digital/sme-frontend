@@ -1,0 +1,193 @@
+%!Adobe-FontList 1.23
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/AdobeFnt23.lst
+FileLength:4421
+FileModTime:712052198
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Arial-BoldMT
+FamilyName:Arial
+StyleName:Bold
+MenuName:Arial
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Arial Bold
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/Arial Bold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:750984
+FileModTime:709048736
+NameArray:0,Mac,4,Arial Bold
+NameArray:0,Win,1,Arial
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:ArialMT
+FamilyName:Arial
+StyleName:Regular
+MenuName:Arial
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Arial
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/Arial.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:773236
+FileModTime:709048736
+NameArray:0,Mac,4,Arial
+NameArray:0,Win,1,Arial
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:EuclidFlex
+FamilyName:Euclid Flex
+StyleName:Regular
+MenuName:Euclid Flex
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Euclid Flex
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/EuclidFlex.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:103592
+FileModTime:700393990
+NameArray:0,Mac,4,Euclid Flex
+NameArray:0,Win,1,Euclid Flex
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:EuclidFlexBold
+FamilyName:Euclid Flex
+StyleName:Bold
+MenuName:Euclid Flex Bold
+StyleBits:0
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Euclid Flex Bold
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/EuclidFlexBold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:105444
+FileModTime:700398263
+NameArray:0,Mac,4,Euclid Flex Bold
+NameArray:0,Win,1,Euclid Flex Bold
+NameArray:0,Win,16,Euclid Flex
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:EuclidFlexLight
+FamilyName:Euclid Flex
+StyleName:Light
+MenuName:Euclid Flex Light
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Euclid Flex Light
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/EuclidFlexLight.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:104588
+FileModTime:700398263
+NameArray:0,Mac,4,Euclid Flex Light
+NameArray:0,Win,1,Euclid Flex Light
+NameArray:0,Win,16,Euclid Flex
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:EuclidFlexMedium
+FamilyName:Euclid Flex
+StyleName:Medium
+MenuName:Euclid Flex Medium
+StyleBits:0
+WeightClass:500
+WidthClass:5
+AngleClass:0
+FullName:Euclid Flex Medium
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/EuclidFlexMedium.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:105904
+FileModTime:700398263
+NameArray:0,Mac,4,Euclid Flex Medium
+NameArray:0,Win,1,Euclid Flex Medium
+NameArray:0,Win,16,Euclid Flex
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:/Users/carolecrepon/Desktop/Charte SG/SG_Chartegraphique/DEF 230615_SG_chartegraphique/Document fonts/MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:397250351
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+

@@ -20,6 +20,7 @@ import industryListSlice from "@/store/slices/general_slice/industry_list_slice"
 import regionListSlice from "@/store/slices/general_slice/region_list_slice"
 import serviceListSlice from "@/store/slices/general_slice/service_list_slice"
 import yearOfExpListSlice from "@/store/slices/general_slice/year_of_exp_list_slice"
+import jobDescriptionSlice from "@/store/slices/job_request_slice/job_description_slice"
 const appReducer = combineReducers({
   authSliceScreen: authSliceScreen,
   form: formslice,
@@ -42,6 +43,7 @@ const appReducer = combineReducers({
   regionList:regionListSlice,
   serviceList:serviceListSlice,
   yearOfExpList:yearOfExpListSlice,
+  jobDescription:jobDescriptionSlice
 });
 
 const rootReducer = (state: any, action: any) => {
