@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
 interface FormValues {
   email: any;
   new_password: any;
@@ -21,6 +22,7 @@ const ResetPassword = () => {
     new_password: "",
     confirmPassword: "",
   };
+  const translationDataFromStore = useSelector(translation_text_from_Store);
   const handlesubmit = async (values: any, action: any) => {
     console.log("values", values);
     if (values.new_password !== values.confirmPassword) {
@@ -66,9 +68,11 @@ const ResetPassword = () => {
   return (
     <>
       <div className="container">
-        <div className={` card ${styles.password_wrapper}`}>
+        <div className={`  ${styles.password_wrapper}`}>
           <div className="page_heading text-center">
-            <h1 className="text-uppercase">Reset Your Password</h1>
+            <p className="text-capitalize fs-32 fw-500 lh-24">
+              {translationDataFromStore?.data?.reset_password}
+            </p>
           </div>
           <Formik
             initialValues={initialValues}
@@ -76,84 +80,70 @@ const ResetPassword = () => {
             onSubmit={(values, action) => handlesubmit(values, action)}
           >
             {({ handleChange }) => (
-              <FormikForm className="">
-                <div className=" text-center mt-4">
-                  <div className="container">
-                    <div className="row mb-2 form-group">
-                      <div className="col-md-3 ">
-                        <div className="">
-                          <label htmlFor="" className="">
-                            Email ID:
-                          </label>
-                        </div>
+              <FormikForm className="pt-2 p-0 m-0">
+                <div className="container ">
+                  <div className="row mb-2 form-group  d-flex justify-content-center">
+                    <div className="col-md-9 col-lg-6">
+                      {/* <div className="password_block "> */}
+                      <label htmlFor="" className="mb-1">
+                        {translationDataFromStore?.data?.email}:
+                      </label>
+                      <Field
+                        type="email"
+                        className="form-control  m-0"
+                        name="email"
+                        onChange={handleChange}
+                        placeholder="Enter Registered Email Here"
+                      />
+
+                      <div className="error_message">
+                        <ErrorMessage name="email" />
                       </div>
-                      <div className="col-md-9 col-lg-6">
-                        {/* <div className="password_block "> */}
-                        <Field
-                          type="email"
-                          className="form-control"
-                          name="email"
-                          onChange={handleChange}
-                          placeholder="Enter Registered Email Here"
-                        />
-                        <br />
-                        <div className="error_message">
-                          <ErrorMessage name="email" />
-                        </div>
-                        {/* </div> */}
-                      </div>
+                      {/* </div> */}
                     </div>
-                    <div className="row mb-2 form-group">
-                      <div className="col-md-3 ">
-                        <div className="">
-                          <label htmlFor="" className="">
-                            New Password:
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-9 col-lg-6">
-                        <div className="password_block">
-                          <Field
-                            type="password"
-                            className="form-control"
-                            name="new_password"
-                            onChange={handleChange}
-                            placeholder="Enter New Password"
-                          />
-                          <br />
-                          <div className="error_message">
-                            <ErrorMessage name="new_password" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row mb-2 form-group">
-                      <div className="col-md-3 ">
-                        <div className="">
-                          <label htmlFor="" className="">
-                            Confirm Password:
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-9 col-lg-6">
+                  </div>
+                  <div className="row mb-2 form-group d-flex justify-content-center">
+                    <div className="col-md-9 col-lg-6">
+                      <div className="password_block">
+                        <label htmlFor="" className="mb-1">
+                          {translationDataFromStore?.data?.change_password_new}:
+                        </label>
                         <Field
                           type="password"
                           className="form-control"
-                          name="confirmPassword"
+                          name="new_password"
                           onChange={handleChange}
-                          placeholder="Confirm New Password"
+                          placeholder="Enter New Password"
                         />
-                        <br />
+
                         <div className="error_message">
-                          <ErrorMessage name="confirmPassword" />
+                          <ErrorMessage name="new_password" />
                         </div>
                       </div>
                     </div>
-                    <div className={`${styles.custom_btn}`}>
-                      <button
+                  </div>
+                  <div className="row mb-2 form-group d-flex justify-content-center">
+                    <div className="col-md-9 col-lg-6">
+                      <label htmlFor="" className="mb-1">
+                        {translationDataFromStore?.data?.confirm_password}:
+                      </label>
+                      <Field
+                        type="password"
+                        className="form-control"
+                        name="confirmPassword"
+                        onChange={handleChange}
+                        placeholder="Confirm New Password"
+                      />
+
+                      <div className="error_message">
+                        <ErrorMessage name="confirmPassword" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${styles.custom_btn} text-center w-100 `}>
+                    {/* <button
                         type="button"
                         className={`btn btn-signup ${styles.common_btn} me-md-5`}
-                        style={{ fontWeight: "600" }}
                       >
                         <Link
                           href="/login"
@@ -162,15 +152,10 @@ const ResetPassword = () => {
                         >
                           BACK
                         </Link>
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn btn-signup"
-                        style={{ fontWeight: "600" }}
-                      >
-                        Change Password
-                      </button>
-                    </div>
+                      </button> */}
+                    <button type="submit" className="btn btn_blue w-50 mt-3">
+                      {translationDataFromStore?.data?.reset_password_btn}
+                    </button>
                   </div>
                 </div>
               </FormikForm>

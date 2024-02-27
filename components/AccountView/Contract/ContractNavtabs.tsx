@@ -16,54 +16,50 @@ const ContractNavbars = ({
   return (
     <>
       <div className="container">
-        {!loading ? (
-          <div className={`row   ${styles.contract_wrapper}`}>
-            <div className="p-0 ">
-              <p className={`${styles.header_text} fs-32 lh-24 fw-500`}>
-                {translationDataFromStore?.data?.contract}
-              </p>
-            </div>
-            <div className="mt-2 p-0">
-              <Tab.Container id="tabs-example" defaultActiveKey="tab1">
-                <Nav variant="underline">
-                  <Nav.Item className={`pe-4 ${styles.nav_item}`}>
-                    <Nav.Link
-                      eventKey="tab1"
-                      className="fs-16 lh-24 fw-500 nav_link text-center"
-                    >
-                      {translationDataFromStore?.data?.contract_active}
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item className={`pe-4 ${styles.nav_item}`}>
-                    <Nav.Link
-                      eventKey="tab2"
-                      className="fs-16 lh-24 fw-500 nav_link text-center"
-                    >
-                      {translationDataFromStore?.data?.contract_history}
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-
-                <Tab.Content className={styles.tab_content_wrapper}>
-                  <Tab.Pane eventKey="tab1">
-                    <ActiveContractCard
-                      filteredContractsActiveUnsigned={
-                        filteredContractsActiveUnsigned
-                      }
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="tab2">
-                    <InactiveContractCard
-                      filteredContractsInactive={filteredContractsInactive}
-                    />
-                  </Tab.Pane>
-                </Tab.Content>
-              </Tab.Container>
-            </div>
+        <div className={`row   ${styles.contract_wrapper}`}>
+          <div className="p-0 ">
+            <p className={`${styles.header_text} fs-32 lh-24 fw-500`}>
+              {translationDataFromStore?.data?.contract}
+            </p>
           </div>
-        ) : (
-          <Loaders />
-        )}
+          <div className="mt-2 p-0">
+            <Tab.Container id="tabs-example" defaultActiveKey="tab1">
+              <Nav variant="underline">
+                <Nav.Item className={`pe-4 ${styles.nav_item}`}>
+                  <Nav.Link
+                    eventKey="tab1"
+                    className="fs-16 lh-24 fw-500 nav_link text-center"
+                  >
+                    {translationDataFromStore?.data?.contract_active}
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className={`pe-4 ${styles.nav_item}`}>
+                  <Nav.Link
+                    eventKey="tab2"
+                    className="fs-16 lh-24 fw-500 nav_link text-center"
+                  >
+                    {translationDataFromStore?.data?.contract_history}
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+
+              <Tab.Content className={styles.tab_content_wrapper}>
+                <Tab.Pane eventKey="tab1">
+                  <ActiveContractCard
+                    filteredContractsActiveUnsigned={
+                      filteredContractsActiveUnsigned
+                    }
+                  />
+                </Tab.Pane>
+                <Tab.Pane eventKey="tab2">
+                  <InactiveContractCard
+                    filteredContractsInactive={filteredContractsInactive}
+                  />
+                </Tab.Pane>
+              </Tab.Content>
+            </Tab.Container>
+          </div>
+        </div>
       </div>
     </>
   );
