@@ -54,7 +54,9 @@ body {
 .dark-blue {
   color: #005587;
 }
-
+.cursor {
+  cursor: pointer;
+}
 /* ---------------------------------------------------------- */
 /* css for tab */
 .nav-underline .nav-link.active,
