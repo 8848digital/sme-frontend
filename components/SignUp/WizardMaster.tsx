@@ -175,7 +175,7 @@ const WizardMaster = () => {
                   <div className={styles.stepper_content}>
                     <h4>
                       <span className="pe-1 ps-1">{translationDataFromStore?.data?.step}</span>
-                      <span className="pe-1 ps-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
+                      <span className="pe-1 ps-1">{currentStep === 0 ? 1 : currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
                       
                     </h4>
                     <h4>
@@ -210,7 +210,7 @@ const WizardMaster = () => {
                     <div className={styles.stepper_content}>
                       <h4>
                         <span className="pe-1 ps-1">{translationDataFromStore?.data?.step}</span>
-                        <span className="pe-1 ps-1">{currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
+                        <span className="pe-1 ps-1">{currentStep === 0 ? 1 : currentStep}</span>{translationDataFromStore?.data?.of}<span className="pe-1 ps-1">3</span>
                       </h4>
                       <h4>{translationDataFromStore?.data?.singup_stepper_heading}</h4>
                     </div>
