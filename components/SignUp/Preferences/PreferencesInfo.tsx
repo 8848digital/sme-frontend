@@ -67,7 +67,7 @@ const PreferencesInfo = ({
                 </div>
 
                 <div className="mt-5">
-                <h1 style={{ fontSize: '20px' }}>                <h1 style={{ fontSize: '20px' }}>{translationDataFromStore?.data?.select_rates_preferences}</h1>
+                <h1 style={{ fontSize: '20px' }}><h1 className="fs-20">{translationDataFromStore?.data?.select_rates_preferences}</h1>
 </h1>
                   {priceBasis &&
                     priceBasis.length > 0 &&
