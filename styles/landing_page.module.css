@@ -53,6 +53,7 @@
   border-radius: 100px;
   border: none;
   color: #000000;
+  margin-right: 16px;
 }
 .explore_service_btn:hover {
   background: #12a4c8;
@@ -107,6 +108,9 @@
   pointer-events: none;
 }
 
+[dir="rtl"] .explore_service_btn {
+  margin-left: 15px;
+}
 
 /* media query */
 

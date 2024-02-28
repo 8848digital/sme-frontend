@@ -58,8 +58,27 @@
   margin-top: 150px;
 }
 
+.arrow_margin {
+  margin-right: 40px;
+}
+[dir="rtl"] .arrow_margin {
+  margin-right: 0;
+  margin-left: 40px;
+}
+[dir="rtl"] .service_title {
+  padding-top: 24px;
+  padding-right: 24px;
+  width: 100%;
+  text-align: end;
+}
 /* media query */
 @media (max-width: 768px) {
+  [dir="rtl"] .service_title {
+    padding-top: 24px;
+    padding-right: 47px;
+    width: 100%;
+    text-align: end;
+  }
   .services_card {
     background-color: #f2f2f2 !important;
     width: 385px;
@@ -82,6 +101,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 768px) {
+
   .services_card {
     background-color: #f2f2f2 !important;
     width: 500px;

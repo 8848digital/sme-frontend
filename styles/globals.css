@@ -717,6 +717,12 @@ input::-webkit-inner-spin-button {
   margin-right: 8px; /* Adjust the spacing between the radio button and label */
 }
 
+[dir="rtl"] .radio-item input[type="radio"] {
+  transform: scale(1.5);
+  margin-right: 0; 
+  margin-left: 12px;
+}
+
 .radio-item label {
   font-size: 14px; /* Adjust the font size of the label */
   vertical-align: middle; /* Align the label vertically with the radio button */
@@ -737,24 +743,25 @@ input::-webkit-inner-spin-button {
   fill: #00b2d4 !important;
 }
 
-.MuiStepLabel-label {
+.stepper_css  .MuiStepLabel-label {
   color: #ffffff !important;
 }
-.dropdown-ul-list {
-  z-index: 1700 !important;
-}
-[dir="rtl"] .MuiStepLabel-root {
+
+[dir="rtl"] .stepper_css  .MuiStepLabel-root {
   text-align: right !important;
 }
-[dir="rtl"] .MuiStepConnector-root {
+[dir="rtl"] .stepper_css  .MuiStepConnector-root {
   display: flex;
   margin-right: 24px;
 }
-[dir="rtl"] .MuiStepLabel-label {
+[dir="rtl"] .stepper_css  .MuiStepLabel-label {
   margin-right: 8px;
 }
 /* Bio select languages/skills css */
 /* Dropdown CSS */
+.dropdown-ul-list {
+  z-index: 1700 !important;
+}
 .dropdown-ul-list {
   position: absolute;
   max-height: 170px;

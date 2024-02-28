@@ -81,10 +81,10 @@ const Services = ( {serviceData , loadingService} :any) => {
                         </div>
                         <div className="col-md-12 col-6">
                             <div className={`${styles.arrowContainer}`}>
-                                <div className={`${styles.arrow} ${styles.prev} me-5`} onClick={handlePrev}>
+                                <div className={`${styles.arrow_margin}`} onClick={handlePrev}>
                                     <ArrowBackIcon style={{ color: 'gray', fontSize: '50px', border: '1px solid #d3d3d3', borderRadius: '50%', padding: '8px',cursor: "pointer" }} />
                                 </div>
-                                <div className={`${styles.arrow} ${styles.next}`} onClick={handleNext}>
+                                <div onClick={handleNext}>
                                     <ArrowForwardIcon style={{ color: 'gray', fontSize: '50px', border: '1px solid #d3d3d3', borderRadius: '50%', padding: '8px', cursor: "pointer" }} />
                                 </div>
                             </div>

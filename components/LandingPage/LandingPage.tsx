@@ -76,7 +76,7 @@ const LandingPage = () => {
                         </div>
                       </div>
                       <div className={` ${styles.get_started_btn_over_image}`} data-aos="slide-up">
-                        <div className="me-3">
+                        <div>
                           <button
                             className={`btn ${styles.explore_service_btn} `}
                             type="button"

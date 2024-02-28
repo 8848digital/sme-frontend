@@ -1,0 +1,17 @@
+.footer_logo_wrapper {
+
+}
+
+.footer_content_wrapper {
+    text-align: end;
+}
+
+@media (max-width:768px){
+    .footer_logo_wrapper{
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .footer_content_wrapper {
+        text-align: center;
+    }
+}

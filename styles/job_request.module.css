@@ -56,6 +56,9 @@
 }
 
 /* buttons */
+.contract_btn_wrapper {
+  text-align: end;
+}
 .btn_wrapper {
 
 }
