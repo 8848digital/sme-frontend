@@ -57,6 +57,7 @@ const HorizontalLinearAlternativeLabelStepper: any = ({ activeStep }: any) => {
           {lable1.map((label) => (
             <Step
               key={label.key1}
+              className="bio_step"
               sx={{
                 "& .MuiStepIcon-root": {
                   width: 32, // Adjust the width to increase the circle size

@@ -34,7 +34,7 @@ const AccountMaster = () => {
               defaultActiveKey="settings"
               onSelect={handleSelect}
             >
-              <Nav.Item className="pe-4">
+              <Nav.Item className={styles.nav_item}>
                 <Nav.Link
                   eventKey="settings"
                   className={`text-capitalize nav_link `}
@@ -42,7 +42,7 @@ const AccountMaster = () => {
                   {translationDataFromStore?.data?.settings}
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item className="pe-4">
+              <Nav.Item className={styles.nav_item}>
                 <Nav.Link
                   eventKey="password"
                   className={`text-capitalize nav_link `}

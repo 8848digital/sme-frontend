@@ -8,7 +8,6 @@ import Loaders from "@/components/Loaders";
 
 const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   console.log("job contract inactive in card", filteredContractsInactive);
-  console.log("job contract active in card", filteredContractsInactive);
 
   const translationDataFromStore = useSelector(translation_text_from_Store);
 

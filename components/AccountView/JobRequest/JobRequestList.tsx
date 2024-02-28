@@ -70,7 +70,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                     </div>
                   </div>
                   <div className="col-sm-4 border-bottom">
-                    <div className="text-end">
+                    <div className={`text-end ${styles.action}`}>
                       <h2>{translationDataFromStore?.data?.action}</h2>
                     </div>
                   </div>
