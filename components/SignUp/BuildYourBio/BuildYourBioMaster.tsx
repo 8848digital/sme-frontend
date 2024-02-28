@@ -151,9 +151,8 @@ const BuildYourBioMaster = () => {
   console.log(translationDataFromStore, "translation text");
 
   return (
-  
     <>
-      <div className="container-fluid">
+      <div className="container-fluid mt-3 mb-4">
         <div className={styles.bio_wrapper}>
           <HorizontalLinearStepper activeStep={currentStep} />
         </div>

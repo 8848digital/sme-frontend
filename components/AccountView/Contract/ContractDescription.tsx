@@ -53,7 +53,7 @@ const ContractDescription = ({ data }: any) => {
 
   return (
     <>
-      <div className={`col-md-5 col-lg-4 col-xl-4 col-xxl-3 text-start`}>
+      <div className={`col-md-6 col-lg-5 col-xl-4 col-xxl-4 text-start`}>
         {data?.status === "Inactive" ? (
           ""
         ) : (
@@ -74,7 +74,7 @@ const ContractDescription = ({ data }: any) => {
           </>
         )}
       </div>
-      <div className={`col-md-5 col-lg-4 col-xl-3 col-xxl-3 text-end `}>
+      <div className={`col-md-6 col-lg-4 col-xl-3 col-xxl-3 text-end `}>
         <Link href={data?.contract_pdf_url} target="_blank">
           <button className={`btn ${styles.btn_view} `}>
             {translationDataFromStore?.data?.view}

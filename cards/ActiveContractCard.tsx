@@ -33,7 +33,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
 
               <div className="col-md-4 border-bottom">
                 <div>
-                  <h2 className="text-end">
+                  <h2 className={`text-end ${styles.action}`}>
                     {translationDataFromStore?.data?.action}
                   </h2>
                 </div>
@@ -90,7 +90,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
 
                           <div className="col-md-4 border-bottom ">
                             <div className="row">
-                              <div className="col-md-2 col-lg-4 col-xl-5 col-xxl-6"></div>
+                              <div className="col-md-0 col-lg-3 col-xl-5 col-xxl-5"></div>
                               <ContractDescription data={data} />
                             </div>
                           </div>

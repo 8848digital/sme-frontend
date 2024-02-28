@@ -719,7 +719,7 @@ input::-webkit-inner-spin-button {
 
 [dir="rtl"] .radio-item input[type="radio"] {
   transform: scale(1.5);
-  margin-right: 0; 
+  margin-right: 0;
   margin-left: 12px;
 }
 
@@ -743,19 +743,26 @@ input::-webkit-inner-spin-button {
   fill: #00b2d4 !important;
 }
 
-.stepper_css  .MuiStepLabel-label {
+.stepper_css .MuiStepLabel-label {
   color: #ffffff !important;
 }
 
-[dir="rtl"] .stepper_css  .MuiStepLabel-root {
+[dir="rtl"] .stepper_css .MuiStepLabel-root {
   text-align: right !important;
 }
-[dir="rtl"] .stepper_css  .MuiStepConnector-root {
+[dir="rtl"] .stepper_css .MuiStepConnector-root {
   display: flex;
   margin-right: 24px;
 }
-[dir="rtl"] .stepper_css  .MuiStepLabel-label {
+[dir="rtl"] .stepper_css .MuiStepLabel-label {
   margin-right: 8px;
+}
+
+/* bio RTL steps */
+[dir="rtl"] .bio_step .MuiStepConnector-root {
+  left: calc(50% + 20px) !important;
+  right: calc(-50% + 20px) !important;
+  /* z-index: 5 !important; */
 }
 /* Bio select languages/skills css */
 /* Dropdown CSS */

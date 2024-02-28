@@ -8,7 +8,6 @@ import Loaders from "@/components/Loaders";
 
 const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   console.log("job contract inactive in card", filteredContractsInactive);
-  console.log("job contract active in card", filteredContractsInactive);
 
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
@@ -25,7 +24,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                 <h2 className="">{translationDataFromStore?.data?.status}</h2>
               </div>
               <div className="col-md-4 border-bottom">
-                <h2 className="text-end ">
+                <h2 className={`text-end ${styles.action}`}>
                   {translationDataFromStore?.data?.action}
                 </h2>
               </div>
@@ -82,7 +81,7 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
 
                         <div className="col-md-4 border-bottom">
                           <div className="row">
-                            <div className="col-md-2 col-lg-4 col-xl-5 col-xxl-6"></div>
+                            <div className="col-md-0 col-lg-3 col-xl-5 col-xxl-5"></div>
 
                             <ContractDescription data={data} />
                           </div>

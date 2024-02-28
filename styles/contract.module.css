@@ -75,13 +75,24 @@
 .label_mob {
   display: none;
 }
+.nav_item {
+  width: 80px;
+}
 
+/* RTL CSS */
+[dir="rtl"] .action {
+  text-align: end !important;
+}
+
+/* media query for mobile */
 @media (max-width: 578px) {
   .nav_item {
-    width: 142px;
+    width: 154px;
   }
+
   .contract_wrapper {
-    padding: 20px;
+    padding: 10px;
+    margin-top: 80px;
   }
   .contract_content_heading {
     display: none;
@@ -107,5 +118,15 @@
   }
   .tab_content_wrapper {
     margin-top: 20px;
+  }
+  [dir="rtl"] .label_mob {
+    padding-left: 10px;
+    /* border: 2px solid red; */
+  }
+}
+
+@media (max-width: 320px) {
+  .nav_item {
+    width: 100px;
   }
 }
