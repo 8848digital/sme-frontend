@@ -214,4 +214,7 @@
   .btn_wrapper {
     text-align: center !important;
   }
+  .border_sm_0 {
+    border-bottom: none !important;
+  }
 }
