@@ -103,11 +103,11 @@ const JobDesc = () => {
 
                                                 </div>
                                                 <div className="col-sm-6">
-                                                    <div className='text-md-end text-center'>
+                                                    <div className={styles.contract_btn_wrapper}>
                                                         <button type='button' className={styles.btn_view_contract}
                                                             onClick={() => {
                                                                 window.open(`${data?.rfq_pdf_url}`, '_blank');
-                                                            }}>{translationDataFromStore?.data?.view_full_contract}</button>
+                                                            }}>{translationDataFromStore?.data?.view_full_job_request}</button>
                                                     </div>
                                                 </div>
 
