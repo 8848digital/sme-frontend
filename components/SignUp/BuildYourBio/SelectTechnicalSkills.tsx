@@ -96,7 +96,7 @@ const SelectTechnicalSkills = ({
       ) : (
         <>
           <div className={` pt-4 ${styles.common_step_wrapper}`}>
-            <div className="text-start ">
+            <div className={`text-start ${styles.bio_heading}`}>
               <h5>{translationDataFromStore?.data?.bio_skills}</h5>
               {technical !== null &&
                 technical?.length > 0 &&
@@ -131,7 +131,7 @@ const SelectTechnicalSkills = ({
               />
             </div>
 
-            <div className="text-start ">
+            <div className={`text-start ${styles.bio_heading} pt-2`}>
               <h5 className="mt-3">
                 {translationDataFromStore?.data?.build_your_bio_step4_header}
               </h5>

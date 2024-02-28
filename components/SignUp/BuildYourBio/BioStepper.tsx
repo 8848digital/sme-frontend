@@ -6,6 +6,7 @@ import StepLabel from "@mui/material/StepLabel";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useSelector } from "react-redux";
 import { translation_text_from_Store } from "@/store/slices/general_slice/translation_text_slice";
+import { StepConnector } from "@mui/material";
 
 const HorizontalLinearAlternativeLabelStepper: any = ({ activeStep }: any) => {
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -48,7 +49,11 @@ const HorizontalLinearAlternativeLabelStepper: any = ({ activeStep }: any) => {
         }`}</div>
       )}
       <Box sx={{ width: "100%" }}>
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <Stepper
+          activeStep={activeStep}
+          alternativeLabel
+          connector={<StepConnector sx={{ mt: "3px" }} />}
+        >
           {lable1.map((label) => (
             <Step
               key={label.key1}
@@ -74,7 +79,7 @@ const HorizontalLinearAlternativeLabelStepper: any = ({ activeStep }: any) => {
                 "& .MuiStepLabel-root .Mui-active .MuiStepIcon-text": {
                   fill: "white", // circle's number (ACTIVE)
                 },
-                "& .MuiStepConnector-line": { marginTop: "3px" },
+                // "& .MuiStepConnector-line": { marginTop: "3px" },
               }}
             >
               <StepLabel

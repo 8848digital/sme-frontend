@@ -40,7 +40,7 @@ const ProfileCompleted = () => {
 
   console.log(userData, "user data");
   return (
-    <div className="container d-flex justify-content-center">
+    <div className="container d-flex justify-content-center mt-3">
       {loading ? (
         <Loaders />
       ) : (

@@ -22,13 +22,13 @@ const ContractNavbars = ({
           <div className={`row m-0 p-0 `}>
             <div className="p-0 ">
               <p className={`${styles.header_text} fs-32 lh-24 fw-500`}>
-                {translationDataFromStore?.data?.contract}
+                {translationDataFromStore?.data?.all_contract}
               </p>
             </div>
             <div className=" p-0">
               <Tab.Container id="tabs-example" defaultActiveKey="tab1">
                 <Nav variant="underline">
-                  <Nav.Item className={`pe-4 ${styles.nav_item}`}>
+                  <Nav.Item className={`${styles.nav_item}`}>
                     <Nav.Link
                       eventKey="tab1"
                       className="fs-16 lh-24 fw-500 nav_link text-center"
@@ -36,7 +36,9 @@ const ContractNavbars = ({
                       {translationDataFromStore?.data?.contract_active}
                     </Nav.Link>
                   </Nav.Item>
-                  <Nav.Item className={`pe-4 ${styles.nav_item}`}>
+                  <Nav.Item
+                    className={`${styles.nav_item_end} ${styles.nav_item}`}
+                  >
                     <Nav.Link
                       eventKey="tab2"
                       className="fs-16 lh-24 fw-500 nav_link text-center"
