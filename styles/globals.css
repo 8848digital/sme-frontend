@@ -79,14 +79,14 @@ body {
 /* css for blue button */
 .btn_blue {
   background-color: #00a5cd;
-  width: 100%;
+  width: 100% !important;
   border-radius: 100px !important;
   padding: 12 20px !important;
   color: white;
 }
 .btn_blue:hover {
   background-color: #00578a;
-  width: 100%;
+  width: 100% !important;
   border-radius: 100px !important;
   padding: 12 20px !important;
   color: white !important;

@@ -30,7 +30,7 @@
   box-shadow: 0px 1px 2px 0px #1018280d;
   margin: 10px 8px;
   overflow: none;
-  color:#23282d;
+  color: #23282d;
 }
 .btn_sign:hover {
   background: #00a5cd;
@@ -78,9 +78,7 @@
 
 @media (max-width: 578px) {
   .nav_item {
-    width: 158px;
-    /* display: flex;
-    justify-content: center; */
+    width: 142px;
   }
   .contract_wrapper {
     padding: 20px;

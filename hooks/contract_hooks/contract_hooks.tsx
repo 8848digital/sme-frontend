@@ -14,6 +14,7 @@ import GetContractAPI from "@/services/api/contract_api/get_contract_api";
 
 const useContractList = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   const [contractData, setContractData] = useState<any>(null);
   const contractFromStore = useSelector(contract_data_from_Store);
   const token = useSelector(get_access_token);
@@ -24,12 +25,20 @@ const useContractList = () => {
   }, [dispatch, token, contractData]);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); // Set loading to false after 3000ms
+    }, 2000);
+
+    return () => clearTimeout(timer); // Clear the timer if the component unmounts or the effect re-runs
+  }, []);
+
+  useEffect(() => {
     if (contractFromStore.data) {
       setContractData(contractFromStore?.data);
     }
   }, [contractFromStore]);
 
-  return { contractData, loading: contractFromStore?.loading };
+  return { contractData, loading };
 };
 
 export default useContractList;

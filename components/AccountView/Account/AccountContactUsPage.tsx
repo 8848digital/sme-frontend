@@ -8,13 +8,13 @@ import Loaders from "@/components/Loaders";
 
 const AccountContactUsPage = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
-  const { contactSupport }: any = useContactSupport();
+  const { contactSupport, loading }: any = useContactSupport();
   console.log("contactSupport", contactSupport);
   return (
     <>
-      {contactSupport?.support_details?.length > 0 ? (
-        <div className="row mt-4">
-          <div className={`col-md-12 `}>
+      <div className="row mt-4">
+        <div className={`col-md-12 `}>
+          {!loading ? (
             <div className="row">
               <div className="col-lg-4 col-md-6 ">
                 {contactSupport?.support_details?.map((ele: any, idx: any) => {
@@ -76,11 +76,11 @@ const AccountContactUsPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <Loaders />
+          )}
         </div>
-      ) : (
-        <Loaders />
-      )}
+      </div>
     </>
   );
 };

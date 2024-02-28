@@ -1,3 +1,4 @@
+import Loaders from "@/components/Loaders";
 import { CONSTANTS } from "@/services/config/api-config";
 import { bio_data_store } from "@/store/slices/buildYourBio_slice/bio_slice";
 import { form_details_from_store } from "@/store/slices/buildYourBio_slice/build_bio_slice";
@@ -14,6 +15,7 @@ const ProfileCompleted = () => {
   console.log(query, "query");
   let prevUserData = useSelector(form_details_from_store);
   const [userData, setUserData] = useState<any>(prevUserData || "");
+  const [loading, setLoading] = useState(true);
   let apiUserdata = useSelector(bio_data_store);
   console.log(prevUserData, "user data profile");
 
@@ -22,7 +24,15 @@ const ProfileCompleted = () => {
       setUserData(apiUserdata?.data);
     }
   };
+  // useEffect(() => {
+  //   userDataFun();
+  // }, [apiUserdata, prevUserData]);
+
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // After 5000ms, set loading to false
+    }, 2000);
+
     userDataFun();
   }, [apiUserdata, prevUserData]);
 
@@ -31,130 +41,134 @@ const ProfileCompleted = () => {
   console.log(userData, "user data");
   return (
     <div className="container d-flex justify-content-center">
-      <div className={` p-4 ${styles.profile_wrapper}`}>
-        <div className="">
+      {loading ? (
+        <Loaders />
+      ) : (
+        <div className={` p-4 ${styles.profile_wrapper}`}>
           <div className="">
-            <div className="d-flex justify-content-center">
-              <div style={{ width: "180px" }}>
-                <div className={`${styles.circular_image}  `}>
-                  {userData && userData?.photo_url === null ? (
-                    <AccountCircleIcon
-                      sx={{ fontSize: "180px", color: "#00B2D4" }}
-                    />
-                  ) : (
-                    <img
-                      src={`${CONSTANTS.API_BASE_URL}${userData?.photo_url}`}
-                      width="180px"
-                    />
-                  )}
+            <div className="">
+              <div className="d-flex justify-content-center">
+                <div style={{ width: "180px" }}>
+                  <div className={`${styles.circular_image}  `}>
+                    {userData && userData?.photo_url === null ? (
+                      <AccountCircleIcon
+                        sx={{ fontSize: "180px", color: "#00B2D4" }}
+                      />
+                    ) : (
+                      <img
+                        src={`${CONSTANTS.API_BASE_URL}${userData?.photo_url}`}
+                        width="180px"
+                      />
+                    )}
+                  </div>
+                  <h6 className="mt-3 text-center">
+                    {translationDataFromStore?.data?.your_current_photo}
+                  </h6>
                 </div>
-                <h6 className="mt-3 text-center">
-                  {translationDataFromStore?.data?.your_current_photo}
-                </h6>
               </div>
-            </div>
-            <div className="p-2">
-              <h5 className="my-2">{`${translationDataFromStore?.data?.bio}:`}</h5>
-              <textarea
-                aria-rowspan={3}
-                className={`${styles.profile_completed_input} form-control `}
-                value={
-                  userData?.bio !== ""
-                    ? userData?.bio
-                    : translationDataFromStore?.data
-                        ?.bio_profile_complete_language_tag
-                }
-                maxLength={500}
-                readOnly
-              />
-              {/* <p className="text-secondary">
-                {500 - userData?.bio?.length}{" "}
-                {translationDataFromStore?.data?.characters_left}
-              </p> */}
-            </div>
-            <div className="p-2">
-              <h5 className="my-2">{`${translationDataFromStore?.data?.bio_skills}:`}</h5>
-              {userData?.technical_skills?.length !== 0 ? (
-                userData?.technical_skills?.map((skills: any) => (
+              <div className="p-2">
+                <h5 className="my-2">{`${translationDataFromStore?.data?.bio}:`}</h5>
+                <textarea
+                  aria-rowspan={3}
+                  className={`${styles.profile_completed_input} form-control `}
+                  value={
+                    userData?.bio !== ""
+                      ? userData?.bio
+                      : translationDataFromStore?.data
+                          ?.bio_profile_complete_language_tag
+                  }
+                  maxLength={500}
+                  readOnly
+                />
+                {/* <p className="text-secondary">
+              {500 - userData?.bio?.length}{" "}
+              {translationDataFromStore?.data?.characters_left}
+            </p> */}
+              </div>
+              <div className="p-2">
+                <h5 className="my-2">{`${translationDataFromStore?.data?.bio_skills}:`}</h5>
+                {userData?.technical_skills?.length !== 0 ? (
+                  userData?.technical_skills?.map((skills: any) => (
+                    <input
+                      type="text"
+                      className={`${styles.profile_completed_input} form-control`}
+                      value={skills?.technical_skills}
+                      readOnly
+                    />
+                  ))
+                ) : (
                   <input
                     type="text"
                     className={`${styles.profile_completed_input} form-control`}
-                    value={skills?.technical_skills}
+                    value={
+                      translationDataFromStore?.data
+                        ?.bio_profile_complete_technical_tag
+                    }
                     readOnly
                   />
-                ))
-              ) : (
-                <input
-                  type="text"
-                  className={`${styles.profile_completed_input} form-control`}
-                  value={
-                    translationDataFromStore?.data
-                      ?.bio_profile_complete_technical_tag
-                  }
-                  readOnly
-                />
-              )}
-            </div>
-            <div className="p-2">
-              <h5 className="my-2">{`${translationDataFromStore?.data?.build_your_bio_step4_header}:`}</h5>
+                )}
+              </div>
+              <div className="p-2">
+                <h5 className="my-2">{`${translationDataFromStore?.data?.build_your_bio_step4_header}:`}</h5>
 
-              {userData?.language?.length !== 0 ? (
-                userData?.language?.map((language: any) => (
+                {userData?.language?.length !== 0 ? (
+                  userData?.language?.map((language: any) => (
+                    <input
+                      type="text"
+                      className={`${styles.profile_completed_input} form-control`}
+                      value={language?.language}
+                      readOnly
+                    />
+                  ))
+                ) : (
                   <input
                     type="text"
                     className={`${styles.profile_completed_input} form-control`}
-                    value={language?.language}
+                    value={
+                      translationDataFromStore?.data
+                        ?.bio_profile_complete_language_tag
+                    }
                     readOnly
                   />
-                ))
-              ) : (
-                <input
-                  type="text"
-                  className={`${styles.profile_completed_input} form-control`}
-                  value={
-                    translationDataFromStore?.data
-                      ?.bio_profile_complete_language_tag
-                  }
-                  readOnly
-                />
-              )}
-            </div>
-            <div className="p-2">
-              <h5 className="my-2">{`${translationDataFromStore?.data?.bio_certification}:`}</h5>
-              {userData?.certifications?.length !== 0 ? (
-                userData?.certifications?.map((Certificate: any) => (
-                  <input
-                    type="text"
-                    className={`${styles.profile_completed_input} form-control`}
-                    value={Certificate?.certification_name}
-                    readOnly
-                  />
-                ))
-              ) : (
-                <input
-                  type="text"
-                  className={`${styles.profile_completed_input} form-control`}
-                  value={
-                    translationDataFromStore?.data
-                      ?.bio_profile_complete_certification_tag
-                  }
-                  readOnly
-                />
-              )}
-            </div>
-            {query[1] === "account-view" && (
-              <div className="mt-4 p-2">
-                <button
-                  className={styles.update_button}
-                  onClick={() => router.push("build-your-bio")}
-                >
-                  {translationDataFromStore?.data?.update}
-                </button>
+                )}
               </div>
-            )}
+              <div className="p-2">
+                <h5 className="my-2">{`${translationDataFromStore?.data?.bio_certification}:`}</h5>
+                {userData?.certifications?.length !== 0 ? (
+                  userData?.certifications?.map((Certificate: any) => (
+                    <input
+                      type="text"
+                      className={`${styles.profile_completed_input} form-control`}
+                      value={Certificate?.certification_name}
+                      readOnly
+                    />
+                  ))
+                ) : (
+                  <input
+                    type="text"
+                    className={`${styles.profile_completed_input} form-control`}
+                    value={
+                      translationDataFromStore?.data
+                        ?.bio_profile_complete_certification_tag
+                    }
+                    readOnly
+                  />
+                )}
+              </div>
+              {query[1] === "account-view" && (
+                <div className="mt-4 p-2">
+                  <button
+                    className={styles.update_button}
+                    onClick={() => router.push("build-your-bio")}
+                  >
+                    {translationDataFromStore?.data?.update}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

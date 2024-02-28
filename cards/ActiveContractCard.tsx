@@ -9,10 +9,7 @@ import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import Loaders from "@/components/Loaders";
 
 const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
-  console.log("job contract active in card", filteredContractsActiveUnsigned);
-
   const token = useSelector(get_access_token);
-  // console.log("profile token", token.token);
 
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
