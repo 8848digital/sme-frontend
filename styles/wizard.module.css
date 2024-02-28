@@ -217,7 +217,7 @@ margin: 0 auto;
 
 }
 
-@media (min-width:576px) and (max-width:768px){
+@media (min-width:576px) and (max-width:1024px){
 .stepper_wrapper {
   padding-top: 100px;
   padding-left: 10px;

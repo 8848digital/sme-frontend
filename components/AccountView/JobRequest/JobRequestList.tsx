@@ -55,7 +55,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
               <h1>{translationDataFromStore?.data?.job_request}</h1>
             </div>
             <div className="row border rounded m-0 p-0">
-              <div className={`col-12 ${styles.job_request_content_heading}`}>
+              <div className={`col-12 d-sm-block d-none ${styles.job_request_content_heading}`}>
                 <div className="row">
                   <div className="col-sm-4 border-bottom">
                     <div>
@@ -84,12 +84,12 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                       <div className="row">
                         <div className="col-sm-4 border-bottom">
                           <div className={styles.job_request_content}>
-                            <h2 className="fs-16 fw-500 ">{data.project_id}</h2>
+                            <h2 className="fs-16 fw-500 "><span className="grey d-sm-none d-inline-block pe-1"> {translationDataFromStore?.data?.job_request_project_id}:</span>{data.project_id}</h2>
                           </div>
                         </div>
                         <div className="col-sm-4 border-bottom">
                           <div className={styles.job_request_content}>
-                            <h2 className="fs-14 grey">{data.project_name}</h2>
+                            <h2 className="fs-14 grey"><span className="grey d-sm-none d-inline-block pe-1">{translationDataFromStore?.data?.project_name}:</span>{data.project_name}</h2>
                           </div>
                         </div>
                         <div className="col-sm-4 border-bottom">
