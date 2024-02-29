@@ -28,6 +28,7 @@ const RespNavbar = () => {
   const dispatch = useDispatch();
   const [scrolled, setScrolled] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const isTabletScreen = useMediaQuery("(max-width: 992px)");
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -82,7 +83,7 @@ const RespNavbar = () => {
   useEffect(() => {
     // Reset showOffcanvas when responsive view is exited
     const handleResize = () => {
-      if (window.innerWidth >= 768 && showOffcanvas) {
+      if (window.innerWidth >= 992 && showOffcanvas) {
         setShowOffcanvas(false);
       }
     };
@@ -95,7 +96,7 @@ const RespNavbar = () => {
     };
   }, [showOffcanvas]);
 
-  const isSmallScreen = useMediaQuery("(max-width: 576px)");
+  const isSmallScreen = useMediaQuery("(max-width: 552px)");
   return (
     <div className="">
       {["md"].map((expand) => (
@@ -122,9 +123,9 @@ const RespNavbar = () => {
                     <Image
                       src={logo.src}
                       alt=""
-                      width={122}
+                      width={40}
                       height={32}
-                      className=""
+                      className="text-end"
                     />
                   ) : (
                     <Image
@@ -144,7 +145,7 @@ const RespNavbar = () => {
                 </Link>
               </Navbar.Brand>
             </div>
-            <div>
+            <div className={styles.language_tablet}>
               <Link
                 href=""
                 className={`text-center header-btn-devider language_cursor px-2 toggle-navbar`}
@@ -207,15 +208,18 @@ const RespNavbar = () => {
                 </Link>
               </div>
             )}
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand-${expand}`}
-              onClick={() => setShowOffcanvas(!showOffcanvas)}
-              style={{
-                border: "none",
-                fontSize: "15px",
-              }}
-              className={`p-0 m-0 ${styles.hamburger}`}
-            />
+
+            {isTabletScreen && (
+              <Navbar.Toggle
+                aria-controls={`offcanvasNavbar-expand-${expand}`}
+                onClick={() => setShowOffcanvas(!showOffcanvas)}
+                style={{
+                  border: "none",
+                  fontSize: "15px",
+                }}
+                className={`p-0 m-0 ${styles.hamburger}`}
+              />
+            )}
             <Navbar.Offcanvas
               show={showOffcanvas}
               id={`offcanvasNavbar-expand-${expand}`}
@@ -226,7 +230,7 @@ const RespNavbar = () => {
                   ? "end"
                   : "start"
               }`}
-              className={`${styles.offcanvas_dialog_bg} w-100`}
+              className={`${styles.offcanvas_dialog_bg} `}
             >
               <Offcanvas.Header
                 closeButton
@@ -237,7 +241,7 @@ const RespNavbar = () => {
                     <Image
                       src={logo.src}
                       alt=""
-                      width={122}
+                      width={40}
                       height={32}
                       className=""
                     />
@@ -332,10 +336,10 @@ const RespNavbar = () => {
                         </span>
                       </Link>
                     </div>
-                    <div className={`px-3 ${styles.margin_offcanvas}`}>
+                    {/* <div className={`px-3 ${styles.margin_offcanvas}`}>
                       <div className="form-switch fs-6 rtl-toggle-section">
                         <input
-                          className="form-check-input cursor"
+                          className={`form-check-input cursor ${styles.switch}`}
                           type="checkbox"
                           role="switch"
                           id="flexSwitchCheckDefault"
@@ -347,8 +351,10 @@ const RespNavbar = () => {
                           }}
                         />
                       </div>
-                    </div>
-                    <div className={`px-3 ${styles.margin_offcanvas}`}>
+                    </div> */}
+                    <div
+                      className={`px-3 ${styles.margin_offcanvas} ${styles.margin_language_wrapper}`}
+                    >
                       <Link
                         href=""
                         className={`text-center header-btn-devider `}
