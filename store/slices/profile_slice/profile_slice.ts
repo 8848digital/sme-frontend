@@ -18,9 +18,9 @@ const initialState: {
 // Create an asynchronous thunk for fetching the profile data
 export const fetchProfile = createAsyncThunk(
   "profile/fetchProfile",
-  async (token: any) => {
+  async ({ token, language_abbr }: any) => {
     try {
-      const response = await GetProfileAPI(token);
+      const response = await GetProfileAPI(token ,language_abbr);
       return response;
     } catch (error) {
       throw error;

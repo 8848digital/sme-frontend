@@ -16,9 +16,9 @@ const initialState: {
 // Create an asynchronous thunk for fetching the profile data
 export const fetchContractList = createAsyncThunk(
   "jobRequest/fetchContractList",
-  async (token: any, status:any) => {
+  async ({ token, language_abbr }: any) => {
     try {
-      const response = await GetContractAPI(token);
+      const response = await GetContractAPI(token , language_abbr);
       return response;
     } catch (error) {
       throw error;
