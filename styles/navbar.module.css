@@ -58,10 +58,7 @@
 .white_text_hover:hover {
   color: #00a5cd !important;
 }
-/* hamburger */
-.hamburger {
-  /* display: none; */
-}
+
 /* media  */
 @media (max-width: 992px) {
   .navbar_web {
@@ -71,17 +68,13 @@
     padding: 8px 12px !important;
     font-size: 12px;
   }
-  .header_btn_logout_wrapper {
-    margin-top: 20px;
-  }
+
   .btn_signup_canvas {
     padding: 8px 20px !important;
     /* background-color: white !important; */
     /* color: black !important; */
   }
-  .margin_offcanvas {
-    margin-top: 10px !important;
-  }
+
   .nav-item .white {
     color: white !important;
   }
@@ -92,15 +85,26 @@
     display: none;
     /* padding-left: 160px; */
   }
-  .margin_language_wrapper {
-    /* margin-left: -60px; */
+
+  .nav_link_pd {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
 }
 
-@media (max-width: 552px) {
+@media (max-width: 576px) {
   .language_tablet {
     display: block;
     padding-left: 60px;
+  }
+  .margin_offcanvas {
+    margin-top: 10px !important;
+  }
+  .header_btn_logout_wrapper {
+    margin-top: 20px;
+  }
+  .offcanvas_login {
+    display: none;
   }
   /* .btn_signup {
     padding: 8px 12px !important;

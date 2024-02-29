@@ -200,7 +200,7 @@ body {
 }
 
 .cursor {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .content-wrapper {
   display: flex;
@@ -608,6 +608,9 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 578px) {
+  .modal {
+    height: 130% !important;
+  }
   [dir="rtl"] .btn-signup {
     margin: 0 !important;
   }

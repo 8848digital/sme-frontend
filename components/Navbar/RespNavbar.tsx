@@ -271,6 +271,8 @@ const RespNavbar = () => {
                           <li className="nav-item">
                             <Link
                               className={`nav-link px-3 white ${
+                                styles.nav_link_pd
+                              } ${
                                 router.pathname !== "/"
                                   ? "black"
                                   : "white white_text_hover"
@@ -283,6 +285,8 @@ const RespNavbar = () => {
                           <li className="nav-item">
                             <Link
                               className={`nav-link px-3 white ${
+                                styles.nav_link_pd
+                              } ${
                                 router.pathname !== "/"
                                   ? "black"
                                   : "white white_text_hover"
@@ -295,6 +299,8 @@ const RespNavbar = () => {
                           <li className="nav-item">
                             <Link
                               className={`nav-link px-3 white ${
+                                styles.nav_link_pd
+                              } ${
                                 router.pathname !== "/"
                                   ? "black"
                                   : "white white_text_hover"
@@ -307,6 +313,8 @@ const RespNavbar = () => {
                           <li className="nav-item">
                             <Link
                               className={`nav-link px-3 white ${
+                                styles.nav_link_pd
+                              } ${
                                 router.pathname !== "/"
                                   ? "black"
                                   : "white white_text_hover"
@@ -323,10 +331,12 @@ const RespNavbar = () => {
                     )}
                   </div>
                   <div className="d-sm-inline-flex align-items-center text-center">
-                    <div className={`px-3 ${styles.margin_offcanvas}`}>
+                    <div
+                      className={`px-3 ${styles.nav_link_pd} ${styles.margin_offcanvas}`}
+                    >
                       <Link href="/" legacyBehavior className="d-block ">
                         <span
-                          className={` ${
+                          className={`cursor ${
                             router.pathname !== "/"
                               ? "black "
                               : "white white_text_hover"
@@ -382,7 +392,9 @@ const RespNavbar = () => {
                       {LoggedIn === "true" ? (
                         ""
                       ) : (
-                        <div className="px-3 cursor ">
+                        <div
+                          className={`px-3 cursor ${styles.offcanvas_login}`}
+                        >
                           <Link href="/login" legacyBehavior>
                             <span
                               className={` ${
@@ -397,7 +409,7 @@ const RespNavbar = () => {
                     </div>
 
                     {LoggedIn === "true" ? (
-                      <div>
+                      <div className={styles.offcanvas_login}>
                         <Link href="" legacyBehavior>
                           <a
                             onClick={handleLogOut}
@@ -414,7 +426,7 @@ const RespNavbar = () => {
                     ) : (
                       <Link href="" legacyBehavior>
                         <a
-                          className={`btn ${styles.btn_signup} ${styles.btn_signup_canvas}  text-uppercase `}
+                          className={`btn ${styles.btn_signup} ${styles.btn_signup_canvas} ${styles.offcanvas_login}  text-uppercase `}
                           onClick={() => setShowSignUpModal(true)}
                         >
                           {translationDataFromStore?.data?.signup}
