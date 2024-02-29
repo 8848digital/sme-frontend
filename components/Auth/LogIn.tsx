@@ -292,7 +292,9 @@ const LogIn = () => {
               </div>
 
               <div className="row">
-                <div className="col-xxl-2 col-xl-3 col-lg-4">
+                <div
+                  className={`col-xxl-2 col-xl-3 col-lg-4 ${styles.logo_wrapper_rtl}`}
+                >
                   <img
                     src={`${CONSTANTS.API_BASE_URL}${loginThemeData?.logo_image}`}
                     className={styles.logo_circle_img}

@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import uploadImage from "../../../public/assets/photo_upload_image.png";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
+import Loaders from "@/components/Loaders";
 
 const UploadPhoto = ({ bioData, onFormDataChange }: any) => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -92,7 +93,7 @@ const UploadPhoto = ({ bioData, onFormDataChange }: any) => {
           <div className="row mt-3">
             <div className="col-md-12">
               {loading ? (
-                <LoaderForSkills />
+                <Loaders />
               ) : (
                 <div className={`${styles.selected_file}`}>
                   <div

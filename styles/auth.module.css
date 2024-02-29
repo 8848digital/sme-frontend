@@ -92,6 +92,15 @@
   font-size: 400;
   line-height: 24px;
 }
+[dir="rtl"] .logo_wrapper_rtl {
+  margin-left: 30px;
+}
+
+@media (max-width: 1280px) {
+  [dir="rtl"] .logo_wrapper_rtl {
+    margin-left: 0px;
+  }
+}
 /* media */
 @media (max-width: 900px) {
   .img_main_wrapper {
@@ -117,5 +126,8 @@
   }
   .login_wrapper {
     margin-top: 10px !important;
+  }
+  .password_wrapper {
+    padding: 0px;
   }
 }
