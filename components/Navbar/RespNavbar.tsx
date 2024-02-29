@@ -117,7 +117,7 @@ const RespNavbar = () => {
             }}
           >
             <div className="logo-img-div">
-              <Navbar.Brand href="" className="cursor">
+              <Navbar.Brand href="" className="cursor p-0 m-0">
                 <Link href="/" legacyBehavior>
                   {isSmallScreen ? (
                     <Image
