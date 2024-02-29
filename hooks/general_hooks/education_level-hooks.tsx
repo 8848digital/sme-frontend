@@ -1,4 +1,4 @@
-import { eudcation_level_from_store, fetchEducationLevel } from "@/store/slices/auth_slice/education_level_slice";
+import { eudcation_level_from_store, fetchEducationLevel } from "@/store/slices/general_slice/education_level_slice";
 import { language_selector } from "@/store/slices/general_slice/language_slice";
 import { useRouter } from "next/router";
 

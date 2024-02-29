@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store/root-reducer";
 import LanguageApi from "@/services/api/buildYourBio_api/language_api";
-import GetEducationLevelApi from "@/services/api/auth_api/education_level_api";
+import GetEducationLevelApi from "@/services/api/general_api/education_level_api";
 
 
 // Define an initial state for your slice

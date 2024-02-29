@@ -16,16 +16,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>SME-SG</title>
         <link rel="icon" type="image/png" href={favicon.src} />
-        <meta name="description" content="Leading Management Consultancy Firm specializing in strategy, operations, and organizational transformation." />
+        {/* <meta name="description" content="Leading Management Consultancy Firm specializing in strategy, operations, and organizational transformation." />
         <meta name="keywords" content="management consultancy, strategy, operations, organizational transformation, business consulting" />
-        <meta name="author" content="Strategic Gears Management Consultancy" />
+        <meta name="author" content="Strategic Gears Management Consultancy" /> */}
         
         {/* Open Graph (OG) Tags */}
-        <meta property="og:title" content="SME-SG: Your Management Consultancy Partner" />
+        {/* <meta property="og:title" content="SME-SG: Your Management Consultancy Partner" />
         <meta property="og:description" content="Leading Management Consultancy Firm specializing in strategy, operations, and organizational transformation." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://strategicgears.com/" />
-        <meta property="og:image" content="@/public/assets/tag_line.png" />
+        <meta property="og:image" content="@/public/assets/tag_line.png" /> */}
         {/* Replace the content of og:image with the URL of your company's logo or an appropriate image */}
       </Head>
       <div>
