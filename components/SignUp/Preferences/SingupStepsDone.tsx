@@ -4,9 +4,13 @@ import styles from "@/styles/wizard.module.css";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import StartBioBuildingModal from './StartBioBuildingModal';
+import { useState } from 'react';
 
 const SingupStepsDone = () => {
+  const [showStartBioModal, setShowShowStartBioModal] = useState(false);
   const translationDataFromStore = useSelector(translation_text_from_Store)
+
 const router = useRouter();
   return (
     <div className="container">
@@ -29,9 +33,7 @@ const router = useRouter();
 
                     <button
                       className={`btn ${styles.next_button}`}
-                      onClick={()=>{
-                        router.push('/build-your-bio')
-                      }}
+                      onClick={() => setShowShowStartBioModal(true)}
                     >
                       {translationDataFromStore?.data?.confirm}
 
@@ -56,6 +58,10 @@ const router = useRouter();
           </div>
         </div>
       </div>
+      <StartBioBuildingModal 
+       show={showStartBioModal}
+       onHide={() => setShowShowStartBioModal(false)}
+      />
     </div>
   );
 }

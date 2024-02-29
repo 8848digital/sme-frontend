@@ -60,8 +60,27 @@
     background: #12a4c8;
     color: #ffffff;
   }
-  
-
+  .btn_start_bio_build{
+    background: #00a5cd;
+    width: 352px;
+    height: 44px;
+    border-radius: 100px;
+    border: 1px;
+    color: #ffffff;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+    margin-top: 30px;
+  }
+  .btn_start_bio_build:hover{
+    background: #ffffff;
+    width: 352px;
+    height: 44px;
+    border-radius: 100px;
+    border: 1px;
+    color: #000000;
+    /* box-shadow: 0px 1px 2px 0px #1018280D; */
+    margin-top: 30px;
+    border: 1px solid #787878;
+  }
   .centeredText {
     display: flex;
     justify-content: center;
@@ -129,6 +148,10 @@
         border: 1px solid #00A5CD;
         color: #000000;
         box-shadow: 0px 1px 2px 0px #1018280D;
+      }
+      .btn_start_bio_build {
+        width: 300px;
+        height: 44px;
       }
 
   }
