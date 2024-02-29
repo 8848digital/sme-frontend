@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { useSelector } from "react-redux";
 import LoaderForSkills from "../LoaderForSkills";
-import landinImage from '../../public/assets/landing_image.jpg'
+import landinImage from "../../public/assets/landing_image.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import tagLine from '../../public/assets/tag_line.png'
+import tagLine from "../../public/assets/tag_line.png";
 import Image from "next/image";
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from "@mui/material";
 import Services from "./Services/Services";
 import useOurService from "@/hooks/general_hooks/our_service_hook";
 const LandingPage = () => {
@@ -37,13 +37,13 @@ const LandingPage = () => {
   }, []);
 
   const imageLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`
-  }
-  const isSmallScreen = useMediaQuery('(max-width: 768px)');
+    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
+  };
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
   return (
     <>
       <div className={`${styles.landing_wrapper}`}>
-        <div className="d-block" style={{ position: 'relative' }}>
+        <div className="d-block position-relative">
           <div className={`${styles.overlay}`}></div>
           <Image
             src={`${landingData?.image}`}
@@ -53,35 +53,38 @@ const LandingPage = () => {
             objectFit="cover"
             quality={75} // Set the image quality to 75%
             loader={imageLoader} // Custom loader function
-
           />
         </div>
         <div className={` container `}>
-
           {!loading && landingData ? (
             <>
               <div className="row">
                 <div className="col-md-12">
-                  <div className={`row ${styles.landing_details_over_image}`} >
+                  <div className={`row ${styles.landing_details_over_image}`}>
                     <div className="col-md-2">
-                      <h4 style={{ fontSize: '20px', fontWeight: '500' }}>{landingData.sme_ascend}</h4>
+                      <h4 style={{ fontSize: "20px", fontWeight: "500" }}>
+                        {landingData.sme_ascend}
+                      </h4>
                     </div>
                     <div className="col-md-10">
                       <div data-aos="slide-up">
-
                         <div className={`${styles.landing_details} `}>
-                          <h1>
-                            {landingData.heading_name1}
-                          </h1>
+                          <h1>{landingData.heading_name1}</h1>
                         </div>
                       </div>
-                      <div className={` ${styles.get_started_btn_over_image}`} data-aos="slide-up">
+                      <div
+                        className={` ${styles.get_started_btn_over_image}`}
+                        data-aos="slide-up"
+                      >
                         <div>
                           <button
                             className={`btn ${styles.explore_service_btn} `}
                             type="button"
                             onClick={() => {
-                              window.open(`${landingData?.url_for_link_label}`, "_blank");
+                              window.open(
+                                `${landingData?.url_for_link_label}`,
+                                "_blank"
+                              );
                             }}
                           >
                             {landingData.explore_services_label}
@@ -101,22 +104,20 @@ const LandingPage = () => {
                               {landingData?.label_for_button}
                             </button>
                           )}
-
                         </div>
-
                       </div>
                       <div className={`${styles.tag_line}`}>
                         <div>
                           <Image
                             src={tagLine.src}
-                            alt='tag line logo'
+                            alt="tag line logo"
                             width={isSmallScreen ? 48 : 72}
-                            height={isSmallScreen ? 48 : 72} />
+                            height={isSmallScreen ? 48 : 72}
+                          />
                         </div>
                         <div className="ms-3">
                           <p className="mb-0">{landingData?.tag_line}</p>
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -126,56 +127,58 @@ const LandingPage = () => {
                   <div className={`${styles.featured_section}`}>
                     <div className="" data-aos="slide-up">
                       <div className="row">
-                        {
-                          landingData.Benefits_in_working && landingData.Benefits_in_working.map((data: any, index: any) => {
-                            return (
-                              <>
-                                <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center " >
-                                  <div>
-                                    <div className="featured_icon">
-
-                                      <Image
-                                        src={data.image}
-                                        alt='Featured Image'
-                                        width={48}
-                                        height={48}
-                                        loader={imageLoader}
-                                      />
-                                    </div>
-                                    <div className={styles.featured_text}>
-                                      <h1>
-                                        <CountUp
-                                          start={0}
-                                          end={data.featured_total}
-                                          duration={4}
-                                          separator=","
-                                          useEasing={true}
-                                          useGrouping={true}
-                                        />{" "}
-                                        {/* + {
+                        {landingData.Benefits_in_working &&
+                          landingData.Benefits_in_working.map(
+                            (data: any, index: any) => {
+                              return (
+                                <>
+                                  <div className="col-md-4 mt-2 d-flex align-items-center justify-content-center ">
+                                    <div>
+                                      <div className="featured_icon">
+                                        <Image
+                                          src={data.image}
+                                          alt="Featured Image"
+                                          width={48}
+                                          height={48}
+                                          loader={imageLoader}
+                                        />
+                                      </div>
+                                      <div className={styles.featured_text}>
+                                        <h1>
+                                          <CountUp
+                                            start={0}
+                                            end={data.featured_total}
+                                            duration={4}
+                                            separator=","
+                                            useEasing={true}
+                                            useGrouping={true}
+                                          />{" "}
+                                          {/* + {
                                   translationDataFromStore?.data
                                     ?.landingPage_project
                                 } */}
-                                        + {data?.name1}
-                                      </h1>
-                                    </div>
-                                    <div className="supporting_text">
-                                      {/* <p>Strategic Gears: Elevating Your Vision, Transforming Challenges into Triumphs.</p> */}
-                                      <p>{data?.description}</p>
+                                          + {data?.name1}
+                                        </h1>
+                                      </div>
+                                      <div className="supporting_text">
+                                        {/* <p>Strategic Gears: Elevating Your Vision, Transforming Challenges into Triumphs.</p> */}
+                                        <p>{data?.description}</p>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </>
-                            )
-                          })
-                        }
-
+                                </>
+                              );
+                            }
+                          )}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-12">
-                  <Services serviceData={serviceData} loadingService={loadingService} />
+                  <Services
+                    serviceData={serviceData}
+                    loadingService={loadingService}
+                  />
                 </div>
               </div>
             </>
