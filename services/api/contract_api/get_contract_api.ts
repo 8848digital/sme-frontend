@@ -2,14 +2,14 @@ import { CONSTANTS } from "@/services/config/api-config";
 import axios from "axios";
 
 
-const GetContractAPI =async (token?:any , status?:any) => {
+const GetContractAPI =async (token?:any , language?: any) => {
 
     let response: any;
     const version = CONSTANTS.VERSION;
     const method = "get_contract";
     const entity = "contract";
 
-    const params = `?version=${version}&method=${method}&entity=${entity}`;
+    const params = `?version=${version}&method=${method}&entity=${entity}&language=${language}`;
     const config = {
         headers: {
             Accept: "application/json",

@@ -11,6 +11,7 @@ import {
   fetchContractList,
 } from "@/store/slices/contract_slice/get_contract_slice";
 import GetContractAPI from "@/services/api/contract_api/get_contract_api";
+import { language_selector } from "@/store/slices/general_slice/language_slice";
 
 const useContractList = () => {
   const dispatch = useDispatch();
@@ -19,18 +20,11 @@ const useContractList = () => {
   const contractFromStore = useSelector(contract_data_from_Store);
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
-
+  const { languageToggle, language_abbr } = useSelector(language_selector);
   useEffect(() => {
-    dispatch(fetchContractList(token?.token) as any);
-  }, [dispatch, token, contractData]);
+    dispatch(fetchContractList({token:token?.token , language_abbr}) as any);
+  }, [dispatch, language_abbr]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false); // Set loading to false after 3000ms
-    }, 2000);
-
-    return () => clearTimeout(timer); // Clear the timer if the component unmounts or the effect re-runs
-  }, []);
 
   useEffect(() => {
     if (contractFromStore.data) {
@@ -38,7 +32,7 @@ const useContractList = () => {
     }
   }, [contractFromStore]);
 
-  return { contractData, loading };
+  return { contractData, loading:contractFromStore?.loading };
 };
 
 export default useContractList;

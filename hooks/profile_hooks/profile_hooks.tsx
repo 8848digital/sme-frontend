@@ -17,52 +17,24 @@ const useProfile = () => {
   const token = useSelector(get_access_token);
   console.log("profile token", token.token);
   const { languageToggle, language_abbr } = useSelector(language_selector);
-  console.log("language_abbr", language_abbr);
+  console.log("language_abbr", language_abbr , token);
+  
 
   useEffect(() => {
     setLoading(true);
-    dispatch(fetchProfile(token?.token) as any);
-  }, [dispatch, token]);
-
-  // useEffect(() => {
-  //   if (profileFromStore.data) {
-  //     setProfileData(profileFromStore?.data);
-  //     setLoading(false);
-  //   }
-  // }, [profileFromStore]);
+    dispatch(fetchProfile({token:token.token , language_abbr}) as any);
+  }, [dispatch,language_abbr]);
 
   useEffect(() => {
     if (profileFromStore.data) {
-      // Set loading to false after 2000ms
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-
-      return () => clearTimeout(timer); // Clear the timer if the component unmounts or the effect re-runs
+      setProfileData(profileFromStore?.data);
+      setLoading(false);
     }
   }, [profileFromStore]);
 
-  const getProfileData = async () => {
-    setLoading(true);
-    const fetchProfileData: any = await GetProfileAPI(
-      token?.token,
-      language_abbr
-    );
+ 
 
-    // if (fetchProfileData?.msg === "success") {
-    setProfileData(fetchProfileData);
-    // } else {
-    //   setProfileData([]);
-    // }
-  };
-
-  useEffect(() => {
-    getProfileData();
-  }, [language_abbr]);
-
-  useEffect(() => {
-    getProfileData();
-  }, []);
+   
 
   return { profileData, loading };
 };
