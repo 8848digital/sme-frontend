@@ -517,7 +517,7 @@ body {
   padding: 15px;
   margin: 180px auto 0 auto;
 }
-.nav_link_active {
+/* .nav_link_active {
   border-bottom: 2px solid #00a5cd !important;
   margin-left: 10px;
   margin-right: 10px;
@@ -525,7 +525,7 @@ body {
 }
 .nav_link_not_active:hover {
   border-bottom: 2px solid #00a5cd !important;
-}
+} */
 
 /* Account View  */
 .sidebar_wrapper ul li {
