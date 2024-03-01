@@ -270,12 +270,16 @@ const RespNavbar = () => {
                         <ul className="navbar-nav main-menu p-0 d-flex align-items-center">
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${
+                              className={`nav-link  white ${
                                 styles.nav_link_pd
                               } ${
                                 router.pathname !== "/"
-                                  ? "black"
+                                  ? "black "
                                   : "white white_text_hover"
+                              } ${
+                                router.pathname === "/account-view"
+                                  ? "nav_link_active"
+                                  : "nav_link_not_active"
                               } ${scrolled ? "black" : "white"}`}
                               href="/account-view"
                             >
@@ -284,27 +288,35 @@ const RespNavbar = () => {
                           </li>
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${
+                              className={`nav-link  white ${
                                 styles.nav_link_pd
                               } ${
                                 router.pathname !== "/"
-                                  ? "black"
+                                  ? "black "
                                   : "white white_text_hover"
-                              } ${scrolled ? "black" : "white"}`}
+                              } ${
+                                router.pathname === "/job-request-list"
+                                  ? "nav_link_active"
+                                  : "nav_link_not_active"
+                              }  ${scrolled ? "black" : "white"}`}
                               href="/job-request-list"
                             >
                               {translationDataFromStore?.data?.job_request}
                             </Link>
                           </li>
-                          <li className="nav-item">
+                          <li className={`nav-item`}>
                             <Link
-                              className={`nav-link px-3 white ${
+                              className={`nav-link  white ${
                                 styles.nav_link_pd
                               } ${
                                 router.pathname !== "/"
-                                  ? "black"
+                                  ? "black "
                                   : "white white_text_hover"
-                              } ${scrolled ? "black" : "white"}`}
+                              } ${
+                                router.pathname === "/contract"
+                                  ? "nav_link_active"
+                                  : "nav_link_not_active"
+                              }  ${scrolled ? "black" : "white"}`}
                               href="/contract"
                             >
                               {translationDataFromStore?.data?.contract}
@@ -312,13 +324,17 @@ const RespNavbar = () => {
                           </li>
                           <li className="nav-item">
                             <Link
-                              className={`nav-link px-3 white ${
+                              className={`nav-link  white ${
                                 styles.nav_link_pd
                               } ${
                                 router.pathname !== "/"
-                                  ? "black"
-                                  : "white white_text_hover"
-                              } ${scrolled ? "black" : "white"}`}
+                                  ? "black "
+                                  : "white white_text_hover "
+                              }  ${
+                                router.pathname === "/account"
+                                  ? "nav_link_active"
+                                  : "nav_link_not_active"
+                              }  ${scrolled ? "black" : "white"}`}
                               href="/account"
                             >
                               {translationDataFromStore?.data?.account}
@@ -332,15 +348,17 @@ const RespNavbar = () => {
                   </div>
                   <div className="d-sm-inline-flex align-items-center text-center">
                     <div
-                      className={`px-3 ${styles.nav_link_pd} ${styles.margin_offcanvas}`}
+                      className={`px-3 ${styles.nav_link_pd} ${styles.margin_offcanvas} `}
                     >
                       <Link href="/" legacyBehavior className="d-block ">
                         <span
                           className={`cursor ${
                             router.pathname !== "/"
-                              ? "black "
-                              : "white white_text_hover"
-                          } ${scrolled ? "black" : "white"}`}
+                              ? "black  nav_link_not_active"
+                              : "white white_text_hover nav_link_active"
+                          } ${scrolled ? "black" : "white"} ${
+                            styles.home_nav_item
+                          }`}
                         >
                           {translationDataFromStore?.data?.home_btn}
                         </span>

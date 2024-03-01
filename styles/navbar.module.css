@@ -58,7 +58,17 @@
 .white_text_hover:hover {
   color: #00a5cd !important;
 }
+.nav_link_pd {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
 
+/* CSS for Nav Item  */
+.home_nav_item {
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 /* media  */
 @media (max-width: 992px) {
   .navbar_web {
@@ -87,8 +97,8 @@
   }
 
   .nav_link_pd {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
   }
 }
 
