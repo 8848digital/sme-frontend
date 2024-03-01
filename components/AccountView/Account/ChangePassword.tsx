@@ -123,7 +123,7 @@ const ChangePassword = () => {
                     {translationDataFromStore?.data?.change_password_old}
                   </label>
 
-                  <div className="col-md-12 col-xl-4 col-lg-5">
+                  <div className="col-md-8 col-xl-4 col-lg-5">
                     <TextField
                       className="form-control"
                       name="old_password"
@@ -163,7 +163,7 @@ const ChangePassword = () => {
                     {translationDataFromStore?.data?.change_password_new}
                   </label>
 
-                  <div className="col-md-12 col-xl-4 col-lg-5">
+                  <div className="col-md-8 col-xl-4 col-lg-5">
                     <div className="password_block">
                       <TextField
                         className="form-control"
@@ -205,7 +205,7 @@ const ChangePassword = () => {
                     {translationDataFromStore?.data?.change_password_confirm}
                   </label>
 
-                  <div className="col-md-12 col-xl-4 col-lg-5">
+                  <div className="col-md-8 col-xl-4 col-lg-5">
                     <TextField
                       className="form-control"
                       name="confirmPassword"

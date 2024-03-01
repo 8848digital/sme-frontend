@@ -1,0 +1,10 @@
+.no_data_wrapper {
+  padding-top: 60px;
+}
+
+@media (max-width: 578px) {
+  .no_data_wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

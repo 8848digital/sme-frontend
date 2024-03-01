@@ -12,7 +12,7 @@ import Loaders from "@/components/Loaders";
 const AccountMaster = () => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
   const [activeTab, setActiveTab] = useState("settings");
-  const { loading } = useProfile();
+  const { profileData, loading } = useProfile();
   const handleSelect = (selectedKey: any) => {
     setActiveTab(selectedKey);
   };
@@ -61,7 +61,9 @@ const AccountMaster = () => {
             </Nav>
           </div>
 
-          {activeTab === "settings" && <AccountSettingPage />}
+          {activeTab === "settings" && (
+            <AccountSettingPage profileData={profileData} />
+          )}
           {activeTab === "password" && <AccountPasswordPage />}
           {activeTab === "contact_support" && <AccountContactUsPage />}
         </div>

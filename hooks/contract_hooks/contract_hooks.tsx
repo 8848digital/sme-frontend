@@ -19,12 +19,12 @@ const useContractList = () => {
   const [contractData, setContractData] = useState<any>(null);
   const contractFromStore = useSelector(contract_data_from_Store);
   const token = useSelector(get_access_token);
+  const language_selector_from_redux: any = useSelector(language_selector);
   console.log("profile token", token.token);
   const { languageToggle, language_abbr } = useSelector(language_selector);
   useEffect(() => {
-    dispatch(fetchContractList({token:token?.token , language_abbr}) as any);
-  }, [dispatch, language_abbr]);
-
+    dispatch(fetchContractList({ token: token?.token, language_abbr }) as any);
+  }, [dispatch, token, language_selector_from_redux]);
 
   useEffect(() => {
     if (contractFromStore.data) {
@@ -32,7 +32,7 @@ const useContractList = () => {
     }
   }, [contractFromStore]);
 
-  return { contractData, loading:contractFromStore?.loading };
+  return { contractData, loading: contractFromStore?.loading };
 };
 
 export default useContractList;

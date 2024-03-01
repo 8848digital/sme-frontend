@@ -12,10 +12,9 @@ import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import { toast } from "react-toastify";
 import Loaders from "@/components/Loaders";
 
-const AccountSettingPage = () => {
+const AccountSettingPage = ({ profileData }: any) => {
   const translationDataFromStore = useSelector(translation_text_from_Store);
 
-  const { profileData, loading }: any = useProfile();
   const [profileDatas, setProfileDatas] = useState<any>(null);
   const initialValues = {
     first_name: profileData?.first_name,
@@ -94,7 +93,7 @@ const AccountSettingPage = () => {
 
   return (
     <>
-      <div className={`col-md-3 col-lg-5 col-xl-4 mt-4`}>
+      <div className={`col-md-8 col-lg-5 col-xl-4 mt-4`}>
         <p className="fs-20 fw-400 lh-24">
           {translationDataFromStore?.data?.additional_information}:
         </p>
@@ -230,7 +229,7 @@ const AccountSettingPage = () => {
                 Submit
               </button> */}
                 <div className="row">
-                  <div className="col-lg-6 col-md-4">
+                  <div className="col-lg-6 col-md-6">
                     <button
                       className="btn btn_blue_border  mt-3"
                       type="button"
@@ -239,7 +238,7 @@ const AccountSettingPage = () => {
                       {translationDataFromStore?.data?.cancel}
                     </button>
                   </div>
-                  <div className="col-lg-6 col-md-4">
+                  <div className="col-lg-6 col-md-6">
                     <div className="pt-3">
                       {editMode ? ( // Show "Save" button when in edit mode
                         <button

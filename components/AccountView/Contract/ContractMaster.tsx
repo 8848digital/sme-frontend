@@ -16,13 +16,15 @@ const ContractMaster = () => {
   });
   console.log("Filtered job contracts:inactive", filteredContractsInactive);
   return (
-    <div className={styles.contract_wrapper}>
-      <ContractNavbars
-        filteredContractsActiveUnsigned={filteredContracts}
-        filteredContractsInactive={filteredContractsInactive}
-        loading={loading}
-      />
-    </div>
+    <>
+      <div className={styles.contract_wrapper}>
+        <ContractNavbars
+          filteredContractsActiveUnsigned={filteredContracts}
+          filteredContractsInactive={filteredContractsInactive}
+          loading={loading}
+        />
+      </div>
+    </>
   );
 };
 

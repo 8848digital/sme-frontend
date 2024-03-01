@@ -557,9 +557,6 @@ body {
   .btn-later {
     margin-top: 20px;
   }
-  .btn_blue_mob {
-    margin-top: 16px;
-  }
 }
 /* toast notification custom */
 .custom-toast {
@@ -621,6 +618,9 @@ input::-webkit-inner-spin-button {
   }
   [dir="rtl"] .btn-signup {
     margin: 0 !important;
+  }
+  .btn_blue_mob {
+    margin-top: 16px;
   }
 }
 [dir="rtl"] .btn-next {
