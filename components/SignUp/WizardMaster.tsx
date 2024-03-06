@@ -91,7 +91,7 @@ const WizardMaster = () => {
         setLoginbtnLoader(true);
         // Handle the success response, e.g., show a success message or redirect the user
         console.log("API Response:", response);
-        toast.success(`${response.data}`, {
+        toast.success(`${translationDataFromStore?.data?.registration_done}`, {
           autoClose: 5000, // Time in milliseconds (5 seconds)
           className: "custom-toast", // Close the notification after 3 seconds
         });

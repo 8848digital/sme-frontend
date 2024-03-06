@@ -164,13 +164,29 @@ const JobDesc = () => {
                                                 </div>
                                                 <div className="col-12">
                                                     {
-                                                        data.status === "Approved" || data.status === "Rejected" ? (
-                                                            ''
+                                                        data.total_payment > 0 ? <div>
+                                                            <p><span className='pe-1'>{translationDataFromStore?.data?.job_request_payment}:</span>{data.total_payment}</p>
+                                                        </div> : ''
+                                                    }
+
+
+                                                </div>
+                                                <div className="col-12">
+                                                    {
+                                                        data.status === "Approved" || data.status === "Rejected" || data?.job_cost.length > 0 ? (
+                                                            <>
+                                                                {
+                                                                    data?.job_cost.length > 0 ?
+                                                                        < div >
+                                                                            <p><span className='pe-1'> {translationDataFromStore?.data?.job_request_cost}:</span>{data?.job_cost}</p>
+                                                                        </div> : ''
+                                                                }
+                                                            </>
                                                         ) : (
                                                             <>
 
                                                                 <div className={`form-group ${styles.job_cost_wrapper}`}>
-                                                                <label htmlFor='job_cost'>{translationDataFromStore?.data?.job_request_cost}</label>
+                                                                    <label htmlFor='job_cost'>{translationDataFromStore?.data?.job_request_cost}</label>
                                                                     <input
                                                                         type="text"
                                                                         className="form-control"
@@ -240,7 +256,7 @@ const JobDesc = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div >
                                         </>
                                     )
                                 })
@@ -252,7 +268,7 @@ const JobDesc = () => {
                     )
                 }
                 <JobRequestActionModal show={showModal} onHide={() => { setShowModal(false) }} />
-            </div>
+            </div >
         </>
     )
 }

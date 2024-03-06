@@ -14,7 +14,7 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
       <div className=" p-4">
         <div className="col-12">
           <div className="">
-            <h5>
+            <h5 className="grey">
               {translationDataFromStore?.data?.build_your_bio_step2_header}
             </h5>
             {/* <p className="m-0">
@@ -30,10 +30,10 @@ const EnterBio = ({ bioData, onFormDataChange }: any) => {
                 value={bioData?.bio}
                 onChange={handleBioChange}
                 style={{ resize: "none" }}
-                placeholder={`${translationDataFromStore?.data?.ai_example_bio}.`}
+                placeholder={`grey ${translationDataFromStore?.data?.ai_example_bio}.`}
                 maxLength={500}
               ></textarea>
-              <p>
+              <p className="grey">
                 {500 - bioData?.bio?.length}{" "}
                 {translationDataFromStore?.data?.characters_left}
               </p>

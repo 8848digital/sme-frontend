@@ -55,16 +55,23 @@ const AcademicChildTable: React.FC<{
       // Convert the Date object to a string containing only the year
       value = value.getFullYear().toString();
     }
-
+    
     const updatedCertifications = certifications.map((cert, certIndex) => {
       if (index === certIndex) {
         // Create a copy of the certification object and update the field
-        return { ...cert, [field]: value };
+        if (field === "gpa" && Number(value) > 5) {
+          notifyError('GPA can be between 0 to 5');
+          return cert; // Return the original certification object without updating the GPA
+        } else {
+          console.log('Updated Certification:', {[field]: value});
+          return { ...cert, [field]: value };
+        }
       }
       return cert;
     });
-
+    
     setCertifications(updatedCertifications);
+    console.log('exp',value , field , updatedCertifications)
     onFormDataChange("academic_background", updatedCertifications);
   };
 

@@ -106,7 +106,7 @@ const PersonalInformationMaster = ({ formData, onFormDataChange, setStep, setInt
         console.log('email verify', verifyEmail);
         // setInternalStep(internalStep + 1);
         if (verifyEmail?.data?.message?.msg === 'success') {
-            toast.success(translationDataFromStore?.data?.toast_notify_otp_incorrect, {
+            toast.success(translationDataFromStore?.data?.toast_notify_otp_verified, {
                 autoClose: 3000,
                 className: "custom-toast",
             })

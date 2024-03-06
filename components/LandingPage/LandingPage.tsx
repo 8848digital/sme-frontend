@@ -62,9 +62,9 @@ const LandingPage = () => {
                 <div className="col-md-12">
                   <div className={`row ${styles.landing_details_over_image}`}>
                     <div className="col-md-2">
-                      <h4 style={{ fontSize: "20px", fontWeight: "500" }}>
+                      {/* <h4 style={{ fontSize: "20px", fontWeight: "500" }}>
                         {landingData.sme_ascend}
-                      </h4>
+                      </h4> */}
                     </div>
                     <div className="col-md-10">
                       <div data-aos="slide-up">

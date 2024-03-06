@@ -86,15 +86,17 @@ margin: 0 auto;
   width: 360px;
   height: 48px;
   border-radius: 100px;
-  background: #00a5cd;
-  color: #ffffff;
+  background: #ffffff;
+  color:#000000;
   /* margin-top: -260px; */
+  border: 1px solid #00a5cd;
 }
 .prev_button:hover {
-  background: #ffffff;
+  background: #00a5cd;
   color: #000000;
   /* margin-top: -220px; */
   border: 1px solid #00a5cd;
+  color:#ffffff;
 }
 
 .later_button {

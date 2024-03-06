@@ -7,6 +7,7 @@ import styles from "../styles/contract.module.css";
 
 import { get_access_token } from "@/store/slices/auth_slice/login_slice";
 import Loaders from "@/components/Loaders";
+import NoDataFound from "@/components/NoDataFound";
 
 const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
   const token = useSelector(get_access_token);
@@ -42,7 +43,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
           </div>
           <div className="col-12">
             {filteredContractsActiveUnsigned &&
-              filteredContractsActiveUnsigned.length > 0 && (
+              filteredContractsActiveUnsigned.length > 0 ? (
                 <>
                   {filteredContractsActiveUnsigned.map(
                     (data: any, index: any) => {
@@ -99,17 +100,10 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
                     }
                   )}
                 </>
+              ):(
+                <NoDataFound/>
               )}
           </div>
-
-          {filteredContractsActiveUnsigned &&
-          filteredContractsActiveUnsigned.length > 0 ? (
-            <></>
-          ) : (
-            <div className="text-center">
-              <p>{translationDataFromStore?.data?.no_data_available}</p>
-            </div>
-          )}
         </div>
       ) : (
         <Loaders />

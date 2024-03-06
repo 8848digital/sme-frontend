@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "../styles/contract.module.css";
 import Loaders from "@/components/Loaders";
+import NoDataFound from "@/components/NoDataFound";
 
 const InactiveContractCard = ({ filteredContractsInactive }: any) => {
   console.log("job contract inactive in card", filteredContractsInactive);
@@ -29,18 +30,11 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                 </h2>
               </div>
             </div>
-            {filteredContractsInactive &&
-            filteredContractsInactive.length > 0 ? (
-              <></>
-            ) : (
-              <div className="text-center">
-                <p>{translationDataFromStore?.data?.no_data_available}</p>
-              </div>
-            )}
+
           </div>
           <div className="col-12">
             {filteredContractsInactive &&
-              filteredContractsInactive.length > 0 && (
+              filteredContractsInactive.length > 0 ? (
                 <>
                   {filteredContractsInactive.map((data: any, index: any) => {
                     return (
@@ -90,6 +84,8 @@ const InactiveContractCard = ({ filteredContractsInactive }: any) => {
                     );
                   })}
                 </>
+              ):(
+                <NoDataFound/>
               )}
           </div>
         </div>

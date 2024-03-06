@@ -10,7 +10,7 @@ const SelectCertifications = ({ bioData, onFormDataChange }: any) => {
     <div className={styles.common_step_wrapper}>
       <div className="col-12 p-0">
         <div className={` mt-4 mb-3 text-start  ${styles.bio_heading}`}>
-          <h5>
+          <h5 className="grey">
             {
               translationDataFromStore?.data
                 ?.build_your_bio_step5_certification_name

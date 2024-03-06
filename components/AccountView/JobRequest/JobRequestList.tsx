@@ -36,7 +36,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
     if (response[0].msg === "success") {
       toast.success(
         response[0]?.data?.data === "RFQ Supplier status updated to Rejected" &&
-          translationDataFromStore?.data?.toast_reject_job_request_success,
+        translationDataFromStore?.data?.toast_reject_job_request_success,
         {
           autoClose: 3000, // Time in milliseconds (5 seconds)
           className: "custom-toast", // Close the notification after 3 seconds
@@ -59,34 +59,35 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
             <div className={styles.job_request_heading}>
               <h1>{translationDataFromStore?.data?.job_request}</h1>
             </div>
-            {jobRequestData?.length > 0 ? (
-              <div className="row border rounded m-0 p-0">
-                <div
-                  className={`col-12 d-sm-block d-none ${styles.job_request_content_heading}`}
-                >
-                  <div className="row">
-                    <div className="col-sm-4 border-bottom">
-                      <div>
-                        <h2>
-                          {
-                            translationDataFromStore?.data
-                              ?.job_request_project_id
-                          }
-                        </h2>
-                      </div>
+
+            <div className="row border rounded m-0 p-0">
+              <div
+                className={`col-12 d-sm-block d-none ${styles.job_request_content_heading}`}
+              >
+                <div className="row">
+                  <div className="col-sm-4 border-bottom">
+                    <div>
+                      <h2>
+                        {
+                          translationDataFromStore?.data
+                            ?.job_request_project_id
+                        }
+                      </h2>
                     </div>
-                    <div className="col-sm-4 border-bottom">
-                      <div>
-                        <h2>{translationDataFromStore?.data?.project_name}</h2>
-                      </div>
+                  </div>
+                  <div className="col-sm-4 border-bottom">
+                    <div>
+                      <h2>{translationDataFromStore?.data?.project_name}</h2>
                     </div>
-                    <div className="col-sm-4 border-bottom">
-                      <div className={`text-end ${styles.action}`}>
-                        <h2>{translationDataFromStore?.data?.action}</h2>
-                      </div>
+                  </div>
+                  <div className="col-sm-4 border-bottom">
+                    <div className={`text-end ${styles.action}`}>
+                      <h2>{translationDataFromStore?.data?.action}</h2>
                     </div>
                   </div>
                 </div>
+              </div>
+              {jobRequestData?.length > 0 ? (
                 <div className="col-12">
                   {jobRequestData &&
                     jobRequestData.length > 0 &&
@@ -191,10 +192,10 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                       );
                     })}
                 </div>
-              </div>
-            ) : (
-              <NoDataFound />
-            )}
+              ) : (
+                <NoDataFound />
+              )}
+            </div>
           </div>
         ) : (
           <Loaders />

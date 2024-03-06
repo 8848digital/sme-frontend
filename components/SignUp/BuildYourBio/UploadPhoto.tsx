@@ -150,7 +150,7 @@ const UploadPhoto = ({ bioData, onFormDataChange }: any) => {
           </div>
         </form>
       </div>
-      <h6 className="text-center mt-3">
+      <h6 className="text-center mt-3 grey">
         {translationDataFromStore?.data?.build_your_bio_step1_description}
       </h6>
     </div>

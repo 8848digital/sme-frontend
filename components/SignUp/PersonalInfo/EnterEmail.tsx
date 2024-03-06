@@ -18,7 +18,7 @@ const EnterEmail = ({ formData, onFormDataChange }: any) => {
       <div>
         <div
           className={`${styles.common_wizard_wrapper}`}
-         
+
         >
           <div className="row">
             <div className="col-12">
@@ -32,9 +32,9 @@ const EnterEmail = ({ formData, onFormDataChange }: any) => {
                 </h1>
                 {/* <h2>{translationDataFromStore?.data?.signup_personal}</h2> */}
                 <h1 className="fs-20">{
-                                  translationDataFromStore?.data
-                                    ?.email_placeholder
-                                }</h1>
+                  translationDataFromStore?.data
+                    ?.email_placeholder
+                }</h1>
                 <div className="form-group mt-4">
                   <label className="grey" htmlFor="email"> {translationDataFromStore?.data?.email}</label>
                   <input
@@ -46,7 +46,8 @@ const EnterEmail = ({ formData, onFormDataChange }: any) => {
                     value={formData.usr}
                     onChange={handleEmailChange}
                     style={{ height: '44px' }}
-                    
+
+
                   />
                 </div>
               </div>
