@@ -165,14 +165,14 @@ const JobDesc = () => {
                                                 <div className="col-12">
                                                     {
                                                         data.total_payment > 0 ? <div>
-                                                            <p><span className='pe-1'>{translationDataFromStore?.data?.job_request_payment}:</span>{data.total_payment}</p>
+                                                            <p><span className='pe-1'>{translationDataFromStore?.data?.project_cost}:</span>{data.total_payment}</p>
                                                         </div> : ''
                                                     }
 
 
                                                 </div>
                                                 <div className="col-12">
-                                                    {
+                                                    {/* {
                                                         data.status === "Approved" || data.status === "Rejected" || data?.job_cost.length > 0 ? (
                                                             <>
                                                                 {
@@ -197,7 +197,7 @@ const JobDesc = () => {
                                                                 </div>
                                                             </>
                                                         )
-                                                    }
+                                                    } */}
                                                     <div className='mt-3'>
 
                                                         <div className="col-md-4">

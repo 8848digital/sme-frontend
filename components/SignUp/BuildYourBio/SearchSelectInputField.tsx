@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "@/styles/bio.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import delete_icon_img from "@/public/assets/delete_icon.png"
 const SearchSelectInputField = ({
   SkillList,
   defaultValue,
@@ -263,7 +263,8 @@ const SearchSelectInputField = ({
         </ul>
       )}
       <div onClick={() => removeRow(index)}>
-        <DeleteIcon className={styles.delete_icon} />
+        {/* <DeleteIcon className={styles.delete_icon} /> */}
+        <img src={delete_icon_img.src} alt='delete-icon'  className={`cursor ${styles.delete_icon}`}/>
       </div>
     </div>
   );

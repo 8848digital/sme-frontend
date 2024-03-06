@@ -2,6 +2,7 @@ import { translation_text_from_Store } from "@/store/slices/general_slice/transl
 import styles from "@/styles/wizard.module.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import { format } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -10,7 +11,8 @@ import AddIcon from '@mui/icons-material/Add';
 
 interface ProfessionalExperience {
   title: string;
-  year: string; // Change the type to string
+  start_date: string; // Change the type to string
+  end_date: string; // Change the type to string
   company: string;
 }
 
@@ -24,12 +26,13 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
     formData.professional_experience && formData.professional_experience.length > 0
       ? formData.professional_experience
       : [
-          {
-            title: '',
-            year: '', // Change the initial year value to an empty string
-            company: '',
-          },
-        ]
+        {
+          title: '',
+          start_date: '',
+          end_date: '',
+          company: '',
+        },
+      ]
   );
 
   const notifySuccess = (message: string) => {
@@ -41,25 +44,26 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
   };
 
   const handleProfessionalExpChange = (index: number, field: keyof ProfessionalExperience, value: any) => {
-    if (field === 'year' && value instanceof Date) {
-      // Convert the Date object to a string containing only the year
-      value = value.getFullYear().toString();
-    }
-
-    const updatedProfessionalExp = professionalExp.map((exp, expIndex) => {
+    const updatedProfessionalExp = professionalExp.map((exp: any, expIndex: number) => {
       if (index === expIndex) {
-        // Create a copy of the professional experience object and update the field
+        // If the field is a date, convert it to the desired format
+        if (field === 'start_date' || field === 'end_date') {
+          // Format the date to "YYYY-MM-DD"
+          const formattedDate = value ? format(new Date(value), 'yyyy-MM-dd') : '';
+          return { ...exp, [field]: formattedDate };
+        }
+        // For other fields, just update the value
         return { ...exp, [field]: value };
       }
       return exp;
     });
-
+  
     setProfessionalExp(updatedProfessionalExp);
     onFormDataChange('professional_experience', updatedProfessionalExp);
   };
 
   const addRow = () => {
-    setProfessionalExp([...professionalExp, { title: '', year: '', company: '' }]);
+    setProfessionalExp([...professionalExp, { title: '', start_date: '', end_date: '', company: '' }]);
   };
 
   const removeRow = (index: number) => {
@@ -88,7 +92,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
               <div className="row mb-3" key={index}>
                 <div className="col-10">
                   <div className="row">
-                    <div className="col-12 p-0">
+                    <div className="col-6 p-0">
                       <div className="d-flex flex-column me-3">
                         <label htmlFor={`title_${index}`} className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.title}</label>
                         <input
@@ -103,25 +107,7 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                       </div>
                     </div>
                     <div className="col-6 p-0">
-                      <div className="d-flex flex-column mt-3 me-3" >
-                        <label htmlFor={`year_${index}`} className={`form-label mb-1 ${styles.label_color}`}>
-                        {translationDataFromStore?.data?.year}
-                          </label>
-                        <DatePicker
-                          selected={exp.year ? new Date(exp.year) : null}
-                          id={`year_${index}`}
-                          onChange={(date: Date | null) => handleProfessionalExpChange(index, 'year', date)}
-                          showYearPicker
-                          dateFormat="yyyy"
-                          className={` form-control w-100 ${styles.label_color}`}
-                          placeholderText={
-                            translationDataFromStore?.data?.year_placeholder
-                          }
-                        />
-                      </div>
-                    </div>
-                    <div className="col-6 p-0">
-                      <div className="d-flex flex-column mt-3 me-3">
+                      <div className="d-flex flex-column me-3">
                         <label htmlFor={`company_${index}`} className={`form-label mb-1 ${styles.label_color}`}>{translationDataFromStore?.data?.company}
                         </label>
                         <input
@@ -132,10 +118,47 @@ const ProfessionalExperienceChildTable: React.FC<ProfessionalExperienceChildTabl
                           value={exp.company}
                           onChange={(e) => handleProfessionalExpChange(index, 'company', e.target.value)}
                           className={` form-control w-100 ${styles.label_color}`}
-                          
+
                         />
                       </div>
                     </div>
+
+                    <div className="col-6 p-0">
+                      <div className="mt-3 d-flex flex-column me-3">
+                        <label htmlFor={`from_date_${index}`} className={`form-label mb-1 ${styles.label_color}`}>
+                          From Date
+                        </label>
+                        <DatePicker
+                          // selected={exp.start_date ? new Date(exp.start_date) : null}
+                          selected={exp.start_date ? new Date(exp.start_date) : null}
+                          onChange={(date) => handleProfessionalExpChange(index, "start_date", date)}
+                          id={`from_date_${index}`}
+                          className="form-control w-100 cursor"
+                          dateFormat="dd/MM/yyyy" // Set the date format
+                          placeholderText="DD/MM/YYYY" // Set a placeholder for clarity
+                          // Use the customInput prop if you want to customize the input field further
+                          customInput={<input type="text" />} // This will ensure that clicking anywhere in the input field opens the date picker
+                        />
+                      </div>
+                    </div>
+                    <div className="col-6 p-0">
+                      <div className="mt-3 d-flex flex-column me-3">
+                        <label htmlFor={`end_date_${index}`} className={`form-label mb-1 ${styles.label_color}`}>
+                          To Date
+                        </label>
+                        <DatePicker
+                          selected={exp.end_date ? new Date(exp.end_date) : null}
+                          onChange={(date) => handleProfessionalExpChange(index, "end_date", date)}
+                          id={`from_date_${index}`}
+                          className="form-control w-100 cursor"
+                          dateFormat="dd/MM/yyyy" // Set the date format
+                          placeholderText="DD/MM/YYYY" // Set a placeholder for clarity
+                          // Use the customInput prop if you want to customize the input field further
+                          customInput={<input type="text" />} // This will ensure that clicking anywhere in the input field opens the date picker
+                        />
+                      </div>
+                    </div>
+
                   </div>
                 </div>
                 <div className="col-2">
