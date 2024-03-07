@@ -77,7 +77,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                   </div>
                   <div className="col-sm-4 border-bottom">
                     <div>
-                      <h2>{translationDataFromStore?.data?.project_name}</h2>
+                      <h2>{translationDataFromStore?.data?.job_request_project_name}</h2>
                     </div>
                   </div>
                   <div className="col-sm-4 border-bottom">

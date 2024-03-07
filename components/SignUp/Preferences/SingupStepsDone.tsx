@@ -23,7 +23,7 @@ const router = useRouter();
                 <Logo />
               </div>
               <div className="mt-5">
-                <h1 style={{fontSize:'24px'}}>{translationDataFromStore?.data?.done}!</h1>
+                <h1 style={{fontSize:'24px'}}>{translationDataFromStore?.data?.done}</h1>
                 <p className='grey'>{translationDataFromStore?.data?.signup_complete_description}</p>
               </div>
               <div className={`${styles.common_wizard_btn}`}>

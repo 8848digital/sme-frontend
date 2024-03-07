@@ -23,7 +23,7 @@ const ActiveContractCard = ({ filteredContractsActiveUnsigned }: any) => {
             <div className="row">
               <div className="col-md-4 border-bottom">
                 <div>
-                  <h2>{translationDataFromStore?.data?.project_name}</h2>
+                  <h2>{translationDataFromStore?.data?.contract_project_id}</h2>
                 </div>
               </div>
               <div className="col-md-4 border-bottom">
