@@ -51,6 +51,9 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
     }
     return response;
   };
+  const currentDate = new Date();
+  const fourteenDaysAhead = new Date();
+  fourteenDaysAhead.setDate(currentDate.getDate() + 14);
   return (
     <>
       <div className="container">
@@ -128,21 +131,31 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                             <div className={` ${styles.job_request_action}`}>
                               {data.status === "Pending" ? (
                                 <>
-                                  <button
-                                    className={`${styles.btn_decline} `}
-                                    onClick={() => {
-                                      handleRejectClick(
-                                        data.supplier,
-                                        data.name
-                                      );
-                                    }}
-                                  >
-                                    {translationDataFromStore?.data?.decline}
-                                  </button>
-                                  <JobRequestDeclineModal
-                                    show={modalShow}
-                                    onHide={() => setModalShow(false)}
-                                  />
+                                  {new Date(data.date) <= fourteenDaysAhead ? (
+                                    <>
+                                      <button
+                                        className={`${styles.btn_decline} `}
+                                        onClick={() => {
+                                          handleRejectClick(data.supplier, data.name);
+                                        }}
+                                      >
+                                        {translationDataFromStore?.data?.decline}
+                                      </button>
+                                      <JobRequestDeclineModal
+                                        show={modalShow}
+                                        onHide={() => setModalShow(false)}
+                                      />
+                                    </>
+                                  ) : (
+                                    <>
+                                      <button
+                                        className={`${styles.btn_disabled} `}
+                                       disabled
+                                      >
+                                        Expired
+                                      </button>
+                                    </>
+                                  )}
                                 </>
                               ) : (
                                 ""

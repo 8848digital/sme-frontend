@@ -63,7 +63,9 @@ const JobDesc = () => {
         const [year, month, day] = dateString.split('-');
         return `${day}-${month}-${year}`;
     }
-
+    const currentDate = new Date();
+    const fourteenDaysAhead = new Date();
+    fourteenDaysAhead.setDate(currentDate.getDate() + 14);
     return (
         <>
             <div className="container">
@@ -206,18 +208,29 @@ const JobDesc = () => {
 
                                                                 {
                                                                     data.status === "Pending" ? (
-                                                                        <button
-                                                                            className={`${styles.btn_view_contract}`}
+                                                                        <>
+                                                                            {new Date(data.date) <= fourteenDaysAhead ? (
+                                                                                <button
+                                                                                    className={`${styles.btn_view_contract}`}
 
-                                                                            onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
-                                                                            disabled={
-                                                                                data.status === "Approved" || data.status === "Rejected"
+                                                                                    onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
+                                                                                    disabled={
+                                                                                        data.status === "Approved" || data.status === "Rejected"
+                                                                                    }
+                                                                                >
+                                                                                    {data.status === "Pending"
+                                                                                        ? `${translationDataFromStore?.data?.approve}`
+                                                                                        : `${translationDataFromStore?.data?.approved}`}
+                                                                                </button>) : (
+                                                                                    <button
+                                                                                    className={`${styles.btn_disabled} `}
+                                                                                   disabled
+                                                                                  >
+                                                                                    Expired
+                                                                                  </button>
+                                                                                )
                                                                             }
-                                                                        >
-                                                                            {data.status === "Pending"
-                                                                                ? `${translationDataFromStore?.data?.approve}`
-                                                                                : `${translationDataFromStore?.data?.approved}`}
-                                                                        </button>
+                                                                        </>
                                                                     ) : ('')
                                                                 }
                                                                 {
