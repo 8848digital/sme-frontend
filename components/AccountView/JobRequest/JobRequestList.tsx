@@ -54,6 +54,13 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
   const currentDate = new Date();
   const fourteenDaysAhead = new Date();
   fourteenDaysAhead.setDate(currentDate.getDate() + 14);
+
+  const year = fourteenDaysAhead.getFullYear();
+  const month = (fourteenDaysAhead.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month index
+  const day = fourteenDaysAhead.getDate().toString().padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  console.log('14 date', formattedDate)
   return (
     <>
       <div className="container">
@@ -95,6 +102,8 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                   {jobRequestData &&
                     jobRequestData.length > 0 &&
                     jobRequestData.map((data: any, index: number) => {
+                      { console.log('date', data.date) }
+                      { console.log('date e', formattedDate) }
                       return (
                         <div className="row">
                           <div
@@ -131,7 +140,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                             <div className={` ${styles.job_request_action}`}>
                               {data.status === "Pending" ? (
                                 <>
-                                  {new Date(data.date) <= fourteenDaysAhead ? (
+                                  {formattedDate >= data.date ? (
                                     <>
                                       <button
                                         className={`${styles.btn_decline} `}
@@ -150,12 +159,13 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                                     <>
                                       <button
                                         className={`${styles.btn_disabled} `}
-                                       disabled
+                                        disabled
                                       >
                                         Expired
                                       </button>
                                     </>
                                   )}
+
                                 </>
                               ) : (
                                 ""
