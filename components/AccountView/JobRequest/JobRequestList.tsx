@@ -140,9 +140,7 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                             <div className={` ${styles.job_request_action}`}>
                               {data.status === "Pending" ? (
                                 <>
-                                  {formattedDate >= data.date ? (
-                                    <>
-                                      <button
+                                   <button
                                         className={`${styles.btn_decline} `}
                                         onClick={() => {
                                           handleRejectClick(data.supplier, data.name);
@@ -154,17 +152,6 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                                         show={modalShow}
                                         onHide={() => setModalShow(false)}
                                       />
-                                    </>
-                                  ) : (
-                                    <>
-                                      <button
-                                        className={`${styles.btn_disabled} `}
-                                        disabled
-                                      >
-                                        Expired
-                                      </button>
-                                    </>
-                                  )}
 
                                 </>
                               ) : (
@@ -195,6 +182,19 @@ const JobRequestList = ({ jobRequestData, loading }: any) => {
                                   }
                                 >
                                   {translationDataFromStore?.data?.approved}
+                                </button>
+                              ) : (
+                                ""
+                              )}
+                              {data.status === "Expired" ? (
+                                <button
+                                  className={`${styles.btn_disabled} `}
+                                  // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                  disabled={
+                                    data.status === "Expired"
+                                  }
+                                >
+                                  {translationDataFromStore?.data?.expired}
                                 </button>
                               ) : (
                                 ""

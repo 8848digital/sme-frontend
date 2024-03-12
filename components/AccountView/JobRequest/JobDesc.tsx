@@ -209,27 +209,18 @@ const JobDesc = () => {
                                                                 {
                                                                     data.status === "Pending" ? (
                                                                         <>
-                                                                            {new Date(data.date) <= fourteenDaysAhead ? (
-                                                                                <button
-                                                                                    className={`${styles.btn_view_contract}`}
+                                                                            <button
+                                                                                className={`${styles.btn_view_contract}`}
 
-                                                                                    onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
-                                                                                    disabled={
-                                                                                        data.status === "Approved" || data.status === "Rejected"
-                                                                                    }
-                                                                                >
-                                                                                    {data.status === "Pending"
-                                                                                        ? `${translationDataFromStore?.data?.approve}`
-                                                                                        : `${translationDataFromStore?.data?.approved}`}
-                                                                                </button>) : (
-                                                                                    <button
-                                                                                    className={`${styles.btn_disabled} `}
-                                                                                   disabled
-                                                                                  >
-                                                                                    Expired
-                                                                                  </button>
-                                                                                )
-                                                                            }
+                                                                                onClick={() => { handleApproveClick(data?.supplier, data?.name) }}
+                                                                                disabled={
+                                                                                    data.status === "Approved" || data.status === "Rejected"
+                                                                                }
+                                                                            >
+                                                                                {data.status === "Pending"
+                                                                                    ? `${translationDataFromStore?.data?.approve}`
+                                                                                    : `${translationDataFromStore?.data?.approved}`}
+                                                                            </button>
                                                                         </>
                                                                     ) : ('')
                                                                 }
@@ -264,6 +255,19 @@ const JobDesc = () => {
 
                                                                     ) : ('')
                                                                 }
+                                                                {data.status === "Expired" ? (
+                                                                    <button
+                                                                        className={`${styles.btn_disabled_approved} `}
+                                                                        // onClick={() => { handleRejectClick(data.supplier, data.name) }}
+                                                                        disabled={
+                                                                            data.status === "Expired"
+                                                                        }
+                                                                    >
+                                                                        {translationDataFromStore?.data?.expired}
+                                                                    </button>
+                                                                ) : (
+                                                                    ""
+                                                                )}
                                                             </div>
 
                                                         </div>
